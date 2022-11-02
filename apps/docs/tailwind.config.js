@@ -1,4 +1,4 @@
-const config = require('@org/tailwind-config')
+const config = require('@f2e-2022/tailwind-config')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {

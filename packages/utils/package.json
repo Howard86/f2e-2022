@@ -1,5 +1,5 @@
 {
-  "name": "@org/utils",
+  "name": "@f2e-2022/utils",
   "version": "0.0.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -18,11 +18,11 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
-    "@org/jest-config": "workspace:*",
-    "@org/tsconfig": "workspace:*",
+    "@f2e-2022/jest-config": "workspace:*",
+    "@f2e-2022/tsconfig": "workspace:*",
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
-    "eslint-config-org": "workspace:*",
+    "eslint-config-f2e-2022": "workspace:*",
     "react": "^18.2.0",
     "tsup": "^6.3.0"
   },

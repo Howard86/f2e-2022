@@ -1,1 +1,1 @@
-module.exports = require('@org/tailwind-config')
+module.exports = require('@f2e-2022/tailwind-config')

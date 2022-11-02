@@ -1,1 +1,1 @@
-module.exports = require('@org/jest-config/esbuild')
+module.exports = require('@f2e-2022/jest-config/esbuild')

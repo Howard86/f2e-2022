@@ -1,6 +1,6 @@
 {
   "exclude": ["node_modules"],
-  "extends": "@org/tsconfig/nextjs.json",
+  "extends": "@f2e-2022/tsconfig/nextjs.json",
   "compilerOptions": {
     "rootDir": ".",
     "baseUrl": ".",
