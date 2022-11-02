@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react'
-import Docs from '@/pages/index'
+import Home from '@/pages/index'
 
 describe('docs', () => {
   it('should render', () => {
     expect.hasAssertions()
-    render(<Docs />)
+    render(<Home />)
 
-    expect(screen.getByText(/Turbo Monorepo Template/i)).toBeInTheDocument()
+    expect(screen.getByText(/home/i)).toBeInTheDocument()
   })
 })
