@@ -6,7 +6,7 @@ import {
   FunnelIcon,
   ServerStackIcon,
 } from '@heroicons/react/24/outline'
-import { Card, CardProps } from '@org/core'
+import { Card, CardProps } from '@f2e-2022/core'
 
 const features: CardProps[] = [
   {

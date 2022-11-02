@@ -1,5 +1,5 @@
 {
-  "name": "@f2e-2022/docs",
+  "name": "@f2e-2022/animated-landing",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -15,8 +15,6 @@
   "dependencies": {
     "@headlessui/react": "^1.7.3",
     "@heroicons/react": "^2.0.12",
-    "@f2e-2022/core": "workspace:*",
-    "@f2e-2022/utils": "workspace:*",
     "clsx": "^1.2.1",
     "next": "^13.0.0",
     "react": "^18.2.0",

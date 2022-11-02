@@ -9,10 +9,10 @@ This Turborepo includes the following:
 ### Apps and Packages
 
 - `docs`: A placeholder documentation site powered by [Next.js](https://nextjs.org)
-- `@org/core`: core React components
-- `@org/utils`: shared React utilities
-- `@org/tsconfig`: shared `tsconfig.json`s used throughout the monorepo
-- `eslint-config-org`: ESLint preset
+- `@f2e-2022/core`: core React components
+- `@f2e-2022/utils`: shared React utilities
+- `@f2e-2022/tsconfig`: shared `tsconfig.json`s used throughout the monorepo
+- `eslint-config-f2e-2022`: ESLint preset
 
 Each package and app is 100% [TypeScript](https://www.typescriptlang.org/).
 
@@ -45,10 +45,10 @@ git init . && git add . && git commit -m "Init"
 
 ### Changing the npm organization scope
 
-The npm organization scope for this design system starter is `@org`. To change this, it's a bit manual at the moment, but you'll need to do the following:
+The npm organization scope for this design system starter is `@f2e-2022`. To change this, it's a bit manual at the moment, but you'll need to do the following:
 
-- Rename folders in `packages/*` to replace `@org` with your desired scope
-- Search and replace `@org` with your desired scope
+- Rename folders in `packages/*` to replace `@f2e-2022` with your desired scope
+- Search and replace `@f2e-2022` with your desired scope
 - Re-run `yarn install`
 
 ## Versioning and Publishing packages
