@@ -1,6 +1,6 @@
 {
   "name": "@org/core",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -19,8 +19,8 @@
   },
   "devDependencies": {
     "@heroicons/react": "^2.0.12",
-    "@org/jest-config": "workspace:^0.0.0",
-    "@org/tailwind-config": "workspace:^0.0.0",
+    "@org/jest-config": "workspace:^0.0.1",
+    "@org/tailwind-config": "workspace:^0.0.1",
     "@org/tsconfig": "workspace:*",
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
