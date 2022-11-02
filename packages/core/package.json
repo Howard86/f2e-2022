@@ -1,0 +1,42 @@
+{
+  "name": "@org/core",
+  "version": "0.0.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "license": "MIT",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "TIMING=1 eslint \"src/**/*.ts*\"",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "devDependencies": {
+    "@heroicons/react": "^2.0.12",
+    "@org/jest-config": "workspace:^0.0.0",
+    "@org/tailwind-config": "workspace:^0.0.0",
+    "@org/tsconfig": "workspace:*",
+    "@types/react": "^18.0.24",
+    "@types/react-dom": "^18.0.8",
+    "clsx": "^1.2.1",
+    "eslint-config-org": "workspace:*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tsup": "^6.3.0",
+    "typescript": "^4.8.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "clsx": "^1.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
