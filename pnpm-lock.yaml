@@ -88,7 +88,9 @@ importers:
       '@f2e-2022/tailwind-config': workspace:*
       '@f2e-2022/tsconfig': workspace:*
       '@headlessui/react': ^1.7.3
+      '@headlessui/tailwindcss': ^0.1.1
       '@heroicons/react': ^2.0.12
+      '@next/font': ^13.0.1
       '@types/node': ^18.11.7
       '@types/react': ^18.0.24
       '@types/react-dom': ^18.0.8
@@ -104,6 +106,7 @@ importers:
     dependencies:
       '@headlessui/react': 1.7.3_biqbaboplfbrettd7655fr4n2y
       '@heroicons/react': 2.0.13_react@18.2.0
+      '@next/font': 13.0.1
       clsx: 1.2.1
       next: 13.0.1_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
@@ -112,6 +115,7 @@ importers:
       '@f2e-2022/jest-config': link:../../packages/jest-config
       '@f2e-2022/tailwind-config': link:../../packages/tailwind-config
       '@f2e-2022/tsconfig': link:../../packages/tsconfig
+      '@headlessui/tailwindcss': 0.1.1_tailwindcss@3.2.1
       '@types/node': 18.11.9
       '@types/react': 18.0.24
       '@types/react-dom': 18.0.8
@@ -1047,6 +1051,15 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
+  /@headlessui/tailwindcss/0.1.1_tailwindcss@3.2.1:
+    resolution: {integrity: sha512-MJbc/MG1iVDow0IQYdsZNVY2xiTa2fDpXLF01xIAyNH6M+Ks0c6X0k3x6PqAvwvKWKEFhS0MlMzrDUVTU6cXDA==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      tailwindcss: ^3.0
+    dependencies:
+      tailwindcss: 3.2.1_postcss@8.4.18
+    dev: true
+
   /@heroicons/react/2.0.13_react@18.2.0:
     resolution: {integrity: sha512-iSN5XwmagrnirWlYEWNPdCDj9aRYVD/lnK3JlsC9/+fqGF80k8C7rl+1HCvBX0dBoagKqOFBs6fMhJJ1hOg1EQ==}
     peerDependencies:
@@ -1419,6 +1432,10 @@ packages:
     dependencies:
       glob: 7.1.7
     dev: true
+
+  /@next/font/13.0.1:
+    resolution: {integrity: sha512-ktst4FFbEPtD8SJVQr2HuAqOoFpJx3xKkLOHzCV7D5PUk6KL/sFQa+t6UEucN70X037tqBV39BsFhMJ56hsPOw==}
+    dev: false
 
   /@next/swc-android-arm-eabi/13.0.1:
     resolution: {integrity: sha512-M28QSbohZlNXNn//HY6lV2T3YaMzG58Jwr0YwOdVmOQv6i+7lu6xe3GqQu4kdqInqhLrBXnL+nabFuGTVSHtTg==}
