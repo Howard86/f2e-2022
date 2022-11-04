@@ -54,6 +54,8 @@ module.exports = {
 
         y1: '#FFE34E',
         y2: '#FFF385',
+
+        stroke: '#313A65',
       },
       boxShadow: {
         white: '0 0 10px rgba(255, 255, 255, 0.6)',
@@ -62,12 +64,14 @@ module.exports = {
         yellow: '0 0 10px rgba(255, 243, 133, 0.6)',
       },
       backgroundImage: (theme) => ({
-        'card-background': `linear-gradient(180deg, ${theme('colors.p1')} 0%, ${theme(
-          'colors.p3'
-        )} 100%)`,
         decoration: `linear-gradient(90deg, ${theme('colors.p1')} 0%, ${theme('colors.g1')} 100%)`,
         'text-decoration': `linear-gradient(${theme('colors.p1')} 0%, ${theme('colors.g1')} 100%)`,
-        'card-stroke': `linear-gradient(100.38deg, #313A65 3.95%, ${theme('colors.p3')} 100%)`,
+        'card-stroke': `linear-gradient(100.38deg, ${theme('colors.stroke')} 3.95%, ${theme(
+          'colors.stroke'
+        )} 100%)`,
+        'card-background': `linear-gradient(100.38deg, ${theme('colors.stroke')} 3.95%, ${theme(
+          'colors.stroke'
+        )} 100%), linear-gradient(0deg, ${theme('colors.n3')}, ${theme('colors.n3')})`,
       }),
       spacing: {
         7.5: '1.875rem',
