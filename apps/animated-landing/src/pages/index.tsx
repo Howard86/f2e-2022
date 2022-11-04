@@ -1,8 +1,11 @@
 import Image from 'next/image'
+import { XMarkIcon } from '@heroicons/react/24/outline'
 import ExternalLink from '@/components/ExternalLink'
 
 import code from '@/../public/assets/icons/code.png'
 import dashboard from '@/../public/assets/icons/dashboard.png'
+import leftPalm from '@/../public/assets/icons/left-palm.png'
+import rightPalm from '@/../public/assets/icons/right-palm.png'
 import StarIcon from '@/components/icons/StarIcon'
 import Header from '@/components/Header'
 import RectangleIcon from '@/components/icons/RectangleIcon'
@@ -14,6 +17,10 @@ import TriangleIcon from '@/components/icons/TriangleIcon'
 import ExclamationIcon from '@/components/icons/ExclamationIcon'
 import EmailAtIcon from '@/components/icons/EmailAtIcon'
 import LongRectangleIcon from '@/components/icons/LongRectangleIcon'
+import CodeStamp from '@/components/icons/CodeStamp'
+import StarStamp from '@/components/icons/StarStamp'
+import MarqueeBanner from '@/components/MarqueeBanner'
+import IntroductionTitleIcon from '@/components/icons/IntroductionTitleIcon'
 
 export default function Example() {
   return (
@@ -52,10 +59,12 @@ export default function Example() {
           />
           {/* TODO: add marquee */}
           <div className="my-14">
-            <p className="font-en text-en-h4 bg-decoration text-n5 inline-flex items-center gap-6 whitespace-nowrap bg-clip-text uppercase [-webkit-text-stroke:3.5px_transparent]">
-              <span>join us</span>
-              <StarIcon />
-              <span>join us</span>
+            <p className="font-en text-en-h4 bg-text-decoration text-n5 inline-flex items-center gap-6 whitespace-nowrap bg-clip-text uppercase [-webkit-text-stroke:3.5px_transparent]">
+              join us
+              <span>
+                <StarIcon />
+              </span>
+              join us
             </p>
           </div>
         </section>
@@ -91,6 +100,28 @@ export default function Example() {
             </QuestionBoxIcon>
             <EmailAtIcon className="right-10 bottom-3" />
           </div>
+        </section>
+
+        <section
+          className="bg-n1 text-n6 relative flex flex-col items-center overflow-x-hidden font-bold [background-size:40px_40px]
+[background-image:linear-gradient(to_right,rgb(128,128,128,0.2),transparent_1px),linear-gradient(to_bottom,rgb(128,128,128,0.2),transparent_1px)]"
+        >
+          <MarqueeBanner />
+          <div className="relative flex w-full justify-center pt-12">
+            <CodeStamp className="absolute -bottom-6 right-4" />
+            <Image alt="left palm" src={leftPalm} quality={100} />
+          </div>
+          <IntroductionTitleIcon aria-label="互動式網頁設計" />
+          <p className="text-ch-p4 mt-1 mb-3 inline-flex items-center gap-7">
+            <span>前端工程師</span>
+            <XMarkIcon className="h-3.5 w-3.5" />
+            <span>UI設計師</span>
+          </p>
+          <div className="relative mb-28 flex w-full justify-center">
+            <Image alt="right palm" src={rightPalm} quality={100} />
+            <StarStamp className="absolute -bottom-28 left-0" />
+          </div>
+          <MarqueeBanner className="absolute bottom-0 z-10" />
         </section>
       </main>
     </div>

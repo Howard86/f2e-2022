@@ -65,7 +65,8 @@ module.exports = {
         'card-background': `linear-gradient(180deg, ${theme('colors.p1')} 0%, ${theme(
           'colors.p3'
         )} 100%)`,
-        decoration: `linear-gradient(${theme('colors.p1')} 0%, ${theme('colors.g1')} 100%)`,
+        decoration: `linear-gradient(90deg, ${theme('colors.p1')} 0%, ${theme('colors.g1')} 100%)`,
+        'text-decoration': `linear-gradient(${theme('colors.p1')} 0%, ${theme('colors.g1')} 100%)`,
         'card-stroke': `linear-gradient(100.38deg, #313A65 3.95%, ${theme('colors.p3')} 100%)`,
       }),
       spacing: {
