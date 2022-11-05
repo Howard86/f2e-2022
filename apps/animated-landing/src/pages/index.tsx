@@ -2,22 +2,14 @@ import Image, { StaticImageData } from 'next/image'
 import Head from 'next/head'
 import ExternalLink from '@/components/ExternalLink'
 
-import clock from '@/../public/assets/icons/clock.png'
-import folder from '@/../public/assets/icons/folder.png'
 import clipboard from '@/../public/assets/icons/clipboard.png'
 import coin from '@/../public/assets/icons/coin.png'
-import play from '@/../public/assets/icons/play.png'
-import pen from '@/../public/assets/icons/pen.png'
 
 import blockStudio from '@/../public/assets/company/block-studio.png'
 import kdanMobile from '@/../public/assets/company/kdan-mobile.png'
 import titanSoft from '@/../public/assets/company/titan-soft.png'
 
 import Header from '@/components/Header'
-import PacManIcon from '@/components/icons/PacManIcon'
-import DotIcon from '@/components/icons/DotIcon'
-import SubmissionCard from '@/components/SubmissionCard'
-import DownIcon from '@/components/icons/DownIcon'
 import RaceFlagIcon from '@/components/icons/RaceFlegIcon'
 import RaceCarIcon from '@/components/icons/RaceCarIcon'
 import CompetitionCard from '@/components/CompetitionCard'
@@ -29,6 +21,7 @@ import HomeSection from '@/components/sections/HomeSection'
 import QuestionSection from '@/components/sections/QuestionSection'
 import SolutionSection from '@/components/sections/SolutionSection'
 import TaskSection from '@/components/sections/TaskSection'
+import SubmissionSection from '@/components/sections/SubmissionSection'
 
 const RATES: RateBlockProps[] = [
   {
@@ -100,64 +93,7 @@ export default function HomePage() {
           <QuestionSection />
           <SolutionSection />
           <TaskSection />
-          <section className="bg-n4 relative flex flex-col py-10 text-center">
-            <div className="flex items-center justify-center gap-3 whitespace-nowrap py-9 px-8">
-              <PacManIcon className="-mr-2" />
-              <DotIcon />
-              <DotIcon />
-              <DotIcon />
-              <h2 className="text-ch-h3 font-bold [text-shadow:theme(boxShadow.white)]">
-                活動說明
-              </h2>
-              <DotIcon />
-              <DotIcon />
-              <DotIcon />
-              <DotIcon className="bg-p1 shadow-purple ml-2 h-[11px] w-[11px]" />
-            </div>
-            <div className="flex flex-col items-center gap-1 px-4 pb-5">
-              <SubmissionCard src={pen} title="開放報名">
-                <p>
-                  <span className="text-g1">10/13</span> (四) 早上 11:00
-                </p>
-                <span className="bg-n1 -my-2 h-3 w-0.5" />
-                <p>
-                  <span className="text-g1">10/30</span> (日) 晚上 23:59
-                </p>
-                <p>截止前可修改報名組別</p>
-              </SubmissionCard>
-              <DownIcon />
-              <SubmissionCard src={clock} title="個組別開賽">
-                <p>
-                  <span className="text-g1">10/31</span> UI組、團體組開賽
-                </p>
-                <p>
-                  <span className="text-g1">11/07</span> 前端組開賽
-                </p>
-                <p>
-                  前端工程師可採用
-                  <br />
-                  UI 設計師的設計稿產出完整作品
-                </p>
-              </SubmissionCard>
-              <DownIcon />
-              <SubmissionCard src={folder} title="登錄作品">
-                <p>
-                  <span className="text-g1">10/31</span> (一) 中午 12:00
-                </p>
-                <span className="bg-n1 -my-2 h-3 w-0.5" />
-                <p>
-                  <span className="text-g1">11/07</span> (一) 中午 12:00
-                </p>
-                <p>依賽程登錄作品</p>
-              </SubmissionCard>
-              <DownIcon />
-              <SubmissionCard src={play} title="線上直播">
-                <p>
-                  <span className="text-g1">11/03 - 11/24</span> 每週四
-                </p>
-              </SubmissionCard>
-            </div>
-          </section>
+          <SubmissionSection />
 
           <section className="flex flex-col items-center">
             <h2 className="text-ch-h4 mt-12 py-8 text-center font-bold [text-shadow:theme(boxShadow.white)]">
