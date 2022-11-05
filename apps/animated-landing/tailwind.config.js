@@ -47,7 +47,7 @@ module.exports = {
         n6: '#000000',
 
         p1: '#9DA4FF',
-        p2: '#DCDEFF',
+        p2: '#C4C8FF',
         p3: '#6E77E9',
 
         g1: '#55FFAD',
@@ -57,12 +57,12 @@ module.exports = {
 
         stroke: '#313A65',
       },
-      boxShadow: {
-        white: '0 0 10px rgba(255, 255, 255, 0.6)',
-        green: '0 0 10px rgba(85, 255, 173, 0.6)',
-        purple: '0 0 10px rgba(157, 164, 255, 0.6)',
-        yellow: '0 0 10px rgba(255, 243, 133, 0.6)',
-      },
+      boxShadow: (theme) => ({
+        white: `0 0 10px ${theme('colors.n1/0.6')}`,
+        green: `0 0 10px ${theme('colors.g1/0.6')}`,
+        purple: `0 0 10px ${theme('colors.p1/0.6')}`,
+        yellow: `0 0 10px ${theme('colors.y2/0.6')}`,
+      }),
       backgroundImage: (theme) => ({
         decoration: `linear-gradient(90deg, ${theme('colors.p1')} 0%, ${theme('colors.g1')} 100%)`,
         'text-decoration': `linear-gradient(${theme('colors.p1')} 0%, ${theme('colors.g1')} 100%)`,

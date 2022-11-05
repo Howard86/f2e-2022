@@ -42,7 +42,7 @@ export default function Header() {
                   href={item.href}
                   className={clsx(
                     item.current
-                      ? 'before:bg-g1 before:shadow-green text-shadow before:absolute before:-bottom-3 before:left-10 before:h-1 before:w-3 before:rounded-full'
+                      ? 'before:bg-g1 before:shadow-green [text-shadow:theme(boxShadow.white)] before:absolute before:-bottom-3 before:left-10 before:h-1 before:w-3 before:rounded-full'
                       : 'text-n2',
                     'px-3 py-2 font-medium'
                   )}
@@ -80,7 +80,7 @@ export default function Header() {
                   <span
                     className={clsx(
                       item.current
-                        ? 'before:bg-g1 before:shadow-green text-shadow before:absolute before:h-[9px] before:w-1 before:-translate-x-3 before:translate-y-1.5 before:rounded-full'
+                        ? 'before:bg-g1 before:shadow-green [text-shadow:theme(boxShadow.white)] before:absolute before:h-[9px] before:w-1 before:-translate-x-3 before:translate-y-1.5 before:rounded-full'
                         : 'text-n2',
                       'text-ch-p3 inline-block rounded-md p-4 text-center font-medium'
                     )}

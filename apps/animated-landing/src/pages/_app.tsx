@@ -8,6 +8,7 @@ const noto = Noto_Sans_TC({
   variable: '--noto-font',
   weight: ['400', '700'],
   subsets: ['chinese-traditional'],
+  preload: true,
 })
 
 const local = localFont({
