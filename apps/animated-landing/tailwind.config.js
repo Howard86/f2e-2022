@@ -37,6 +37,12 @@ module.exports = {
       'en-p4': ['14px', '18px'],
       'en-caption': ['12px', '16px'],
     },
+    screens: {
+      sm: '375px',
+      md: '650px',
+      lg: '980px',
+      xl: '1440px',
+    },
     extend: {
       colors: {
         n1: '#FFFFFF',
