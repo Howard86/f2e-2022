@@ -1,5 +1,4 @@
 import Image, { StaticImageData } from 'next/image'
-import { XMarkIcon } from '@heroicons/react/24/outline'
 import Head from 'next/head'
 import ExternalLink from '@/components/ExternalLink'
 
@@ -12,18 +11,12 @@ import coin from '@/../public/assets/icons/coin.png'
 import play from '@/../public/assets/icons/play.png'
 import draw from '@/../public/assets/icons/draw.png'
 import pen from '@/../public/assets/icons/pen.png'
-import leftPalm from '@/../public/assets/icons/left-palm.png'
-import rightPalm from '@/../public/assets/icons/right-palm.png'
 
 import blockStudio from '@/../public/assets/company/block-studio.png'
 import kdanMobile from '@/../public/assets/company/kdan-mobile.png'
 import titanSoft from '@/../public/assets/company/titan-soft.png'
 
 import Header from '@/components/Header'
-import CodeStamp from '@/components/icons/CodeStamp'
-import StarStamp from '@/components/icons/StarStamp'
-import MarqueeBanner from '@/components/MarqueeBanner'
-import IntroductionTitleIcon from '@/components/icons/IntroductionTitleIcon'
 import ThunderIcon from '@/components/icons/ThunderIcon'
 import TaskCard, { TaskCardProps } from '@/components/TaskCard'
 import PacManIcon from '@/components/icons/PacManIcon'
@@ -39,6 +32,7 @@ import QuestionTab from '@/components/QuestionTabs'
 import YellowStarIcon from '@/components/icons/YellowStarIcon'
 import HomeSection from '@/components/sections/HomeSection'
 import QuestionSection from '@/components/sections/QuestionSection'
+import SolutionSection from '@/components/sections/SolutionSection'
 
 const TASKS: TaskCardProps[] = [
   {
@@ -138,29 +132,7 @@ export default function HomePage() {
         <main className="flex flex-col gap-6 pt-20">
           <HomeSection />
           <QuestionSection />
-
-          <section
-            className="bg-n1 text-n6 relative flex flex-col items-center overflow-x-hidden font-bold [background-size:40px_40px]
-[background-image:linear-gradient(to_right,rgb(128,128,128,0.2),transparent_1px),linear-gradient(to_bottom,rgb(128,128,128,0.2),transparent_1px)]"
-          >
-            <MarqueeBanner />
-            <div className="relative flex w-full justify-center pt-12">
-              <CodeStamp className="absolute -bottom-6 right-4" />
-              <Image alt="left palm" src={leftPalm} quality={100} />
-            </div>
-            <IntroductionTitleIcon aria-label="互動式網頁設計" />
-            <h2 className="sr-only">互動式網頁設計</h2>
-            <p className="text-ch-p4 mt-1 mb-3 inline-flex items-center gap-7">
-              <span>前端工程師</span>
-              <XMarkIcon className="h-3 w-3 stroke-[3]" />
-              <span>UI設計師</span>
-            </p>
-            <div className="relative mb-28 flex w-full justify-center">
-              <Image alt="right palm" src={rightPalm} quality={100} />
-              <StarStamp className="absolute -bottom-28 left-0" />
-            </div>
-            <MarqueeBanner className="absolute bottom-0 z-10" />
-          </section>
+          <SolutionSection />
 
           <section>
             <section className="relative flex flex-col items-center pb-[82px] text-center">
