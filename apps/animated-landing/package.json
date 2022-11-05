@@ -15,15 +15,19 @@
   "dependencies": {
     "@headlessui/react": "^1.7.3",
     "@heroicons/react": "^2.0.12",
+    "@next/font": "^13.0.1",
     "clsx": "^1.2.1",
     "next": "^13.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "sharp": "^0.31.2"
   },
   "devDependencies": {
     "@f2e-2022/jest-config": "workspace:*",
     "@f2e-2022/tailwind-config": "workspace:*",
     "@f2e-2022/tsconfig": "workspace:*",
+    "@headlessui/tailwindcss": "^0.1.1",
+    "@tailwindcss/forms": "^0.5.3",
     "@types/node": "^18.11.7",
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
