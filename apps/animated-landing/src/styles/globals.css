@@ -14,4 +14,8 @@
   .svg-container {
     @apply [&>svg]:absolute [&>svg]:h-auto relative w-0;
   }
+
+  .before-underline {
+    @apply before:bg-g1 before:shadow-green [text-shadow:theme(boxShadow.green)] before:absolute before:left-1/2 before:-bottom-2 before:h-1 before:w-3 before:-translate-x-1/2 before:rounded-full;
+  }
 }

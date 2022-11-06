@@ -15,12 +15,12 @@ export default function QuestionButton({
   return (
     <button
       type="button"
-      className="text-p3 inline-flex w-[100px] items-center justify-center py-2 font-bold [line-clamp:2]"
+      className="text-p3 text-ch-h5 inline-flex w-32 items-center justify-center py-2 font-bold"
       {...props}
     >
-      {startIcon && <CaretRightIcon className="rotate-180" />}
+      {startIcon && <CaretRightIcon className="h-auto w-6 shrink-0 rotate-180" />}
       {children}
-      {endIcon && <CaretRightIcon />}
+      {endIcon && <CaretRightIcon className="h-auto w-6 shrink-0" />}
     </button>
   )
 }

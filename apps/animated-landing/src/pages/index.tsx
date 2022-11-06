@@ -7,14 +7,14 @@ import kdanMobile from '@/../public/assets/company/kdan-mobile.png'
 import titanSoft from '@/../public/assets/company/titan-soft.png'
 
 import Header from '@/components/Header'
-import QuestionTab from '@/components/QuestionTabs'
 import YellowStarIcon from '@/components/icons/YellowStarIcon'
 import HomeSection from '@/components/sections/HomeSection'
-import QuestionSection from '@/components/sections/QuestionSection'
+import StatementSection from '@/components/sections/StatementSection'
 import SolutionSection from '@/components/sections/SolutionSection'
 import TaskSection from '@/components/sections/TaskSection'
 import SubmissionSection from '@/components/sections/SubmissionSection'
 import CompetitionSection from '@/components/sections/CompetitionSection'
+import CommonQuestionSection from '@/components/sections/CommonQuestionSection'
 
 type Company = {
   name: string
@@ -51,25 +51,12 @@ export default function HomePage() {
         <Header />
         <main className="flex flex-col gap-6 pt-20">
           <HomeSection />
-          <QuestionSection />
+          <StatementSection />
           <SolutionSection />
           <TaskSection />
           <SubmissionSection />
           <CompetitionSection />
-
-          <section className="flex flex-col items-center pb-6">
-            <h2 className="text-en-h3 font-en tracking-widest [text-shadow:theme(boxShadow.white)]">
-              Q&A
-            </h2>
-            <QuestionTab />
-            {/* TODO: refactor button */}
-            <ExternalLink
-              href="#"
-              className="text-n6 bg-y1 text-ch-h4 rounded-card mt-12 mb-6 inline-flex grow-0 py-3 px-10 font-bold tracking-wider"
-            >
-              立即報名
-            </ExternalLink>
-          </section>
+          <CommonQuestionSection />
 
           <section className="bg-n3 flex flex-col items-center gap-6 py-10">
             <div className="relative mb-4 w-full px-6">

@@ -9,7 +9,7 @@ import RectangleIcon from '../icons/RectangleIcon'
 import TriangleIcon from '../icons/TriangleIcon'
 
 // TODO: merge svg into blocks & add framer group animation */
-export default function QuestionSection() {
+export default function StatementSection() {
   return (
     <section className="section text-ch-h5 text-n5 mx-auto w-full max-w-lg pb-12">
       <div className="svg-container h-[164px]">
