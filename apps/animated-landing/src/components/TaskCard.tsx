@@ -28,7 +28,7 @@ export default function TaskCard({
       </span>
       <h3 className="text-ch-h4 font-bold uppercase">{title}</h3>
       <p className="text-ch-h5 mt-2 flex-1">{description}</p>
-      <Image src={src} alt={title} width={size} height={size} className="my-4" />
+      <Image src={src} alt={title} width={size} height={size} className="my-4" placeholder="blur" />
       <div className="flex w-full flex-1 items-end justify-between">
         <p className="font-en text-en-subtitle text-p2 uppercase tracking-widest">{footer}</p>
         <ExternalLink

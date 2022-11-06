@@ -53,6 +53,7 @@ export default function SponsorSection() {
               alt={company.name}
               src={company.logo}
               className="rounded-card bg-n1 overflow-hidden p-1.5"
+              placeholder="blur"
             />
           </ExternalLink>
         ))}

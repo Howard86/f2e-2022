@@ -26,7 +26,7 @@ export default function SubmissionCard({
       )}
     >
       <div className="section flex-1">
-        <Image alt={title} src={src} />
+        <Image alt={title} src={src} placeholder="blur" />
       </div>
       <div className="section flex-[2] gap-4 md:items-start md:text-start">
         <h3 className="text-ch-h4 font-bold">{title}</h3>

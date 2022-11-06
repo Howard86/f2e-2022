@@ -19,6 +19,7 @@ export default function HomeSection() {
           width={70.5}
           alt="code icon"
           className="rotate-[-19.31deg] self-start md:absolute md:left-0 md:top-16"
+          placeholder="blur"
         />
         <DashArrowIcon className="absolute left-20 bottom-10 hidden md:block" />
         <div className="section justify-center">
@@ -45,6 +46,7 @@ export default function HomeSection() {
           alt="dashboard icon"
           sizes="105px, (min-width: 650px) 160px"
           className="h-auto w-[105px] self-end md:absolute md:right-20 md:top-20 md:w-[160px]"
+          placeholder="blur"
         />
         <PacManGameIcon className="absolute -right-4 top-3 hidden md:block" />
       </div>

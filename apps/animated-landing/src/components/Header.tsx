@@ -29,6 +29,7 @@ export default function Header() {
             alt="f2e logo"
             sizes="(min-width: 980px) 180px, 110px"
             className="h-auto w-[110px] lg:w-[180px]"
+            placeholder="blur"
           />
         </Link>
         <ul className="lg:flex lg:items-center lg:gap-8">

@@ -23,6 +23,7 @@ export default function SolutionSection() {
           src={leftPalm}
           sizes={IMAGE_SIZES}
           className="w-[120px] sm:w-[208px] sm:rotate-45 md:w-[120px] lg:w-[208px]"
+          placeholder="blur"
         />
         <div className="text-center md:translate-y-7">
           <IntroductionTitleIcon aria-label="互動式網頁設計" className="h-auto lg:w-[530px]" />
@@ -38,6 +39,7 @@ export default function SolutionSection() {
           src={rightPalm}
           sizes={IMAGE_SIZES}
           className="w-[120px] sm:w-[208px] md:w-[120px] md:rotate-[135deg] lg:w-[208px]"
+          placeholder="blur"
         />
         <StarStamp className="absolute -bottom-12 left-0 h-auto md:left-4 lg:w-60" />
       </div>

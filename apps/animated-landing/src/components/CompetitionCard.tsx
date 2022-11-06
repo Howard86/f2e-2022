@@ -11,7 +11,7 @@ export default function CompetitionCard({ src, title, children }: CompetitionCar
   return (
     <article className="bg-card-background rounded-card max-w-[485px] p-0.5 md:w-full">
       <div className="bg-n3 rounded-card section h-full px-6 py-8 md:p-10">
-        <Image alt={title} src={src} />
+        <Image alt={title} src={src} placeholder="blur" />
         <h3 className="text-p1 text-ch-h3 md:text-ch-h2 py-2 font-bold [text-shadow:theme(boxShadow.purple)]">
           {title}
         </h3>
