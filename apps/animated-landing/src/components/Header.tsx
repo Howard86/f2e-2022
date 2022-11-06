@@ -1,6 +1,5 @@
 import { Popover, Transition } from '@headlessui/react'
 import { XMarkIcon, Bars3Icon } from '@heroicons/react/24/outline'
-import clsx from 'clsx'
 import Image from 'next/image'
 import { Fragment } from 'react'
 import Link from 'next/link'
@@ -16,12 +15,15 @@ export default function Header() {
       className="ui-open:overflow-y-auto bg-n5 fixed inset-x-0 top-0 z-50 overflow-y-visible lg:static"
     >
       <nav className="mx-auto flex max-w-screen-lg items-center justify-center p-4 md:px-6 lg:px-8 lg:py-6 xl:px-0">
-        <Popover.Button className="inline-flex items-center justify-center p-1 lg:hidden">
+        <Popover.Button className="hover:btn-green inline-flex items-center justify-center p-1 lg:hidden">
           <span className="sr-only">開啟選單</span>
-          <XMarkIcon className="ui-not-open:hidden w-7.5 block h-auto" aria-hidden="true" />
+          <XMarkIcon
+            className="ui-not-open:hidden w-7.5 block h-auto stroke-2"
+            aria-hidden="true"
+          />
           <Bars3Icon className="ui-open:hidden w-7.5 block h-auto" aria-hidden="true" />
         </Popover.Button>
-        <Link href="/" className="ml-1 flex-1">
+        <Link href="/" className="ml-4 flex-1">
           <Image
             src={logo}
             alt="f2e logo"
@@ -32,20 +34,26 @@ export default function Header() {
         <ul className="lg:flex lg:items-center lg:gap-8">
           {NAV_ITEMS.map((item) => (
             <li key={item.href} className="relative hidden lg:block">
-              <UnifiedLink href={item.href} className="text-n2 px-3 py-2 font-medium">
+              <UnifiedLink
+                href={item.href}
+                className="text-n2 hover:before-underline focus:before-underline px-3 py-2 font-medium"
+              >
                 {item.name}
               </UnifiedLink>
             </li>
           ))}
           <li className="my-2 lg:hidden">
-            <ExternalLink href={SIGN_UP_LINK} className="rounded-card text-ch-p3 border px-4 py-2">
+            <ExternalLink
+              href={SIGN_UP_LINK}
+              className="rounded-card text-ch-p3 hover:btn-green focus:btn-green border px-4 py-2 transition-all"
+            >
               立即報名
             </ExternalLink>
           </li>
           <li className="my-2.5 hidden lg:block">
             <ExternalLink
               href={SIGN_IN_LINK}
-              className="rounded-card text-ch-p3 border px-6 py-2.5"
+              className="rounded-card text-ch-p3 hover:btn-green focus:btn-green border px-6 py-2.5 transition-all"
             >
               登入
             </ExternalLink>
@@ -67,11 +75,7 @@ export default function Header() {
             {NAV_ITEMS.map((item) => (
               <Popover.Button key={item.name} as="li">
                 <UnifiedLink href={item.href} className="relative">
-                  <span
-                    className={clsx(
-                      'text-n2 text-ch-p3 inline-block rounded-md p-4 text-center font-medium'
-                    )}
-                  >
+                  <span className="text-n2 text-ch-p3 hover:before-underline focus:before-underline inline-block rounded-md p-4 text-center font-medium">
                     {item.name}
                   </span>
                 </UnifiedLink>
@@ -80,7 +84,7 @@ export default function Header() {
             <Popover.Button
               as={ExternalLink}
               href={SIGN_IN_LINK}
-              className="rounded-card text-ch-p3 mt-6 border px-4 py-2"
+              className="rounded-card text-ch-p3 hover:btn-green focus:btn-green mx-auto mt-6 w-full max-w-xs border px-4 py-2 transition-all"
             >
               登入
             </Popover.Button>

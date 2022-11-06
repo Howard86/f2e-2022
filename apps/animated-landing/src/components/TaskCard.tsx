@@ -32,7 +32,7 @@ export default function TaskCard({
       <div className="flex w-full flex-1 items-end justify-between">
         <p className="font-en text-en-subtitle text-p2 uppercase tracking-widest">{footer}</p>
         <ExternalLink
-          className="text-ch-subtitle inline-flex items-center gap-2 font-bold"
+          className="text-ch-subtitle inline-flex items-center gap-2 font-bold underline-offset-4 transition-all hover:underline focus:underline"
           href={href}
         >
           查看關卡細節

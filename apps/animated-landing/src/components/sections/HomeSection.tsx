@@ -35,7 +35,7 @@ export default function HomeSection() {
           </h1>
           <ExternalLink
             href={SIGN_UP_LINK}
-            className="text-n6 bg-y1 text-ch-h4 rounded-card mt-12 mb-6 inline-flex grow-0 py-3 px-10 font-bold tracking-wider"
+            className="text-n6 bg-y1 text-ch-h4 rounded-card hover:btn-yellow focus:btn-yellow mt-12 mb-6 inline-flex grow-0 py-3 px-10 font-bold tracking-wider transition-all xl:px-[72px] xl:py-5"
           >
             立即報名
           </ExternalLink>

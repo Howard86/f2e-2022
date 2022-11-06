@@ -44,8 +44,16 @@ export default function SponsorSection() {
       </div>
       <div className="section mb-5 gap-6 md:flex-row md:gap-14">
         {COMPANIES.map((company) => (
-          <ExternalLink key={company.href} href={company.href} className="bg-n1 rounded-card p-3">
-            <Image alt={company.name} src={company.logo} />
+          <ExternalLink
+            key={company.href}
+            href={company.href}
+            className="bg-n1 rounded-card hover:bg-decoration focus:bg-decoration p-1.5 transition-all hover:-translate-y-1"
+          >
+            <Image
+              alt={company.name}
+              src={company.logo}
+              className="rounded-card bg-n1 overflow-hidden p-1.5"
+            />
           </ExternalLink>
         ))}
       </div>

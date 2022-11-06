@@ -28,7 +28,7 @@ export default function QuestionTab() {
             name="tabs"
             role="tablist"
             value={selectedTab}
-            className="focus:border-p1 focus:ring-p1 focus:shadow-purple border-n1 text-ch-h5 block w-full rounded-md border bg-transparent py-2 pl-3 pr-10 focus:outline-none"
+            className="focus:border-p1 focus:ring-p1 focus:shadow-purple border-n1 text-ch-h5 block w-full rounded-md border bg-transparent py-2 transition-all focus:outline-none"
             onChange={handleSelect}
           >
             {NORMALISED_TABS.ids.map((id) => (
@@ -41,11 +41,15 @@ export default function QuestionTab() {
         <nav className="hidden md:block">
           <Tab.List as="ul" className="flex flex-nowrap">
             {NORMALISED_TABS.ids.map((id) => (
-              <Tab as="li" key={id} className="relative whitespace-nowrap">
+              <Tab
+                as="li"
+                key={id}
+                className="text-n2 relative whitespace-nowrap focus-visible:outline-none"
+              >
                 <button
                   id={`tab-${id}`}
                   type="button"
-                  className="ui-selected:before-underline ui-not-selected:text-n2 text-ch-h5 lg:text-ch-h4 px-3 py-2 font-medium lg:px-4"
+                  className="ui-selected:before-underline ui-selected:before:opacity-100 hover:before-underline focus:before-underline text-ch-h5 lg:text-ch-h4 px-3 py-2 font-medium transition-all lg:px-4"
                 >
                   {NORMALISED_TABS.entities[id].name}
                 </button>
@@ -75,7 +79,7 @@ export default function QuestionTab() {
                     </div>
                   </div>
                 ))}
-                <div className="flex justify-between px-5 lg:px-12">
+                <div className="flex items-center justify-between px-5 lg:px-12">
                   {NORMALISED_TABS.entities[prevId] && (
                     <QuestionButton
                       startIcon

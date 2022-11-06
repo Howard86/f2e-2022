@@ -12,7 +12,7 @@ export default function CommonQuestionSection() {
       {/* TODO: refactor button */}
       <ExternalLink
         href={SIGN_UP_LINK}
-        className="text-n6 bg-y1 text-ch-h4 rounded-card my-8 mb-6 inline-flex grow-0 py-3 px-10 font-bold tracking-wider"
+        className="text-n6 bg-y1 hover:btn-yellow focus:btn-yellow text-ch-h4 rounded-card my-8 mb-6 inline-flex grow-0 py-3 px-10 font-bold tracking-wider transition-all"
       >
         立即報名
       </ExternalLink>

@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { ButtonProps } from 'react-html-props'
 import CaretRightIcon from './icons/CaretRightIcon'
 
@@ -15,7 +16,11 @@ export default function QuestionButton({
   return (
     <button
       type="button"
-      className="text-p3 text-ch-h5 inline-flex w-32 items-center justify-center py-2 font-bold"
+      className={clsx(
+        startIcon && 'transition-all hover:-translate-x-0.5',
+        endIcon && 'justify-end transition-all hover:translate-x-0.5',
+        'text-p3 text-ch-h5 inline-flex w-32 grow-0 items-center py-2 font-bold md:w-60'
+      )}
       {...props}
     >
       {startIcon && <CaretRightIcon className="h-auto w-6 shrink-0 rotate-180" />}
