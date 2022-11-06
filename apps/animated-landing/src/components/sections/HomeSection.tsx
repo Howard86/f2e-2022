@@ -12,16 +12,16 @@ import { SIGN_UP_LINK } from '@/constants/links'
 export default function HomeSection() {
   return (
     <section className="section">
-      <div className="section relative mx-auto w-full max-w-sm px-4 md:max-w-screen-md md:flex-row md:justify-center">
+      <div className="section relative mx-auto w-full max-w-sm px-4 md:max-w-screen-md md:scale-110 md:flex-row md:justify-center md:py-10 lg:scale-150 lg:py-24">
         <Image
           src={code}
           height={70.5}
           width={70.5}
           alt="code icon"
-          className="rotate-[-19.31deg] self-start md:absolute md:left-0 md:top-16"
+          className="rotate-[-19.31deg] self-start md:absolute md:left-0 md:top-24 lg:top-40"
           placeholder="blur"
         />
-        <DashArrowIcon className="absolute left-20 bottom-10 hidden md:block" />
+        <DashArrowIcon className="absolute left-20 bottom-20 hidden md:block lg:bottom-32" />
         <div className="section justify-center">
           <h1 className="section justify-center text-center md:relative">
             <span className="text-en-h4 font-en uppercase italic tracking-[.2em] [text-shadow:-2.13px_-0.68px_theme(colors.g1),_1.32px_1.26px_theme(colors.p1)] md:absolute md:top-1 md:-right-2">
@@ -36,7 +36,7 @@ export default function HomeSection() {
           </h1>
           <ExternalLink
             href={SIGN_UP_LINK}
-            className="text-n6 bg-y1 text-ch-h4 rounded-card hover:btn-yellow focus:btn-yellow mt-12 mb-6 inline-flex grow-0 py-3 px-10 font-bold tracking-wider transition-all xl:px-[72px] xl:py-5"
+            className="text-n6 bg-y1 text-ch-h4 rounded-card hover:btn-yellow focus:btn-yellow mt-12 mb-6 inline-flex grow-0 py-3 px-10 font-bold tracking-wider transition-all"
           >
             立即報名
           </ExternalLink>
@@ -45,10 +45,10 @@ export default function HomeSection() {
           src={dashboard}
           alt="dashboard icon"
           sizes="105px, (min-width: 650px) 160px"
-          className="h-auto w-[105px] self-end md:absolute md:right-20 md:top-20 md:w-[160px]"
+          className="h-auto w-[105px] self-end md:absolute md:right-20 md:top-28 md:w-[160px] lg:top-40"
           placeholder="blur"
         />
-        <PacManGameIcon className="absolute -right-4 top-3 hidden md:block" />
+        <PacManGameIcon className="absolute -right-4 top-12 hidden md:block lg:top-28" />
       </div>
       {/* TODO: add marquee */}
       <div className="my-14">

@@ -14,7 +14,7 @@ export default function Header() {
       as="header"
       className="ui-open:overflow-y-auto bg-n5 fixed inset-x-0 top-0 z-50 overflow-y-visible lg:static"
     >
-      <nav className="mx-auto flex max-w-screen-lg items-center justify-center p-4 md:px-6 lg:px-8 lg:py-6 xl:px-0">
+      <nav className="mx-auto flex max-w-screen-xl items-center justify-center p-4 md:px-6 lg:px-8 lg:py-6">
         <Popover.Button className="hover:btn-green inline-flex items-center justify-center p-1 lg:hidden">
           <span className="sr-only">開啟選單</span>
           <XMarkIcon
