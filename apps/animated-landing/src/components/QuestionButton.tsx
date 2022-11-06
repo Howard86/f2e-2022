@@ -19,13 +19,13 @@ export default function QuestionButton({
       className={clsx(
         startIcon && 'transition-all hover:-translate-x-0.5',
         endIcon && 'justify-end transition-all hover:translate-x-0.5',
-        'text-p3 text-ch-h5 inline-flex w-32 grow-0 items-center py-2 font-bold md:w-60'
+        'text-p3 text-ch-h5 inline-flex w-32 shrink-0 grow-0 items-center py-2 font-bold md:w-60'
       )}
       {...props}
     >
-      {startIcon && <CaretRightIcon className="h-auto w-6 shrink-0 rotate-180" />}
+      {startIcon && <CaretRightIcon className="h-auto w-6 flex-none rotate-180" />}
       {children}
-      {endIcon && <CaretRightIcon className="h-auto w-6 shrink-0" />}
+      {endIcon && <CaretRightIcon className="h-auto w-6 flex-none" />}
     </button>
   )
 }

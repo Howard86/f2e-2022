@@ -69,6 +69,12 @@ module.exports = {
         purple: `0 0 10px ${theme('colors.p1/0.6')}`,
         yellow: `0 0 10px ${theme('colors.y2/0.6')}`,
       }),
+      dropShadow: (theme) => ({
+        white: `0 0 10px ${theme('colors.n1/0.6')}`,
+        green: `0 0 10px ${theme('colors.g1/0.6')}`,
+        purple: `0 0 10px ${theme('colors.p1/0.6')}`,
+        yellow: `0 0 10px ${theme('colors.y2/0.6')}`,
+      }),
       backgroundImage: (theme) => ({
         decoration: `linear-gradient(90deg, ${theme('colors.p1')} 0%, ${theme('colors.g1')} 100%)`,
         'text-decoration': `linear-gradient(${theme('colors.p1')} 0%, ${theme('colors.g1')} 100%)`,
