@@ -11,7 +11,7 @@ import TriangleIcon from '../icons/TriangleIcon'
 // TODO: merge svg into blocks & add framer group animation */
 export default function StatementSection() {
   return (
-    <section className="section text-ch-h5 text-n5 mx-auto w-full max-w-lg pb-12">
+    <section className="section text-ch-h5 text-n5 mx-auto w-full max-w-lg pb-12 lg:scale-125 lg:pt-20 lg:pb-32">
       <div className="svg-container h-[164px]">
         <RectangleIcon className="right-2 md:right-2 md:w-40" />
         <CurlyStarIcon className="left-4 top-2 md:w-10" />

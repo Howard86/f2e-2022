@@ -12,9 +12,9 @@ export default function Header() {
   return (
     <Popover
       as="header"
-      className="ui-open:overflow-y-auto bg-n5 fixed inset-x-0 top-0 z-50 overflow-y-visible lg:static"
+      className="ui-open:overflow-y-auto bg-n5 fixed inset-x-0 top-0 z-50 lg:relative lg:overflow-visible"
     >
-      <nav className="mx-auto flex max-w-screen-xl items-center justify-center p-4 md:px-6 lg:px-8 lg:py-6">
+      <nav className="mx-auto flex max-w-screen-xl items-center justify-center overflow-visible p-4 md:px-6 lg:px-8 lg:py-6">
         <Popover.Button className="hover:btn-green inline-flex items-center justify-center p-1 lg:hidden">
           <span className="sr-only">開啟選單</span>
           <XMarkIcon
@@ -32,7 +32,7 @@ export default function Header() {
             placeholder="blur"
           />
         </Link>
-        <ul className="lg:flex lg:items-center lg:gap-8">
+        <ul className="space-x-2 lg:flex lg:items-center lg:gap-6">
           {NAV_ITEMS.map((item) => (
             <li key={item.href} className="relative hidden lg:block">
               <UnifiedLink

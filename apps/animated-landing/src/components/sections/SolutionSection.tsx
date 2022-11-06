@@ -9,8 +9,7 @@ import IntroductionTitleIcon from '../icons/IntroductionTitleIcon'
 import StarStamp from '../icons/StarStamp'
 import MarqueeBanner from '../MarqueeBanner'
 
-const IMAGE_SIZES =
-  '120px, (min-width: 375px) 208px, (min-width: 650px) 120px, (min-width: 960px) 208px'
+const IMAGE_SIZES = '120px, (min-width: 650px) 208px'
 
 export default function SolutionSection() {
   return (
@@ -22,7 +21,7 @@ export default function SolutionSection() {
           alt="left palm"
           src={leftPalm}
           sizes={IMAGE_SIZES}
-          className="w-[120px] sm:w-[208px] sm:rotate-45 md:w-[120px] lg:w-[208px]"
+          className="w-[120px] md:w-[208px] md:rotate-45"
           placeholder="blur"
         />
         <div className="text-center md:translate-y-7">
@@ -38,7 +37,7 @@ export default function SolutionSection() {
           alt="right palm"
           src={rightPalm}
           sizes={IMAGE_SIZES}
-          className="w-[120px] sm:w-[208px] md:w-[120px] md:rotate-[135deg] lg:w-[208px]"
+          className="w-[120px] md:w-[208px] md:rotate-[135deg]"
           placeholder="blur"
         />
         <StarStamp className="absolute -bottom-12 left-0 h-auto md:left-4 lg:w-60" />

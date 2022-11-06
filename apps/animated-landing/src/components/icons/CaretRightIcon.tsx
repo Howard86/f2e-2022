@@ -1,6 +1,6 @@
 import { SVGProps } from 'react-html-props'
 
-export default function CaretRightIcon({ className, ...props }: SVGProps) {
+export default function CaretRightIcon(props: SVGProps) {
   return (
     <svg width="30" height="31" viewBox="0 0 30 31" xmlns="http://www.w3.org/2000/svg" {...props}>
       <g>
