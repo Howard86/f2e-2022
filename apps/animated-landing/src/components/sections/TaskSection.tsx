@@ -37,7 +37,7 @@ const TASKS: TaskCardProps[] = [
 
 export default function TaskSection() {
   return (
-    <section className="section pb-20 text-center">
+    <section id="task" className="section pb-20 text-center">
       <div className="relative w-0">
         <ThunderIcon className="absolute left-28 top-6 md:left-60" />
         <ThunderIcon className="absolute left-36 top-14 w-7 rotate-[25deg] md:left-[260px]" />

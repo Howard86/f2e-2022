@@ -7,6 +7,7 @@ import StarIcon from '../icons/StarIcon'
 import ExternalLink from '../ExternalLink'
 import PacManGameIcon from '../icons/PacManGameIcon'
 import DashArrowIcon from '../icons/DashArrowIcon'
+import { SIGN_UP_LINK } from '@/constants/links'
 
 export default function HomeSection() {
   return (
@@ -33,7 +34,7 @@ export default function HomeSection() {
             </span>
           </h1>
           <ExternalLink
-            href="#"
+            href={SIGN_UP_LINK}
             className="text-n6 bg-y1 text-ch-h4 rounded-card mt-12 mb-6 inline-flex grow-0 py-3 px-10 font-bold tracking-wider"
           >
             立即報名

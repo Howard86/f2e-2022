@@ -9,6 +9,7 @@ import SubmissionSection from '@/components/sections/SubmissionSection'
 import CompetitionSection from '@/components/sections/CompetitionSection'
 import CommonQuestionSection from '@/components/sections/CommonQuestionSection'
 import SponsorSection from '@/components/sections/SponsorSection'
+import Footer from '@/components/Footer'
 
 export default function HomePage() {
   return (
@@ -29,9 +30,7 @@ export default function HomePage() {
           <CommonQuestionSection />
           <SponsorSection />
         </main>
-        <footer className="text-en-p4 px-5 py-8 text-center font-medium">
-          Copyright © 2022 HexSchool. All rights reserved.
-        </footer>
+        <Footer />
       </div>
     </>
   )

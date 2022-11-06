@@ -3,9 +3,6 @@
 @tailwind utilities;
 
 @layer components {
-  .btn {
-    @apply rounded-card text-ch-p3 border px-4 py-2;
-  }
 
   .section {
     @apply flex flex-col items-center;
