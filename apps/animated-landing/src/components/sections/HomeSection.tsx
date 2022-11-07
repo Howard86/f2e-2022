@@ -59,7 +59,7 @@ export default function HomeSection() {
   })
 
   return (
-    <section className="section">
+    <section className="section min-h-screen">
       <div className="section relative mx-auto w-full max-w-sm px-4 md:max-w-screen-md md:scale-110 md:flex-row md:justify-center md:py-10 lg:scale-150 lg:py-24">
         <motion.div
           initial={AnimationVariant.Initial}
@@ -105,7 +105,7 @@ export default function HomeSection() {
             href={SIGN_UP_LINK}
             initial={AnimationVariant.Initial}
             animate={inView ? AnimationVariant.Float : AnimationVariant.Initial}
-            whileHover={AnimationVariant.Scale}
+            whileHover={AnimationVariant.ScaleUpAndDown}
             variants={SLIDE_LEFT_VARIANTS}
             className="text-n6 bg-y1 text-ch-h5 rounded-card hover:btn-yellow focus:btn-yellow mt-12 mb-6 inline-flex grow-0 py-2 px-10 font-bold tracking-wider transition-all"
           >

@@ -4,8 +4,10 @@ export const enum AnimationVariant {
   Initial = 'hidden',
   Slide = 'slide',
   Float = 'float',
-  Scale = 'scale',
+  ScaleUpAndDown = 'scale-up-and-down',
   Shrink = 'shrink',
+  Bounce = 'bounce',
+  ScaleOrSlide = 'scale-or-slide',
 }
 
 export const ANIMATIONS = [AnimationVariant.Slide, AnimationVariant.Float]
@@ -64,7 +66,7 @@ export const SLIDE_LEFT_VARIANTS: Variants = {
       repeatType: 'reverse',
     },
   },
-  [AnimationVariant.Scale]: {
+  [AnimationVariant.ScaleUpAndDown]: {
     translateX: 0,
     scale: [1.1, 0.9],
     transition: {
@@ -85,4 +87,110 @@ export const MARQUEE_TRANSITION: Transition = {
   ease: 'linear',
   repeat: Infinity,
   repeatType: 'loop',
+}
+
+export const BOUNCE_CONTAINER_VARIANTS: Variants = {
+  [AnimationVariant.Initial]: {},
+  [AnimationVariant.Bounce]: {
+    transition: {
+      delayChildren: 0.4,
+      staggerChildren: 1.2,
+      duration: 0.64,
+      ease: [0.43, 0.13, 0.23, 0.96],
+    },
+  },
+}
+
+export const BOUNCE_OUT_VARIANTS: Variants = {
+  [AnimationVariant.Initial]: {},
+  [AnimationVariant.Bounce]: {
+    scale: [0.3, 1.1, 0.9, 1.03, 0.97, 1],
+    opacity: [0, 1, 1, 1, 1, 1],
+  },
+}
+
+export const SCALE_IN_TRANSITIONS: Transition = {
+  duration: 1.28,
+  ease: [0.43, 0.13, 0.23, 0.96],
+}
+
+export const SCALE_IN_VARIANTS: Variants = {
+  [AnimationVariant.Initial]: {
+    opacity: 0,
+    scale: 0,
+  },
+  [AnimationVariant.ScaleOrSlide]: {
+    opacity: 1,
+    scale: 1,
+    transition: SCALE_IN_TRANSITIONS,
+  },
+}
+
+export const enum SlideDirection {
+  Top,
+  Bottom,
+  Left,
+  Right,
+}
+
+export const FADE_SLIDE_IN_VARIANTS: Variants = {
+  [AnimationVariant.Initial]: (position) => {
+    switch (position) {
+      case SlideDirection.Top:
+        return { opacity: 0, y: '140%' }
+
+      case SlideDirection.Bottom:
+        return { opacity: 0, y: '-140%' }
+
+      case SlideDirection.Left:
+        return { opacity: 0, x: '162%' }
+
+      case SlideDirection.Right:
+        return { opacity: 0, x: '-162%' }
+
+      default:
+        throw new Error(`unknown position ${position}`)
+    }
+  },
+  [AnimationVariant.ScaleOrSlide]: (position) => {
+    switch (position) {
+      case SlideDirection.Top:
+      case SlideDirection.Bottom:
+        return { opacity: 1, y: 0, transition: SCALE_IN_TRANSITIONS }
+
+      case SlideDirection.Left:
+      case SlideDirection.Right:
+        return { opacity: 1, x: 0, transition: SCALE_IN_TRANSITIONS }
+
+      default:
+        throw new Error(`unknown position ${position}`)
+    }
+  },
+}
+
+export const SLIDE_HORIZONTAL_VARIANTS: Variants = {
+  [AnimationVariant.Initial]: (reversed) => ({
+    x: reversed ? 480 : 0,
+    rotate: reversed ? 180 : 0,
+  }),
+  [AnimationVariant.ScaleOrSlide]: (reversed) => ({
+    x: reversed ? 0 : 620,
+    transition: SCALE_IN_TRANSITIONS,
+    rotate: reversed ? 180 : 0,
+  }),
+}
+
+export const ROTATE_VARIANTS: Variants = {
+  [AnimationVariant.Initial]: (reversed) => ({
+    opacity: 0,
+    rotate: reversed ? 60 : -45,
+  }),
+  [AnimationVariant.ScaleOrSlide]: (reversed) => ({
+    transition: SCALE_IN_TRANSITIONS,
+    rotate: 0,
+    perspective: 600,
+    originX: reversed ? 0.2 : -1,
+    originY: 0.24,
+    opacity: 1,
+  }),
 }
