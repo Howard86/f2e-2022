@@ -1,9 +1,9 @@
-import { AProps } from 'react-html-props'
+import { APropsWithoutRef } from 'react-html-props'
 import ExternalLink from './ExternalLink'
 
 const HTTPS_PROTOCOL = 'https://'
 
-interface UnifiedLinkProps extends AProps {
+interface UnifiedLinkProps extends APropsWithoutRef {
   href: string
 }
 

@@ -1,9 +1,12 @@
+import { forwardRef } from 'react'
 import { AProps } from 'react-html-props'
 
-export default function ExternalLink({ children, ...props }: AProps) {
+const ExternalLink = forwardRef<HTMLAnchorElement, AProps>(({ children, ...props }, ref) => {
   return (
-    <a target="_blank" rel="noopener" tabIndex={0} role="link" {...props}>
+    <a ref={ref} target="_blank" rel="noopener" tabIndex={0} role="link" {...props}>
       {children}
     </a>
   )
-}
+})
+
+export default ExternalLink
