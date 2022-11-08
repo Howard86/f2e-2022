@@ -8,12 +8,15 @@ export const enum AnimationVariant {
   Shrink = 'shrink',
   Bounce = 'bounce',
   ScaleOrSlide = 'scale-or-slide',
+  Rotate = 'rotate',
+  ZoomOut = 'zoom-out',
 }
 
 export const ANIMATIONS = [AnimationVariant.Slide, AnimationVariant.Float]
 
 export const SLIDE_TRANSITION: Transition = { type: 'spring', bounce: 0.4, duration: 2.8 }
 
+// HomeSection
 export const SLIDE_UP_VARIANTS: Variants = {
   [AnimationVariant.Initial]: { opacity: 0, y: 20 },
   [AnimationVariant.Slide]: { opacity: 1, y: 0 },
@@ -89,6 +92,7 @@ export const MARQUEE_TRANSITION: Transition = {
   repeatType: 'loop',
 }
 
+// StatementSection
 export const BOUNCE_CONTAINER_VARIANTS: Variants = {
   [AnimationVariant.Initial]: {},
   [AnimationVariant.Bounce]: {
@@ -109,6 +113,7 @@ export const BOUNCE_OUT_VARIANTS: Variants = {
   },
 }
 
+// Solution Section
 export const SCALE_IN_TRANSITIONS: Transition = {
   duration: 1.28,
   ease: [0.43, 0.13, 0.23, 0.96],
@@ -193,4 +198,51 @@ export const ROTATE_VARIANTS: Variants = {
     originY: 0.24,
     opacity: 1,
   }),
+}
+
+// TaskSection
+export const FADE_IN_ROTATE_VARIANTS: Variants = {
+  [AnimationVariant.Initial]: {
+    opacity: 0,
+    y: 100,
+  },
+  [AnimationVariant.Slide]: (delay) => ({
+    opacity: [0.2, 1],
+    y: 0,
+    transition: { ...SCALE_IN_TRANSITIONS, delay },
+  }),
+  [AnimationVariant.Rotate]: {
+    opacity: [1, 1, 1, 0.8],
+    rotateY: 540,
+    x: [0, 1, 0],
+    y: [0, -2, 0],
+    transition: {
+      type: 'tween',
+      duration: 0.64,
+    },
+  },
+  [AnimationVariant.ZoomOut]: {
+    opacity: [1, 0],
+    scale: [1, 0],
+    transition: SCALE_IN_TRANSITIONS,
+  },
+  [AnimationVariant.Float]: {
+    rotateX: [0, -12],
+    rotateY: [0, 24],
+    transition: {
+      duration: 0.64,
+      type: 'spring',
+      repeat: Infinity,
+      repeatType: 'reverse',
+    },
+  },
+}
+
+export const ROTATE_ITEM_VARIANTS: Variants = {
+  [AnimationVariant.Rotate]: {
+    opacity: [1, 0.6, 0.1, 0],
+    transition: {
+      ease: 'easeOut',
+    },
+  },
 }
