@@ -14,7 +14,7 @@ export const enum AnimationVariant {
 
 export const ANIMATIONS = [AnimationVariant.Slide, AnimationVariant.Float]
 
-export const SLIDE_TRANSITION: Transition = { type: 'spring', bounce: 0.4, duration: 2.8 }
+export const SPRING_TRANSITION: Transition = { type: 'spring', bounce: 0.4, duration: 2.8 }
 
 // HomeSection
 export const SLIDE_UP_VARIANTS: Variants = {
@@ -37,7 +37,7 @@ export const DELAYED_SLIDE_UP_VARIANTS: Variants = {
   [AnimationVariant.Slide]: {
     opacity: 1,
     translateY: 0,
-    transition: { ...SLIDE_TRANSITION, delay: 0.1 },
+    transition: { ...SPRING_TRANSITION, delay: 0.1 },
   },
 }
 
@@ -58,7 +58,7 @@ export const SLIDE_DOWN_VARIANTS: Variants = {
 }
 
 export const SLIDE_LEFT_VARIANTS: Variants = {
-  [AnimationVariant.Initial]: { translateX: 0, transition: SLIDE_TRANSITION },
+  [AnimationVariant.Initial]: { translateX: 0, transition: SPRING_TRANSITION },
   [AnimationVariant.Float]: {
     translateX: [0, -4],
     transition: {
@@ -114,7 +114,7 @@ export const BOUNCE_OUT_VARIANTS: Variants = {
 }
 
 // Solution Section
-export const SCALE_IN_TRANSITIONS: Transition = {
+export const EASE_TRANSITIONS: Transition = {
   duration: 1.28,
   ease: [0.43, 0.13, 0.23, 0.96],
 }
@@ -127,7 +127,7 @@ export const SCALE_IN_VARIANTS: Variants = {
   [AnimationVariant.ScaleOrSlide]: {
     opacity: 1,
     scale: 1,
-    transition: SCALE_IN_TRANSITIONS,
+    transition: EASE_TRANSITIONS,
   },
 }
 
@@ -161,11 +161,11 @@ export const FADE_SLIDE_IN_VARIANTS: Variants = {
     switch (position) {
       case SlideDirection.Top:
       case SlideDirection.Bottom:
-        return { opacity: 1, y: 0, transition: SCALE_IN_TRANSITIONS }
+        return { opacity: 1, y: 0, transition: EASE_TRANSITIONS }
 
       case SlideDirection.Left:
       case SlideDirection.Right:
-        return { opacity: 1, x: 0, transition: SCALE_IN_TRANSITIONS }
+        return { opacity: 1, x: 0, transition: EASE_TRANSITIONS }
 
       default:
         throw new Error(`unknown position ${position}`)
@@ -180,7 +180,7 @@ export const SLIDE_HORIZONTAL_VARIANTS: Variants = {
   }),
   [AnimationVariant.ScaleOrSlide]: (reversed) => ({
     x: reversed ? 0 : 620,
-    transition: SCALE_IN_TRANSITIONS,
+    transition: EASE_TRANSITIONS,
     rotate: reversed ? 180 : 0,
   }),
 }
@@ -191,7 +191,7 @@ export const ROTATE_VARIANTS: Variants = {
     rotate: reversed ? 60 : -45,
   }),
   [AnimationVariant.ScaleOrSlide]: (reversed) => ({
-    transition: SCALE_IN_TRANSITIONS,
+    transition: EASE_TRANSITIONS,
     rotate: 0,
     perspective: 600,
     originX: reversed ? 0.2 : -1,
@@ -209,7 +209,7 @@ export const FADE_IN_ROTATE_VARIANTS: Variants = {
   [AnimationVariant.Slide]: (delay) => ({
     opacity: [0.2, 1],
     y: 0,
-    transition: { ...SCALE_IN_TRANSITIONS, delay },
+    transition: { ...EASE_TRANSITIONS, delay },
   }),
   [AnimationVariant.Rotate]: {
     opacity: [1, 1, 1, 0.8],
@@ -224,7 +224,7 @@ export const FADE_IN_ROTATE_VARIANTS: Variants = {
   [AnimationVariant.ZoomOut]: {
     opacity: [1, 0],
     scale: [1, 0],
-    transition: SCALE_IN_TRANSITIONS,
+    transition: EASE_TRANSITIONS,
   },
   [AnimationVariant.Float]: {
     rotateX: [0, -12],
@@ -245,4 +245,16 @@ export const ROTATE_ITEM_VARIANTS: Variants = {
       ease: 'easeOut',
     },
   },
+}
+
+// SubmissionSection
+export const EASE_STAGER_TRANSITIONS: Transition = {
+  duration: 1.28,
+  ease: [0.43, 0.13, 0.23, 0.96],
+  staggerChildren: 0.2,
+}
+
+export const FADE_VARIANTS: Variants = {
+  [AnimationVariant.Initial]: { opacity: 0 },
+  [AnimationVariant.Slide]: { opacity: 1, transition: EASE_TRANSITIONS },
 }

@@ -9,7 +9,7 @@ import {
   AnimationVariant,
   SLIDE_DOWN_VARIANTS,
   FADE_IN_ROTATE_VARIANTS,
-  SCALE_IN_TRANSITIONS,
+  EASE_TRANSITIONS,
 } from '@/constants/animations'
 import useMediaQueryOnce from '@/hooks/useMediaQueryOnce'
 import MobileTaskCard, { TaskCardProps } from '../MobileTaskCard'
@@ -56,7 +56,7 @@ export default function TaskSection() {
     >
       <motion.div
         variants={SLIDE_DOWN_VARIANTS}
-        transition={SCALE_IN_TRANSITIONS}
+        transition={EASE_TRANSITIONS}
         className="relative w-0"
       >
         <ThunderIcon className="absolute left-28 top-6 md:left-60" />

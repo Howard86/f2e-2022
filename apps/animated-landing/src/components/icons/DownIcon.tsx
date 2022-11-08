@@ -1,8 +1,10 @@
-import { SVGProps } from 'react-html-props'
+import { motion, SVGMotionProps } from 'framer-motion'
+import { FADE_VARIANTS } from '@/constants/animations'
 
-export default function DownIcon({ className, ...props }: SVGProps) {
+export default function DownIcon({ className, ...props }: SVGMotionProps<SVGSVGElement>) {
   return (
-    <svg
+    <motion.svg
+      variants={FADE_VARIANTS}
       width="61"
       height="61"
       viewBox="0 0 61 61"
@@ -19,6 +21,6 @@ export default function DownIcon({ className, ...props }: SVGProps) {
           strokeLinejoin="round"
         />
       </g>
-    </svg>
+    </motion.svg>
   )
 }

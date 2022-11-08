@@ -16,7 +16,7 @@ import {
   ANIMATIONS,
   SLIDE_DOWN_VARIANTS,
   DELAYED_SLIDE_UP_VARIANTS,
-  SLIDE_TRANSITION,
+  SPRING_TRANSITION,
   SLIDE_UP_VARIANTS,
   SLIDE_LEFT_VARIANTS,
   MARQUEE_TRANSITION,
@@ -83,7 +83,7 @@ export default function HomeSection() {
               initial={AnimationVariant.Initial}
               animate={inView ? AnimationVariant.Slide : AnimationVariant.Initial}
               variants={DELAYED_SLIDE_UP_VARIANTS}
-              transition={SLIDE_TRANSITION}
+              transition={SPRING_TRANSITION}
               className="text-en-h4 font-en uppercase italic tracking-[.2em] [text-shadow:-2.13px_-0.68px_theme(colors.g1),_1.32px_1.26px_theme(colors.p1)] md:absolute md:top-1 md:-right-2"
             >
               4th
@@ -92,7 +92,7 @@ export default function HomeSection() {
               initial={AnimationVariant.Initial}
               animate={inView ? AnimationVariant.Slide : AnimationVariant.Initial}
               variants={SLIDE_UP_VARIANTS}
-              transition={SLIDE_TRANSITION}
+              transition={SPRING_TRANSITION}
               className="text-en-h1 font-en uppercase [text-shadow:-1.73px_-2.6px_theme(colors.g1),_4.32px_2.59px_theme(colors.p1)] md:mt-5 md:mr-16"
             >
               the F2E
