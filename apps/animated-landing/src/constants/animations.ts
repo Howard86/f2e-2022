@@ -10,6 +10,7 @@ export const enum AnimationVariant {
   ScaleOrSlide = 'scale-or-slide',
   Rotate = 'rotate',
   ZoomOut = 'zoom-out',
+  Activate = 'active',
 }
 
 export const ANIMATIONS = [AnimationVariant.Slide, AnimationVariant.Float]
@@ -257,4 +258,29 @@ export const EASE_STAGER_TRANSITIONS: Transition = {
 export const FADE_VARIANTS: Variants = {
   [AnimationVariant.Initial]: { opacity: 0 },
   [AnimationVariant.Slide]: { opacity: 1, transition: EASE_TRANSITIONS },
+}
+
+// CompetitionSection
+export const COMPETITION_VARIANTS: Variants = {
+  [AnimationVariant.Initial]: { opacity: 0 },
+  [AnimationVariant.Activate]: { opacity: 1, transition: EASE_TRANSITIONS },
+}
+
+export const DELAYED_FADE_VARIANTS: Variants = {
+  [AnimationVariant.Initial]: { opacity: 0 },
+  [AnimationVariant.Activate]: { opacity: 1, transition: { ...EASE_TRANSITIONS, delay: 1.28 } },
+}
+
+export const DELAYED_SHRINK_VARIANTS: Variants = {
+  [AnimationVariant.Initial]: { maxWidth: '100%' },
+  [AnimationVariant.Activate]: { maxWidth: 0, transition: { duration: 1.92, delay: 2.56 } },
+}
+
+export const RACE_CAR_FLAG_VARIANTS: Variants = {
+  [AnimationVariant.Activate]: { rotate: -37, x: -17, y: -21, transition: { delay: 4.48 } },
+}
+
+export const SLIDE_UP_VARIANTS_TWO: Variants = {
+  [AnimationVariant.Initial]: { y: 40 },
+  [AnimationVariant.Activate]: { y: 0, transition: EASE_TRANSITIONS },
 }
