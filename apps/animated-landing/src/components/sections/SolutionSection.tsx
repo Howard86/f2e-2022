@@ -34,7 +34,7 @@ export default function SolutionSection() {
       >
         <MarqueeBanner reversed />
         <motion.div className="section relative -mt-10 w-full max-w-screen-md py-12 md:flex-row-reverse md:justify-center md:py-20 lg:max-w-screen-lg">
-          <CodeStamp className="absolute top-20 right-4 h-auto md:top-12 md:right-24 lg:right-36 lg:w-36" />
+          <CodeStamp className="absolute top-20 right-32 h-auto md:top-12 md:right-24 lg:right-36 lg:w-36" />
 
           <motion.div
             variants={FADE_SLIDE_IN_VARIANTS}
@@ -74,7 +74,7 @@ export default function SolutionSection() {
             />
           </motion.div>
 
-          <StarStamp className="absolute -bottom-12 left-0 h-auto md:left-4 lg:w-60" />
+          <StarStamp className="absolute -bottom-12 left-32 h-auto md:left-4 lg:w-60" />
         </motion.div>
         <MarqueeBanner />
       </motion.div>

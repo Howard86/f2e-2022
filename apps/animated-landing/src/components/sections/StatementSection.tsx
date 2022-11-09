@@ -37,7 +37,7 @@ export default function StatementSection() {
         </QuestionBoxIcon>
         <p className="sr-only">羨慕別人的酷酷網頁動畫？</p>
       </motion.div>
-      <motion.div variants={BOUNCE_OUT_VARIANTS} className="svg-container -mt-4 h-[171px]">
+      <motion.div variants={BOUNCE_OUT_VARIANTS} className="svg-container h-[171px]">
         <LinkedBallIcon className="right-20 top-12 md:top-20 md:right-4 md:w-6" />
         <QuestionBoxIcon
           className="fill-g1 -left-16 top-5 md:left-0 md:top-4 md:w-96 md:-rotate-6"
@@ -52,7 +52,7 @@ export default function StatementSection() {
         <TriangleIcon className="left-24 bottom-4 md:left-52 md:-bottom-4 md:w-14" />
         <p className="sr-only">滿足不了同事的許願？</p>
       </motion.div>
-      <motion.div variants={BOUNCE_OUT_VARIANTS} className="svg-container -mt-5 h-[196.5px]">
+      <motion.div variants={BOUNCE_OUT_VARIANTS} className="svg-container h-[196.5px]">
         <LongRectangleIcon className="-right-16 md:-right-40 md:-top-2 md:w-48 md:rotate-6" />
         <QuestionBoxIcon
           className="fill-p1 top-20 -right-24 rotate-[-10.15deg] md:-right-40 md:w-80 md:-rotate-3"

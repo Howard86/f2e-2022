@@ -51,12 +51,12 @@ export default function QuestionTab() {
                 <button
                   id={`tab-${id}`}
                   type="button"
-                  className="ui-not-selected:hover:before-underline ui-selected:text-n1 focus:before-underline text-ch-h5 lg:text-ch-h4 relative inline-flex px-3 py-2 font-medium transition-all before:transition-all lg:px-4"
+                  className="ui-not-selected:hover:before-underline ui-selected:text-n1 ui-not-selected:focus:before-underline text-ch-h5 lg:text-ch-h4 ui-not-selected:before:transition-all relative px-3 py-2 font-medium transition-all lg:px-4"
                 >
                   {NORMALISED_TABS.entities[id].name}
                   {selectedTab === id && (
                     <motion.span
-                      className="bg-g1 shadow-green absolute left-1/2 -bottom-1 h-1 w-3 -translate-x-1/2 rounded-full"
+                      className="bg-g1 shadow-green absolute left-1/2 -bottom-2 h-1 w-3 -translate-x-1/2 rounded-full"
                       layoutId="underline"
                     />
                   )}
