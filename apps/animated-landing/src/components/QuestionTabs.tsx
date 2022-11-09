@@ -1,8 +1,10 @@
 import { ChangeEvent, Fragment, useRef, useState } from 'react'
 
 import { Tab } from '@headlessui/react'
+import { AnimatePresence, motion } from 'framer-motion'
 import { NORMALISED_TABS } from '../constants/tabs'
 import QuestionButton from './QuestionButton'
+import { AnimationVariant, FADE_UP_VARIANTS, HIDE_AND_SHOW_VARIANTS } from '@/constants/animations'
 
 export default function QuestionTab() {
   const ref = useRef<HTMLDivElement>(null)
@@ -49,64 +51,80 @@ export default function QuestionTab() {
                 <button
                   id={`tab-${id}`}
                   type="button"
-                  className="ui-selected:before-underline ui-selected:before:opacity-100 hover:before-underline focus:before-underline text-ch-h5 lg:text-ch-h4 px-3 py-2 font-medium transition-all lg:px-4"
+                  className="ui-not-selected:hover:before-underline ui-selected:text-n1 focus:before-underline text-ch-h5 lg:text-ch-h4 relative inline-flex px-3 py-2 font-medium transition-all before:transition-all lg:px-4"
                 >
                   {NORMALISED_TABS.entities[id].name}
+                  {selectedTab === id && (
+                    <motion.span
+                      className="bg-g1 shadow-green absolute left-1/2 -bottom-1 h-1 w-3 -translate-x-1/2 rounded-full"
+                      layoutId="underline"
+                    />
+                  )}
                 </button>
               </Tab>
             ))}
           </Tab.List>
         </nav>
         <Tab.Panels as={Fragment}>
-          {NORMALISED_TABS.ids.map((id) => {
-            const prevId = id - 1
-            const nextId = id + 1
+          <AnimatePresence mode="wait">
+            {NORMALISED_TABS.ids.map((id) => {
+              const prevId = id - 1
+              const nextId = id + 1
 
-            return (
-              <Tab.Panel
-                key={id}
-                as="article"
-                className="text-n5 bg-n1 rounded-card mt-9 space-y-6 py-4 lg:py-8"
-              >
-                {NORMALISED_TABS.entities[id].docs.map((doc, index) => (
-                  <div key={doc.title} className="px-6 py-4 lg:flex lg:gap-6 lg:px-12">
-                    <span className="text-p3 text-en-h4 lg:text-en-h3 font-en tracking-widest">
-                      Q{index + 1}
-                    </span>
-                    <div>
-                      <h3 className="text-ch-h4 font-bold">{doc.title}</h3>
-                      <p className="text-ch-h5 lg:text-ch-h4 mt-4">{doc.description}</p>
-                    </div>
+              return (
+                <Tab.Panel
+                  key={id}
+                  as={motion.article}
+                  variants={HIDE_AND_SHOW_VARIANTS}
+                  initial={AnimationVariant.Initial}
+                  animate={AnimationVariant.Activate}
+                  exit={AnimationVariant.Initial}
+                  className="text-n5 bg-n1 rounded-card mt-9 space-y-6 py-4 lg:py-8"
+                >
+                  {NORMALISED_TABS.entities[id].docs.map((doc, index) => (
+                    <motion.div
+                      key={doc.title}
+                      variants={FADE_UP_VARIANTS}
+                      className="px-6 py-4 lg:flex lg:gap-6 lg:px-12"
+                    >
+                      <span className="text-p3 text-en-h4 lg:text-en-h3 font-en tracking-widest">
+                        Q{index + 1}
+                      </span>
+                      <div>
+                        <h3 className="text-ch-h4 font-bold">{doc.title}</h3>
+                        <p className="text-ch-h5 lg:text-ch-h4 mt-4">{doc.description}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                  <div className="flex items-center justify-between px-5 lg:px-12">
+                    {NORMALISED_TABS.entities[prevId] && (
+                      <QuestionButton
+                        startIcon
+                        onClick={() => {
+                          setSelectedTab(prevId)
+                          if (ref.current) ref.current.scrollIntoView()
+                        }}
+                      >
+                        {NORMALISED_TABS.entities[prevId].name}
+                      </QuestionButton>
+                    )}
+                    <span className="flex-1" />
+                    {NORMALISED_TABS.entities[nextId] && (
+                      <QuestionButton
+                        endIcon
+                        onClick={() => {
+                          setSelectedTab(nextId)
+                          if (ref.current) ref.current.scrollIntoView()
+                        }}
+                      >
+                        {NORMALISED_TABS.entities[nextId].name}
+                      </QuestionButton>
+                    )}
                   </div>
-                ))}
-                <div className="flex items-center justify-between px-5 lg:px-12">
-                  {NORMALISED_TABS.entities[prevId] && (
-                    <QuestionButton
-                      startIcon
-                      onClick={() => {
-                        setSelectedTab(prevId)
-                        if (ref.current) ref.current.scrollIntoView()
-                      }}
-                    >
-                      {NORMALISED_TABS.entities[prevId].name}
-                    </QuestionButton>
-                  )}
-                  <span className="flex-1" />
-                  {NORMALISED_TABS.entities[nextId] && (
-                    <QuestionButton
-                      endIcon
-                      onClick={() => {
-                        setSelectedTab(nextId)
-                        if (ref.current) ref.current.scrollIntoView()
-                      }}
-                    >
-                      {NORMALISED_TABS.entities[nextId].name}
-                    </QuestionButton>
-                  )}
-                </div>
-              </Tab.Panel>
-            )
-          })}
+                </Tab.Panel>
+              )
+            })}
+          </AnimatePresence>
         </Tab.Panels>
       </Tab.Group>
     </div>

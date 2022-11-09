@@ -59,7 +59,7 @@ export const SLIDE_DOWN_VARIANTS: Variants = {
 }
 
 export const SLIDE_LEFT_VARIANTS: Variants = {
-  [AnimationVariant.Initial]: { translateX: 0, transition: SPRING_TRANSITION },
+  [AnimationVariant.Initial]: { translateX: 0, scale: 1, transition: SPRING_TRANSITION },
   [AnimationVariant.Float]: {
     translateX: [0, -4],
     transition: {
@@ -283,4 +283,45 @@ export const RACE_CAR_FLAG_VARIANTS: Variants = {
 export const SLIDE_UP_VARIANTS_TWO: Variants = {
   [AnimationVariant.Initial]: { y: 40 },
   [AnimationVariant.Activate]: { y: 0, transition: EASE_TRANSITIONS },
+}
+
+// CommonQuestionSection
+export const HIDE_AND_SHOW_VARIANTS: Variants = {
+  [AnimationVariant.Initial]: { opacity: 0 },
+  [AnimationVariant.Activate]: {
+    opacity: 1,
+    transition: { duration: 0.32, staggerChildren: 0.12 },
+  },
+}
+
+export const FADE_UP_VARIANTS: Variants = {
+  [AnimationVariant.Initial]: { opacity: 0, y: 10 },
+  [AnimationVariant.Activate]: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.64, type: 'spring' },
+  },
+}
+
+export const ROTATE_IN_VARIANTS: Variants = {
+  [AnimationVariant.Initial]: {
+    opacity: 0,
+    skew: 0,
+    rotate: -360,
+  },
+  [AnimationVariant.Activate]: {
+    opacity: 1,
+    rotate: 0,
+    transition: { ease: 'easeOut', duration: 1.28 },
+  },
+  [AnimationVariant.Float]: {
+    y: [0, 4.8, -7.2],
+    scale: [1, 1.1],
+    transition: {
+      duration: 0.64,
+      type: 'spring',
+      repeat: Infinity,
+      repeatType: 'reverse',
+    },
+  },
 }
