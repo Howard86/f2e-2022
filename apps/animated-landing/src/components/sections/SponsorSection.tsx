@@ -63,7 +63,7 @@ export default function SponsorSection() {
             rel="noopener"
             tabIndex={0}
             role="link"
-            className="bg-n1 rounded-card hover:bg-decoration focus:bg-decoration p-1.5 transition-all hover:-translate-y-1"
+            className="bg-n1 rounded-card hover:bg-decoration focus:bg-decoration p-1.5 transition-all"
             variants={ROTATE_IN_VARIANTS}
             whileHover={AnimationVariant.Float}
           >

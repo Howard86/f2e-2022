@@ -37,7 +37,7 @@ const PRICES: PriceBlockProps[] = [
     title: '個人企業獎：',
     priceTotal: '共六位',
     price: 'NTD 3,000/位',
-    description: '每週主題個人組十位、團體組十組',
+    description: '每週主題各 2 名，設計 1 位、前端 1 位 ',
   },
   {
     title: '團體企業獎：',

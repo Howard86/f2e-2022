@@ -58,7 +58,7 @@ export default function MobileTaskCard({
           <p className="font-en text-en-subtitle text-p2 uppercase tracking-widest">{footer}</p>
         )}
         <ExternalLink
-          className="text-ch-subtitle inline-flex items-center gap-2 font-bold underline-offset-4 transition-all hover:underline focus:underline"
+          className="text-ch-subtitle before:bg-p3/20 hover:before:bg-p3/80 relative inline-flex items-center gap-2 font-bold transition-all before:absolute before:-bottom-1 before:h-0.5 before:w-0 before:transition-all hover:before:w-full"
           href={href}
         >
           查看關卡細節

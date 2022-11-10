@@ -37,7 +37,7 @@ export default function Header() {
             <li key={item.href} className="relative hidden lg:block">
               <UnifiedLink
                 href={item.href}
-                className="text-n2 hover:before-underline focus:before-underline px-3 py-2 font-medium"
+                className="text-n2 hover:before-underline focus:before-underline px-3 py-2 font-medium hover:before:-bottom-4"
               >
                 {item.name}
               </UnifiedLink>

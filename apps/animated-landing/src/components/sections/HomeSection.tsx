@@ -65,18 +65,17 @@ export default function HomeSection() {
           initial={AnimationVariant.Initial}
           animate={inView ? ANIMATIONS : AnimationVariant.Initial}
           variants={SLIDE_DOWN_VARIANTS}
-          className="self-start md:absolute md:left-0 md:top-24 lg:top-40"
+          className="self-start md:absolute md:left-4 md:top-[88px] lg:top-40 xl:-left-20 xl:top-36"
         >
           <Image
             src={code}
-            height={70.5}
-            width={70.5}
+            sizes="70.5px, (min-width: 1440px) 100px"
             alt="code icon"
-            className="rotate-[-19.31deg]"
+            className="h-auto w-[70.5px] rotate-[-19.31deg] xl:w-[100px]"
             placeholder="blur"
           />
         </motion.div>
-        <DashArrowIcon className="absolute left-20 bottom-20 hidden md:block lg:bottom-32" />
+        <DashArrowIcon className="absolute left-20 bottom-20 hidden h-auto md:bottom-[72px] md:left-24 md:block lg:bottom-32 xl:left-10 xl:bottom-[120px] xl:w-40" />
         <div className="section justify-center">
           <h1 className="section justify-center text-center md:relative">
             <motion.span
@@ -84,7 +83,7 @@ export default function HomeSection() {
               animate={inView ? AnimationVariant.Slide : AnimationVariant.Initial}
               variants={DELAYED_SLIDE_UP_VARIANTS}
               transition={SPRING_TRANSITION}
-              className="text-en-h4 font-en uppercase italic tracking-[.2em] [text-shadow:-2.13px_-0.68px_theme(colors.g1),_1.32px_1.26px_theme(colors.p1)] md:absolute md:top-1 md:-right-2"
+              className="text-en-h4 font-en xl:text-en-h3 uppercase italic tracking-[.2em] [text-shadow:-2.13px_-0.68px_theme(colors.g1),_1.32px_1.26px_theme(colors.p1)] md:absolute md:top-1 md:right-1 lg:right-6 xl:right-4 xl:-top-2"
             >
               4th
             </motion.span>
@@ -93,11 +92,11 @@ export default function HomeSection() {
               animate={inView ? AnimationVariant.Slide : AnimationVariant.Initial}
               variants={SLIDE_UP_VARIANTS}
               transition={SPRING_TRANSITION}
-              className="text-en-h1 font-en uppercase [text-shadow:-1.73px_-2.6px_theme(colors.g1),_4.32px_2.59px_theme(colors.p1)] md:mt-5 md:mr-16"
+              className="text-en-h1 md:text-en-h2 lg:text-en-h1 font-en uppercase tracking-[.2em] [text-shadow:-1.73px_-2.6px_theme(colors.g1),_4.32px_2.59px_theme(colors.p1)] md:mt-5 md:mr-[72px] lg:mr-[94px] xl:mr-28 xl:scale-125"
             >
               the F2E
             </motion.span>
-            <span className="text-ch-h5 md:text-ch-p3 mt-2 font-bold tracking-[0.8em]">
+            <span className="text-ch-h5 md:text-ch-p3 xl:text-ch-h4 mt-2 font-bold tracking-[.8em] md:mt-4">
               互動式網頁設計
             </span>
           </h1>
@@ -116,24 +115,24 @@ export default function HomeSection() {
           initial={AnimationVariant.Initial}
           animate={inView ? ANIMATIONS : AnimationVariant.Initial}
           variants={SLIDE_UP_VARIANTS}
-          className="self-end md:absolute md:right-20 md:top-28 lg:top-40"
+          className="self-end md:absolute md:right-20 md:top-28 lg:top-44 xl:right-2 xl:top-48"
         >
           <Image
             src={dashboard}
             alt="dashboard icon"
-            sizes="105px, (min-width: 650px) 160px"
-            className="h-auto w-[105px] md:w-[160px]"
+            sizes="105px, (min-width: 650px) 160px, (min-width: 1440px) 200px"
+            className="h-auto w-[105px] md:w-[160px] xl:w-[200px]"
             placeholder="blur"
           />
         </motion.div>
-        <PacManGameIcon className="absolute -right-4 top-12 hidden md:block lg:top-28" />
+        <PacManGameIcon className="absolute -right-4 top-12 hidden h-auto w-24 md:right-6 md:top-14 md:block lg:top-28 lg:right-2 lg:w-28 xl:-right-20 xl:top-[106px] xl:w-auto" />
       </div>
       {/* TODO: add marquee */}
       <div ref={containerRef} className="my-14 lg:mt-24 lg:mb-20">
         <motion.p
           animate={marqueeAnimation}
           transition={MARQUEE_TRANSITION}
-          className="font-en text-en-h4 lg:text-en-h3 bg-text-decoration text-n5 inline-flex items-center gap-6 whitespace-nowrap bg-clip-text uppercase tracking-[.08em] [-webkit-text-stroke:3.5px_transparent]"
+          className="font-en text-en-h4 lg:text-en-h3 bg-text-decoration text-n5 inline-flex items-center gap-6 whitespace-nowrap bg-clip-text uppercase tracking-[.08em] [-webkit-text-stroke:3.5px_transparent] md:scale-110 lg:scale-150"
         >
           join us
           <StarIcon />
