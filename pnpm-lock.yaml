@@ -103,6 +103,7 @@ importers:
       postcss: ^8.4.18
       react: ^18.2.0
       react-dom: ^18.2.0
+      resize-observer-polyfill: ^1.5.1
       sharp: ^0.31.2
       tailwindcss: ^3.2.1
       typescript: ^4.8.4
@@ -130,6 +131,7 @@ importers:
       autoprefixer: 10.4.13_postcss@8.4.18
       eslint-config-f2e-2022: link:../../packages/eslint-config-org
       postcss: 8.4.18
+      resize-observer-polyfill: 1.5.1
       tailwindcss: 3.2.1_postcss@8.4.18
       typescript: 4.8.4
 
@@ -7230,6 +7232,10 @@ packages:
 
   /requires-port/1.0.0:
     resolution: {integrity: sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==}
+    dev: true
+
+  /resize-observer-polyfill/1.5.1:
+    resolution: {integrity: sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg==}
     dev: true
 
   /resolve-cwd/3.0.0:
