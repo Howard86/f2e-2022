@@ -50,7 +50,7 @@ export default function TaskSection() {
   return (
     <motion.section
       id="task"
-      className="section pb-20 text-center"
+      className="section snap-start py-14 text-center lg:snap-center lg:pb-28"
       initial={AnimationVariant.Initial}
       whileInView={AnimationVariant.Slide}
     >

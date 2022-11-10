@@ -35,7 +35,7 @@ export default function MobileTaskCard({
       <span className="text-n5 text-ch-title bg-g1 mb-4 rounded-lg py-1 px-2 font-bold sm:mb-5">
         # {tag}
       </span>
-      <h3 className="text-ch-h4 font-bold uppercase">{title}</h3>
+      <h3 className="text-ch-h4 whitespace-nowrap font-bold uppercase">{title}</h3>
       <p className="text-ch-h5 mt-2 flex-1">{description}</p>
       <Image
         src={src}
@@ -58,7 +58,7 @@ export default function MobileTaskCard({
           <p className="font-en text-en-subtitle text-p2 uppercase tracking-widest">{footer}</p>
         )}
         <ExternalLink
-          className="text-ch-subtitle before:bg-p3/20 hover:before:bg-p3/80 relative inline-flex items-center gap-2 font-bold transition-all before:absolute before:-bottom-1 before:h-0.5 before:w-0 before:transition-all hover:before:w-full"
+          className="text-ch-subtitle before:bg-p3/20 hover:before:bg-p3/20 relative inline-flex items-center gap-2 font-bold transition-all before:absolute before:-bottom-1 before:h-0.5 before:w-0 before:transition-all hover:before:w-full"
           href={href}
         >
           查看關卡細節

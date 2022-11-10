@@ -42,7 +42,7 @@ export default function SponsorSection() {
     <motion.section
       initial={AnimationVariant.Initial}
       whileInView={AnimationVariant.Activate}
-      className="bg-n3 section gap-6 py-10"
+      className="bg-n3 section snap-start gap-6 pt-20 pb-10"
     >
       <div className="relative mb-4 px-6">
         <YellowStarIcon className="absolute top-2 -right-1 h-auto w-8 md:-right-3" />

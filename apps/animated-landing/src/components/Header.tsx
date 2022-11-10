@@ -12,7 +12,7 @@ export default function Header() {
   return (
     <Popover
       as="header"
-      className="ui-open:overflow-y-auto bg-n5 fixed inset-x-0 top-0 z-50 lg:relative lg:overflow-visible"
+      className="ui-open:overflow-y-auto bg-n5 fixed inset-x-0 top-0 z-50 lg:relative lg:snap-start lg:overflow-visible"
     >
       <nav className="mx-auto flex max-w-screen-xl items-center justify-center overflow-visible p-4 md:px-6 lg:px-8 lg:py-6">
         <Popover.Button className="hover:btn-green inline-flex items-center justify-center p-1 lg:hidden">

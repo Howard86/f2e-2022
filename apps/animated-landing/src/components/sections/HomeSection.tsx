@@ -35,11 +35,12 @@ const getMarqueeAnimation = (
 export default function HomeSection() {
   const marqueeAnimation = useAnimation()
 
-  const containerRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const marqueeContainerRef = useRef<HTMLDivElement>(null)
   const firstTextRef = useRef<HTMLSpanElement>(null)
   const secondTextRef = useRef<HTMLSpanElement>(null)
 
-  const inView = useInView(containerRef, { once: false })
+  const inView = useInView(sectionRef, { once: false })
 
   useEffect(() => {
     if (inView) {
@@ -50,14 +51,17 @@ export default function HomeSection() {
   }, [inView, marqueeAnimation])
 
   useResizeObserver<HTMLDivElement>({
-    ref: containerRef,
+    ref: marqueeContainerRef,
     onResize: () => {
       marqueeAnimation.start(getMarqueeAnimation(firstTextRef.current, secondTextRef.current))
     },
   })
 
   return (
-    <section className="section min-h-screen">
+    <section
+      ref={sectionRef}
+      className="section min-h-screen snap-center justify-evenly md:justify-start lg:snap-start"
+    >
       <div className="section relative mx-auto w-full max-w-sm px-4 md:max-w-screen-md md:scale-110 md:flex-row md:justify-center md:py-10 lg:scale-150 lg:py-24">
         <motion.div
           initial={AnimationVariant.Initial}
@@ -94,7 +98,7 @@ export default function HomeSection() {
               animate={inView ? AnimationVariant.Slide : AnimationVariant.Initial}
               variants={SLIDE_UP_VARIANTS}
               transition={SPRING_TRANSITION}
-              className="text-en-h1 md:text-en-h2 lg:text-en-h1 font-en uppercase tracking-[.2em] [text-shadow:-1.73px_-2.6px_theme(colors.g1),_4.32px_2.59px_theme(colors.p1)] md:mt-5 md:mr-[72px] lg:mr-[94px] xl:mr-28 xl:scale-125"
+              className="text-en-h2 lg:text-en-h1 font-en mr-8 uppercase tracking-[.2em] [text-shadow:-1.73px_-2.6px_theme(colors.g1),_4.32px_2.59px_theme(colors.p1)] md:mt-5 md:mr-[72px] lg:mr-[94px] xl:mr-28 xl:scale-125"
             >
               the F2E
             </motion.span>
@@ -133,7 +137,7 @@ export default function HomeSection() {
           className="absolute -right-4 top-12 hidden h-auto w-24 md:right-6 md:top-14 md:block lg:top-28 lg:right-2 lg:w-28 xl:-right-20 xl:top-[106px] xl:w-auto"
         />
       </div>
-      <div ref={containerRef} className="my-14 lg:mt-24 lg:mb-20">
+      <div ref={marqueeContainerRef} className="lg:mt-24">
         <motion.p
           animate={marqueeAnimation}
           transition={MARQUEE_TRANSITION}

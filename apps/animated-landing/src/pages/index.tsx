@@ -13,7 +13,7 @@ export default function HomePage() {
   return (
     <>
       <Header />
-      <main className="flex flex-col gap-6 pt-20">
+      <main className="relative flex flex-col gap-6 pt-20">
         <HomeSection />
         <StatementSection />
         <SolutionSection />

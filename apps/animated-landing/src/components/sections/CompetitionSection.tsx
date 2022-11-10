@@ -53,7 +53,7 @@ export default function CompetitionSection() {
       initial={AnimationVariant.Initial}
       whileInView={AnimationVariant.Activate}
       variants={COMPETITION_VARIANTS}
-      className="section mx-auto min-h-screen py-12 md:py-14"
+      className="section mx-auto min-h-screen snap-start py-12 md:pb-24 lg:snap-start lg:pb-32"
     >
       <motion.h2
         variants={SLIDE_UP_VARIANTS_TWO}
@@ -64,7 +64,7 @@ export default function CompetitionSection() {
           還有比賽等著你！
         </motion.span>
       </motion.h2>
-      <div className="w-full px-4 py-5">
+      <div className="w-full px-8 py-5 md:px-4">
         <div className="mb-1 flex items-baseline">
           <RaceFlagIcon />
           <motion.div className="w-full" variants={DELAYED_SHRINK_VARIANTS} />

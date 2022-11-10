@@ -20,7 +20,7 @@ export default function StatementSection() {
       initial={AnimationVariant.Initial}
       whileInView={AnimationVariant.Bounce}
       variants={BOUNCE_CONTAINER_VARIANTS}
-      className="section text-ch-h5 text-n5 mx-auto min-h-screen w-full max-w-lg justify-center pb-12 lg:scale-125 lg:pt-20 lg:pb-32"
+      className="section text-ch-h5  text-n5 mx-auto min-h-screen w-full max-w-lg snap-center justify-center pb-12 lg:scale-125 lg:pt-20 lg:pb-32"
     >
       <motion.div variants={BOUNCE_OUT_VARIANTS} className="svg-container h-[164px]">
         <p className="sr-only">羨慕別人的酷酷網頁動畫？</p>
