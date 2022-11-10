@@ -9,6 +9,12 @@ export default function MarqueeBanner({ className }: DivProps) {
         Interactive web design
         <DotIcon className="h-[11px] w-[11px]" />
         Interactive web design
+        <DotIcon className="h-[11px] w-[11px]" />
+        Interactive web design
+        <DotIcon className="h-[11px] w-[11px]" />
+        Interactive web design
+        <DotIcon className="h-[11px] w-[11px]" />
+        Interactive web design
       </p>
     </aside>
   )

@@ -37,6 +37,12 @@ module.exports = {
       'en-p4': ['14px', '18px'],
       'en-caption': ['12px', '16px'],
     },
+    screens: {
+      sm: '375px',
+      md: '650px',
+      lg: '980px',
+      xl: '1440px',
+    },
     extend: {
       colors: {
         n1: '#FFFFFF',
@@ -58,6 +64,12 @@ module.exports = {
         stroke: '#313A65',
       },
       boxShadow: (theme) => ({
+        white: `0 0 10px ${theme('colors.n1/0.6')}`,
+        green: `0 0 10px ${theme('colors.g1/0.6')}`,
+        purple: `0 0 10px ${theme('colors.p1/0.6')}`,
+        yellow: `0 0 10px ${theme('colors.y2/0.6')}`,
+      }),
+      dropShadow: (theme) => ({
         white: `0 0 10px ${theme('colors.n1/0.6')}`,
         green: `0 0 10px ${theme('colors.g1/0.6')}`,
         purple: `0 0 10px ${theme('colors.p1/0.6')}`,

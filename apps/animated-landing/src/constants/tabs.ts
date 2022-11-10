@@ -15,9 +15,9 @@ type Normalised<T extends object, K extends keyof T> = T[K] extends string | num
   : never
 
 export const NORMALISED_TABS: Normalised<QuestionTab, 'id'> = {
-  ids: [1, 2, 3, 4],
+  ids: [0, 1, 2, 3],
   entities: {
-    1: {
+    0: {
       name: '常見問題',
       docs: [
         {
@@ -41,7 +41,7 @@ export const NORMALISED_TABS: Normalised<QuestionTab, 'id'> = {
         },
       ],
     },
-    2: {
+    1: {
       name: 'UI 設計師常見問題',
       docs: [
         {
@@ -72,7 +72,7 @@ export const NORMALISED_TABS: Normalised<QuestionTab, 'id'> = {
         },
       ],
     },
-    3: {
+    2: {
       name: '前端工程師常見問題',
       docs: [
         {
@@ -95,7 +95,7 @@ export const NORMALISED_TABS: Normalised<QuestionTab, 'id'> = {
         },
       ],
     },
-    4: {
+    3: {
       name: '團體組常見問題',
       docs: [
         {

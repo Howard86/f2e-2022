@@ -3,13 +3,23 @@
 @tailwind utilities;
 
 @layer components {
-  .btn {
-    @apply rounded-card text-ch-p3 border px-4 py-2;
+  .section {
+    @apply flex flex-col items-center;
   }
-}
 
-@layer utilities {
-  .text-shadow {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+  .svg-container {
+    @apply [&>svg]:absolute [&>svg]:h-auto relative w-0;
+  }
+
+  .before-underline {
+    @apply before:bg-g1 before:shadow-green text-n1 transition-all [text-shadow:theme(boxShadow.green)] before:absolute before:left-1/2 before:-bottom-2 before:h-1 before:w-3 before:-translate-x-1/2 before:rounded-full before:opacity-0 before:transition-all hover:before:opacity-100;
+  }
+
+  .btn-green {
+    @apply text-g1 bg-g1/20 border-g1 shadow-green;
+  }
+
+  .btn-yellow {
+    @apply bg-y2 shadow-yellow;
   }
 }
