@@ -1,12 +1,12 @@
-import { SVGProps } from 'react-html-props'
+import { motion, SVGMotionProps } from 'framer-motion'
 
-interface QuestionBoxIconProps extends SVGProps {
+interface QuestionBoxIconProps extends SVGMotionProps<SVGSVGElement> {
   reversed?: boolean
 }
 
 export default function QuestionBoxIcon({ children, reversed, ...props }: QuestionBoxIconProps) {
   return (
-    <svg
+    <motion.svg
       width="279"
       height="112"
       viewBox="0 0 279 112"
@@ -25,6 +25,6 @@ export default function QuestionBoxIcon({ children, reversed, ...props }: Questi
         />
         {children}
       </g>
-    </svg>
+    </motion.svg>
   )
 }

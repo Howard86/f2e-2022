@@ -61,7 +61,6 @@ export default function Header() {
           </li>
         </ul>
       </nav>
-      {/* TODO: replace with framer motion */}
       <Transition
         as={Fragment}
         enter="transition ease-out duration-200"

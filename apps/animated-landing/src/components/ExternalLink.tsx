@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import { forwardRef } from 'react'
 import { AProps } from 'react-html-props'
 
@@ -8,5 +9,7 @@ const ExternalLink = forwardRef<HTMLAnchorElement, AProps>(({ children, ...props
     </a>
   )
 })
+
+export const MotionExternalLink = motion(ExternalLink)
 
 export default ExternalLink

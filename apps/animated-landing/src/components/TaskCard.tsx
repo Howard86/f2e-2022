@@ -30,6 +30,8 @@ export default function TaskCard(props: TaskCardProps) {
           className="from-p3 to-p1 rounded-card h-[360px] w-[300px] bg-gradient-to-r p-0.5 uppercase"
           variants={FADE_IN_ROTATE_VARIANTS}
           exit={AnimationVariant.Rotate}
+          initial={AnimationVariant.Initial}
+          whileInView={AnimationVariant.Slide}
           whileHover={AnimationVariant.Float}
           custom={props.custom}
         >

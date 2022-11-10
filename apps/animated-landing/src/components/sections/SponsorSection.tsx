@@ -11,6 +11,7 @@ import {
   HIDE_AND_SHOW_VARIANTS,
   ROTATE_IN_VARIANTS,
 } from '@/constants/animations'
+import { MotionExternalLink } from '../ExternalLink'
 
 type Company = {
   name: string
@@ -49,20 +50,16 @@ export default function SponsorSection() {
           <span className="font-en text-en-h3 block uppercase">Sponsors</span>
           <span className="text-ch-h4 block font-bold">鑽石級贊助商</span>
         </h2>
-        <YellowStarIcon className="absolute bottom-8 -left-3 md:-left-8" />
+        <YellowStarIcon className="absolute bottom-8 -left-3 md:-left-8" custom={1} />
       </div>
       <motion.div
         variants={HIDE_AND_SHOW_VARIANTS}
         className="section mb-5 gap-6 md:flex-row md:gap-14"
       >
         {COMPANIES.map((company) => (
-          <motion.a
+          <MotionExternalLink
             key={company.href}
             href={company.href}
-            target="_blank"
-            rel="noopener"
-            tabIndex={0}
-            role="link"
             className="bg-n1 rounded-card hover:bg-decoration focus:bg-decoration p-1.5 transition-all"
             variants={ROTATE_IN_VARIANTS}
             whileHover={AnimationVariant.Float}
@@ -73,7 +70,7 @@ export default function SponsorSection() {
               className="bg-n1 overflow-hidden rounded-[28px] p-1.5"
               placeholder="blur"
             />
-          </motion.a>
+          </MotionExternalLink>
         ))}
       </motion.div>
     </motion.section>

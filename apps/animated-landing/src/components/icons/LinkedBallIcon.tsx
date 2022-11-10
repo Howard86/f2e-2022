@@ -1,8 +1,8 @@
-import { SVGProps } from 'react-html-props'
+import { motion, SVGMotionProps } from 'framer-motion'
 
-export default function LinkedBallIcon(props: SVGProps) {
+export default function LinkedBallIcon(props: SVGMotionProps<SVGSVGElement>) {
   return (
-    <svg
+    <motion.svg
       width="17"
       height="33"
       viewBox="0 0 17 33"
@@ -22,6 +22,6 @@ export default function LinkedBallIcon(props: SVGProps) {
         fill="white"
         mask="url(#path-1-inside-1_191_16937)"
       />
-    </svg>
+    </motion.svg>
   )
 }

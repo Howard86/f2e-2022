@@ -8,7 +8,6 @@ interface MarqueeBannerProps extends DivProps {
   reversed?: boolean
 }
 
-// TODO: add framer motion
 export default function MarqueeBanner({ className, reversed }: MarqueeBannerProps) {
   return (
     <motion.aside

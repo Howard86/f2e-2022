@@ -1,8 +1,8 @@
-import { SVGProps } from 'react-html-props'
+import { motion, SVGMotionProps } from 'framer-motion'
 
-export default function ExclamationIcon(props: SVGProps) {
+export default function ExclamationIcon(props: SVGMotionProps<SVGSVGElement>) {
   return (
-    <svg
+    <motion.svg
       width="99"
       height="72"
       viewBox="0 0 99 72"
@@ -37,6 +37,6 @@ export default function ExclamationIcon(props: SVGProps) {
           <stop offset="1" stopColor="#313A65" stopOpacity="0" />
         </linearGradient>
       </defs>
-    </svg>
+    </motion.svg>
   )
 }

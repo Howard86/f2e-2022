@@ -106,20 +106,23 @@ export const BOUNCE_CONTAINER_VARIANTS: Variants = {
   },
 }
 
-export const BOUNCE_OUT_VARIANTS: Variants = {
-  [AnimationVariant.Initial]: {},
-  [AnimationVariant.Bounce]: {
-    scale: [0.3, 1.1, 0.9, 1.03, 0.97, 1],
-    opacity: [0, 1, 1, 1, 1, 1],
-  },
-}
-
-// Solution Section
 export const EASE_TRANSITIONS: Transition = {
   duration: 1.28,
   ease: [0.43, 0.13, 0.23, 0.96],
 }
 
+export const BOUNCE_OUT_VARIANTS: Variants = {
+  [AnimationVariant.Initial]: {},
+  [AnimationVariant.Bounce]: {
+    scale: [0.3, 1.1, 0.9, 1.03, 0.97, 1],
+    opacity: [0, 1, 0.95, 1, 0.98, 1],
+    transition: {
+      staggerChildren: 0.06,
+    },
+  },
+}
+
+// Solution Section
 export const SCALE_IN_VARIANTS: Variants = {
   [AnimationVariant.Initial]: {
     opacity: 0,
@@ -203,15 +206,15 @@ export const ROTATE_VARIANTS: Variants = {
 
 // TaskSection
 export const FADE_IN_ROTATE_VARIANTS: Variants = {
-  [AnimationVariant.Initial]: {
+  [AnimationVariant.Initial]: (y = 100) => ({
     opacity: 0,
-    y: 100,
-  },
-  [AnimationVariant.Slide]: (delay) => ({
+    y,
+  }),
+  [AnimationVariant.Slide]: {
     opacity: [0.2, 1],
     y: 0,
-    transition: { ...EASE_TRANSITIONS, delay },
-  }),
+    transition: EASE_TRANSITIONS,
+  },
   [AnimationVariant.Rotate]: {
     opacity: [1, 1, 1, 0.8],
     rotateY: 540,
@@ -324,4 +327,24 @@ export const ROTATE_IN_VARIANTS: Variants = {
       repeatType: 'reverse',
     },
   },
+}
+
+export const DOT_VARIANTS: Variants = {
+  [AnimationVariant.Initial]: { opacity: 0 },
+  [AnimationVariant.Slide]: { opacity: 1, transition: EASE_STAGER_TRANSITIONS },
+}
+
+export const SHINE_VARIANTS: Variants = {
+  [AnimationVariant.Initial]: { opacity: 0 },
+  [AnimationVariant.Activate]: (delay = 0) => ({
+    opacity: [1, 0.8],
+    scale: [1, 1.1],
+    transition: {
+      duration: 0.64,
+      type: 'spring',
+      repeat: Infinity,
+      repeatType: 'reverse',
+      delay,
+    },
+  }),
 }

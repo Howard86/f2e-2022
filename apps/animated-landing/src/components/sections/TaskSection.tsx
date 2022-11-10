@@ -60,7 +60,10 @@ export default function TaskSection() {
         className="relative w-0"
       >
         <ThunderIcon className="absolute left-28 top-6 md:left-60" />
-        <ThunderIcon className="absolute left-36 top-14 w-7 rotate-[25deg] md:left-[260px]" />
+        <ThunderIcon
+          className="absolute left-36 top-14 w-7 rotate-[25deg] md:left-[260px]"
+          custom={0.24}
+        />
       </motion.div>
       <motion.h2
         variants={SLIDE_DOWN_VARIANTS}
@@ -75,13 +78,10 @@ export default function TaskSection() {
         網頁互動挑戰關卡
       </motion.p>
       {ready && (
-        <motion.div
-          variants={FADE_IN_ROTATE_VARIANTS}
-          className="mx-auto mt-5 flex flex-col gap-10 px-9 lg:flex-row"
-        >
-          {TASKS.map((card) =>
+        <motion.div className="mx-auto mt-5 flex flex-col gap-10 px-9 lg:flex-row">
+          {TASKS.map((card, index) =>
             matches ? (
-              <TaskCard key={card.href} {...card} />
+              <TaskCard key={card.href} custom={240 - index * 40} {...card} />
             ) : (
               <MobileTaskCard key={card.href} {...card} />
             )

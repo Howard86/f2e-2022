@@ -7,7 +7,7 @@ import code from '@/../public/assets/icons/code.png'
 import dashboard from '@/../public/assets/icons/dashboard.png'
 
 import StarIcon from '../icons/StarIcon'
-import ExternalLink from '../ExternalLink'
+import { MotionExternalLink } from '../ExternalLink'
 import PacManGameIcon from '../icons/PacManGameIcon'
 import DashArrowIcon from '../icons/DashArrowIcon'
 import { SIGN_UP_LINK } from '@/constants/links'
@@ -21,8 +21,6 @@ import {
   SLIDE_LEFT_VARIANTS,
   MARQUEE_TRANSITION,
 } from '@/constants/animations'
-
-const MotionLink = motion(ExternalLink)
 
 // to support consistent slide animation for different screens
 const getMarqueeAnimation = (
@@ -75,7 +73,11 @@ export default function HomeSection() {
             placeholder="blur"
           />
         </motion.div>
-        <DashArrowIcon className="absolute left-20 bottom-20 hidden h-auto md:bottom-[72px] md:left-24 md:block lg:bottom-32 xl:left-10 xl:bottom-[120px] xl:w-40" />
+        <DashArrowIcon
+          initial={AnimationVariant.Initial}
+          whileInView={AnimationVariant.Slide}
+          className="absolute left-20 bottom-20 hidden h-auto md:bottom-[72px] md:left-24 md:block lg:bottom-32 xl:left-10 xl:bottom-[120px] xl:w-40"
+        />
         <div className="section justify-center">
           <h1 className="section justify-center text-center md:relative">
             <motion.span
@@ -100,7 +102,7 @@ export default function HomeSection() {
               互動式網頁設計
             </span>
           </h1>
-          <MotionLink
+          <MotionExternalLink
             href={SIGN_UP_LINK}
             initial={AnimationVariant.Initial}
             animate={inView ? AnimationVariant.Float : AnimationVariant.Initial}
@@ -109,7 +111,7 @@ export default function HomeSection() {
             className="text-n6 bg-y1 text-ch-h5 rounded-card hover:btn-yellow focus:btn-yellow mt-12 mb-6 inline-flex grow-0 py-2 px-10 font-bold tracking-wider transition-all"
           >
             立即報名
-          </MotionLink>
+          </MotionExternalLink>
         </div>
         <motion.div
           initial={AnimationVariant.Initial}
@@ -125,9 +127,12 @@ export default function HomeSection() {
             placeholder="blur"
           />
         </motion.div>
-        <PacManGameIcon className="absolute -right-4 top-12 hidden h-auto w-24 md:right-6 md:top-14 md:block lg:top-28 lg:right-2 lg:w-28 xl:-right-20 xl:top-[106px] xl:w-auto" />
+        <PacManGameIcon
+          initial={AnimationVariant.Initial}
+          whileInView={AnimationVariant.Slide}
+          className="absolute -right-4 top-12 hidden h-auto w-24 md:right-6 md:top-14 md:block lg:top-28 lg:right-2 lg:w-28 xl:-right-20 xl:top-[106px] xl:w-auto"
+        />
       </div>
-      {/* TODO: add marquee */}
       <div ref={containerRef} className="my-14 lg:mt-24 lg:mb-20">
         <motion.p
           animate={marqueeAnimation}
