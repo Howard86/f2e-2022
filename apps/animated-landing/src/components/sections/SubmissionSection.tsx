@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import clock from '@/../public/assets/icons/clock.png'
 import folder from '@/../public/assets/icons/folder.png'
 import play from '@/../public/assets/icons/play.png'
@@ -7,11 +8,24 @@ import DotIcon from '../icons/DotIcon'
 import DownIcon from '../icons/DownIcon'
 import PacManIcon from '../icons/PacManIcon'
 import SubmissionCard from '../SubmissionCard'
+import {
+  AnimationVariant,
+  SLIDE_UP_VARIANTS,
+  EASE_STAGER_TRANSITIONS,
+} from '@/constants/animations'
 
 export default function SubmissionSection() {
   return (
-    <section className="bg-n4 relative flex flex-col py-10 text-center">
-      <div className="flex items-center justify-center gap-3 whitespace-nowrap py-9 px-8 md:pb-20 md:pt-14">
+    <motion.section
+      initial={AnimationVariant.Initial}
+      whileInView={AnimationVariant.Slide}
+      className="bg-n4 relative flex min-h-screen snap-start flex-col py-10 text-center"
+    >
+      <motion.div
+        variants={SLIDE_UP_VARIANTS}
+        transition={EASE_STAGER_TRANSITIONS}
+        className="flex items-center justify-center gap-3 whitespace-nowrap py-9 px-8 md:pb-20 md:pt-14"
+      >
         <PacManIcon className="-mr-2" />
         <DotIcon />
         <DotIcon />
@@ -23,8 +37,12 @@ export default function SubmissionSection() {
         <DotIcon />
         <DotIcon />
         <DotIcon className="bg-p1 shadow-purple ml-2 h-[11px] w-[11px]" />
-      </div>
-      <div className="relative mx-auto grid grid-cols-1 items-center gap-1 px-4 pb-5 md:gap-8 xl:grid-cols-2 xl:gap-36">
+      </motion.div>
+      <motion.div
+        variants={SLIDE_UP_VARIANTS}
+        transition={EASE_STAGER_TRANSITIONS}
+        className="relative mx-auto grid grid-cols-1 items-center gap-1 px-4 pb-5 md:gap-8 xl:grid-cols-2 xl:gap-36"
+      >
         <SubmissionCard src={pen} title="開放報名">
           <p>
             <span className="text-g1">10/13</span> (四) 早上 11:00
@@ -66,7 +84,7 @@ export default function SubmissionSection() {
             <span className="text-g1">11/03 - 11/24</span> 每週四
           </p>
         </SubmissionCard>
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   )
 }

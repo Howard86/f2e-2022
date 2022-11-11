@@ -1,8 +1,8 @@
-import { SVGProps } from 'react-html-props'
+import { motion, SVGMotionProps } from 'framer-motion'
 
-export default function QuestionMarkIcon(props: SVGProps) {
+export default function QuestionMarkIcon(props: SVGMotionProps<SVGSVGElement>) {
   return (
-    <svg
+    <motion.svg
       width="73"
       height="57"
       viewBox="0 0 73 57"
@@ -37,6 +37,6 @@ export default function QuestionMarkIcon(props: SVGProps) {
           <stop offset="1" stopColor="#313A65" stopOpacity="0" />
         </linearGradient>
       </defs>
-    </svg>
+    </motion.svg>
   )
 }

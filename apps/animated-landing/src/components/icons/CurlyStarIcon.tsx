@@ -1,8 +1,8 @@
-import { SVGProps } from 'react-html-props'
+import { motion, SVGMotionProps } from 'framer-motion'
 
-export default function CurlyStarIcon(props: SVGProps) {
+export default function CurlyStarIcon(props: SVGMotionProps<SVGSVGElement>) {
   return (
-    <svg
+    <motion.svg
       width="24"
       height="23"
       viewBox="0 0 24 23"
@@ -15,6 +15,6 @@ export default function CurlyStarIcon(props: SVGProps) {
         stroke="white"
         strokeWidth="0.752193"
       />
-    </svg>
+    </motion.svg>
   )
 }

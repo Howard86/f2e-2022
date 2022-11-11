@@ -1,8 +1,8 @@
-import { SVGProps } from 'react-html-props'
+import { motion, SVGMotionProps } from 'framer-motion'
 
-export default function RectangleIcon(props: SVGProps) {
+export default function RectangleIcon(props: SVGMotionProps<SVGSVGElement>) {
   return (
-    <svg
+    <motion.svg
       width="105"
       height="44"
       viewBox="0 0 105 44"
@@ -30,6 +30,6 @@ export default function RectangleIcon(props: SVGProps) {
           <stop offset="1" stopColor="#313A65" stopOpacity="0" />
         </linearGradient>
       </defs>
-    </svg>
+    </motion.svg>
   )
 }

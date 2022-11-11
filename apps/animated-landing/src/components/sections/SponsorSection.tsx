@@ -1,11 +1,17 @@
 import Image, { StaticImageData } from 'next/image'
 
+import { motion } from 'framer-motion'
 import blockStudio from '@/../public/assets/company/block-studio.png'
 import kdanMobile from '@/../public/assets/company/kdan-mobile.png'
 import titanSoft from '@/../public/assets/company/titan-soft.png'
 
-import ExternalLink from '../ExternalLink'
 import YellowStarIcon from '../icons/YellowStarIcon'
+import {
+  AnimationVariant,
+  HIDE_AND_SHOW_VARIANTS,
+  ROTATE_IN_VARIANTS,
+} from '@/constants/animations'
+import { MotionExternalLink } from '../ExternalLink'
 
 type Company = {
   name: string
@@ -33,31 +39,40 @@ const COMPANIES: Company[] = [
 
 export default function SponsorSection() {
   return (
-    <section className="bg-n3 section gap-6 py-10">
+    <motion.section
+      initial={AnimationVariant.Initial}
+      whileInView={AnimationVariant.Activate}
+      className="bg-n3 section snap-start gap-6 pt-20 pb-10"
+    >
       <div className="relative mb-4 px-6">
         <YellowStarIcon className="absolute top-2 -right-1 h-auto w-8 md:-right-3" />
         <h2 className="py-5 text-center">
           <span className="font-en text-en-h3 block uppercase">Sponsors</span>
           <span className="text-ch-h4 block font-bold">鑽石級贊助商</span>
         </h2>
-        <YellowStarIcon className="absolute bottom-8 -left-3 md:-left-8" />
+        <YellowStarIcon className="absolute bottom-8 -left-3 md:-left-8" custom={1} />
       </div>
-      <div className="section mb-5 gap-6 md:flex-row md:gap-14">
+      <motion.div
+        variants={HIDE_AND_SHOW_VARIANTS}
+        className="section mb-5 gap-6 md:flex-row md:gap-14"
+      >
         {COMPANIES.map((company) => (
-          <ExternalLink
+          <MotionExternalLink
             key={company.href}
             href={company.href}
-            className="bg-n1 rounded-card hover:bg-decoration focus:bg-decoration p-1.5 transition-all hover:-translate-y-1"
+            className="bg-n1 rounded-card hover:bg-decoration focus:bg-decoration p-1.5 transition-all"
+            variants={ROTATE_IN_VARIANTS}
+            whileHover={AnimationVariant.Float}
           >
             <Image
               alt={company.name}
               src={company.logo}
-              className="rounded-card bg-n1 overflow-hidden p-1.5"
+              className="bg-n1 overflow-hidden rounded-[28px] p-1.5"
               placeholder="blur"
             />
-          </ExternalLink>
+          </MotionExternalLink>
         ))}
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   )
 }

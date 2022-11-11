@@ -12,7 +12,7 @@ export default function Header() {
   return (
     <Popover
       as="header"
-      className="ui-open:overflow-y-auto bg-n5 fixed inset-x-0 top-0 z-50 lg:relative lg:overflow-visible"
+      className="ui-open:overflow-y-auto bg-n5 fixed inset-x-0 top-0 z-50 lg:relative lg:snap-start lg:overflow-visible"
     >
       <nav className="mx-auto flex max-w-screen-xl items-center justify-center overflow-visible p-4 md:px-6 lg:px-8 lg:py-6">
         <Popover.Button className="hover:btn-green inline-flex items-center justify-center p-1 lg:hidden">
@@ -37,7 +37,7 @@ export default function Header() {
             <li key={item.href} className="relative hidden lg:block">
               <UnifiedLink
                 href={item.href}
-                className="text-n2 hover:before-underline focus:before-underline px-3 py-2 font-medium"
+                className="text-n2 hover:before-underline focus:before-underline px-3 py-2 font-medium hover:before:-bottom-4"
               >
                 {item.name}
               </UnifiedLink>
@@ -61,7 +61,6 @@ export default function Header() {
           </li>
         </ul>
       </nav>
-      {/* TODO: replace with framer motion */}
       <Transition
         as={Fragment}
         enter="transition ease-out duration-200"

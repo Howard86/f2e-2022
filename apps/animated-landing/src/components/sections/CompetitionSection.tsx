@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import clipboard from '@/../public/assets/icons/clipboard.png'
 import coin from '@/../public/assets/icons/coin.png'
 
@@ -6,6 +7,13 @@ import RaceCarIcon from '../icons/RaceCarIcon'
 import RaceFlagIcon from '../icons/RaceFlegIcon'
 import PriceBlock, { PriceBlockProps } from '../PriceBlock'
 import RateBlock, { RateBlockProps } from '../RateBlock'
+import {
+  AnimationVariant,
+  COMPETITION_VARIANTS,
+  DELAYED_FADE_VARIANTS,
+  DELAYED_SHRINK_VARIANTS,
+  SLIDE_UP_VARIANTS_TWO,
+} from '@/constants/animations'
 
 const RATES: RateBlockProps[] = [
   {
@@ -29,7 +37,7 @@ const PRICES: PriceBlockProps[] = [
     title: '個人企業獎：',
     priceTotal: '共六位',
     price: 'NTD 3,000/位',
-    description: '每週主題個人組十位、團體組十組',
+    description: '每週主題各 2 名，設計 1 位、前端 1 位 ',
   },
   {
     title: '團體企業獎：',
@@ -41,19 +49,33 @@ const PRICES: PriceBlockProps[] = [
 
 export default function CompetitionSection() {
   return (
-    <section className="section mx-auto py-12 md:py-14">
-      <h2 className="text-ch-h4 lg:text-ch-h2 md:text-ch-h3 py-8 text-center font-bold [text-shadow:theme(boxShadow.white)] md:py-10">
+    <motion.section
+      initial={AnimationVariant.Initial}
+      whileInView={AnimationVariant.Activate}
+      variants={COMPETITION_VARIANTS}
+      className="section mx-auto min-h-screen snap-start py-12 md:pb-24 lg:snap-start lg:pb-32"
+    >
+      <motion.h2
+        variants={SLIDE_UP_VARIANTS_TWO}
+        className="text-ch-h4 lg:text-ch-h2 md:text-ch-h3 py-8 text-center font-bold [text-shadow:theme(boxShadow.white)] md:py-10"
+      >
         區區修煉已經無法滿足了嗎？
-        <span className="block lg:inline">還有比賽等著你！</span>
-      </h2>
-      <div className="w-full px-4 py-5">
-        <div className="flex items-baseline justify-between">
-          <RaceFlagIcon className="mb-1" />
-          <RaceCarIcon className="translate-x-2 translate-y-2" />
+        <motion.span variants={DELAYED_FADE_VARIANTS} className="block lg:inline">
+          還有比賽等著你！
+        </motion.span>
+      </motion.h2>
+      <div className="w-full px-8 py-5 md:px-4">
+        <div className="mb-1 flex items-baseline">
+          <RaceFlagIcon />
+          <motion.div className="w-full" variants={DELAYED_SHRINK_VARIANTS} />
+          <RaceCarIcon className="shrink-0 translate-x-2 translate-y-2" />
         </div>
         <span className="bg-n1 block h-[3px] w-full shadow-white" />
       </div>
-      <div className="flex flex-col gap-6 py-10 px-4 md:gap-[60px] lg:flex-row">
+      <motion.div
+        variants={SLIDE_UP_VARIANTS_TWO}
+        className="flex flex-col gap-6 py-10 px-4 md:gap-[60px] lg:flex-row"
+      >
         <CompetitionCard src={clipboard} title="評審機制">
           <div className="w-full space-y-8 pt-8 md:pt-12">
             {RATES.map((item) => (
@@ -69,7 +91,7 @@ export default function CompetitionSection() {
             <p className="text-ch-h5">以上皆提供完賽數位獎狀</p>
           </div>
         </CompetitionCard>
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   )
 }

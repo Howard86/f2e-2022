@@ -1,13 +1,17 @@
-import { SVGProps } from 'react-html-props'
+import { motion, SVGMotionProps } from 'framer-motion'
+import { AnimationVariant, SHINE_VARIANTS } from '@/constants/animations'
 
-export default function ThunderIcon({ className, ...props }: SVGProps) {
+export default function ThunderIcon({ className, ...props }: SVGMotionProps<SVGSVGElement>) {
   return (
-    <svg
+    <motion.svg
       width="48"
       height="62"
       viewBox="0 0 48 62"
       xmlns="http://www.w3.org/2000/svg"
       className={`${className} fill-y2 drop-shadow-yellow stroke-y2`}
+      initial={AnimationVariant.Initial}
+      whileInView={AnimationVariant.Activate}
+      variants={SHINE_VARIANTS}
       {...props}
     >
       <g>
@@ -18,6 +22,6 @@ export default function ThunderIcon({ className, ...props }: SVGProps) {
           strokeLinejoin="round"
         />
       </g>
-    </svg>
+    </motion.svg>
   )
 }

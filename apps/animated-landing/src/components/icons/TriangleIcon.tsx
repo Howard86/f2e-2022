@@ -1,8 +1,8 @@
-import { SVGProps } from 'react-html-props'
+import { motion, SVGMotionProps } from 'framer-motion'
 
-export default function TriangleIcon(props: SVGProps) {
+export default function TriangleIcon(props: SVGMotionProps<SVGSVGElement>) {
   return (
-    <svg
+    <motion.svg
       width="44"
       height="30"
       viewBox="0 0 44 30"
@@ -15,6 +15,6 @@ export default function TriangleIcon(props: SVGProps) {
         stroke="white"
         strokeWidth="0.752193"
       />
-    </svg>
+    </motion.svg>
   )
 }

@@ -1,44 +1,50 @@
-import Image, { StaticImageData } from 'next/image'
-import { ArrowUpRightIcon } from '@heroicons/react/24/outline'
-import ExternalLink from './ExternalLink'
+/* eslint-disable react/destructuring-assignment */
+import { AnimatePresence, motion } from 'framer-motion'
+import Image from 'next/image'
+import { useState } from 'react'
+import {
+  AnimationVariant,
+  FADE_IN_ROTATE_VARIANTS,
+  ROTATE_ITEM_VARIANTS,
+} from '@/constants/animations'
+import MobileTaskCard, { TaskCardProps } from './MobileTaskCard'
+import lock from '@/../public/assets/icons/lock.png'
 
-export interface TaskCardProps {
-  href: string
-  tag: string
-  title: string
-  description: string
-  src: StaticImageData
-  footer: string
-  size: number
-}
+export default function TaskCard(props: TaskCardProps) {
+  const [clicked, setClicked] = useState(false)
 
-export default function TaskCard({
-  href,
-  tag,
-  title,
-  description,
-  src,
-  footer,
-  size,
-}: TaskCardProps) {
+  const onToggle = () => setClicked((state) => !state)
   return (
-    <article className="text-p3 bg-n1 section rounded-2xl py-4 px-6 sm:w-full sm:max-w-[300px] sm:py-5">
-      <span className="text-n5 text-ch-title bg-g1 mb-4 rounded-lg py-1 px-2 font-bold sm:mb-5">
-        # {tag}
-      </span>
-      <h3 className="text-ch-h4 font-bold uppercase">{title}</h3>
-      <p className="text-ch-h5 mt-2 flex-1">{description}</p>
-      <Image src={src} alt={title} width={size} height={size} className="my-4" placeholder="blur" />
-      <div className="flex w-full flex-1 items-end justify-between">
-        <p className="font-en text-en-subtitle text-p2 uppercase tracking-widest">{footer}</p>
-        <ExternalLink
-          className="text-ch-subtitle inline-flex items-center gap-2 font-bold underline-offset-4 transition-all hover:underline focus:underline"
-          href={href}
+    <AnimatePresence mode="wait">
+      {clicked ? (
+        <MobileTaskCard
+          initial={false}
+          onClick={onToggle}
+          exit={AnimationVariant.ZoomOut}
+          {...props}
+        />
+      ) : (
+        <motion.div
+          key={props.href}
+          onClick={onToggle}
+          className="from-p3 to-p1 rounded-card h-[360px] w-[300px] bg-gradient-to-r p-0.5 uppercase"
+          variants={FADE_IN_ROTATE_VARIANTS}
+          exit={AnimationVariant.Rotate}
+          initial={AnimationVariant.Initial}
+          whileInView={AnimationVariant.Slide}
+          whileHover={AnimationVariant.Float}
+          custom={props.custom}
         >
-          查看關卡細節
-          <ArrowUpRightIcon className="w-3.5 stroke-[2.5]" />
-        </ExternalLink>
-      </div>
-    </article>
+          <motion.div
+            className="bg-card-background section text-n1 rounded-card h-full cursor-pointer justify-center"
+            variants={ROTATE_ITEM_VARIANTS}
+          >
+            <h3 className="font-en text-en-h3 mb-2">{props.footer}</h3>
+
+            <Image src={lock} alt="lock icon" />
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   )
 }

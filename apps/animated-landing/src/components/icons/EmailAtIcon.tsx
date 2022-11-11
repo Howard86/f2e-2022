@@ -1,8 +1,8 @@
-import { SVGProps } from 'react-html-props'
+import { motion, SVGMotionProps } from 'framer-motion'
 
-export default function EmailAtIcon(props: SVGProps) {
+export default function EmailAtIcon(props: SVGMotionProps<SVGSVGElement>) {
   return (
-    <svg
+    <motion.svg
       width="75"
       height="54"
       viewBox="0 0 75 54"
@@ -37,6 +37,6 @@ export default function EmailAtIcon(props: SVGProps) {
           <stop offset="1" stopColor="#313A65" stopOpacity="0" />
         </linearGradient>
       </defs>
-    </svg>
+    </motion.svg>
   )
 }

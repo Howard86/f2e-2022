@@ -1,13 +1,15 @@
-import { SVGProps } from 'react-html-props'
+import { motion, SVGMotionProps } from 'framer-motion'
+import { ROTATE_VARIANTS } from '@/constants/animations'
 
-export default function CodeStamp(props: SVGProps) {
+export default function CodeStamp(props: SVGMotionProps<SVGSVGElement>) {
   return (
-    <svg
+    <motion.svg
       width="113"
       height="111"
       viewBox="0 0 113 111"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      variants={ROTATE_VARIANTS}
       {...props}
     >
       <circle
@@ -125,6 +127,6 @@ export default function CodeStamp(props: SVGProps) {
           <stop offset="0.932292" stopColor="#9DA4FF" />
         </linearGradient>
       </defs>
-    </svg>
+    </motion.svg>
   )
 }

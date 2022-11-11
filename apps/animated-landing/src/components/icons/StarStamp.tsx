@@ -1,13 +1,16 @@
-import { SVGProps } from 'react-html-props'
+import { motion, SVGMotionProps } from 'framer-motion'
+import { ROTATE_VARIANTS } from '@/constants/animations'
 
-export default function StarStamp(props: SVGProps) {
+export default function StarStamp(props: SVGMotionProps<SVGSVGElement>) {
   return (
-    <svg
+    <motion.svg
       width="201"
       height="205"
       viewBox="0 0 201 205"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      variants={ROTATE_VARIANTS}
+      custom
       {...props}
     >
       <circle
@@ -107,6 +110,6 @@ export default function StarStamp(props: SVGProps) {
           <stop offset="0.932292" stopColor="#FFE34E" />
         </linearGradient>
       </defs>
-    </svg>
+    </motion.svg>
   )
 }
