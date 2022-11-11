@@ -26,11 +26,11 @@ export default function SolutionSection() {
   if (!ready) return null
 
   return (
-    <section className="section min-h-screen justify-center">
+    <section className="section min-h-screen snap-center justify-center">
       <motion.div
         initial={AnimationVariant.Initial}
         whileInView={AnimationVariant.ScaleOrSlide}
-        className="bg-n1 text-n6 section snap-center overflow-hidden font-bold [background-size:40px_40px] [background-image:linear-gradient(to_right,rgb(128,128,128,0.2),transparent_1px),linear-gradient(to_bottom,rgb(128,128,128,0.2),transparent_1px)]"
+        className="bg-n1 text-n6 section overflow-hidden font-bold [background-size:40px_40px] [background-image:linear-gradient(to_right,rgb(128,128,128,0.2),transparent_1px),linear-gradient(to_bottom,rgb(128,128,128,0.2),transparent_1px)]"
       >
         <MarqueeBanner reversed />
         <motion.div className="section relative -mt-10 w-full max-w-screen-md py-12 md:flex-row-reverse md:justify-center md:py-20 lg:max-w-screen-lg">
