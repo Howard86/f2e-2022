@@ -1,8 +1,8 @@
 import Image, { StaticImageData } from 'next/image'
 import { ArrowUpRightIcon } from '@heroicons/react/24/outline'
 import { HTMLMotionProps, motion } from 'framer-motion'
-import ExternalLink from './ExternalLink'
 import { FADE_IN_ROTATE_VARIANTS } from '@/constants/animations'
+import ExternalLink from '../ExternalLink'
 
 export interface TaskCardProps extends HTMLMotionProps<'article'> {
   href: string

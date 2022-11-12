@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import clipboard from '@/../public/assets/icons/clipboard.png'
 import coin from '@/../public/assets/icons/coin.png'
 
-import CompetitionCard from '../CompetitionCard'
+import CompetitionCard from '../cards/CompetitionCard'
 import RaceCarIcon from '../icons/RaceCarIcon'
 import RaceFlagIcon from '../icons/RaceFlegIcon'
 import PriceBlock, { PriceBlockProps } from '../PriceBlock'

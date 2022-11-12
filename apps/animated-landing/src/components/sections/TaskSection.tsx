@@ -2,9 +2,6 @@ import { motion } from 'framer-motion'
 import dashboard from '@/../public/assets/icons/dashboard.png'
 import refresh from '@/../public/assets/icons/refresh.png'
 import draw from '@/../public/assets/icons/draw.png'
-
-import ThunderIcon from '../icons/ThunderIcon'
-import TaskCard from '../TaskCard'
 import {
   AnimationVariant,
   SLIDE_DOWN_VARIANTS,
@@ -12,7 +9,10 @@ import {
   EASE_TRANSITIONS,
 } from '@/constants/animations'
 import useMediaQueryOnce from '@/hooks/useMediaQueryOnce'
-import MobileTaskCard, { TaskCardProps } from '../MobileTaskCard'
+
+import ThunderIcon from '../icons/ThunderIcon'
+import TaskCard from '../cards/TaskCard'
+import MobileTaskCard, { TaskCardProps } from '../cards/MobileTaskCard'
 
 const TASKS: TaskCardProps[] = [
   {

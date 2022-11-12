@@ -7,7 +7,7 @@ import pen from '@/../public/assets/icons/pen.png'
 import DotIcon from '../icons/DotIcon'
 import DownIcon from '../icons/DownIcon'
 import PacManIcon from '../icons/PacManIcon'
-import SubmissionCard from '../SubmissionCard'
+import SubmissionCard from '../cards/SubmissionCard'
 import {
   AnimationVariant,
   SLIDE_UP_VARIANTS,
