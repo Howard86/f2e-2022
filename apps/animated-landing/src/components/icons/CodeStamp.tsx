@@ -1,5 +1,4 @@
 import { motion, SVGMotionProps } from 'framer-motion'
-import { ROTATE_VARIANTS } from '@/constants/animations'
 
 export default function CodeStamp(props: SVGMotionProps<SVGSVGElement>) {
   return (
@@ -9,7 +8,6 @@ export default function CodeStamp(props: SVGMotionProps<SVGSVGElement>) {
       viewBox="0 0 113 111"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      variants={ROTATE_VARIANTS}
       {...props}
     >
       <circle

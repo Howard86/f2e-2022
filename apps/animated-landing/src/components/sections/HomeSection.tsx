@@ -14,12 +14,9 @@ import { SIGN_UP_LINK } from '@/constants/links'
 import {
   AnimationVariant,
   ANIMATIONS,
-  SLIDE_DOWN_VARIANTS,
-  DELAYED_SLIDE_UP_VARIANTS,
   SPRING_TRANSITION,
-  SLIDE_UP_VARIANTS,
-  SLIDE_LEFT_VARIANTS,
   MARQUEE_TRANSITION,
+  HomeSectionAnimation,
 } from '@/constants/animations'
 
 // to support consistent slide animation for different screens
@@ -62,7 +59,7 @@ export default function HomeSection() {
         <motion.div
           initial={AnimationVariant.Initial}
           whileInView={ANIMATIONS}
-          variants={SLIDE_DOWN_VARIANTS}
+          variants={HomeSectionAnimation.code}
           className="self-start md:absolute md:left-4 md:top-[88px] lg:top-36 xl:-left-20 xl:top-28"
         >
           <Image
@@ -83,7 +80,7 @@ export default function HomeSection() {
             <motion.span
               initial={AnimationVariant.Initial}
               whileInView={AnimationVariant.Slide}
-              variants={DELAYED_SLIDE_UP_VARIANTS}
+              variants={HomeSectionAnimation['4th']}
               transition={SPRING_TRANSITION}
               className="text-en-h4 font-en xl:text-en-h3 uppercase italic tracking-[.2em] [text-shadow:-2.13px_-0.68px_theme(colors.g1),_1.32px_1.26px_theme(colors.p1)] md:absolute md:top-1 md:right-1 lg:right-6 xl:right-4 xl:-top-2"
             >
@@ -92,7 +89,7 @@ export default function HomeSection() {
             <motion.span
               initial={AnimationVariant.Initial}
               whileInView={AnimationVariant.Slide}
-              variants={SLIDE_UP_VARIANTS}
+              variants={HomeSectionAnimation.f2e}
               transition={SPRING_TRANSITION}
               className="text-en-h2 lg:text-en-h1 font-en mr-8 uppercase tracking-[.2em] [text-shadow:-1.73px_-2.6px_theme(colors.g1),_4.32px_2.59px_theme(colors.p1)] md:mt-5 md:mr-[72px] lg:mr-[94px] xl:mr-28 xl:scale-125"
             >
@@ -108,8 +105,8 @@ export default function HomeSection() {
             initial={AnimationVariant.Initial}
             whileInView={AnimationVariant.Float}
             whileHover={AnimationVariant.ScaleUpAndDown}
-            variants={SLIDE_LEFT_VARIANTS}
-            className="text-n6 bg-y1 text-ch-h5 rounded-card hover:btn-yellow focus:btn-yellow mt-12 mb-6 inline-flex grow-0 py-2 px-10 font-bold tracking-wider transition-all"
+            variants={HomeSectionAnimation.signUp}
+            className="hover:btn-yellow focus:btn-yellow text-n6 bg-y1 text-ch-h5 rounded-card mt-12 mb-6 inline-flex grow-0 py-2 px-10 font-bold tracking-wider transition-all"
           >
             立即報名
           </MotionExternalLink>
@@ -117,7 +114,7 @@ export default function HomeSection() {
         <motion.div
           initial={AnimationVariant.Initial}
           whileInView={ANIMATIONS}
-          variants={SLIDE_UP_VARIANTS}
+          variants={HomeSectionAnimation.dashboard}
           className="self-end md:absolute md:right-20 md:top-28 lg:top-44 xl:right-2 xl:top-48"
         >
           <Image

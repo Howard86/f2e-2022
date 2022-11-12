@@ -4,7 +4,7 @@ import { Tab } from '@headlessui/react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { NORMALISED_TABS } from '../constants/tabs'
 import QuestionButton from './QuestionButton'
-import { AnimationVariant, FADE_UP_VARIANTS, HIDE_AND_SHOW_VARIANTS } from '@/constants/animations'
+import { AnimationVariant, CommonQuestionSectionAnimation } from '@/constants/animations'
 
 export default function QuestionTab() {
   const ref = useRef<HTMLDivElement>(null)
@@ -75,7 +75,7 @@ export default function QuestionTab() {
                 <Tab.Panel
                   key={id}
                   as={motion.article}
-                  variants={HIDE_AND_SHOW_VARIANTS}
+                  variants={CommonQuestionSectionAnimation.tabPanel}
                   initial={AnimationVariant.Initial}
                   animate={AnimationVariant.Activate}
                   exit={AnimationVariant.Initial}
@@ -84,7 +84,7 @@ export default function QuestionTab() {
                   {NORMALISED_TABS.entities[id].docs.map((doc, index) => (
                     <motion.div
                       key={doc.title}
-                      variants={FADE_UP_VARIANTS}
+                      variants={CommonQuestionSectionAnimation.doc}
                       className="px-6 py-4 lg:flex lg:gap-6 lg:px-12"
                     >
                       <span className="text-p3 text-en-h4 lg:text-en-h3 font-en tracking-widest">

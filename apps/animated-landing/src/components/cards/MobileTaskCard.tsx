@@ -1,7 +1,6 @@
 import Image, { StaticImageData } from 'next/image'
 import { ArrowUpRightIcon } from '@heroicons/react/24/outline'
 import { HTMLMotionProps, motion } from 'framer-motion'
-import { FADE_IN_ROTATE_VARIANTS } from '@/constants/animations'
 import ExternalLink from '../ExternalLink'
 
 export interface TaskCardProps extends HTMLMotionProps<'article'> {
@@ -28,8 +27,7 @@ export default function MobileTaskCard({
   return (
     <motion.article
       key={href}
-      className="text-p3 bg-n1 section lg:rounded-card h-[360px] w-[300px] rounded-2xl py-4 px-6 sm:py-5"
-      variants={FADE_IN_ROTATE_VARIANTS}
+      className="section text-p3 bg-n1 lg:rounded-card h-[360px] w-[300px] rounded-2xl py-4 px-6 sm:py-5"
       {...props}
     >
       <span className="text-n5 text-ch-title bg-g1 mb-4 rounded-lg py-1 px-2 font-bold sm:mb-5">

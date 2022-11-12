@@ -7,13 +7,7 @@ import RaceCarIcon from '../icons/RaceCarIcon'
 import RaceFlagIcon from '../icons/RaceFlegIcon'
 import PriceBlock, { PriceBlockProps } from '../PriceBlock'
 import RateBlock, { RateBlockProps } from '../RateBlock'
-import {
-  AnimationVariant,
-  COMPETITION_VARIANTS,
-  DELAYED_FADE_VARIANTS,
-  DELAYED_SHRINK_VARIANTS,
-  SLIDE_UP_VARIANTS_TWO,
-} from '@/constants/animations'
+import { AnimationVariant, CompetitionSectionAnimation } from '@/constants/animations'
 
 const RATES: RateBlockProps[] = [
   {
@@ -52,28 +46,31 @@ export default function CompetitionSection() {
     <motion.section
       initial={AnimationVariant.Initial}
       whileInView={AnimationVariant.Activate}
-      variants={COMPETITION_VARIANTS}
+      variants={CompetitionSectionAnimation.section}
       className="section mx-auto min-h-[min(960px,_100vh)] snap-start py-12 md:pb-24 lg:snap-start lg:pb-32"
     >
       <motion.h2
-        variants={SLIDE_UP_VARIANTS_TWO}
+        variants={CompetitionSectionAnimation.title}
         className="text-ch-h4 lg:text-ch-h2 md:text-ch-h3 py-8 text-center font-bold [text-shadow:theme(boxShadow.white)] md:py-10"
       >
         區區修煉已經無法滿足了嗎？
-        <motion.span variants={DELAYED_FADE_VARIANTS} className="block lg:inline">
+        <motion.span
+          variants={CompetitionSectionAnimation.delayedTitle}
+          className="block lg:inline"
+        >
           還有比賽等著你！
         </motion.span>
       </motion.h2>
       <div className="w-full px-8 py-5 md:px-4">
         <div className="mb-1 flex items-baseline">
-          <RaceFlagIcon />
-          <motion.div className="w-full" variants={DELAYED_SHRINK_VARIANTS} />
+          <RaceFlagIcon variants={CompetitionSectionAnimation.flag} />
+          <motion.div className="w-full" variants={CompetitionSectionAnimation.car} />
           <RaceCarIcon className="shrink-0 translate-x-2 translate-y-2" />
         </div>
         <span className="bg-n1 block h-[3px] w-full shadow-white" />
       </div>
       <motion.div
-        variants={SLIDE_UP_VARIANTS_TWO}
+        variants={CompetitionSectionAnimation.container}
         className="flex flex-col gap-6 py-10 px-4 md:gap-[60px] lg:flex-row"
       >
         <CompetitionCard src={clipboard} title="評審機制">

@@ -1,5 +1,4 @@
 import { motion, SVGMotionProps } from 'framer-motion'
-import { SHINE_VARIANTS } from '@/constants/animations'
 
 export default function YellowStarIcon({ className, ...props }: SVGMotionProps<SVGSVGElement>) {
   return (
@@ -9,7 +8,6 @@ export default function YellowStarIcon({ className, ...props }: SVGMotionProps<S
       viewBox="0 0 49 50"
       xmlns="http://www.w3.org/2000/svg"
       className={`${className} fill-y2 drop-shadow-yellow`}
-      variants={SHINE_VARIANTS}
       {...props}
     >
       <g>
