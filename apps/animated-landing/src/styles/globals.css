@@ -12,7 +12,7 @@
   }
 
   .before-underline {
-    @apply before:bg-g1 before:shadow-green text-n1 transition-all [text-shadow:theme(boxShadow.green)] before:absolute before:left-1/2 before:-bottom-2 before:h-1 before:w-3 before:-translate-x-1/2 before:rounded-full before:opacity-0 before:transition-all hover:before:opacity-100;
+    @apply before:bg-g1 before:shadow-green transition-all before:[text-shadow:theme(boxShadow.green)] before:absolute before:left-1/2 before:-bottom-4 before:h-1 before:w-3 before:-translate-x-1/2 before:rounded-full before:opacity-0 before:transition-all hover:before:opacity-100;
   }
 
   .btn-green {

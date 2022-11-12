@@ -14,12 +14,9 @@ import { SIGN_UP_LINK } from '@/constants/links'
 import {
   AnimationVariant,
   ANIMATIONS,
-  SLIDE_DOWN_VARIANTS,
-  DELAYED_SLIDE_UP_VARIANTS,
   SPRING_TRANSITION,
-  SLIDE_UP_VARIANTS,
-  SLIDE_LEFT_VARIANTS,
   MARQUEE_TRANSITION,
+  HomeSectionAnimation,
 } from '@/constants/animations'
 
 // to support consistent slide animation for different screens
@@ -35,12 +32,11 @@ const getMarqueeAnimation = (
 export default function HomeSection() {
   const marqueeAnimation = useAnimation()
 
-  const sectionRef = useRef<HTMLDivElement>(null)
   const marqueeContainerRef = useRef<HTMLDivElement>(null)
   const firstTextRef = useRef<HTMLSpanElement>(null)
   const secondTextRef = useRef<HTMLSpanElement>(null)
 
-  const inView = useInView(sectionRef, { once: false })
+  const inView = useInView(marqueeContainerRef, { once: false })
 
   useEffect(() => {
     if (inView) {
@@ -58,16 +54,13 @@ export default function HomeSection() {
   })
 
   return (
-    <section
-      ref={sectionRef}
-      className="section min-h-screen snap-center justify-evenly md:justify-start lg:snap-start"
-    >
-      <div className="section relative mx-auto w-full max-w-sm px-4 md:max-w-screen-md md:scale-110 md:flex-row md:justify-center md:py-10 lg:scale-150 lg:py-24">
+    <section className="section min-h-[min(960px,_100vh)] snap-start justify-evenly md:justify-start lg:snap-none">
+      <div className="section relative mx-auto w-full max-w-sm px-4 md:max-w-screen-md md:scale-110 md:flex-row md:justify-center md:py-10 lg:scale-150 lg:py-16">
         <motion.div
           initial={AnimationVariant.Initial}
-          animate={inView ? ANIMATIONS : AnimationVariant.Initial}
-          variants={SLIDE_DOWN_VARIANTS}
-          className="self-start md:absolute md:left-4 md:top-[88px] lg:top-40 xl:-left-20 xl:top-36"
+          whileInView={ANIMATIONS}
+          variants={HomeSectionAnimation.code}
+          className="self-start md:absolute md:left-4 md:top-[88px] lg:top-36 xl:-left-20 xl:top-28"
         >
           <Image
             src={code}
@@ -80,14 +73,14 @@ export default function HomeSection() {
         <DashArrowIcon
           initial={AnimationVariant.Initial}
           whileInView={AnimationVariant.Slide}
-          className="absolute left-20 bottom-20 hidden h-auto md:bottom-[72px] md:left-24 md:block lg:bottom-32 xl:left-10 xl:bottom-[120px] xl:w-40"
+          className="absolute left-20 bottom-20 hidden h-auto md:bottom-[72px] md:left-24 md:block lg:bottom-24 xl:left-10 xl:w-40"
         />
         <div className="section justify-center">
           <h1 className="section justify-center text-center md:relative">
             <motion.span
               initial={AnimationVariant.Initial}
-              animate={inView ? AnimationVariant.Slide : AnimationVariant.Initial}
-              variants={DELAYED_SLIDE_UP_VARIANTS}
+              whileInView={AnimationVariant.Slide}
+              variants={HomeSectionAnimation['4th']}
               transition={SPRING_TRANSITION}
               className="text-en-h4 font-en xl:text-en-h3 uppercase italic tracking-[.2em] [text-shadow:-2.13px_-0.68px_theme(colors.g1),_1.32px_1.26px_theme(colors.p1)] md:absolute md:top-1 md:right-1 lg:right-6 xl:right-4 xl:-top-2"
             >
@@ -95,13 +88,14 @@ export default function HomeSection() {
             </motion.span>
             <motion.span
               initial={AnimationVariant.Initial}
-              animate={inView ? AnimationVariant.Slide : AnimationVariant.Initial}
-              variants={SLIDE_UP_VARIANTS}
+              whileInView={AnimationVariant.Slide}
+              variants={HomeSectionAnimation.f2e}
               transition={SPRING_TRANSITION}
               className="text-en-h2 lg:text-en-h1 font-en mr-8 uppercase tracking-[.2em] [text-shadow:-1.73px_-2.6px_theme(colors.g1),_4.32px_2.59px_theme(colors.p1)] md:mt-5 md:mr-[72px] lg:mr-[94px] xl:mr-28 xl:scale-125"
             >
               the F2E
             </motion.span>
+
             <span className="text-ch-h5 md:text-ch-p3 xl:text-ch-h4 mt-2 font-bold tracking-[.8em] md:mt-4">
               互動式網頁設計
             </span>
@@ -109,18 +103,18 @@ export default function HomeSection() {
           <MotionExternalLink
             href={SIGN_UP_LINK}
             initial={AnimationVariant.Initial}
-            animate={inView ? AnimationVariant.Float : AnimationVariant.Initial}
+            whileInView={AnimationVariant.Float}
             whileHover={AnimationVariant.ScaleUpAndDown}
-            variants={SLIDE_LEFT_VARIANTS}
-            className="text-n6 bg-y1 text-ch-h5 rounded-card hover:btn-yellow focus:btn-yellow mt-12 mb-6 inline-flex grow-0 py-2 px-10 font-bold tracking-wider transition-all"
+            variants={HomeSectionAnimation.signUp}
+            className="hover:btn-yellow focus:btn-yellow text-n6 bg-y1 text-ch-h5 rounded-card mt-12 mb-6 inline-flex grow-0 py-2 px-10 font-bold tracking-wider transition-all"
           >
             立即報名
           </MotionExternalLink>
         </div>
         <motion.div
           initial={AnimationVariant.Initial}
-          animate={inView ? ANIMATIONS : AnimationVariant.Initial}
-          variants={SLIDE_UP_VARIANTS}
+          whileInView={ANIMATIONS}
+          variants={HomeSectionAnimation.dashboard}
           className="self-end md:absolute md:right-20 md:top-28 lg:top-44 xl:right-2 xl:top-48"
         >
           <Image
@@ -134,10 +128,10 @@ export default function HomeSection() {
         <PacManGameIcon
           initial={AnimationVariant.Initial}
           whileInView={AnimationVariant.Slide}
-          className="absolute -right-4 top-12 hidden h-auto w-24 md:right-6 md:top-14 md:block lg:top-28 lg:right-2 lg:w-28 xl:-right-20 xl:top-[106px] xl:w-auto"
+          className="absolute -right-4 top-12 hidden h-auto w-24 md:right-6 md:top-14 md:block lg:top-20 lg:right-2 lg:w-28 xl:-right-20 xl:top-16 xl:w-auto"
         />
       </div>
-      <div ref={marqueeContainerRef} className="lg:mt-24">
+      <div ref={marqueeContainerRef} className="lg:mt-24 xl:mt-40">
         <motion.p
           animate={marqueeAnimation}
           transition={MARQUEE_TRANSITION}

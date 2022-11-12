@@ -1,19 +1,17 @@
 import clsx from 'clsx'
-import { motion } from 'framer-motion'
-import { DivProps } from 'react-html-props'
-import { SLIDE_HORIZONTAL_VARIANTS } from '@/constants/animations'
+import { HTMLMotionProps, motion } from 'framer-motion'
 import DotIcon from './icons/DotIcon'
 
-interface MarqueeBannerProps extends DivProps {
+interface MarqueeBannerProps extends HTMLMotionProps<'aside'> {
   reversed?: boolean
 }
 
-export default function MarqueeBanner({ className, reversed }: MarqueeBannerProps) {
+export default function MarqueeBanner({ className, reversed, ...props }: MarqueeBannerProps) {
   return (
     <motion.aside
-      variants={SLIDE_HORIZONTAL_VARIANTS}
       className={clsx('bg-decoration z-10 whitespace-nowrap', reversed && 'rotate-180', className)}
       custom={reversed}
+      {...props}
     >
       <p
         className={clsx(

@@ -37,7 +37,7 @@ export default function Header() {
             <li key={item.href} className="relative hidden lg:block">
               <UnifiedLink
                 href={item.href}
-                className="text-n2 hover:before-underline focus:before-underline px-3 py-2 font-medium hover:before:-bottom-4"
+                className="hover:before-underline focus:before-underline text-n2 hover:text-n1 px-3 py-2 font-medium hover:[text-shadow:theme(boxShadow.white)]"
               >
                 {item.name}
               </UnifiedLink>
@@ -46,7 +46,7 @@ export default function Header() {
           <li className="my-2 lg:hidden">
             <ExternalLink
               href={SIGN_UP_LINK}
-              className="rounded-card text-ch-p3 hover:btn-green focus:btn-green border px-4 py-2 transition-all"
+              className="hover:btn-green focus:btn-green rounded-card text-ch-p3 border px-4 py-2 transition-all"
             >
               立即報名
             </ExternalLink>
@@ -54,7 +54,7 @@ export default function Header() {
           <li className="my-2.5 hidden lg:block">
             <ExternalLink
               href={SIGN_IN_LINK}
-              className="rounded-card text-ch-p3 hover:btn-green focus:btn-green border px-6 py-2.5 transition-all"
+              className="hover:btn-green focus:btn-green rounded-card text-ch-p3 border px-6 py-2.5 transition-all"
             >
               登入
             </ExternalLink>
@@ -75,7 +75,7 @@ export default function Header() {
             {NAV_ITEMS.map((item) => (
               <Popover.Button key={item.name} as="li">
                 <UnifiedLink href={item.href} className="relative">
-                  <span className="text-n2 text-ch-p3 hover:before-underline focus:before-underline inline-block rounded-md p-4 text-center font-medium">
+                  <span className="hover:before-underline focus:before-underline text-n2 text-ch-p3 hover:text-n1 inline-block rounded-md p-4 text-center font-medium hover:[text-shadow:theme(boxShadow.white)]">
                     {item.name}
                   </span>
                 </UnifiedLink>
@@ -84,7 +84,7 @@ export default function Header() {
             <Popover.Button
               as={ExternalLink}
               href={SIGN_IN_LINK}
-              className="rounded-card text-ch-p3 hover:btn-green focus:btn-green mx-auto mt-6 w-full max-w-xs border px-4 py-2 transition-all"
+              className="hover:btn-green focus:btn-green rounded-card text-ch-p3 mx-auto mt-6 w-full max-w-xs border px-4 py-2 transition-all"
             >
               登入
             </Popover.Button>

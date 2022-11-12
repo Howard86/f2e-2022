@@ -16,7 +16,7 @@ class MyDocument extends Document {
           <meta name="msapplication-TileColor" content="#000000" />
           <meta name="theme-color" content="#000000" />
         </Head>
-        <body className="relative max-h-screen snap-y snap-proximity overflow-x-hidden overflow-y-scroll lg:snap-mandatory">
+        <body className="relative mx-auto max-h-screen max-w-[1600px] snap-y snap-proximity overflow-x-hidden overflow-y-scroll lg:snap-mandatory">
           <Main />
           <NextScript />
         </body>

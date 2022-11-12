@@ -17,7 +17,25 @@ export const ANIMATIONS = [AnimationVariant.Slide, AnimationVariant.Float]
 
 export const SPRING_TRANSITION: Transition = { type: 'spring', bounce: 0.4, duration: 2.8 }
 
-// HomeSection
+export const EASE_STAGER_TRANSITIONS: Transition = {
+  duration: 1.28,
+  ease: [0.43, 0.13, 0.23, 0.96],
+  staggerChildren: 0.2,
+}
+
+export const MARQUEE_TRANSITION: Transition = {
+  duration: 3.2,
+  times: [0, 1],
+  ease: 'linear',
+  repeat: Infinity,
+  repeatType: 'loop',
+}
+
+export const EASE_TRANSITIONS: Transition = {
+  duration: 1.28,
+  ease: [0.43, 0.13, 0.23, 0.96],
+}
+
 export const SLIDE_UP_VARIANTS: Variants = {
   [AnimationVariant.Initial]: { opacity: 0, y: 20 },
   [AnimationVariant.Slide]: { opacity: 1, y: 0 },
@@ -85,14 +103,6 @@ export const SLIDE_LEFT_VARIANTS: Variants = {
   },
 }
 
-export const MARQUEE_TRANSITION: Transition = {
-  duration: 3.2,
-  times: [0, 1],
-  ease: 'linear',
-  repeat: Infinity,
-  repeatType: 'loop',
-}
-
 // StatementSection
 export const BOUNCE_CONTAINER_VARIANTS: Variants = {
   [AnimationVariant.Initial]: {},
@@ -104,11 +114,6 @@ export const BOUNCE_CONTAINER_VARIANTS: Variants = {
       ease: [0.43, 0.13, 0.23, 0.96],
     },
   },
-}
-
-export const EASE_TRANSITIONS: Transition = {
-  duration: 1.28,
-  ease: [0.43, 0.13, 0.23, 0.96],
 }
 
 export const BOUNCE_OUT_VARIANTS: Variants = {
@@ -252,11 +257,6 @@ export const ROTATE_ITEM_VARIANTS: Variants = {
 }
 
 // SubmissionSection
-export const EASE_STAGER_TRANSITIONS: Transition = {
-  duration: 1.28,
-  ease: [0.43, 0.13, 0.23, 0.96],
-  staggerChildren: 0.2,
-}
 
 export const FADE_VARIANTS: Variants = {
   [AnimationVariant.Initial]: { opacity: 0 },
@@ -348,3 +348,61 @@ export const SHINE_VARIANTS: Variants = {
     },
   }),
 }
+
+export const HomeSectionAnimation = {
+  code: SLIDE_DOWN_VARIANTS,
+  '4th': DELAYED_SLIDE_UP_VARIANTS,
+  f2e: SLIDE_UP_VARIANTS,
+  signUp: SLIDE_LEFT_VARIANTS,
+  dashboard: SLIDE_UP_VARIANTS,
+} as const
+
+export const StatementSectionAnimation = {
+  section: BOUNCE_CONTAINER_VARIANTS,
+  item: BOUNCE_OUT_VARIANTS,
+} as const
+
+export const SolutionSectionAnimation = {
+  banner: SLIDE_HORIZONTAL_VARIANTS,
+  codeStamp: ROTATE_VARIANTS,
+  palm: FADE_SLIDE_IN_VARIANTS,
+  title: SCALE_IN_VARIANTS,
+  description: SCALE_IN_VARIANTS,
+  starStamp: ROTATE_VARIANTS,
+} as const
+
+export const TaskSectionAnimation = {
+  iconContainer: SLIDE_DOWN_VARIANTS,
+  icon: SHINE_VARIANTS,
+  title: SLIDE_DOWN_VARIANTS,
+  description: FADE_IN_ROTATE_VARIANTS,
+  card: FADE_IN_ROTATE_VARIANTS,
+  cardItem: ROTATE_ITEM_VARIANTS,
+} as const
+
+export const SubmissionSectionAnimation = {
+  title: SLIDE_UP_VARIANTS,
+  container: SLIDE_UP_VARIANTS,
+  card: SLIDE_UP_VARIANTS,
+} as const
+
+export const CompetitionSectionAnimation = {
+  section: COMPETITION_VARIANTS,
+  title: SLIDE_UP_VARIANTS_TWO,
+  delayedTitle: DELAYED_FADE_VARIANTS,
+  car: DELAYED_SHRINK_VARIANTS,
+  flag: RACE_CAR_FLAG_VARIANTS,
+  container: SLIDE_UP_VARIANTS_TWO,
+} as const
+
+export const CommonQuestionSectionAnimation = {
+  button: SLIDE_LEFT_VARIANTS,
+  tabPanel: HIDE_AND_SHOW_VARIANTS,
+  doc: FADE_UP_VARIANTS,
+} as const
+
+export const SponsorSectionAnimation = {
+  icon: SHINE_VARIANTS,
+  container: HIDE_AND_SHOW_VARIANTS,
+  card: ROTATE_IN_VARIANTS,
+} as const

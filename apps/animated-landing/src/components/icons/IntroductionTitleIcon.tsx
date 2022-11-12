@@ -1,5 +1,4 @@
 import { motion, SVGMotionProps } from 'framer-motion'
-import { SCALE_IN_VARIANTS } from '@/constants/animations'
 
 export default function IntroductionTitleIcon(props: SVGMotionProps<SVGSVGElement>) {
   return (
@@ -9,7 +8,6 @@ export default function IntroductionTitleIcon(props: SVGMotionProps<SVGSVGElemen
       viewBox="0 0 326 207"
       fill="#06102B"
       xmlns="http://www.w3.org/2000/svg"
-      variants={SCALE_IN_VARIANTS}
       {...props}
     >
       <path

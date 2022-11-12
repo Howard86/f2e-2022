@@ -1,5 +1,4 @@
 import { motion, SVGMotionProps } from 'framer-motion'
-import { RACE_CAR_FLAG_VARIANTS } from '@/constants/animations'
 
 export default function RaceFlagIcon(props: SVGMotionProps<SVGSVGElement>) {
   return (
@@ -10,7 +9,6 @@ export default function RaceFlagIcon(props: SVGMotionProps<SVGSVGElement>) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className="shrink-0"
-      variants={RACE_CAR_FLAG_VARIANTS}
       {...props}
     >
       <path

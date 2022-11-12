@@ -3,6 +3,12 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --no-cache --parallel --continue",
+    "build:docs": "turbo run build --filter=docs",
+    "build:animated-landing": "turbo run build --filter=animated-landing",
+    "dev:docs": "turbo run dev --filter=docs --no-cache --parallel --continue",
+    "dev:animated-landing": "turbo run dev --filter=animated-landing --no-cache --parallel --continue",
+    "start:docs": "turbo run start --filter=docs",
+    "start:animated-landing": "turbo run start --filter=animated-landing",
     "lint": "turbo run lint",
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",

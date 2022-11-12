@@ -9,12 +9,14 @@ const noto = Noto_Sans_TC({
   variable: '--noto-font',
   weight: ['400', '700'],
   subsets: ['chinese-traditional'],
+  display: 'fallback',
   preload: true,
 })
 
 const local = localFont({
-  src: './fonts/PPMonumentExtended-Regular.woff2',
+  src: '../../public/fonts/PPMonumentExtended-Regular.woff2',
   variable: '--monument-font',
+  display: 'fallback',
   weight: '400 700',
 })
 

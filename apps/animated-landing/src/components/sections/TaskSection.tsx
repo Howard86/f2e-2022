@@ -2,17 +2,12 @@ import { motion } from 'framer-motion'
 import dashboard from '@/../public/assets/icons/dashboard.png'
 import refresh from '@/../public/assets/icons/refresh.png'
 import draw from '@/../public/assets/icons/draw.png'
+import { AnimationVariant, EASE_TRANSITIONS, TaskSectionAnimation } from '@/constants/animations'
+import useMediaQueryOnce from '@/hooks/useMediaQueryOnce'
 
 import ThunderIcon from '../icons/ThunderIcon'
-import TaskCard from '../TaskCard'
-import {
-  AnimationVariant,
-  SLIDE_DOWN_VARIANTS,
-  FADE_IN_ROTATE_VARIANTS,
-  EASE_TRANSITIONS,
-} from '@/constants/animations'
-import useMediaQueryOnce from '@/hooks/useMediaQueryOnce'
-import MobileTaskCard, { TaskCardProps } from '../MobileTaskCard'
+import TaskCard from '../cards/TaskCard'
+import MobileTaskCard, { TaskCardProps } from '../cards/MobileTaskCard'
 
 const TASKS: TaskCardProps[] = [
   {
@@ -55,7 +50,7 @@ export default function TaskSection() {
       whileInView={AnimationVariant.Slide}
     >
       <motion.div
-        variants={SLIDE_DOWN_VARIANTS}
+        variants={TaskSectionAnimation.iconContainer}
         transition={EASE_TRANSITIONS}
         className="relative w-0"
       >
@@ -66,13 +61,13 @@ export default function TaskSection() {
         />
       </motion.div>
       <motion.h2
-        variants={SLIDE_DOWN_VARIANTS}
+        variants={TaskSectionAnimation.title}
         className="text-ch-h3 text-g1 shadow-green border-g1 mt-20 inline-flex flex-col rounded-full border-4 py-5 px-10 font-bold [text-shadow:theme(boxShadow.green)] md:flex-row md:gap-2"
       >
         <span>年度最強合作</span>
         <span>三大主題來襲</span>
       </motion.h2>
-      <motion.p variants={FADE_IN_ROTATE_VARIANTS} className="text-ch-h5 my-10">
+      <motion.p variants={TaskSectionAnimation.description} className="text-ch-h5 my-10">
         <span className="block">各路廠商強強聯手</span>
         <span className="block md:inline">共同設計出接地氣的</span>
         網頁互動挑戰關卡
@@ -81,9 +76,14 @@ export default function TaskSection() {
         <motion.div className="mx-auto mt-5 flex flex-col gap-10 px-9 lg:flex-row">
           {TASKS.map((card, index) =>
             matches ? (
-              <TaskCard key={card.href} custom={240 - index * 40} {...card} />
+              <TaskCard
+                key={card.href}
+                variants={TaskSectionAnimation.card}
+                custom={240 - index * 40}
+                {...card}
+              />
             ) : (
-              <MobileTaskCard key={card.href} {...card} />
+              <MobileTaskCard key={card.href} variants={TaskSectionAnimation.card} {...card} />
             )
           )}
         </motion.div>

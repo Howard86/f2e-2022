@@ -6,11 +6,7 @@ import kdanMobile from '@/../public/assets/company/kdan-mobile.png'
 import titanSoft from '@/../public/assets/company/titan-soft.png'
 
 import YellowStarIcon from '../icons/YellowStarIcon'
-import {
-  AnimationVariant,
-  HIDE_AND_SHOW_VARIANTS,
-  ROTATE_IN_VARIANTS,
-} from '@/constants/animations'
+import { AnimationVariant, SponsorSectionAnimation } from '@/constants/animations'
 import { MotionExternalLink } from '../ExternalLink'
 
 type Company = {
@@ -42,18 +38,25 @@ export default function SponsorSection() {
     <motion.section
       initial={AnimationVariant.Initial}
       whileInView={AnimationVariant.Activate}
-      className="bg-n3 section snap-start gap-6 pt-20 pb-10"
+      className="section bg-n3 snap-start gap-6 pt-20 pb-10"
     >
       <div className="relative mb-4 px-6">
-        <YellowStarIcon className="absolute top-2 -right-1 h-auto w-8 md:-right-3" />
+        <YellowStarIcon
+          variants={SponsorSectionAnimation.icon}
+          className="absolute top-2 -right-1 h-auto w-8 md:-right-3"
+        />
         <h2 className="py-5 text-center">
           <span className="font-en text-en-h3 block uppercase">Sponsors</span>
           <span className="text-ch-h4 block font-bold">鑽石級贊助商</span>
         </h2>
-        <YellowStarIcon className="absolute bottom-8 -left-3 md:-left-8" custom={1} />
+        <YellowStarIcon
+          variants={SponsorSectionAnimation.icon}
+          className="absolute bottom-8 -left-3 md:-left-8"
+          custom={1}
+        />
       </div>
       <motion.div
-        variants={HIDE_AND_SHOW_VARIANTS}
+        variants={SponsorSectionAnimation.container}
         className="section mb-5 gap-6 md:flex-row md:gap-14"
       >
         {COMPANIES.map((company) => (
@@ -61,7 +64,7 @@ export default function SponsorSection() {
             key={company.href}
             href={company.href}
             className="bg-n1 rounded-card hover:bg-decoration focus:bg-decoration p-1.5 transition-all"
-            variants={ROTATE_IN_VARIANTS}
+            variants={SponsorSectionAnimation.card}
             whileHover={AnimationVariant.Float}
           >
             <Image

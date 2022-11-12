@@ -3,7 +3,8 @@
   "pipeline": {
     "build": {
       "outputs": ["dist/**", ".next/**"],
-      "dependsOn": ["^build", "$ANALYZE", "$NEXT_PUBLIC_WEBSITE_URL"]
+      "dependsOn": ["^build"],
+      "env": ["ANALYZE", "NEXT_PUBLIC_WEBSITE_URL"]
     },
     "test": {
       "outputs": [],
@@ -11,6 +12,9 @@
     },
     "lint": {
       "outputs": []
+    },
+    "start": {
+      "cache": false
     },
     "dev": {
       "cache": false

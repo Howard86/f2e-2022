@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import Image, { StaticImageData } from 'next/image'
 import { ReactNode } from 'react'
 import { DivProps } from 'react-html-props'
-import { EASE_TRANSITIONS, SLIDE_UP_VARIANTS } from '@/constants/animations'
+import { EASE_TRANSITIONS, SubmissionSectionAnimation } from '@/constants/animations'
 
 interface SubmissionCardProps extends DivProps {
   src: StaticImageData
@@ -21,12 +21,12 @@ export default function SubmissionCard({
 }: SubmissionCardProps) {
   return (
     <motion.article
-      variants={SLIDE_UP_VARIANTS}
+      variants={SubmissionSectionAnimation.card}
       transition={EASE_TRANSITIONS}
       className={clsx(
         className,
         reversed ? 'md:flex-row-reverse' : 'md:flex-row',
-        'border-n1 hover:border-p1 hover:shadow-purple hover:bg-p1/10 text-ch-h5 rounded-card section group w-full gap-4 border-[3px] px-6 py-8 transition-all sm:max-w-[520px] md:justify-between md:gap-6 md:py-9 md:px-12 lg:h-full lg:max-h-[300px]'
+        'section border-n1 hover:border-p1 hover:shadow-purple hover:bg-p1/10 text-ch-h5 rounded-card group w-full gap-4 border-[3px] px-6 py-8 transition-all sm:max-w-[520px] md:justify-between md:gap-6 md:py-9 md:px-12 lg:h-full lg:max-h-[300px]'
       )}
     >
       <div className="section flex-1">
