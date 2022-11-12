@@ -1,55 +1,124 @@
-# Turborepo Design System starter with Changesets
+# F2E-2022
 
-This is an official React design system starter powered by Turborepo. Versioning and package publishing is handled by [Changesets](https://github.com/changesets/changesets) and fully automated with GitHub Actions.
+This is a monorepo containing all work related to [2022 F2E challenge](https://2022.thef2e.com/).
 
-## What's inside?
+Special thanks to
 
-This Turborepo includes the following:
+- [hexschool](https://www.hexschool.com) team for designing user stories
+- UI mockups contributed by various designers under [CC BY-NC 3.0 TW](https://creativecommons.org/licenses/by-nc/3.0/tw/deed.en) license
+- sponsor companies: [Block Studio](https://blockstudio.tw), [KDAN MOBILE](https://www.kdanmobile.com), [TITANSOFT](https://www.titansoft.com)
 
-### Apps and Packages
+## Introduction
 
-- `docs`: A placeholder documentation site powered by [Next.js](https://nextjs.org)
-- `@f2e-2022/core`: core React components
-- `@f2e-2022/utils`: shared React utilities
-- `@f2e-2022/tsconfig`: shared `tsconfig.json`s used throughout the monorepo
-- `eslint-config-f2e-2022`: ESLint preset
+This repository is powered by [pnpm](https://pnpm.io) and managed with [Turborepo](https://turbo.build/repo) in the following folder structure
 
-Each package and app is 100% [TypeScript](https://www.typescriptlang.org/).
+- `/apps` - this contains all published applications on [Vercel Platform](https://vercel.com)
+  - [animated-landing](https://f2e-2022.howardism.dev) - redesigned [f2e 2022](https://2022.thef2e.com/) landing page [Jenny Wu](https://uxfol.io/jennywu)
+  - docs - summary landing page for f2e-2022 changes (WIP)
+- `/packages` - this contains all shared packages used by all applications
+  - eslint-config-f2e-2022: shared [ESLint](https://eslint.org) configuration files
+  - jest-config: shared [JEST](https://jestjs.io) configuration files
+  - tailwind-config: shared [Tailwindcss](https://tailwindcss.com) configuration files
+  - tsconfig: shared [TypeScript](https://www.typescriptlang.org) configuration files
+  - core - sharable UI components (WIP)
+  - utils - sharable utility functions (WIP)
 
-### Utilities
+### Applications folder structure
 
-This Turborepo has some additional tools already setup for you:
+- src
+  - pages - [React](https://reactjs.org) components with built-in route support
+  - components - store all individual [React](https://reactjs.org) components
+  - constants - shared fixed values for components
+  - hooks - some utility hooks to encapsulate logic
+  - styles - global CSS files with [Tailwindcss](https://tailwindcss.com) annotations
+- public - all public static assets hosted on [Vercel Platform](https://vercel.com)
+- test - [JEST](https://jestjs.io) unit test for each page
+- \_\_mock\_\_ - mocked 3rd party libraries when testing with [JEST](https://jestjs.io)
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+## Getting Started
 
-## Using this example
+### Running environments
 
-Run the following command:
+- OS: [macOS Monterey 12.0.1](https://www.apple.com/macos/monterey/) Apple chip or [Ubuntu 20.04.2 LTS](https://ubuntu.com)
+- [Node.js](https://nodejs.org/en/): v16.16.0
+- [pnpm](https://pnpm.io): v7.14.1
 
-```sh
-npx degit vercel/turbo/examples/with-changesets with-changesets
-cd with-changesets
-yarn install
-git init . && git add . && git commit -m "Init"
+### Environmental Variables
+
+Checkout to individual `apps` folder, copy required environmental variables in `.env.production` into `.env.local` and fill each empty field
+
+e.g. for `animated-landing`
+
+```bash
+cp apps/animated-landing/.env.production apps/animated-landing/.env.local
+vi apps/animated-landing/.env.local # update required fields and save
 ```
 
-### Useful commands
+### Starting the applications
 
-- `yarn build` - Build all packages and the docs site
-- `yarn dev` - Develop all packages and the docs site
-- `yarn lint` - Lint all packages
-- `yarn changeset` - Generate a changeset
-- `yarn clean` - Clean up all `node_modules` and `dist` folders (runs each package's clean script)
+Run corresponding [commands](#useful-commands) with respective application name
 
-### Changing the npm organization scope
+#### Development
 
-The npm organization scope for this design system starter is `@f2e-2022`. To change this, it's a bit manual at the moment, but you'll need to do the following:
+e.g. for `animated-landing`
 
-- Rename folders in `packages/*` to replace `@f2e-2022` with your desired scope
-- Search and replace `@f2e-2022` with your desired scope
-- Re-run `yarn install`
+```bash
+pnpm i
+pnpm dev:animated-landing
+```
+
+You should be able to visit [localhost:3002](http://localhost:3002) to view the application successfully
+
+#### Production
+
+e.g. for `animated-landing`
+
+```bash
+pnpm i
+pnpm build:animated-landing
+pnpm start:animated-landing
+```
+
+You should be able to visit [localhost:3000](http://localhost:3002) to view the application successfully
+
+## Dependencies
+
+This project will mainly follow the dependencies of [turbo-monorepo-template](https://github.com/Howard86/turbo-monorepo-template), while installing individual tools specific for each `apps` or `packages`
+
+### Common dependencies
+
+1. [React](https://reactjs.org): v18
+2. [Next.js](https://nextjs.org): v13
+3. [Tailwindcss](https://chakra-ui.com)
+4. [headless UI](https://headlessui.com)
+5. [heroicons](https://heroicons.com)
+6. [clsx](https://www.npmjs.com/package/clsx)
+
+### Development dependencies
+
+1. [TypeScript](https://www.typescriptlang.org/)
+2. [ESLint](https://eslint.org/) with [Airbnb config](https://github.com/iamturns/eslint-config-airbnb-typescript)
+3. [Prettier](https://prettier.io/) with [prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss)
+4. Pre-commit & pre-push git hooks powered by [lint-staged](https://github.com/okonet/lint-staged) and [husky](https://typicode.github.io/husky/#/)
+5. [Commitlint](https://commitlint.js.org/#/)
+6. [Turborepo](https://turbo.build/repo)
+7. [JEST](https://jestjs.io/)
+
+### Application specific dependencies
+
+- Animated Landing
+  1. [Framer Motion](https://www.framer.com/motion)
+
+## Useful commands
+
+- `pnpm build` - Build all apps & packages
+  - `pnpm build:$APP_NAME` - Build app with specified APP_NAME and dependent packages in watch mode
+- `pnpm dev` - Develop all apps & packages in watch mode
+  - `pnpm dev:$APP_NAME` - Develop app with specified APP_NAME and dependent packages in watch mode
+- `pnpm test` - Test all packages
+- `pnpm lint` - Lint all packages
+- `pnpm changeset` - Generate a changeset
+- `pnpm clean` - Clean up all `node_modules` and `dist` folders (runs each package's clean script)
 
 ## Versioning and Publishing packages
 
@@ -59,18 +128,10 @@ This example comes with automated npm releases setup in a [GitHub Action](https:
 
 For more information about this automation, refer to the official [changesets documentation](https://github.com/changesets/changesets/blob/main/docs/automating-changesets.md)
 
-### npm
+## Deployment
 
-If you want to publish package to the public npm registry and make them publicly available, this is already setup.
+All apps will be deployed on [Vercel](https://vercel.com) with a custom subdomain under `howardism.dev`
 
-To publish packages to a private npm organization scope, **remove** the following from each of the `package.json`'s
+## License
 
-```diff
-- "publishConfig": {
--  "access": "public"
-- },
-```
-
-### GitHub Package Registry
-
-See [Working with the npm registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#publishing-a-package-using-publishconfig-in-the-packagejson-file)
+All rights reserved.
