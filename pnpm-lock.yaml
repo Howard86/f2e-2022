@@ -180,7 +180,7 @@ importers:
 
   packages/core:
     specifiers:
-      '@f2e-2022/jest-config': workspace:^0.0.0
+      '@f2e-2022/jest-config': workspace:^0.0.1
       '@f2e-2022/tailwind-config': workspace:^0.0.0
       '@f2e-2022/tsconfig': workspace:*
       '@heroicons/react': ^2.0.12
