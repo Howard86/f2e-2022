@@ -26,7 +26,7 @@ export default function SolutionSection() {
   if (!ready) return null
 
   return (
-    <section className="section min-h-screen snap-center justify-center">
+    <section className="section min-h-[min(960px,_100vh)] snap-center justify-center">
       <motion.div
         initial={AnimationVariant.Initial}
         whileInView={AnimationVariant.ScaleOrSlide}

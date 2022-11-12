@@ -51,7 +51,7 @@ export default function QuestionTab() {
                 <button
                   id={`tab-${id}`}
                   type="button"
-                  className="ui-not-selected:hover:before-underline ui-selected:text-n1 ui-not-selected:focus:before-underline text-ch-h5 lg:text-ch-h4 ui-not-selected:before:transition-all relative px-3 py-2 font-medium transition-all lg:px-4"
+                  className="ui-not-selected:hover:text-n1 ui-not-selected:hover:[text-shadow:theme(boxShadow.white)] ui-selected:text-n1 ui-selected:[text-shadow:theme(boxShadow.white)] ui-not-selected:focus:text-n1 ui-not-selected:focus:[text-shadow:theme(boxShadow.white)] text-ch-h5 lg:text-ch-h4 ui-not-selected:before:transition-all relative px-3 py-2 font-medium transition-all lg:px-4"
                 >
                   {NORMALISED_TABS.entities[id].name}
                   {selectedTab === id && (
@@ -92,7 +92,7 @@ export default function QuestionTab() {
                       </span>
                       <div>
                         <h3 className="text-ch-h4 font-bold">{doc.title}</h3>
-                        <p className="text-ch-h5 lg:text-ch-h4 mt-4">{doc.description}</p>
+                        <p className="text-ch-h5 mt-4">{doc.description}</p>
                       </div>
                     </motion.div>
                   ))}

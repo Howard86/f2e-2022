@@ -37,7 +37,7 @@ export default function Header() {
             <li key={item.href} className="relative hidden lg:block">
               <UnifiedLink
                 href={item.href}
-                className="text-n2 hover:before-underline focus:before-underline px-3 py-2 font-medium hover:before:-bottom-4"
+                className="text-n2 hover:text-n1 hover:before-underline focus:before-underline px-3 py-2 font-medium hover:[text-shadow:theme(boxShadow.white)]"
               >
                 {item.name}
               </UnifiedLink>
@@ -75,7 +75,7 @@ export default function Header() {
             {NAV_ITEMS.map((item) => (
               <Popover.Button key={item.name} as="li">
                 <UnifiedLink href={item.href} className="relative">
-                  <span className="text-n2 text-ch-p3 hover:before-underline focus:before-underline inline-block rounded-md p-4 text-center font-medium">
+                  <span className="text-n2 text-ch-p3 hover:text-n1 hover:before-underline focus:before-underline inline-block rounded-md p-4 text-center font-medium hover:[text-shadow:theme(boxShadow.white)]">
                     {item.name}
                   </span>
                 </UnifiedLink>

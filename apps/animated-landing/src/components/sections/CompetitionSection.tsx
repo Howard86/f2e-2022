@@ -53,7 +53,7 @@ export default function CompetitionSection() {
       initial={AnimationVariant.Initial}
       whileInView={AnimationVariant.Activate}
       variants={COMPETITION_VARIANTS}
-      className="section mx-auto min-h-screen snap-start py-12 md:pb-24 lg:snap-start lg:pb-32"
+      className="section mx-auto min-h-[min(960px,_100vh)] snap-start py-12 md:pb-24 lg:snap-start lg:pb-32"
     >
       <motion.h2
         variants={SLIDE_UP_VARIANTS_TWO}

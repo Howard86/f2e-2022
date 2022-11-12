@@ -19,7 +19,7 @@ export default function SubmissionSection() {
     <motion.section
       initial={AnimationVariant.Initial}
       whileInView={AnimationVariant.Slide}
-      className="bg-n4 relative flex min-h-screen snap-start flex-col py-10 text-center"
+      className="bg-n4 relative flex min-h-[min(960px,_100vh)] snap-start flex-col py-10 text-center"
     >
       <motion.div
         variants={SLIDE_UP_VARIANTS}

@@ -5,7 +5,7 @@ import { MotionExternalLink } from '../ExternalLink'
 
 export default function CommonQuestionSection() {
   return (
-    <section className="section min-h-screen snap-start py-14 md:pb-24">
+    <section className="section min-h-[min(960px,_100vh)] snap-start py-14 md:pb-24">
       <h2 className="text-en-h3 md:text-en-h2 font-en py-6 tracking-widest [text-shadow:theme(boxShadow.white)]">
         Q&A
       </h2>
