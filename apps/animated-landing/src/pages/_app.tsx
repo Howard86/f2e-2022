@@ -14,7 +14,7 @@ const noto = Noto_Sans_TC({
 })
 
 const local = localFont({
-  src: './fonts/PPMonumentExtended-Regular.woff2',
+  src: '../../public/fonts/PPMonumentExtended-Regular.woff2',
   variable: '--monument-font',
   display: 'fallback',
   weight: '400 700',
