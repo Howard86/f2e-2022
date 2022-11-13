@@ -10,6 +10,6 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-primary-main text-greyscale-white text-h4 inline-flex items-center justify-center rounded-sm px-6 py-3 font-bold -tracking-tighter;
+    @apply bg-primary-main disabled:text-greyscale-dark-grey/40 text-greyscale-white text-h4 disabled:bg-greyscale-ui-grey inline-flex items-center justify-center rounded-sm px-6 py-3 font-bold -tracking-tighter;
   }
 }
