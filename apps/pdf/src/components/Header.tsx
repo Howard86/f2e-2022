@@ -14,7 +14,7 @@ export default function Header() {
   return (
     <Popover
       as="header"
-      className="ui-open:fixed ui-open:inset-0 ui-open:z-40 ui-open:overflow-y-auto bg-greyscale-white border-greyscale-grey border lg:static lg:overflow-y-visible"
+      className="ui-open:fixed ui-open:inset-0 ui-open:z-40 ui-open:overflow-y-auto bg-greyscale-white border-greyscale-grey border-b lg:static lg:overflow-y-visible"
     >
       <div className="mx-auto max-w-7xl px-6 py-4 lg:px-8">
         <div className="relative flex justify-between lg:gap-8 xl:grid xl:grid-cols-12">
