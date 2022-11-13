@@ -7,3 +7,9 @@
   flex-direction: column;
   height: 100%;
 }
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-main text-greyscale-white text-h4 inline-flex items-center justify-center rounded-sm px-6 py-3 font-bold -tracking-tighter;
+  }
+}

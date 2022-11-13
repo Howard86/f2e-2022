@@ -2,6 +2,9 @@
 module.exports = {
   content: ['src/**/*.{ts,tsx}'],
   theme: {
+    letterSpacing: {
+      tighter: '0.03125rem',
+    },
     extend: {
       colors: {
         primary: {
