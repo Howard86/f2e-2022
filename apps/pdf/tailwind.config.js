@@ -23,6 +23,7 @@ module.exports = {
           'light-grey': '#F5F6F8',
           white: '#FFFFFF',
         },
+        mask: '#CEE5E466',
       },
       fontSize: {
         h1: '2rem',
@@ -35,6 +36,9 @@ module.exports = {
       },
       borderRadius: {
         sm: '0.25rem',
+      },
+      backgroundImage: {
+        signature: 'url("/assets/sample-signature.png")',
       },
     },
   },

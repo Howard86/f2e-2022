@@ -1,7 +1,5 @@
+import type { ExtractProps } from 'react'
 import { Switch } from '@headlessui/react'
-import type { ComponentType } from 'react'
-
-type ExtractProps<T> = T extends ComponentType<infer P> ? P : T
 
 type ToggleProps = ExtractProps<typeof Switch> & {
   startLabel?: string
