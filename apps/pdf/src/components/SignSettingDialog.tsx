@@ -54,9 +54,7 @@ export default function SignSettingDialog() {
                         <span className="py-4 px-2">
                           <MdDragIndicator className="text-greyscale-grey h-auto w-4" />
                         </span>
-                        <div className="flex-1" />
-                        <div className="bg-signature flex-1 bg-no-repeat object-center" />
-                        <div className="flex-1" />
+                        <div className="bg-signature mx-8 flex-1 bg-no-repeat object-center" />
                       </div>
                     </div>
                     <div className="flex items-start p-6">

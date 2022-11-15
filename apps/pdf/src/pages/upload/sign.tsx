@@ -3,6 +3,7 @@ import IconButton from '@/components/IconButton'
 import Layout from '@/components/Layout'
 import Step from '@/components/Step'
 import SignSettingDialog from '@/components/SignSettingDialog'
+import ConfirmSignDialog from '@/components/ConfirmSignDialog'
 
 export default function SignPage() {
   //   TODO: add different header
@@ -32,9 +33,7 @@ export default function SignPage() {
           <SignSettingDialog />
         </div>
         <div className="px-6 pb-6 pt-2">
-          <button type="button" disabled className="btn-primary w-full py-3">
-            下一步
-          </button>
+          <ConfirmSignDialog />
         </div>
       </section>
     </Layout>
