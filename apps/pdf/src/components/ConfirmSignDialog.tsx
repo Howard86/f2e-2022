@@ -1,15 +1,16 @@
 import { Transition, Dialog } from '@headlessui/react'
 import { Fragment } from 'react'
 import useToggle from '@/hooks/useToggle'
+import Button from './Button'
 
 export default function ConfirmSignDialog() {
   const [open, onToggle] = useToggle()
 
   return (
     <>
-      <button type="button" className="btn-primary w-full py-3" onClick={onToggle}>
+      <Button className="w-full" onClick={onToggle}>
         下一步
-      </button>
+      </Button>
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={onToggle}>
           <Transition.Child
@@ -45,17 +46,12 @@ export default function ConfirmSignDialog() {
                     </div>
                   </div>
                   <div className="mt-5 flex flex-col gap-4 sm:flex-row">
-                    <button
-                      type="button"
-                      disabled
-                      className="btn-primary w-full"
-                      onClick={onToggle}
-                    >
+                    <Button disabled className="w-full" onClick={onToggle}>
                       確認
-                    </button>
-                    <button type="button" className="btn-primary w-full" onClick={onToggle}>
+                    </Button>
+                    <Button className="w-full" onClick={onToggle}>
                       返回
-                    </button>
+                    </Button>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>

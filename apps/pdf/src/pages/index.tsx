@@ -5,6 +5,7 @@ import FileUpload from '@/components/illustrations/FileUpload'
 import Signing from '@/components/illustrations/Signing'
 import Sending from '@/components/illustrations/Sending'
 import Layout from '@/components/Layout'
+import Button from '@/components/Button'
 
 const STEPS: Step[] = [
   {
@@ -36,9 +37,7 @@ export default function Home() {
       <h1 className="text-greyscale-dark-grey text-h2 font-bold">快速省時的電子簽署工具</h1>
       <div className="text-primary-main bg-primary-light border-primary-main mt-4 mb-10 flex h-[440px] w-full flex-col items-center justify-center border-2 border-dashed">
         <AddFile />
-        <button type="button" className="btn-primary mt-4 mb-2 px-10">
-          選擇檔案
-        </button>
+        <Button className="mt-4 mb-2 px-10">選擇檔案</Button>
         <p className="text-h5 font-bold">檔案大小10Mb以內，檔案格式為PDF、IMG</p>
       </div>
       <section className="flex flex-col items-center">

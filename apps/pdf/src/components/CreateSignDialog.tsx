@@ -4,6 +4,7 @@ import { MdAdd, MdClose } from 'react-icons/md'
 import useToggle from '@/hooks/useToggle'
 import HandWritingPanel from './HandWritingPanel'
 import UploadPanel from './UploadPanel'
+import Button from './Button'
 
 const navigation = {
   categories: [
@@ -25,10 +26,10 @@ export default function CreateSignDialog() {
 
   return (
     <>
-      <button type="button" className="btn-primary my-2 w-full" onClick={onToggle}>
+      <Button variant="outlined" className="my-2 w-full" onClick={onToggle}>
         <MdAdd className="mr-2 h-auto w-6" />
         創建簽名檔
-      </button>
+      </Button>
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={onToggle}>
           <Transition.Child
@@ -95,9 +96,9 @@ export default function CreateSignDialog() {
                     <p className="text-h6 text-greyscale-dark-grey">
                       我了解這是一個具法律效力的本人簽名
                     </p>
-                    <button type="button" className="btn-primary" onClick={onToggle}>
+                    <Button size="md" className="px-9" onClick={onToggle}>
                       儲存
-                    </button>
+                    </Button>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>

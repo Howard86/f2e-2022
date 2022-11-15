@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Wrong from '@/components/illustrations/Wrong'
 import Layout from '@/components/Layout'
+import Button from '@/components/Button'
 
 const EMAIL = 'pdf-support@howardism.dev'
 
@@ -18,9 +19,9 @@ export default function SizeErrorPage() {
             {EMAIL}
           </a>
         </p>
-        <Link href="/" className="btn-primary w-full">
+        <Button as={Link} href="/" className="w-full">
           回首頁
-        </Link>
+        </Button>
       </section>
     </Layout>
   )
