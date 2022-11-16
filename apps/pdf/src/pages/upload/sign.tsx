@@ -2,6 +2,7 @@ import { MdArrowBack, MdCheck, MdOutlineModeEdit } from 'react-icons/md'
 import IconButton from '@/components/IconButton'
 import Layout from '@/components/Layout'
 import Step from '@/components/Step'
+import PDFViewer from '@/components/PDFViewer'
 import SignSettingDialog from '@/components/SignSettingDialog'
 import ConfirmSignDialog from '@/components/ConfirmSignDialog'
 
@@ -9,7 +10,7 @@ export default function SignPage() {
   //   TODO: add different header
   return (
     <Layout>
-      <section className="flex w-full flex-1 flex-col overflow-y-scroll">
+      <section className="flex max-h-screen w-full flex-1 flex-col">
         <div className="flex items-center justify-between border-b pb-4">
           <IconButton>
             <MdArrowBack className="text-greyscale-dark-grey h-auto w-6" />
@@ -29,7 +30,7 @@ export default function SignPage() {
           <Step variant="outlined">4</Step>
         </div>
         <div className="bg-greyscale-light-grey relative flex-1 py-6">
-          <span>PDF files</span>
+          <PDFViewer />
           <SignSettingDialog />
         </div>
         <div className="px-6 pb-6 pt-2">
