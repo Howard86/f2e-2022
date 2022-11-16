@@ -3,7 +3,6 @@ import IconButton from '@/components/IconButton'
 import Layout from '@/components/Layout'
 import Step from '@/components/Step'
 import PDFViewer from '@/components/PDFViewer'
-import ConfirmSignDialog from '@/components/ConfirmSignDialog'
 
 export default function SignPage() {
   //   TODO: add different header
@@ -29,9 +28,6 @@ export default function SignPage() {
           <Step variant="outlined">4</Step>
         </div>
         <PDFViewer />
-        <div className="px-6 pb-6 pt-2">
-          <ConfirmSignDialog />
-        </div>
       </section>
     </Layout>
   )

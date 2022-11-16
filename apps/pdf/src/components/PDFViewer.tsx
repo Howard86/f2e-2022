@@ -3,6 +3,7 @@ import type { PDFDocumentProxy } from 'pdfjs-dist'
 import { fabric } from 'fabric'
 import Button from './Button'
 import SignSettingDialog from './SignSettingDialog'
+import ConfirmSignDialog from './ConfirmSignDialog'
 
 const FILE_PATH = '/assets/sample-invoice-3.pdf'
 
@@ -34,11 +35,35 @@ export default function PDFViewer() {
     )
   }
 
+  // TODO: handle multiple page export
+  const handleExport = async () => {
+    const canvas = fabricRef.current
+
+    if (!canvas) return
+
+    const { jsPDF } = await import('jspdf')
+
+    // eslint-disable-next-line new-cap
+    const doc = new jsPDF()
+
+    // TODO: reset zoom level & center
+    doc.addImage(
+      canvas.toDataURL({ format: 'image/png' }),
+      'png',
+      0,
+      0,
+      doc.internal.pageSize.width,
+      doc.internal.pageSize.height
+    )
+    // TODO: add file name
+    doc.save('signed.pdf')
+  }
+
   useEffect(() => {
     const loadPdf = async () => {
       const rawCanvas = canvasRef.current
 
-      if (!rawCanvas || renderingRef.current || !containerRef.current) return
+      if (!rawCanvas || renderingRef.current || !containerRef.current || !canvasRef.current) return
 
       const context = rawCanvas.getContext('2d')
 
@@ -62,8 +87,8 @@ export default function PDFViewer() {
 
       if (!fabricRef.current) {
         fabricRef.current = new fabric.Canvas(rawCanvas, {
-          height: (viewport.height * containerRef.current.clientWidth) / viewport.width,
-          width: containerRef.current.clientWidth,
+          height: viewport.height,
+          width: viewport.width,
         })
       }
 
@@ -82,6 +107,10 @@ export default function PDFViewer() {
         renderingRef.current = false
       })
 
+      canvas.zoomToPoint(
+        { x: viewport.width / 2, y: 0 },
+        -0.05 + canvasRef.current.clientWidth / viewport.width
+      )
       canvas.requestRenderAll()
 
       const imageScale = 1 / window.devicePixelRatio
@@ -176,47 +205,52 @@ export default function PDFViewer() {
 
   return (
     // TODO: fix vertical scroll
-    <div className="bg-greyscale-light-grey relative flex-1 py-6">
-      <div ref={containerRef} className="flex flex-col items-center justify-center">
-        {numPages > 1 && (
-          <div className="flex items-center gap-2 pb-4">
-            <Button disabled={pageNum === 1} onClick={() => setPageNum((state) => state - 1)}>
-              Prev
-            </Button>
-            <p className="p-2">
-              {pageNum} /{numPages}
-            </p>
-            <Button
-              disabled={pageNum === numPages}
-              onClick={() => setPageNum((state) => state + 1)}
-            >
-              Next
-            </Button>
-          </div>
-        )}
-        <canvas ref={canvasRef} />
+    <>
+      <div className="bg-greyscale-light-grey relative flex-1 py-6">
+        <div ref={containerRef} className="flex flex-col items-center justify-center">
+          {numPages > 1 && (
+            <div className="flex items-center gap-2 pb-4">
+              <Button disabled={pageNum === 1} onClick={() => setPageNum((state) => state - 1)}>
+                Prev
+              </Button>
+              <p className="p-2">
+                {pageNum} /{numPages}
+              </p>
+              <Button
+                disabled={pageNum === numPages}
+                onClick={() => setPageNum((state) => state + 1)}
+              >
+                Next
+              </Button>
+            </div>
+          )}
+          <canvas ref={canvasRef} />
+        </div>
+        <div className="absolute">
+          <Button
+            onClick={() => {
+              const canvas = fabricRef.current
+
+              if (!canvas) return
+
+              const object = canvas.getActiveObject()
+
+              if (!object) {
+                alert('please select a signature first')
+                return
+              }
+
+              canvas.remove(object)
+            }}
+          >
+            Delete
+          </Button>
+        </div>
+        <SignSettingDialog onAddSignature={handleAddSignature} />
       </div>
-      <div className="absolute">
-        <Button
-          onClick={() => {
-            const canvas = fabricRef.current
-
-            if (!canvas) return
-
-            const object = canvas.getActiveObject()
-
-            if (!object) {
-              alert('please select a signature first')
-              return
-            }
-
-            canvas.remove(object)
-          }}
-        >
-          Delete
-        </Button>
+      <div className="px-6 pb-6 pt-2">
+        <ConfirmSignDialog onConfirm={handleExport} />
       </div>
-      <SignSettingDialog onAddSignature={handleAddSignature} />
-    </div>
+    </>
   )
 }
