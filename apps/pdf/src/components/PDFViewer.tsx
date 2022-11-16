@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { PDFDocumentProxy } from 'pdfjs-dist'
 import { fabric } from 'fabric'
 import Button from './Button'
+import SignSettingDialog from './SignSettingDialog'
 
 const FILE_PATH = '/assets/sample-invoice-3.pdf'
 
@@ -15,6 +16,23 @@ export default function PDFViewer() {
   const [numPages, setNumPages] = useState(0)
   const [pageNum, setPageNum] = useState(1)
   const [loaded, setLoaded] = useState(false)
+
+  const handleAddSignature = (image: HTMLImageElement) => {
+    const canvas = fabricRef.current
+
+    if (!canvas) return
+
+    const center = canvas.getCenter()
+
+    canvas.add(
+      new fabric.Image(image, {
+        width: image.naturalWidth,
+        height: image.naturalHeight,
+        top: center.top,
+        left: center.left,
+      })
+    )
+  }
 
   useEffect(() => {
     const loadPdf = async () => {
@@ -112,6 +130,8 @@ export default function PDFViewer() {
     })
 
     canvas.on('mouse:down', (option) => {
+      if (!option.e.altKey) return
+
       isDragging = true
       draggedX = option.e.clientX
       draggedY = option.e.clientY
@@ -156,21 +176,47 @@ export default function PDFViewer() {
 
   return (
     // TODO: fix vertical scroll
-    <div ref={containerRef} className="flex flex-col items-center justify-center">
-      {numPages > 1 && (
-        <div className="flex items-center gap-2 pb-4">
-          <Button disabled={pageNum === 1} onClick={() => setPageNum((state) => state - 1)}>
-            Prev
-          </Button>
-          <p className="p-2">
-            {pageNum} /{numPages}
-          </p>
-          <Button disabled={pageNum === numPages} onClick={() => setPageNum((state) => state + 1)}>
-            Next
-          </Button>
-        </div>
-      )}
-      <canvas ref={canvasRef} />
+    <div className="bg-greyscale-light-grey relative flex-1 py-6">
+      <div ref={containerRef} className="flex flex-col items-center justify-center">
+        {numPages > 1 && (
+          <div className="flex items-center gap-2 pb-4">
+            <Button disabled={pageNum === 1} onClick={() => setPageNum((state) => state - 1)}>
+              Prev
+            </Button>
+            <p className="p-2">
+              {pageNum} /{numPages}
+            </p>
+            <Button
+              disabled={pageNum === numPages}
+              onClick={() => setPageNum((state) => state + 1)}
+            >
+              Next
+            </Button>
+          </div>
+        )}
+        <canvas ref={canvasRef} />
+      </div>
+      <div className="absolute">
+        <Button
+          onClick={() => {
+            const canvas = fabricRef.current
+
+            if (!canvas) return
+
+            const object = canvas.getActiveObject()
+
+            if (!object) {
+              alert('please select a signature first')
+              return
+            }
+
+            canvas.remove(object)
+          }}
+        >
+          Delete
+        </Button>
+      </div>
+      <SignSettingDialog onAddSignature={handleAddSignature} />
     </div>
   )
 }

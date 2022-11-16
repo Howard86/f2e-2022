@@ -3,7 +3,6 @@ import IconButton from '@/components/IconButton'
 import Layout from '@/components/Layout'
 import Step from '@/components/Step'
 import PDFViewer from '@/components/PDFViewer'
-import SignSettingDialog from '@/components/SignSettingDialog'
 import ConfirmSignDialog from '@/components/ConfirmSignDialog'
 
 export default function SignPage() {
@@ -29,10 +28,7 @@ export default function SignPage() {
           <Step variant="outlined">3</Step>
           <Step variant="outlined">4</Step>
         </div>
-        <div className="bg-greyscale-light-grey relative flex-1 py-6">
-          <PDFViewer />
-          <SignSettingDialog />
-        </div>
+        <PDFViewer />
         <div className="px-6 pb-6 pt-2">
           <ConfirmSignDialog />
         </div>

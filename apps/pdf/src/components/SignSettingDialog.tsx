@@ -1,19 +1,31 @@
 import { Transition, Dialog } from '@headlessui/react'
-import { Fragment } from 'react'
+import { Fragment, useRef } from 'react'
 import { MdArrowLeft, MdClose, MdDragIndicator, MdOutlinePersonAdd } from 'react-icons/md'
 import useToggle from '@/hooks/useToggle'
 import IconButton from './IconButton'
 import Toggle from './Toggle'
 import CreateSignDialog from './CreateSignDialog'
 
-export default function SignSettingDialog() {
+interface SignSettingDialogProps {
+  onAddSignature: (image: HTMLImageElement) => void
+}
+
+export default function SignSettingDialog({ onAddSignature }: SignSettingDialogProps) {
+  const signatureRef = useRef<HTMLImageElement>(null)
   const [open, onToggle] = useToggle()
+
+  const handleImportSignature = () => {
+    if (!signatureRef.current) return
+
+    onAddSignature(signatureRef.current)
+    onToggle()
+  }
 
   return (
     <>
       <button
         type="button"
-        className="bg-greyscale-white absolute inset-y-0 right-0 shadow-sm"
+        className="bg-greyscale-white absolute top-2 right-2 p-1 shadow-sm"
         onClick={onToggle}
       >
         <MdArrowLeft className="h-auto w-4" />
@@ -50,12 +62,22 @@ export default function SignSettingDialog() {
                     <div className="p-6">
                       <h3 className="text-h5 font-bold">我的簽名</h3>
                       <CreateSignDialog />
-                      <div className="border-greyscale-light-grey flex h-12 border">
+                      <button
+                        type="button"
+                        className="border-greyscale-light-grey flex h-12 w-full border"
+                        onClick={handleImportSignature}
+                      >
                         <span className="py-4 px-2">
                           <MdDragIndicator className="text-greyscale-grey h-auto w-4" />
                         </span>
-                        <div className="bg-signature mx-8 flex-1 bg-no-repeat object-center" />
-                      </div>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          ref={signatureRef}
+                          alt="signature"
+                          src="/assets/sample-signature.png"
+                          className="mx-auto"
+                        />
+                      </button>
                     </div>
                     <div className="flex items-start p-6">
                       <div className="flex-1 space-y-2">
