@@ -4,10 +4,11 @@ import { fabric } from 'fabric'
 import Button from './Button'
 import SignSettingDialog from './SignSettingDialog'
 import ConfirmSignDialog from './ConfirmSignDialog'
-
-const FILE_PATH = '/assets/sample-invoice-3.pdf'
+import useFileStore from '@/hooks/useFileStore'
 
 export default function PDFViewer() {
+  const file = useFileStore((state) => state.pdfFile)
+
   const containerRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const fabricRef = useRef<fabric.Canvas | null>(null)
@@ -61,7 +62,14 @@ export default function PDFViewer() {
     const loadPdf = async () => {
       const rawCanvas = canvasRef.current
 
-      if (!rawCanvas || renderingRef.current || !containerRef.current || !canvasRef.current) return
+      if (
+        !rawCanvas ||
+        renderingRef.current ||
+        !containerRef.current ||
+        !canvasRef.current ||
+        !file
+      )
+        return
 
       const context = rawCanvas.getContext('2d')
 
@@ -71,7 +79,7 @@ export default function PDFViewer() {
         const pdfjs = await import('pdfjs-dist')
         pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
 
-        pdfFileRef.current = await pdfjs.getDocument(FILE_PATH).promise
+        pdfFileRef.current = await pdfjs.getDocument({ data: file }).promise
       }
 
       if (numPages === 0) {
@@ -133,7 +141,7 @@ export default function PDFViewer() {
     }
 
     loadPdf().catch(console.error)
-  }, [numPages, pageNum])
+  }, [file, numPages, pageNum])
 
   useEffect(() => {
     const canvas = fabricRef.current

@@ -1,5 +1,5 @@
 import { Transition, Dialog, Tab } from '@headlessui/react'
-import { Fragment, useRef } from 'react'
+import { ChangeEvent, Fragment, useRef, useState } from 'react'
 import { MdAdd, MdClose } from 'react-icons/md'
 import { fabric } from 'fabric'
 import useToggle from '@/hooks/useToggle'
@@ -11,11 +11,15 @@ const DRAWING_BOARD_HEIGHT = 160
 const DRAWING_THICKNESS = 4
 
 export default function CreateSignDialog() {
-  const [dialogOpen, onToggleDialogOpen] = useToggle()
-  const [drawingStarted, onToggleDrawingStarted, setDrawingStarted] = useToggle()
-  const addSignature = useFileStore((state) => state.addSignature)
+  const upsertSignature = useFileStore((state) => state.upsertSignature)
+
+  const uploadInputRef = useRef<HTMLInputElement>(null)
   const fabricRef = useRef<fabric.Canvas | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+
+  const [previewUrl, setPreviewUrl] = useState<string | undefined>()
+  const [dialogOpen, onToggleDialogOpen] = useToggle()
+  const [drawingStarted, onToggleDrawingStarted, setDrawingStarted] = useToggle()
 
   const handleCanvasMount = (ref: HTMLCanvasElement | null) => {
     if (!ref || !containerRef.current) return
@@ -54,10 +58,50 @@ export default function CreateSignDialog() {
     setDrawingStarted(false)
   }
 
+  const handleUpload = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+
+    if (!file) return
+
+    const fileReader = new FileReader()
+
+    fileReader.onloadend = function load() {
+      // eslint-disable-next-line react/no-this-in-sfc
+      const url = this.result
+
+      if (typeof url !== 'string') return
+
+      setPreviewUrl(url)
+    }
+
+    fileReader.readAsDataURL(file)
+  }
+
+  const handleClearUpload = () => {
+    if (!uploadInputRef.current) return
+
+    uploadInputRef.current.files = null
+    setPreviewUrl(undefined)
+  }
+
+  const handleEditUpload = () => {
+    if (!uploadInputRef.current) return
+
+    uploadInputRef.current.click()
+  }
+
+  // TODO: split this function
   const handleSave = () => {
+    if (previewUrl) {
+      upsertSignature({ timestamp: Date.now(), url: previewUrl })
+      onToggleDialogOpen()
+      handleClearUpload()
+      return
+    }
+
     if (!fabricRef.current) return
 
-    addSignature({ timestamp: Date.now(), url: fabricRef.current.toDataURL() })
+    upsertSignature({ timestamp: Date.now(), url: fabricRef.current.toDataURL() })
 
     onToggleDialogOpen()
     setDrawingStarted(false)
@@ -164,23 +208,44 @@ export default function CreateSignDialog() {
                           </Tab.Panel>
                           <Tab.Panel className="space-y-10 pt-10 pb-8">
                             <div className="flex items-center justify-end gap-2">
-                              <Button size="sm" variant="text">
-                                回上一步
+                              <Button size="sm" variant="text" onClick={handleEditUpload}>
+                                更改
                               </Button>
-                              <Button size="sm" variant="text">
+                              <Button size="sm" variant="text" onClick={handleClearUpload}>
                                 清除
                               </Button>
                             </div>
-                            {/* TODO: Add board */}
                             <div className="border-greyscale-ui-grey rounded-sm border px-2 py-8">
-                              <Button variant="outlined" size="md">
-                                上傳檔案
-                              </Button>
-                              <p className="text-primary-main mt-4">
-                                檔案大小10 MB以內
-                                <span className="hidden">，</span>
-                                <span className="block">檔案格式jpg, pmg, bmp</span>
-                              </p>
+                              {previewUrl && (
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img
+                                  alt="uploaded signature"
+                                  src={previewUrl}
+                                  className="mx-auto h-full w-auto"
+                                />
+                              )}
+                              <form
+                                className={previewUrl ? 'hidden' : 'flex flex-col items-center'}
+                              >
+                                <Button as="label" htmlFor="file-upload" className="cursor-pointer">
+                                  <span>選擇檔案</span>
+                                  <input
+                                    ref={uploadInputRef}
+                                    id="file-upload"
+                                    name="file-upload"
+                                    type="file"
+                                    className="sr-only"
+                                    accept=".jpg,.png,.bmp"
+                                    onChange={handleUpload}
+                                  />
+                                </Button>
+                                <p>或將檔案拖曳至這裡</p>
+                                <p className="text-primary-main mt-4">
+                                  檔案大小10 MB以內
+                                  <span className="hidden">，</span>
+                                  <span className="block">檔案格式jpg, png, bmp</span>
+                                </p>
+                              </form>
                             </div>
                           </Tab.Panel>
                         </Tab.Panels>

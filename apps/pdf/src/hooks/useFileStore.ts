@@ -1,5 +1,4 @@
 import create from 'zustand'
-import { devtools } from 'zustand/middleware'
 
 type Normalised<T extends object, K extends keyof T> = T[K] extends string | number
   ? {
@@ -15,20 +14,23 @@ type Signature = {
 
 interface FileState {
   signatures: Normalised<Signature, 'timestamp'>
-  addSignature: (signature: Signature) => void
+  pdfFile?: Uint8Array
+  uploadPdf: (file: Uint8Array) => void
+  upsertSignature: (signature: Signature) => void
 }
 
-const useFileStore = create<FileState>()(
-  devtools((set) => ({
-    signatures: { ids: [], entities: {} },
-    addSignature: ({ timestamp, ...rest }) =>
-      set((state) => ({
-        signatures: {
-          ids: [...state.signatures.ids, timestamp],
-          entities: { ...state.signatures.entities, [timestamp]: rest },
-        },
-      })),
-  }))
-)
+const useFileStore = create<FileState>()((set) => ({
+  uploadPdf: (pdfFile) => set(() => ({ pdfFile })),
+  signatures: { ids: [], entities: {} },
+  upsertSignature: ({ timestamp, ...rest }) =>
+    set((state) => ({
+      signatures: {
+        ids: state.signatures.entities[timestamp]
+          ? state.signatures.ids
+          : [...state.signatures.ids, timestamp],
+        entities: { ...state.signatures.entities, [timestamp]: rest },
+      },
+    })),
+}))
 
 export default useFileStore
