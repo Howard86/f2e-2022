@@ -1,37 +1,76 @@
 import { Transition, Dialog, Tab } from '@headlessui/react'
-import { Fragment } from 'react'
+import { Fragment, useRef } from 'react'
 import { MdAdd, MdClose } from 'react-icons/md'
+import { fabric } from 'fabric'
 import useToggle from '@/hooks/useToggle'
-import HandWritingPanel from './HandWritingPanel'
-import UploadPanel from './UploadPanel'
 import Button from './Button'
+import CreateSignTab from './CreateSignTab'
+import useFileStore from '@/hooks/useFileStore'
 
-const navigation = {
-  categories: [
-    {
-      id: 'handwriting',
-      name: '手寫',
-      panel: HandWritingPanel,
-    },
-    {
-      id: 'upload',
-      name: '上傳',
-      panel: UploadPanel,
-    },
-  ],
-} as const
+const DRAWING_BOARD_HEIGHT = 160
+const DRAWING_THICKNESS = 4
 
 export default function CreateSignDialog() {
-  const [open, onToggle] = useToggle()
+  const [dialogOpen, onToggleDialogOpen] = useToggle()
+  const [drawingStarted, onToggleDrawingStarted, setDrawingStarted] = useToggle()
+  const addSignature = useFileStore((state) => state.addSignature)
+  const fabricRef = useRef<fabric.Canvas | null>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  const handleCanvasMount = (ref: HTMLCanvasElement | null) => {
+    if (!ref || !containerRef.current) return
+
+    fabricRef.current = new fabric.Canvas(ref, {
+      height: DRAWING_BOARD_HEIGHT,
+      width: containerRef.current.clientWidth,
+      containerClass: 'mx-auto',
+    })
+    fabricRef.current.isDrawingMode = true
+    fabricRef.current.freeDrawingBrush.width = DRAWING_THICKNESS
+  }
+
+  const handleClear = () => {
+    if (!fabricRef.current) return
+
+    fabricRef.current.clear()
+    setDrawingStarted(false)
+  }
+
+  const handleMovePreviousStep = () => {
+    if (!fabricRef.current) return
+
+    const objects = fabricRef.current.getObjects()
+
+    if (objects.length === 0) return
+
+    const count = objects.length
+
+    if (count === 1) setDrawingStarted(false)
+    fabricRef.current.remove(objects[objects.length - 1])
+  }
+
+  const handleClose = () => {
+    onToggleDialogOpen()
+    setDrawingStarted(false)
+  }
+
+  const handleSave = () => {
+    if (!fabricRef.current) return
+
+    addSignature({ timestamp: Date.now(), url: fabricRef.current.toDataURL() })
+
+    onToggleDialogOpen()
+    setDrawingStarted(false)
+  }
 
   return (
     <>
-      <Button variant="outlined" className="my-2 w-full" onClick={onToggle}>
+      <Button variant="outlined" className="my-2 w-full" onClick={handleClose}>
         <MdAdd className="mr-2 h-auto w-6" />
         創建簽名檔
       </Button>
-      <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={onToggle}>
+      <Transition.Root show={dialogOpen} as={Fragment}>
+        <Dialog as="div" className="relative z-10" onClose={handleClose}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -60,43 +99,99 @@ export default function CreateSignDialog() {
                     <button
                       type="button"
                       className="focus:ring-primary-main rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2"
-                      onClick={onToggle}
+                      onClick={onToggleDialogOpen}
                     >
                       <span className="sr-only">Close</span>
                       <MdClose className="h-6 w-6" aria-hidden="true" />
                     </button>
                   </div>
                   <div className="sm:flex sm:items-start">
-                    <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                    <div className="mt-3 w-full text-center sm:mt-0 sm:text-left">
                       <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
                         創建簽名
                       </Dialog.Title>
                       <Tab.Group as="div" className="mt-2">
                         <div className="border-b border-gray-200">
-                          <Tab.List className="-mb-px flex space-x-8 px-4">
-                            {navigation.categories.map((category) => (
-                              <Tab
-                                key={category.name}
-                                className="ui-selected:border-primary-main ui-selected:text-primary-main flex-1 whitespace-nowrap border-b-2 border-transparent py-4 px-1 text-base"
-                              >
-                                {category.name}
-                              </Tab>
-                            ))}
+                          <Tab.List className="-mb-px flex space-x-8">
+                            <CreateSignTab>手寫</CreateSignTab>
+                            <CreateSignTab>上傳</CreateSignTab>
                           </Tab.List>
                         </div>
                         <Tab.Panels as={Fragment}>
-                          {navigation.categories.map((category) => (
-                            <category.panel key={category.id} />
-                          ))}
+                          <Tab.Panel className="flex flex-col items-center gap-10 py-4">
+                            <div className="flex items-center justify-end gap-2 self-end">
+                              <Button
+                                size="sm"
+                                variant="text"
+                                disabled={!drawingStarted}
+                                onClick={handleMovePreviousStep}
+                              >
+                                回上一步
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant="text"
+                                disabled={!drawingStarted}
+                                onClick={handleClear}
+                              >
+                                清除
+                              </Button>
+                            </div>
+                            <div
+                              ref={containerRef}
+                              className="border-greyscale-ui-grey relative h-40 w-full rounded-sm border"
+                            >
+                              {drawingStarted ? (
+                                <div>
+                                  <canvas ref={handleCanvasMount} />
+                                </div>
+                              ) : (
+                                <button
+                                  type="button"
+                                  onClick={onToggleDrawingStarted}
+                                  className="text-greyscale-grey inline-flex h-full w-full items-center justify-center"
+                                >
+                                  請在這裡寫下您的簽名
+                                </button>
+                              )}
+                              <div className="absolute right-2 bottom-2 z-10 flex gap-2">
+                                <span className="bg-greyscale-dark h-2 w-2 rounded-full" />
+                                <span className="bg-info h-2 w-2 rounded-full " />
+                                <span className="bg-error h-2 w-2 rounded-full " />
+                                <span />
+                              </div>
+                            </div>
+                          </Tab.Panel>
+                          <Tab.Panel className="space-y-10 pt-10 pb-8">
+                            <div className="flex items-center justify-end gap-2">
+                              <Button size="sm" variant="text">
+                                回上一步
+                              </Button>
+                              <Button size="sm" variant="text">
+                                清除
+                              </Button>
+                            </div>
+                            {/* TODO: Add board */}
+                            <div className="border-greyscale-ui-grey rounded-sm border px-2 py-8">
+                              <Button variant="outlined" size="md">
+                                上傳檔案
+                              </Button>
+                              <p className="text-primary-main mt-4">
+                                檔案大小10 MB以內
+                                <span className="hidden">，</span>
+                                <span className="block">檔案格式jpg, pmg, bmp</span>
+                              </p>
+                            </div>
+                          </Tab.Panel>
                         </Tab.Panels>
                       </Tab.Group>
                     </div>
                   </div>
-                  <div className="mt-5 flex flex-col items-center gap-2 sm:mt-4 sm:flex-row-reverse">
+                  <div className="mt-5 flex flex-col items-center gap-2">
                     <p className="text-h6 text-greyscale-dark-grey">
                       我了解這是一個具法律效力的本人簽名
                     </p>
-                    <Button size="md" className="px-9" onClick={onToggle}>
+                    <Button size="md" className="px-9" onClick={handleSave}>
                       儲存
                     </Button>
                   </div>

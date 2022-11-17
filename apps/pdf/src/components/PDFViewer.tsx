@@ -18,21 +18,18 @@ export default function PDFViewer() {
   const [pageNum, setPageNum] = useState(1)
   const [loaded, setLoaded] = useState(false)
 
-  const handleAddSignature = (image: HTMLImageElement) => {
+  const handleAddSignature = (image: string) => {
     const canvas = fabricRef.current
 
     if (!canvas) return
 
-    const center = canvas.getCenter()
+    fabric.Image.fromURL(image, (img) => {
+      const center = canvas.getCenter()
 
-    canvas.add(
-      new fabric.Image(image, {
-        width: image.naturalWidth,
-        height: image.naturalHeight,
-        top: center.top,
-        left: center.left,
-      })
-    )
+      img.set({ top: center.top, left: center.left })
+      canvas.add(img)
+      canvas.setActiveObject(img)
+    })
   }
 
   // TODO: handle multiple page export
@@ -59,6 +56,7 @@ export default function PDFViewer() {
     doc.save('signed.pdf')
   }
 
+  // TODO: clean up these useEffects
   useEffect(() => {
     const loadPdf = async () => {
       const rawCanvas = canvasRef.current

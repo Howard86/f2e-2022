@@ -1,25 +1,19 @@
 import { Transition, Dialog } from '@headlessui/react'
-import { Fragment, useRef } from 'react'
+import { Fragment } from 'react'
 import { MdArrowLeft, MdClose, MdDragIndicator, MdOutlinePersonAdd } from 'react-icons/md'
 import useToggle from '@/hooks/useToggle'
 import IconButton from './IconButton'
 import Toggle from './Toggle'
 import CreateSignDialog from './CreateSignDialog'
+import useFileStore from '@/hooks/useFileStore'
 
 interface SignSettingDialogProps {
-  onAddSignature: (image: HTMLImageElement) => void
+  onAddSignature: (image: string) => void
 }
 
 export default function SignSettingDialog({ onAddSignature }: SignSettingDialogProps) {
-  const signatureRef = useRef<HTMLImageElement>(null)
+  const signatures = useFileStore((state) => state.signatures)
   const [open, onToggle] = useToggle()
-
-  const handleImportSignature = () => {
-    if (!signatureRef.current) return
-
-    onAddSignature(signatureRef.current)
-    onToggle()
-  }
 
   return (
     <>
@@ -62,22 +56,27 @@ export default function SignSettingDialog({ onAddSignature }: SignSettingDialogP
                     <div className="p-6">
                       <h3 className="text-h5 font-bold">我的簽名</h3>
                       <CreateSignDialog />
-                      <button
-                        type="button"
-                        className="border-greyscale-light-grey flex h-12 w-full border"
-                        onClick={handleImportSignature}
-                      >
-                        <span className="py-4 px-2">
-                          <MdDragIndicator className="text-greyscale-grey h-auto w-4" />
-                        </span>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          ref={signatureRef}
-                          alt="signature"
-                          src="/assets/sample-signature.png"
-                          className="mx-auto"
-                        />
-                      </button>
+
+                      {signatures.ids.map((id) => (
+                        <button
+                          type="button"
+                          className="border-greyscale-light-grey my-2 flex h-12 w-full border"
+                          onClick={() => {
+                            onAddSignature(signatures.entities[id].url)
+                            onToggle()
+                          }}
+                        >
+                          <span className="py-4 px-2">
+                            <MdDragIndicator className="text-greyscale-grey h-auto w-4" />
+                          </span>
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            alt={`signature made at ${new Date(id).toLocaleDateString()}`}
+                            src={signatures.entities[id].url}
+                            className="mx-auto"
+                          />
+                        </button>
+                      ))}
                     </div>
                     <div className="flex items-start p-6">
                       <div className="flex-1 space-y-2">
