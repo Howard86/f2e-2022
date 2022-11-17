@@ -39,8 +39,8 @@ function Button<T extends ElementType = 'button'>(
         variant === 'text' &&
           'hover:bg-greyscale-light-grey text-primary-main focus:ring-primary-main/80 border-transparent bg-transparent',
         size === 'lg' && 'text-h4 py-3 px-6 font-bold',
-        size === 'md' && 'text-p py-2 px-4',
-        size === 'sm' && 'text-p py-1.5 px-2',
+        size === 'md' && 'text-p md:text-h4 py-2 px-4 md:py-3 md:px-6 md:font-bold',
+        size === 'sm' && 'text-p py-1.5 px-2 md:py-2 md:px-4',
         'disabled:text-greyscale-dark-grey/40 disabled:bg-greyscale-ui-grey inline-flex items-center justify-center rounded-sm border -tracking-tighter transition-colors focus:ring-2 focus:ring-offset-2'
       )}
       {...props}
