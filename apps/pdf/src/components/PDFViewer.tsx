@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import type { PDFDocumentProxy } from 'pdfjs-dist'
-import { fabric } from 'fabric'
 import Button from './Button'
 import SignSettingDialog from './SignSettingDialog'
 import ConfirmSignDialog from './ConfirmSignDialog'
@@ -19,10 +18,12 @@ export default function PDFViewer() {
   const [pageNum, setPageNum] = useState(1)
   const [loaded, setLoaded] = useState(false)
 
-  const handleAddSignature = (image: string) => {
+  const handleAddSignature = async (image: string) => {
     const canvas = fabricRef.current
 
     if (!canvas) return
+
+    const { fabric } = await import('fabric')
 
     fabric.Image.fromURL(image, (img) => {
       const center = canvas.getCenter()
@@ -90,6 +91,8 @@ export default function PDFViewer() {
 
       const page = await pdfFileRef.current.getPage(pageNum)
       const viewport = page.getViewport({ scale: window.devicePixelRatio })
+
+      const { fabric } = await import('fabric')
 
       if (!fabricRef.current) {
         fabricRef.current = new fabric.Canvas(rawCanvas, {

@@ -1,7 +1,6 @@
 import { Transition, Dialog, Tab } from '@headlessui/react'
 import { ChangeEvent, Fragment, useRef, useState } from 'react'
 import { MdAdd, MdClose } from 'react-icons/md'
-import { fabric } from 'fabric'
 import useToggle from '@/hooks/useToggle'
 import Button from './Button'
 import CreateSignTab from './CreateSignTab'
@@ -21,8 +20,10 @@ export default function CreateSignDialog() {
   const [dialogOpen, onToggleDialogOpen] = useToggle()
   const [drawingStarted, onToggleDrawingStarted, setDrawingStarted] = useToggle()
 
-  const handleCanvasMount = (ref: HTMLCanvasElement | null) => {
+  const handleCanvasMount = async (ref: HTMLCanvasElement | null) => {
     if (!ref || !containerRef.current) return
+
+    const { fabric } = await import('fabric')
 
     fabricRef.current = new fabric.Canvas(ref, {
       height: DRAWING_BOARD_HEIGHT,

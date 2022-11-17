@@ -8,7 +8,7 @@ import CreateSignDialog from './CreateSignDialog'
 import useFileStore from '@/hooks/useFileStore'
 
 interface SignSettingDialogProps {
-  onAddSignature: (image: string) => void
+  onAddSignature: (image: string) => Promise<void>
 }
 
 export default function SignSettingDialog({ onAddSignature }: SignSettingDialogProps) {
