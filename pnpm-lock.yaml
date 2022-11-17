@@ -197,6 +197,7 @@ importers:
       postcss: ^8.4.18
       react: ^18.2.0
       react-dom: ^18.2.0
+      react-icons: ^4.6.0
       tailwindcss: ^3.2.1
       typescript: ^4.8.4
     dependencies:
@@ -206,6 +207,7 @@ importers:
       next: 13.0.1_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      react-icons: 4.6.0_react@18.2.0
     devDependencies:
       '@f2e-2022/jest-config': link:../../packages/jest-config
       '@f2e-2022/tailwind-config': link:../../packages/tailwind-config
@@ -7142,6 +7144,14 @@ packages:
     dependencies:
       react: 18.2.0
     dev: true
+
+  /react-icons/4.6.0_react@18.2.0:
+    resolution: {integrity: sha512-rR/L9m9340yO8yv1QT1QurxWQvWpbNHqVX0fzMln2HEb9TEIrQRGsqiNFQfiv9/JEUbyHmHPlNTB2LWm2Ttz0g==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
