@@ -1,27 +1,38 @@
 import clsx from 'clsx'
-import { SpanProps } from 'react-html-props'
+import { DivProps } from 'react-html-props'
 
-interface StepProps extends SpanProps {
+interface StepProps extends DivProps {
+  name: string
   variant?: 'outlined' | 'filled'
 }
 
-export default function Step({ variant = 'filled', className, children, ...props }: StepProps) {
+export default function Step({
+  variant = 'filled',
+  className,
+  children,
+  name,
+  ...props
+}: StepProps) {
   return (
-    <span
-      className={clsx('border-primary-light rounded-full p-0.5 aria-selected:border-2')}
+    <div
+      className="group flex items-center gap-2 aria-selected:flex-1 aria-selected:md:flex-none"
       {...props}
     >
-      <span
-        className={clsx(
-          className,
-          variant === 'filled'
-            ? 'text-greyscale-white bg-primary-main'
-            : 'text-greyscale-dark-grey border-greyscale-grey border-2',
-          'text-h4 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full p-2 font-bold'
-        )}
-      >
-        {children}
+      <span className="group-aria-selected:border-primary-light block shrink-0 rounded-full border-2 border-transparent p-0.5">
+        <span
+          aria-hidden="true"
+          className={clsx(
+            className,
+            variant === 'filled'
+              ? 'text-greyscale-white bg-primary-main border-transparent'
+              : 'text-greyscale-dark-grey border-greyscale-grey',
+            'text-h4 inline-flex h-8 w-8 items-center justify-center rounded-full border-2 p-2 font-bold'
+          )}
+        >
+          {children}
+        </span>
       </span>
-    </span>
+      <span className="hidden group-aria-selected:block md:block">{name}</span>
+    </div>
   )
 }

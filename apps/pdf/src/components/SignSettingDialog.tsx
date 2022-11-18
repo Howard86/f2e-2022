@@ -19,7 +19,7 @@ export default function SignSettingDialog({ onAddSignature }: SignSettingDialogP
     <>
       <button
         type="button"
-        className="bg-greyscale-white absolute top-2 right-2 p-1 shadow-sm"
+        className="bg-greyscale-white absolute top-2 right-2 p-1 shadow-sm md:hidden"
         onClick={onToggle}
       >
         <MdArrowLeft className="h-auto w-4" />

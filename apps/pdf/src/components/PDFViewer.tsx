@@ -223,7 +223,7 @@ export default function PDFViewer() {
                 Prev
               </Button>
               <p className="p-2">
-                {pageNum} /{numPages}
+                {pageNum}/{numPages}
               </p>
               <Button
                 disabled={pageNum === numPages}
@@ -257,7 +257,7 @@ export default function PDFViewer() {
         </div>
         <SignSettingDialog onAddSignature={handleAddSignature} />
       </div>
-      <div className="px-6 pb-6 pt-2">
+      <div className="px-6 pb-6 pt-2 md:hidden">
         <ConfirmSignDialog onConfirm={handleExport} />
       </div>
     </>
