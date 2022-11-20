@@ -5,5 +5,5 @@ export default function useToggle(initialState = false) {
 
   const onToggle = () => setOpen((state) => !state)
 
-  return [open, onToggle] as const
+  return [open, onToggle, setOpen] as const
 }

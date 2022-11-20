@@ -3,8 +3,17 @@ import { Fragment } from 'react'
 import useToggle from '@/hooks/useToggle'
 import Button from './Button'
 
-export default function ConfirmSignDialog() {
+interface ConfirmSignDialogProps {
+  onConfirm: VoidFunction
+}
+
+export default function ConfirmSignDialog({ onConfirm }: ConfirmSignDialogProps) {
   const [open, onToggle] = useToggle()
+
+  const handleConfirm = () => {
+    onConfirm()
+    onToggle()
+  }
 
   return (
     <>
@@ -46,7 +55,7 @@ export default function ConfirmSignDialog() {
                     </div>
                   </div>
                   <div className="mt-5 flex flex-col gap-4 sm:flex-row">
-                    <Button disabled className="w-full" onClick={onToggle}>
+                    <Button className="w-full" onClick={handleConfirm}>
                       確認
                     </Button>
                     <Button className="w-full" onClick={onToggle}>

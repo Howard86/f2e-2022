@@ -5,15 +5,21 @@ import useToggle from '@/hooks/useToggle'
 import IconButton from './IconButton'
 import Toggle from './Toggle'
 import CreateSignDialog from './CreateSignDialog'
+import useFileStore from '@/hooks/useFileStore'
 
-export default function SignSettingDialog() {
+interface SignSettingDialogProps {
+  onAddSignature: (image: string) => Promise<void>
+}
+
+export default function SignSettingDialog({ onAddSignature }: SignSettingDialogProps) {
+  const signatures = useFileStore((state) => state.signatures)
   const [open, onToggle] = useToggle()
 
   return (
     <>
       <button
         type="button"
-        className="bg-greyscale-white absolute inset-y-0 right-0 shadow-sm"
+        className="bg-greyscale-white absolute top-2 right-2 p-1 shadow-sm"
         onClick={onToggle}
       >
         <MdArrowLeft className="h-auto w-4" />
@@ -50,12 +56,27 @@ export default function SignSettingDialog() {
                     <div className="p-6">
                       <h3 className="text-h5 font-bold">我的簽名</h3>
                       <CreateSignDialog />
-                      <div className="border-greyscale-light-grey flex h-12 border">
-                        <span className="py-4 px-2">
-                          <MdDragIndicator className="text-greyscale-grey h-auto w-4" />
-                        </span>
-                        <div className="bg-signature mx-8 flex-1 bg-no-repeat object-center" />
-                      </div>
+
+                      {signatures.ids.map((id) => (
+                        <button
+                          type="button"
+                          className="border-greyscale-light-grey my-2 flex h-12 w-full border"
+                          onClick={() => {
+                            onAddSignature(signatures.entities[id].url)
+                            onToggle()
+                          }}
+                        >
+                          <span className="py-4 px-2">
+                            <MdDragIndicator className="text-greyscale-grey h-auto w-4" />
+                          </span>
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            alt={`signature made at ${new Date(id).toLocaleDateString()}`}
+                            src={signatures.entities[id].url}
+                            className="mx-auto"
+                          />
+                        </button>
+                      ))}
                     </div>
                     <div className="flex items-start p-6">
                       <div className="flex-1 space-y-2">

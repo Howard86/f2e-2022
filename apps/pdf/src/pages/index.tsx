@@ -1,11 +1,14 @@
+/* eslint-disable react/no-this-in-sfc */
 import { SVGProps } from 'react-html-props'
-import { FC } from 'react'
+import { ChangeEvent, FC } from 'react'
+import { useRouter } from 'next/router'
 import AddFile from '@/components/illustrations/AddFile'
 import FileUpload from '@/components/illustrations/FileUpload'
 import Signing from '@/components/illustrations/Signing'
 import Sending from '@/components/illustrations/Sending'
 import Layout from '@/components/Layout'
 import Button from '@/components/Button'
+import useFileStore from '@/hooks/useFileStore'
 
 const STEPS: Step[] = [
   {
@@ -32,14 +35,58 @@ type Step = {
 }
 
 export default function Home() {
+  const router = useRouter()
+  const uploadPdf = useFileStore((state) => state.uploadPdf)
+
+  const handleUpload = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+
+    if (!file) return
+
+    switch (file.type) {
+      case 'application/pdf': {
+        const reader = new FileReader()
+
+        reader.onloadend = function load() {
+          if (!this.result || typeof this.result === 'string') return
+
+          uploadPdf(new Uint8Array(this.result))
+
+          // TODO: push to dynamic page
+          router.push('/upload/sign')
+        }
+
+        reader.readAsArrayBuffer(file)
+        break
+      }
+
+      default:
+        console.error('unknown file type:', file.type)
+    }
+  }
+
   return (
     <Layout>
       <h1 className="text-greyscale-dark-grey text-h2 font-bold">快速省時的電子簽署工具</h1>
-      <div className="text-primary-main bg-primary-light border-primary-main mt-4 mb-10 flex h-[440px] w-full flex-col items-center justify-center border-2 border-dashed">
+      <form className="bg-primary-light border-primary-main mt-4 mb-10 flex h-[440px] w-full flex-col items-center justify-center border-2 border-dashed">
         <AddFile />
-        <Button className="mt-4 mb-2 px-10">選擇檔案</Button>
-        <p className="text-h5 font-bold">檔案大小10Mb以內，檔案格式為PDF、IMG</p>
-      </div>
+        <p className="hidden md:block">將檔案拖曳至這裡，或</p>
+        <Button as="label" htmlFor="file-upload" className="cursor-pointer">
+          <span>選擇檔案</span>
+          <input
+            id="file-upload"
+            name="file-upload"
+            type="file"
+            className="sr-only"
+            // TODO: add image support
+            accept=".pdf"
+            onChange={handleUpload}
+          />
+        </Button>
+        <p className="text-primary-main text-h5 font-bold">
+          檔案大小10Mb以內，檔案格式為PDF、圖片檔
+        </p>
+      </form>
       <section className="flex flex-col items-center">
         <h2 className="text-h2 font-bold">輕鬆幾步驟，完成您的簽署</h2>
         {STEPS.map((step, index) => (
