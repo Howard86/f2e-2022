@@ -8,6 +8,7 @@ type Normalised<T extends object, K extends keyof T> = T[K] extends string | num
   : never
 
 const EMPTY_ENTITY_STATE = { ids: [], entities: {} }
+const DEFAULT_ACTIVE_STEP = 2
 
 type Signature = {
   timestamp: number
@@ -22,6 +23,10 @@ type SigningFile = {
 }
 
 interface FileState {
+  activeStep: number
+  moveNextStep: VoidFunction
+  movePreviousStep: VoidFunction
+  resetStep: VoidFunction
   signingFiles: Normalised<SigningFile, 'timestamp'>
   signatures: Normalised<Signature, 'timestamp'>
   upsertSignature: (signature: Signature) => void
@@ -29,6 +34,10 @@ interface FileState {
 }
 
 const useFileStore = create<FileState>()((set) => ({
+  activeStep: DEFAULT_ACTIVE_STEP,
+  moveNextStep: () => set((state) => ({ activeStep: state.activeStep + 1 })),
+  movePreviousStep: () => set((state) => ({ activeStep: state.activeStep - 1 })),
+  resetStep: () => set(() => ({ activeStep: DEFAULT_ACTIVE_STEP })),
   signatures: EMPTY_ENTITY_STATE,
   signingFiles: EMPTY_ENTITY_STATE,
   upsertSignature: ({ timestamp, ...rest }) =>

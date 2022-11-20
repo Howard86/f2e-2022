@@ -1,16 +1,20 @@
 import { useCallback, useEffect, useRef } from 'react'
+import Link from 'next/link'
 import Button from './Button'
 import SignSettingDialog from './SignSettingDialog'
 import ConfirmSignDialog from './ConfirmSignDialog'
 import useFileStore from '@/hooks/useFileStore'
 import SignatureSettingSection from './SignatureSettingSection'
+import SharedGoals from './illustrations/SharedGoals'
 
 interface PDFViewerProps {
   timestamp: number
 }
 
 export default function PDFViewer({ timestamp }: PDFViewerProps) {
+  const activeStep = useFileStore((state) => state.activeStep)
   const signFile = useFileStore((state) => state.signingFiles.entities[timestamp])
+  const pdfDataUrl = useRef<string | undefined>()
 
   const canvasRef = useRef<fabric.Canvas | null>(null)
 
@@ -58,9 +62,7 @@ export default function PDFViewer({ timestamp }: PDFViewerProps) {
 
   // TODO: handle multiple page export
   const handleExport = async () => {
-    const canvas = canvasRef.current
-
-    if (!canvas) return
+    if (!pdfDataUrl.current) return
 
     const { jsPDF } = await import('jspdf')
 
@@ -69,14 +71,20 @@ export default function PDFViewer({ timestamp }: PDFViewerProps) {
 
     // TODO: reset zoom level & center
     doc.addImage(
-      canvas.toDataURL({ format: 'image/png' }),
+      pdfDataUrl.current,
       'png',
       0,
       0,
       doc.internal.pageSize.width,
       doc.internal.pageSize.height
     )
-    doc.save(`${new Date(timestamp).toLocaleString()}-${signFile.name}`)
+    doc.save(`${new Date(timestamp).toLocaleDateString()}-${signFile.name}`)
+  }
+
+  const handleConfirmSigning = async () => {
+    if (!canvasRef.current) return
+
+    pdfDataUrl.current = canvasRef.current.toDataURL({ format: 'jpeg' })
   }
 
   // TODO: fix scroll event handler
@@ -146,6 +154,26 @@ export default function PDFViewer({ timestamp }: PDFViewerProps) {
     }
   }, [])
 
+  if (activeStep === 4) {
+    return (
+      <main className="m-auto flex flex-col items-center justify-center gap-10 md:flex-row">
+        <SharedGoals className="h-auto w-80" />
+        <div>
+          <h1 className="text-primary-main text-h2 font-bold">恭喜您！檔案已就緒 </h1>
+          <p className="mt-2 mb-10">現在您可以下載檔案或註冊會員，以體驗更多功能。</p>
+          <div className="flex flex-col items-center gap-4">
+            <Button onClick={handleExport} className="w-full">
+              下載檔案
+            </Button>
+            <Button variant="text" as={Link} href="/" className="w-full">
+              回到首頁
+            </Button>
+          </div>
+        </div>
+      </main>
+    )
+  }
+
   return (
     <div className="mx-auto flex w-full max-w-screen-xl flex-1 overflow-y-scroll">
       <main className="bg-greyscale-light-grey flex flex-1 shrink flex-col overflow-x-scroll">
@@ -174,14 +202,14 @@ export default function PDFViewer({ timestamp }: PDFViewerProps) {
           <SignSettingDialog onAddSignature={handleAddSignature} />
         </div>
         <div className="px-6 pb-6 pt-2 md:hidden">
-          <ConfirmSignDialog onConfirm={handleExport} />
+          <ConfirmSignDialog onConfirm={handleConfirmSigning} />
         </div>
       </main>
       <aside className="hidden w-[304px] shrink-0 grow-0 flex-col gap-6 p-6 md:flex">
         <SignatureSettingSection onAddSignature={handleAddSignature} />
         <div className="flex-1" />
         <div>
-          <ConfirmSignDialog onConfirm={handleExport} />
+          <ConfirmSignDialog onConfirm={handleConfirmSigning} />
         </div>
       </aside>
     </div>

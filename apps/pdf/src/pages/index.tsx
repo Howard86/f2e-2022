@@ -36,6 +36,7 @@ type Step = {
 
 export default function Home() {
   const router = useRouter()
+  const resetStep = useFileStore((state) => state.resetStep)
   const upsertSigningFile = useFileStore((state) => state.upsertSigningFile)
 
   const handleUpload = (event: ChangeEvent<HTMLInputElement>) => {
@@ -82,6 +83,7 @@ export default function Home() {
           pdfImage.hasControls = false
           pdfImage.hasBorders = false
 
+          resetStep()
           const timestamp = Date.now()
 
           upsertSigningFile({
