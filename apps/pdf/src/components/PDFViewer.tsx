@@ -37,9 +37,24 @@ export default function PDFViewer({ timestamp }: PDFViewerProps) {
         return
       }
 
-      if (canvasRef.current || !signFile || !signFile.image.width || !signFile.image.height) return
+      if (canvasRef.current || !signFile) return
 
       const { fabric } = await import('fabric')
+
+      if (typeof signFile.image === 'string') {
+        // TODO: add dynamic width & height
+        canvasRef.current = new fabric.Canvas(element, {
+          width: 1200,
+          height: 900,
+        })
+        canvasRef.current.setBackgroundImage(
+          signFile.image,
+          canvasRef.current.requestRenderAll.bind(canvasRef.current)
+        )
+        return
+      }
+
+      if (!signFile.image.width || !signFile.image.height) return
 
       canvasRef.current = new fabric.Canvas(element, {
         width: signFile.image.width,

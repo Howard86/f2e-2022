@@ -34,7 +34,8 @@ type Step = {
   illustration: FC<SVGProps>
 }
 
-const removeFileExtension = (fileName: string) => fileName.slice(0, -4)
+const removeFileExtension = (fileName: string) =>
+  fileName.slice(0, fileName.endsWith('.jpeg') ? -5 : -4)
 
 export default function Home() {
   const router = useRouter()
@@ -45,10 +46,11 @@ export default function Home() {
     const file = event.target.files?.[0]
 
     if (!file) return
+    const timestamp = Date.now()
+    resetStep()
 
     switch (file.type) {
       case 'application/pdf': {
-        console.log('file :>> ', file)
         const reader = new FileReader()
 
         reader.onload = async function load() {
@@ -86,9 +88,6 @@ export default function Home() {
           pdfImage.hasControls = false
           pdfImage.hasBorders = false
 
-          resetStep()
-          const timestamp = Date.now()
-
           upsertSigningFile({
             name: removeFileExtension(file.name),
             size: file.size,
@@ -100,6 +99,19 @@ export default function Home() {
         }
 
         reader.readAsArrayBuffer(file)
+        break
+      }
+
+      case 'image/png':
+      case 'image/jpg':
+      case 'image/jpeg': {
+        upsertSigningFile({
+          name: removeFileExtension(file.name),
+          size: file.size,
+          timestamp,
+          image: URL.createObjectURL(file),
+        })
+        router.push(`/upload/${timestamp}`)
         break
       }
 
@@ -129,14 +141,14 @@ export default function Home() {
             type="file"
             className="sr-only"
             // TODO: add image support
-            accept=".pdf"
+            accept=".pdf,.jpg,.jpeg,.png"
             onChange={handleUpload}
           />
         </Button>
         <p className="text-primary-main text-h5 mt-2 font-bold">
           檔案大小10Mb以內
           <span className="hidden md:inline">，</span>
-          <span className="block md:inline">檔案格式為PDF、圖片檔</span>
+          <span className="block md:inline">檔案格式為PDF、JPG或PNG</span>
         </p>
       </form>
       <section className="mt-10 w-full text-center">

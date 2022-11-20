@@ -19,7 +19,7 @@ type SigningFile = {
   timestamp: number
   name: string
   size: number
-  image: fabric.Image
+  image: Parameters<fabric.Canvas['setBackgroundImage']>[0]
 }
 
 interface FileState {
