@@ -58,7 +58,7 @@ export default function ConfirmSignDialog({ onConfirm }: ConfirmSignDialogProps)
                     <Button className="w-full" onClick={handleConfirm}>
                       確認
                     </Button>
-                    <Button className="w-full" onClick={onToggle}>
+                    <Button className="w-full" variant="text" onClick={onToggle}>
                       返回
                     </Button>
                   </div>

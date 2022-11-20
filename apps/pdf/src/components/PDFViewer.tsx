@@ -3,8 +3,7 @@ import Button from './Button'
 import SignSettingDialog from './SignSettingDialog'
 import ConfirmSignDialog from './ConfirmSignDialog'
 import useFileStore from '@/hooks/useFileStore'
-import CreateSignDialog from './CreateSignDialog'
-import TextField from './Input'
+import SignatureSettingSection from './SignatureSettingSection'
 
 interface PDFViewerProps {
   timestamp: number
@@ -51,7 +50,7 @@ export default function PDFViewer({ timestamp }: PDFViewerProps) {
     fabric.Image.fromURL(image, (img) => {
       const center = canvas.getCenter()
 
-      img.set({ top: center.top, left: center.left })
+      img.set({ top: center.top / 2, left: center.left / 2 })
       canvas.add(img)
       canvas.setActiveObject(img)
     })
@@ -77,8 +76,7 @@ export default function PDFViewer({ timestamp }: PDFViewerProps) {
       doc.internal.pageSize.width,
       doc.internal.pageSize.height
     )
-    // TODO: add file name
-    doc.save('signed.pdf')
+    doc.save(`${new Date(timestamp).toLocaleString()}-${signFile.name}`)
   }
 
   // TODO: fix scroll event handler
@@ -151,7 +149,7 @@ export default function PDFViewer({ timestamp }: PDFViewerProps) {
   return (
     <div className="mx-auto flex w-full max-w-screen-xl flex-1 overflow-y-scroll">
       <main className="bg-greyscale-light-grey flex flex-1 shrink flex-col overflow-x-scroll">
-        <div className="relative flex-1 py-6">
+        <div className="relative flex-1 overflow-y-auto py-6">
           <canvas ref={onCanvasElementMount} />
           <div className="absolute">
             <Button
@@ -179,20 +177,11 @@ export default function PDFViewer({ timestamp }: PDFViewerProps) {
           <ConfirmSignDialog onConfirm={handleExport} />
         </div>
       </main>
-      <aside className="hidden w-[304px] shrink-0 grow-0 p-6 md:flex md:flex-col">
-        <h2 className="sr-only">簽名設定</h2>
-        <div className="flex flex-col gap-2">
-          <h3 className="text-h5 font-bold">基本資料</h3>
-          <TextField id="name" label="姓名" placeholder="請輸入您的姓名" />
-          <TextField id="email" label="Email" placeholder="請輸入您的電子信箱" />
-        </div>
-        <div className="my-10">
-          <h3 className="text-h5 font-bold">我的簽名</h3>
-          <CreateSignDialog />
-        </div>
+      <aside className="hidden w-[304px] shrink-0 grow-0 flex-col gap-6 p-6 md:flex">
+        <SignatureSettingSection onAddSignature={handleAddSignature} />
         <div className="flex-1" />
         <div>
-          <Button className="w-full">下一步</Button>
+          <ConfirmSignDialog onConfirm={handleExport} />
         </div>
       </aside>
     </div>
