@@ -2,6 +2,7 @@ import { Transition, Dialog } from '@headlessui/react'
 import { Fragment } from 'react'
 import useToggle from '@/hooks/useToggle'
 import Button from './Button'
+import useFileStore from '@/hooks/useFileStore'
 
 interface ConfirmSignDialogProps {
   onConfirm: VoidFunction
@@ -9,19 +10,32 @@ interface ConfirmSignDialogProps {
 
 export default function ConfirmSignDialog({ onConfirm }: ConfirmSignDialogProps) {
   const [open, onToggle] = useToggle()
+  const movePreviousStep = useFileStore((state) => state.movePreviousStep)
+  const moveNextStep = useFileStore((state) => state.moveNextStep)
+
+  const handleOpen = () => {
+    onToggle()
+    moveNextStep()
+  }
 
   const handleConfirm = () => {
     onConfirm()
     onToggle()
+    moveNextStep()
+  }
+
+  const handleCancel = () => {
+    onToggle()
+    movePreviousStep()
   }
 
   return (
     <>
-      <Button className="w-full" onClick={onToggle}>
+      <Button className="w-full" onClick={handleOpen}>
         下一步
       </Button>
       <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={onToggle}>
+        <Dialog as="div" className="relative z-10" onClose={handleCancel}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -58,7 +72,7 @@ export default function ConfirmSignDialog({ onConfirm }: ConfirmSignDialogProps)
                     <Button className="w-full" onClick={handleConfirm}>
                       確認
                     </Button>
-                    <Button className="w-full" onClick={onToggle}>
+                    <Button className="w-full" variant="text" onClick={handleCancel}>
                       返回
                     </Button>
                   </div>

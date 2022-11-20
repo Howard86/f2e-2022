@@ -13,7 +13,8 @@ Special thanks to
 This repository is powered by [pnpm](https://pnpm.io) and managed with [Turborepo](https://turbo.build/repo) in the following folder structure
 
 - `/apps` - this contains all published applications on [Vercel Platform](https://vercel.com)
-  - [animated-landing](https://f2e-2022.howardism.dev) - redesigned [f2e 2022](https://2022.thef2e.com/) landing page [Jenny Wu](https://uxfol.io/jennywu)
+  - [animated-landing](https://f2e-2022.howardism.dev) - redesigned [f2e 2022](https://2022.thef2e.com/) landing page by designer [Jenny Wu](https://uxfol.io/jennywu)
+  - [pdf](https://pdf.howardism.dev) - a web only PDF editor for adding personal signatures when in a rush designed by [Coral](https://2022.thef2e.com/users/12061549261449593305)
   - docs - summary landing page for f2e-2022 changes (WIP)
 - `/packages` - this contains all shared packages used by all applications
   - eslint-config-f2e-2022: shared [ESLint](https://eslint.org) configuration files
@@ -108,6 +109,15 @@ This project will mainly follow the dependencies of [turbo-monorepo-template](ht
 
 - Animated Landing
   1. [Framer Motion](https://www.framer.com/motion)
+- PDF\*
+
+  1. [PDF.js](https://mozilla.github.io/pdf.js/)
+  2. [zustand](https://github.com/pmndrs/zustand)
+  3. [Fabric.js](http://fabricjs.com)
+  4. [jsPDF](https://github.com/parallax/jsPDF)
+  5. [react-icons](https://react-icons.github.io/react-icons/)
+
+- \* Note: `Fabric.js` will install peer dependency [node-canvas](https://www.npmjs.com/package/canvas), which requires additional setup depending on your local OS. Please refer to [readme](https://github.com/Automattic/node-canvas#compiling) for more reference.
 
 ## Useful commands
 
