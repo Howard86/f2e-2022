@@ -34,6 +34,8 @@ type Step = {
   illustration: FC<SVGProps>
 }
 
+const removeFileExtension = (fileName: string) => fileName.slice(0, -4)
+
 export default function Home() {
   const router = useRouter()
   const resetStep = useFileStore((state) => state.resetStep)
@@ -46,6 +48,7 @@ export default function Home() {
 
     switch (file.type) {
       case 'application/pdf': {
+        console.log('file :>> ', file)
         const reader = new FileReader()
 
         reader.onload = async function load() {
@@ -87,7 +90,7 @@ export default function Home() {
           const timestamp = Date.now()
 
           upsertSigningFile({
-            name: file.name,
+            name: removeFileExtension(file.name),
             size: file.size,
             timestamp,
             image: pdfImage,

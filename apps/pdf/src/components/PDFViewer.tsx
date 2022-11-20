@@ -1,15 +1,19 @@
 import { useCallback, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import { MdDeleteOutline } from 'react-icons/md'
 import Button from './Button'
 import SignSettingDialog from './SignSettingDialog'
 import ConfirmSignDialog from './ConfirmSignDialog'
 import useFileStore from '@/hooks/useFileStore'
 import SignatureSettingSection from './SignatureSettingSection'
 import SharedGoals from './illustrations/SharedGoals'
+import ToggleButton from './ToggleButton'
 
 interface PDFViewerProps {
   timestamp: number
 }
+
+const last = <T,>(items: T[]): T => items[items.length - 1]
 
 export default function PDFViewer({ timestamp }: PDFViewerProps) {
   const activeStep = useFileStore((state) => state.activeStep)
@@ -85,6 +89,18 @@ export default function PDFViewer({ timestamp }: PDFViewerProps) {
     if (!canvasRef.current) return
 
     pdfDataUrl.current = canvasRef.current.toDataURL({ format: 'jpeg' })
+  }
+
+  const handleDeleteSignature = () => {
+    const canvas = canvasRef.current
+
+    if (!canvas) return
+
+    const object = canvas.getActiveObject() ?? last(canvas.getObjects())
+
+    if (!object) return
+
+    canvas.remove(object)
   }
 
   // TODO: fix scroll event handler
@@ -176,30 +192,15 @@ export default function PDFViewer({ timestamp }: PDFViewerProps) {
 
   return (
     <div className="mx-auto flex w-full max-w-screen-xl flex-1 overflow-y-scroll">
-      <main className="bg-greyscale-light-grey flex flex-1 shrink flex-col overflow-x-scroll">
-        <div className="relative flex-1 overflow-y-auto py-6">
+      <main className="bg-greyscale-light-grey relative flex flex-1 shrink flex-col overflow-x-scroll">
+        <div className="flex-1 overflow-y-auto p-6">
           <canvas ref={onCanvasElementMount} />
-          <div className="absolute">
-            <Button
-              onClick={() => {
-                const canvas = canvasRef.current
-
-                if (!canvas) return
-
-                const object = canvas.getActiveObject()
-
-                if (!object) {
-                  alert('please select a signature first')
-                  return
-                }
-
-                canvas.remove(object)
-              }}
-            >
-              Delete
-            </Button>
-          </div>
           <SignSettingDialog onAddSignature={handleAddSignature} />
+        </div>
+        <div className="absolute left-4 bottom-28 z-10 flex items-center md:bottom-8">
+          <ToggleButton onClick={handleDeleteSignature}>
+            <MdDeleteOutline className="h-auto w-6" />
+          </ToggleButton>
         </div>
         <div className="px-6 pb-6 pt-2 md:hidden">
           <ConfirmSignDialog onConfirm={handleConfirmSigning} />

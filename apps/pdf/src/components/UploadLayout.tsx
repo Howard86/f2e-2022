@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import { Fragment } from 'react'
-import { DivProps } from 'react-html-props'
+import { Fragment, ReactNode } from 'react'
 import { MdArrowBack, MdCheck, MdOutlineModeEdit } from 'react-icons/md'
 import useFileStore from '@/hooks/useFileStore'
 import Button from './Button'
@@ -9,8 +8,14 @@ import Step from './Step'
 
 const STEPS = ['成功上傳檔案', '加入簽名檔', '確認檔案', '下載檔案']
 
-export default function UploadLayout({ children }: Pick<DivProps, 'children'>) {
+interface UploadLayoutProps {
+  children: ReactNode
+  timestamp: number
+}
+
+export default function UploadLayout({ children, timestamp }: UploadLayoutProps) {
   const activeStep = useFileStore((state) => state.activeStep)
+  const signFile = useFileStore((state) => state.signingFiles.entities[timestamp])
 
   return (
     <>
@@ -21,13 +26,13 @@ export default function UploadLayout({ children }: Pick<DivProps, 'children'>) {
               <MdArrowBack className="text-greyscale-dark-grey h-auto w-6" />
             </Link>
             {/* TODO: add editable function */}
-            <h2 className="text-h5 ml-4 mr-2 font-bold">型號U-ew8951出貨單</h2>
+            <h2 className="text-h5 ml-4 mr-2 font-bold">{signFile.name}</h2>
             <IconButton>
               <MdOutlineModeEdit className="text-greyscale-dark-grey h-auto w-4" />
             </IconButton>
           </div>
           <nav>
-            <Button as={Link} href="/signup" size="md">
+            <Button disabled size="md">
               註冊
             </Button>
           </nav>

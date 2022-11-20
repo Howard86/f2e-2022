@@ -51,6 +51,7 @@ export default function SignatureSettingSection({
               src={signatures.entities[id].url}
               className="flex-1 object-contain object-center"
             />
+            {/* TODO: add options */}
             <span className="py-4 px-3">
               <MoveVertIcon className="h-auto w-4 text-transparent" />
             </span>

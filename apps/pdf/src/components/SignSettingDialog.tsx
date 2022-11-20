@@ -5,6 +5,7 @@ import useToggle from '@/hooks/useToggle'
 import IconButton from './IconButton'
 import Toggle from './Toggle'
 import SignatureSettingSection from './SignatureSettingSection'
+import ToggleButton from './ToggleButton'
 
 interface SignSettingDialogProps {
   onAddSignature: (image: string) => Promise<void>
@@ -15,13 +16,13 @@ export default function SignSettingDialog({ onAddSignature }: SignSettingDialogP
 
   return (
     <>
-      <button
+      <ToggleButton
         type="button"
-        className="bg-greyscale-white border-greyscale-grey fixed top-[138px] right-2 rounded-sm border p-1 shadow-sm md:hidden"
+        className="fixed top-[138px] right-2 md:hidden"
         onClick={onToggle}
       >
         <MdArrowLeft className="h-auto w-8" />
-      </button>
+      </ToggleButton>
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={onToggle}>
           {/* TODO: fix position */}

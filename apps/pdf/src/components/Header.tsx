@@ -13,10 +13,10 @@ export default function Header() {
           <Logo className="h-auto w-20 md:w-24" />
         </Link>
         <nav className="z-10 flex items-center gap-4">
-          <Button as={Link} size="md" variant="text" href="/login">
+          <Button disabled size="md" variant="text">
             登入
           </Button>
-          <Button as={Link} size="md" href="/signup">
+          <Button disabled size="md">
             註冊
           </Button>
         </nav>
