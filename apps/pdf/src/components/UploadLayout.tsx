@@ -2,9 +2,7 @@ import Link from 'next/link'
 import { DivProps } from 'react-html-props'
 import { MdArrowBack, MdCheck, MdOutlineModeEdit } from 'react-icons/md'
 import Button from './Button'
-import CreateSignDialog from './CreateSignDialog'
 import IconButton from './IconButton'
-import TextField from './Input'
 import Step from './Step'
 import StepDivider from './StepDivider'
 
@@ -49,25 +47,7 @@ export default function UploadLayout({ children }: Pick<DivProps, 'children'>) {
           </Step>
         </div>
       </div>
-      <div className="mx-auto flex w-full max-w-screen-xl flex-1">
-        <main className="flex flex-1 flex-col overflow-scroll">{children}</main>
-        <aside className="hidden w-[304px] shrink-0 grow-0 p-6 md:flex md:flex-col">
-          <h2 className="sr-only">簽名設定</h2>
-          <div className="flex flex-col gap-2">
-            <h3 className="text-h5 font-bold">基本資料</h3>
-            <TextField id="name" label="姓名" placeholder="請輸入您的姓名" />
-            <TextField id="email" label="Email" placeholder="請輸入您的電子信箱" />
-          </div>
-          <div className="my-10">
-            <h3 className="text-h5 font-bold">我的簽名</h3>
-            <CreateSignDialog />
-          </div>
-          <div className="flex-1" />
-          <div>
-            <Button className="w-full">下一步</Button>
-          </div>
-        </aside>
-      </div>
+      {children}
     </>
   )
 }

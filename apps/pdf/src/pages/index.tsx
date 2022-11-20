@@ -36,7 +36,7 @@ type Step = {
 
 export default function Home() {
   const router = useRouter()
-  const uploadPdf = useFileStore((state) => state.uploadPdf)
+  const upsertSigningFile = useFileStore((state) => state.upsertSigningFile)
 
   const handleUpload = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
@@ -47,13 +47,51 @@ export default function Home() {
       case 'application/pdf': {
         const reader = new FileReader()
 
-        reader.onloadend = function load() {
+        reader.onload = async function load() {
           if (!this.result || typeof this.result === 'string') return
 
-          uploadPdf(new Uint8Array(this.result))
+          const binaryData = new Uint8Array(this.result)
 
-          // TODO: push to dynamic page
-          router.push('/upload/sign')
+          const pdfjs = await import('pdfjs-dist')
+          pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
+
+          const pdf = await pdfjs.getDocument({ data: binaryData }).promise
+          // TODO: update page number
+          const page = await pdf.getPage(1)
+          const viewport = page.getViewport({ scale: window.devicePixelRatio })
+
+          const virtualCanvas = document.createElement('canvas')
+          virtualCanvas.height = viewport.height
+          virtualCanvas.width = viewport.width
+
+          const virtualCanvasContext = virtualCanvas.getContext('2d')
+
+          if (!virtualCanvasContext) return
+
+          await page.render({ canvasContext: virtualCanvasContext, viewport }).promise
+
+          const { fabric } = await import('fabric')
+
+          const imageScale = 1 / window.devicePixelRatio
+
+          const pdfImage = new fabric.Image(virtualCanvas, {
+            scaleX: imageScale,
+            scaleY: imageScale,
+          })
+
+          pdfImage.hasControls = false
+          pdfImage.hasBorders = false
+
+          const timestamp = Date.now()
+
+          upsertSigningFile({
+            name: file.name,
+            size: file.size,
+            timestamp,
+            image: pdfImage,
+          })
+
+          router.push(`/upload/${timestamp}`)
         }
 
         reader.readAsArrayBuffer(file)

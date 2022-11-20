@@ -1,25 +1,48 @@
-import { useEffect, useRef, useState } from 'react'
-import type { PDFDocumentProxy } from 'pdfjs-dist'
+import { useCallback, useEffect, useRef } from 'react'
 import Button from './Button'
 import SignSettingDialog from './SignSettingDialog'
 import ConfirmSignDialog from './ConfirmSignDialog'
 import useFileStore from '@/hooks/useFileStore'
+import CreateSignDialog from './CreateSignDialog'
+import TextField from './Input'
 
-export default function PDFViewer() {
-  const file = useFileStore((state) => state.pdfFile)
+interface PDFViewerProps {
+  timestamp: number
+}
 
-  const containerRef = useRef<HTMLDivElement>(null)
-  const canvasRef = useRef<HTMLCanvasElement | null>(null)
-  const fabricRef = useRef<fabric.Canvas | null>(null)
-  const renderingRef = useRef(false)
-  const pdfFileRef = useRef<PDFDocumentProxy | null>(null)
+export default function PDFViewer({ timestamp }: PDFViewerProps) {
+  const signFile = useFileStore((state) => state.signingFiles.entities[timestamp])
 
-  const [numPages, setNumPages] = useState(0)
-  const [pageNum, setPageNum] = useState(1)
-  const [loaded, setLoaded] = useState(false)
+  const canvasRef = useRef<fabric.Canvas | null>(null)
+
+  const onCanvasElementMount = useCallback(
+    async (element: HTMLCanvasElement | null) => {
+      if (!element) {
+        canvasRef.current = null
+        return
+      }
+
+      if (canvasRef.current || !signFile || !signFile.image.width || !signFile.image.height) return
+
+      const { fabric } = await import('fabric')
+
+      canvasRef.current = new fabric.Canvas(element, {
+        width: signFile.image.width,
+        height: signFile.image.height,
+      })
+
+      canvasRef.current.setZoom(signFile.image.scaleX ? 1 / signFile.image.scaleX : 1)
+
+      canvasRef.current.setBackgroundImage(
+        signFile.image,
+        canvasRef.current.requestRenderAll.bind(canvasRef.current)
+      )
+    },
+    [signFile]
+  )
 
   const handleAddSignature = async (image: string) => {
-    const canvas = fabricRef.current
+    const canvas = canvasRef.current
 
     if (!canvas) return
 
@@ -36,7 +59,7 @@ export default function PDFViewer() {
 
   // TODO: handle multiple page export
   const handleExport = async () => {
-    const canvas = fabricRef.current
+    const canvas = canvasRef.current
 
     if (!canvas) return
 
@@ -58,130 +81,43 @@ export default function PDFViewer() {
     doc.save('signed.pdf')
   }
 
-  // TODO: clean up these useEffects
+  // TODO: fix scroll event handler
   useEffect(() => {
-    const loadPdf = async () => {
-      const rawCanvas = canvasRef.current
+    const docCanvas = canvasRef.current
 
-      if (
-        !rawCanvas ||
-        renderingRef.current ||
-        !containerRef.current ||
-        !canvasRef.current ||
-        !file
-      )
-        return
-
-      const context = rawCanvas.getContext('2d')
-
-      if (!context) return
-
-      if (!pdfFileRef.current) {
-        const pdfjs = await import('pdfjs-dist')
-        pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
-
-        pdfFileRef.current = await pdfjs.getDocument({ data: file }).promise
-      }
-
-      if (numPages === 0) {
-        setNumPages(pdfFileRef.current.numPages)
-        setPageNum(pdfFileRef.current.numPages)
-        return
-      }
-
-      const page = await pdfFileRef.current.getPage(pageNum)
-      const viewport = page.getViewport({ scale: window.devicePixelRatio })
-
-      const { fabric } = await import('fabric')
-
-      if (!fabricRef.current) {
-        fabricRef.current = new fabric.Canvas(rawCanvas, {
-          height: viewport.height,
-          width: viewport.width,
-        })
-      }
-
-      const canvas = fabricRef.current
-
-      const newCanvas = document.createElement('canvas')
-      const newContext = newCanvas.getContext('2d')
-
-      if (!newContext) return
-
-      newCanvas.height = viewport.height
-      newCanvas.width = viewport.width
-
-      renderingRef.current = true
-      await page.render({ canvasContext: newContext, viewport }).promise.finally(() => {
-        renderingRef.current = false
-      })
-
-      canvas.zoomToPoint(
-        { x: viewport.width / 2, y: 0 },
-        -0.05 + canvasRef.current.clientWidth / viewport.width
-      )
-      canvas.requestRenderAll()
-
-      const imageScale = 1 / window.devicePixelRatio
-
-      const pdfImage = new fabric.Image(newCanvas, {
-        scaleX: imageScale,
-        scaleY: imageScale,
-      })
-
-      pdfImage.hasControls = false
-      pdfImage.hasBorders = false
-
-      const backgroundScale =
-        canvas.width && pdfImage.width ? canvas.width / pdfImage.width : undefined
-
-      canvas.setBackgroundImage(pdfImage, canvas.renderAll.bind(canvas), {
-        scaleX: backgroundScale,
-        scaleY: backgroundScale,
-      })
-
-      setLoaded(true)
-    }
-
-    loadPdf().catch(console.error)
-  }, [file, numPages, pageNum])
-
-  useEffect(() => {
-    const canvas = fabricRef.current
-
-    if (!canvas || !loaded) return
+    if (!docCanvas) return
 
     let isDragging = false
     let draggedX = 0
     let draggedY = 0
 
-    canvas.on('mouse:wheel', (option) => {
-      let zoom = canvas.getZoom()
+    docCanvas.on('mouse:wheel', (option) => {
+      let zoom = docCanvas.getZoom()
       zoom *= 0.999 ** option.e.deltaY
 
       if (zoom > 10) zoom = 10
       if (zoom < 0.1) zoom = 0.1
 
-      canvas.zoomToPoint({ x: option.e.x, y: option.e.y }, zoom)
+      docCanvas.zoomToPoint({ x: option.e.x, y: option.e.y }, zoom)
       option.e.preventDefault()
       option.e.stopPropagation()
     })
 
-    canvas.on('mouse:down', (option) => {
+    docCanvas.on('mouse:down', (option) => {
       if (!option.e.altKey) return
 
       isDragging = true
       draggedX = option.e.clientX
       draggedY = option.e.clientY
-      canvas.selection = true
+      docCanvas.selection = true
       option.e.preventDefault()
       option.e.stopPropagation()
     })
 
-    canvas.on('mouse:move', (option) => {
+    docCanvas.on('mouse:move', (option) => {
       if (
         !isDragging ||
-        !canvas.viewportTransform ||
+        !docCanvas.viewportTransform ||
         option.e.clientX === undefined ||
         option.e.clientY === undefined
       )
@@ -192,74 +128,73 @@ export default function PDFViewer() {
       const y = option.e.clientY
 
       isDragging = true
-      canvas.viewportTransform[4] += x - draggedX
-      canvas.viewportTransform[5] += y - draggedY
-      canvas.requestRenderAll()
+      docCanvas.viewportTransform[4] += x - draggedX
+      docCanvas.viewportTransform[5] += y - draggedY
+      docCanvas.requestRenderAll()
       draggedX = x
       draggedY = y
 
       option.e.preventDefault()
       option.e.stopPropagation()
     })
-    canvas.on('mouse:up', () => {
+    docCanvas.on('mouse:up', () => {
       isDragging = false
-      canvas.selection = false
+      docCanvas.selection = false
     })
 
     // eslint-disable-next-line consistent-return
     return () => {
-      canvas.off()
+      docCanvas.off()
     }
-  }, [loaded])
+  }, [])
 
   return (
-    // TODO: fix vertical scroll
-    <>
-      <div className="bg-greyscale-light-grey relative flex-1 py-6">
-        <div ref={containerRef} className="flex flex-col items-center justify-center">
-          {numPages > 1 && (
-            <div className="flex items-center gap-2 pb-4">
-              <Button disabled={pageNum === 1} onClick={() => setPageNum((state) => state - 1)}>
-                Prev
-              </Button>
-              <p className="p-2">
-                {pageNum}/{numPages}
-              </p>
-              <Button
-                disabled={pageNum === numPages}
-                onClick={() => setPageNum((state) => state + 1)}
-              >
-                Next
-              </Button>
-            </div>
-          )}
-          <canvas ref={canvasRef} />
+    <div className="mx-auto flex w-full max-w-screen-xl flex-1 overflow-y-scroll">
+      <main className="bg-greyscale-light-grey flex flex-1 shrink flex-col overflow-x-scroll">
+        <div className="relative flex-1 py-6">
+          <canvas ref={onCanvasElementMount} />
+          <div className="absolute">
+            <Button
+              onClick={() => {
+                const canvas = canvasRef.current
+
+                if (!canvas) return
+
+                const object = canvas.getActiveObject()
+
+                if (!object) {
+                  alert('please select a signature first')
+                  return
+                }
+
+                canvas.remove(object)
+              }}
+            >
+              Delete
+            </Button>
+          </div>
+          <SignSettingDialog onAddSignature={handleAddSignature} />
         </div>
-        <div className="absolute">
-          <Button
-            onClick={() => {
-              const canvas = fabricRef.current
-
-              if (!canvas) return
-
-              const object = canvas.getActiveObject()
-
-              if (!object) {
-                alert('please select a signature first')
-                return
-              }
-
-              canvas.remove(object)
-            }}
-          >
-            Delete
-          </Button>
+        <div className="px-6 pb-6 pt-2 md:hidden">
+          <ConfirmSignDialog onConfirm={handleExport} />
         </div>
-        <SignSettingDialog onAddSignature={handleAddSignature} />
-      </div>
-      <div className="px-6 pb-6 pt-2 md:hidden">
-        <ConfirmSignDialog onConfirm={handleExport} />
-      </div>
-    </>
+      </main>
+      <aside className="hidden w-[304px] shrink-0 grow-0 p-6 md:flex md:flex-col">
+        <h2 className="sr-only">簽名設定</h2>
+        <div className="flex flex-col gap-2">
+          <h3 className="text-h5 font-bold">基本資料</h3>
+          <TextField id="name" label="姓名" placeholder="請輸入您的姓名" />
+          <TextField id="email" label="Email" placeholder="請輸入您的電子信箱" />
+        </div>
+        <div className="my-10">
+          <h3 className="text-h5 font-bold">我的簽名</h3>
+          <CreateSignDialog />
+        </div>
+        <div className="flex-1" />
+        <div>
+          <Button className="w-full">下一步</Button>
+        </div>
+      </aside>
+    </div>
   )
 }
