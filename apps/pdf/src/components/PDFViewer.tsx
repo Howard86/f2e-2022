@@ -1,6 +1,11 @@
 import { useCallback, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { MdDeleteOutline } from 'react-icons/md'
+import {
+  MdDeleteOutline,
+  MdOutlineMouse,
+  MdOutlineZoomIn,
+  MdTextRotationAngleup,
+} from 'react-icons/md'
 import Button from './Button'
 import SignSettingDialog from './SignSettingDialog'
 import ConfirmSignDialog from './ConfirmSignDialog'
@@ -8,6 +13,7 @@ import useFileStore from '@/hooks/useFileStore'
 import SignatureSettingSection from './SignatureSettingSection'
 import SharedGoals from './illustrations/SharedGoals'
 import ToggleButton from './ToggleButton'
+import useToggle from '@/hooks/useToggle'
 
 interface PDFViewerProps {
   timestamp: number
@@ -19,8 +25,10 @@ export default function PDFViewer({ timestamp }: PDFViewerProps) {
   const activeStep = useFileStore((state) => state.activeStep)
   const signFile = useFileStore((state) => state.signingFiles.entities[timestamp])
   const pdfDataUrl = useRef<string | undefined>()
-
   const canvasRef = useRef<fabric.Canvas | null>(null)
+
+  const [isZooming, toggleZoom] = useToggle()
+  const [isDragging, toggleDrag] = useToggle()
 
   const onCanvasElementMount = useCallback(
     async (element: HTMLCanvasElement | null) => {
@@ -103,43 +111,51 @@ export default function PDFViewer({ timestamp }: PDFViewerProps) {
     canvas.remove(object)
   }
 
-  // TODO: fix scroll event handler
   useEffect(() => {
-    const docCanvas = canvasRef.current
+    const canvas = canvasRef.current
 
-    if (!docCanvas) return
+    if (!canvas || !isZooming) return
 
-    let isDragging = false
-    let draggedX = 0
-    let draggedY = 0
-
-    docCanvas.on('mouse:wheel', (option) => {
-      let zoom = docCanvas.getZoom()
+    canvas.on('mouse:wheel', (option) => {
+      let zoom = canvas.getZoom()
       zoom *= 0.999 ** option.e.deltaY
 
       if (zoom > 10) zoom = 10
       if (zoom < 0.1) zoom = 0.1
 
-      docCanvas.zoomToPoint({ x: option.e.x, y: option.e.y }, zoom)
+      canvas.zoomToPoint({ x: option.e.x, y: option.e.y }, zoom)
       option.e.preventDefault()
       option.e.stopPropagation()
     })
 
-    docCanvas.on('mouse:down', (option) => {
-      if (!option.e.altKey) return
+    // eslint-disable-next-line consistent-return
+    return () => {
+      canvas.off()
+    }
+  }, [isZooming])
 
-      isDragging = true
+  useEffect(() => {
+    const canvas = canvasRef.current
+
+    if (!canvas || !isDragging) return
+
+    let isHolding = false
+    let draggedX = 0
+    let draggedY = 0
+
+    canvas.on('mouse:down', (option) => {
+      isHolding = true
       draggedX = option.e.clientX
       draggedY = option.e.clientY
-      docCanvas.selection = true
+      canvas.selection = true
       option.e.preventDefault()
       option.e.stopPropagation()
     })
 
-    docCanvas.on('mouse:move', (option) => {
+    canvas.on('mouse:move', (option) => {
       if (
-        !isDragging ||
-        !docCanvas.viewportTransform ||
+        !isHolding ||
+        !canvas.viewportTransform ||
         option.e.clientX === undefined ||
         option.e.clientY === undefined
       )
@@ -149,26 +165,26 @@ export default function PDFViewer({ timestamp }: PDFViewerProps) {
       const x = option.e.clientX
       const y = option.e.clientY
 
-      isDragging = true
-      docCanvas.viewportTransform[4] += x - draggedX
-      docCanvas.viewportTransform[5] += y - draggedY
-      docCanvas.requestRenderAll()
+      isHolding = true
+      canvas.viewportTransform[4] += x - draggedX
+      canvas.viewportTransform[5] += y - draggedY
+      canvas.requestRenderAll()
       draggedX = x
       draggedY = y
 
       option.e.preventDefault()
       option.e.stopPropagation()
     })
-    docCanvas.on('mouse:up', () => {
-      isDragging = false
-      docCanvas.selection = false
+    canvas.on('mouse:up', () => {
+      isHolding = false
+      canvas.selection = false
     })
 
     // eslint-disable-next-line consistent-return
     return () => {
-      docCanvas.off()
+      canvas.off()
     }
-  }, [])
+  }, [isDragging])
 
   if (activeStep === 4) {
     return (
@@ -197,9 +213,23 @@ export default function PDFViewer({ timestamp }: PDFViewerProps) {
           <canvas ref={onCanvasElementMount} />
           <SignSettingDialog onAddSignature={handleAddSignature} />
         </div>
-        <div className="absolute left-4 bottom-28 z-10 flex items-center md:bottom-8">
+        <div className="absolute left-4 bottom-28 z-10 flex items-center gap-4 md:bottom-8">
           <ToggleButton onClick={handleDeleteSignature}>
             <MdDeleteOutline className="h-auto w-6" />
+          </ToggleButton>
+          <ToggleButton aria-pressed={isZooming} onClick={toggleZoom}>
+            {isZooming ? (
+              <MdOutlineMouse className="h-auto w-6" />
+            ) : (
+              <MdOutlineZoomIn className="h-auto w-6" />
+            )}
+          </ToggleButton>
+          <ToggleButton aria-pressed={isDragging} onClick={toggleDrag}>
+            {isDragging ? (
+              <MdOutlineMouse className="h-auto w-6" />
+            ) : (
+              <MdTextRotationAngleup className="h-auto w-6" />
+            )}
           </ToggleButton>
         </div>
         <div className="px-6 pb-6 pt-2 md:hidden">
