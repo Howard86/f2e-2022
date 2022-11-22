@@ -1,5 +1,5 @@
 {
-  "name": "@f2e-2022/docs",
+  "name": "@f2e-2022/scrum",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -13,8 +13,6 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf .next"
   },
   "dependencies": {
-    "@f2e-2022/core": "workspace:*",
-    "@f2e-2022/utils": "workspace:*",
     "@headlessui/react": "^1.7.4",
     "@heroicons/react": "^2.0.13",
     "clsx": "^1.2.1",
@@ -26,6 +24,8 @@
     "@f2e-2022/jest-config": "workspace:*",
     "@f2e-2022/tailwind-config": "workspace:*",
     "@f2e-2022/tsconfig": "workspace:*",
+    "@headlessui/tailwindcss": "^0.1.1",
+    "@tailwindcss/forms": "^0.5.3",
     "@types/node": "^18.11.9",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",

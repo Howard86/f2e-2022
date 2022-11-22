@@ -13,12 +13,12 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf .next"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.3",
-    "@heroicons/react": "^2.0.12",
+    "@headlessui/react": "^1.7.4",
+    "@heroicons/react": "^2.0.13",
     "clsx": "^1.2.1",
     "fabric": "^5.2.4",
     "jspdf": "^2.5.1",
-    "next": "^13.0.0",
+    "next": "^13.0.4",
     "pdfjs-dist": "^3.0.279",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -32,13 +32,14 @@
     "@headlessui/tailwindcss": "^0.1.1",
     "@tailwindcss/forms": "^0.5.3",
     "@types/fabric": "^4.5.12",
-    "@types/node": "^18.11.7",
-    "@types/react": "^18.0.24",
-    "@types/react-dom": "^18.0.8",
+    "@types/node": "^18.11.9",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.9",
     "autoprefixer": "^10.4.13",
     "eslint-config-f2e-2022": "workspace:*",
-    "postcss": "^8.4.18",
-    "tailwindcss": "^3.2.1",
-    "typescript": "^4.8.4"
+    "next-router-mock": "^0.8.0",
+    "postcss": "^8.4.19",
+    "tailwindcss": "^3.2.4",
+    "typescript": "^4.9.3"
   }
 }
