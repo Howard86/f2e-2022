@@ -197,6 +197,7 @@ importers:
       fabric: ^5.2.4
       jspdf: ^2.5.1
       next: ^13.0.4
+      next-router-mock: ^0.8.0
       pdfjs-dist: ^3.0.279
       postcss: ^8.4.19
       react: ^18.2.0
@@ -229,6 +230,7 @@ importers:
       '@types/react-dom': 18.0.9
       autoprefixer: 10.4.13_postcss@8.4.19
       eslint-config-f2e-2022: link:../../packages/eslint-config-f2e-2022
+      next-router-mock: 0.8.0_next@13.0.4+react@18.2.0
       postcss: 8.4.19
       tailwindcss: 3.2.4_postcss@8.4.19
       typescript: 4.9.3
@@ -6852,6 +6854,16 @@ packages:
 
   /natural-compare/1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
+    dev: true
+
+  /next-router-mock/0.8.0_next@13.0.4+react@18.2.0:
+    resolution: {integrity: sha512-aw/QnDFRqGDIkC3y4mCL5HQCNK94IzIfrEYy2c17WVp6Q4V5GUarFx751Sccf8fUPdkzD2/RsldyScvNZGA8lw==}
+    peerDependencies:
+      next: '>=10.0.0'
+      react: '>=17.0.0'
+    dependencies:
+      next: 13.0.4_biqbaboplfbrettd7655fr4n2y
+      react: 18.2.0
     dev: true
 
   /next/13.0.4_biqbaboplfbrettd7655fr4n2y:
