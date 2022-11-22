@@ -20,11 +20,11 @@
   "devDependencies": {
     "@f2e-2022/jest-config": "workspace:*",
     "@f2e-2022/tsconfig": "workspace:*",
-    "@types/react": "^18.0.24",
-    "@types/react-dom": "^18.0.8",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.9",
     "eslint-config-f2e-2022": "workspace:*",
     "react": "^18.2.0",
-    "tsup": "^6.3.0"
+    "tsup": "^6.5.0"
   },
   "publishConfig": {
     "access": "public"

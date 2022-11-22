@@ -18,18 +18,18 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
-    "@heroicons/react": "^2.0.12",
     "@f2e-2022/jest-config": "workspace:^0.0.1",
     "@f2e-2022/tailwind-config": "workspace:^0.0.0",
     "@f2e-2022/tsconfig": "workspace:*",
-    "@types/react": "^18.0.24",
-    "@types/react-dom": "^18.0.8",
+    "@heroicons/react": "^2.0.13",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.9",
     "clsx": "^1.2.1",
     "eslint-config-f2e-2022": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "tsup": "^6.3.0",
-    "typescript": "^4.8.4"
+    "tsup": "^6.5.0",
+    "typescript": "^4.9.3"
   },
   "publishConfig": {
     "access": "public"
