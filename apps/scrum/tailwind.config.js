@@ -11,6 +11,13 @@ module.exports = {
       notice: '1rem',
     },
     extend: {
+      spacing: {
+        15: '3.75rem',
+        17: '4.25rem',
+      },
+      borderWidth: {
+        5: '5px',
+      },
       colors: {
         primary: {
           main: '#70D6DF',
