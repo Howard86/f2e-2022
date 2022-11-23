@@ -4,7 +4,6 @@ const path = require('path')
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
-  // plugins: ['@typescript-eslint'],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
@@ -14,7 +13,7 @@ module.exports = {
     'plugin:tailwindcss/recommended',
     'plugin:@next/next/recommended',
     'turbo',
-    'plugin:prettier/recommended',
+    'prettier',
   ],
   parserOptions: {
     project: 'packages/tsconfig/eslint.json',
