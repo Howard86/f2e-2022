@@ -13,10 +13,13 @@ module.exports = {
     extend: {
       spacing: {
         7.5: '1.875rem',
+        13: '3.25rem',
         15: '3.75rem',
         17: '4.25rem',
+        21: '5.25rem',
       },
       borderWidth: {
+        3: '3px',
         5: '5px',
       },
       colors: {

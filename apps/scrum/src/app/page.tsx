@@ -6,6 +6,7 @@ import back from '../public/backgrounds/back.png'
 import lower from '../public/backgrounds/lower.png'
 import tica from '../public/icons/tica.png'
 import ArrowDownIcon from '@/components/icons/ArrowDownIcon'
+import ConversationArticle from './ConversationArticle'
 
 export default function Home() {
   return (
@@ -23,7 +24,7 @@ export default function Home() {
         </button>
       </div>
       <div className="absolute inset-x-4 bottom-4">
-        <div className="border-5 border-secondary-brown-dark text-neutral-black-dark bg-neutral-white-light mx-auto flex w-full flex-col rounded-xl px-9 py-8 leading-loose md:max-w-screen-sm">
+        <ConversationArticle className="mx-auto w-full flex-col px-9 py-8 leading-loose md:max-w-screen-sm">
           <p>
             歡迎來到 Scrum 新手村～我是鈦坦吉祥物 Tica！
             <br />
@@ -42,7 +43,7 @@ export default function Home() {
           >
             接受挑戰
           </button>
-        </div>
+        </ConversationArticle>
         <Image alt="tica mascot" src={tica} className="mr-15 mb-17 ml-auto" />
       </div>
     </main>
