@@ -1,6 +1,6 @@
 import { SVGProps } from 'react-html-props'
 
-interface CharacterIconProps extends SVGProps {
+export interface CharacterIconProps extends SVGProps {
   head?: boolean
 }
 
