@@ -3,22 +3,17 @@ import Image from 'next/image'
 import ConversationArticle from '@/app/ConversationArticle'
 import ProductOwnerIcon from '../characters/ProductOwnerIcon'
 import beach from '@/public/backgrounds/beach.png'
-import { ScrumRoute } from '../constants'
+import { FeatureBacklogEntity, FeatureBacklogTitle, ScrumRoute } from '../constants'
 import ScrumHeader from '../ScrumHeader'
 import ScrumNav from '../ScrumNav'
 import BacklogBackground from './BacklogBackground'
 import JiraIcon from './JiraIcon'
 
-type FeatureBacklog = {
-  title: string
-  description?: string
-}
-
-const features: FeatureBacklog[] = [
-  { title: '會員系統（登入、註冊、管理）' },
-  { title: '應徵者的線上履歷編輯器' },
-  { title: '前台職缺列表', description: '（缺詳細內容、點選可發送應徵意願）' },
-  { title: '後台職缺管理功能', description: '（資訊上架、下架、顯示應徵者資料）' },
+const FEATURES_BACKLOG_ORDER: FeatureBacklogTitle[] = [
+  FeatureBacklogTitle['會員系統（登入、註冊、管理）'],
+  FeatureBacklogTitle.應徵者的線上履歷編輯器,
+  FeatureBacklogTitle.前台職缺列表,
+  FeatureBacklogTitle.後台職缺管理功能,
 ]
 
 export default function FeaturePage() {
@@ -40,18 +35,22 @@ export default function FeaturePage() {
         {/* TODO: add drag and drop */}
         <section className="px-15 mt-5 -mb-24 flex items-center text-center">
           <ul className="mr-20 flex flex-1 flex-col items-start gap-8">
-            {features.map((item, index) => (
-              <li
-                key={item.title}
-                className={clsx(
-                  'bg-neutral-white-light text-secondary-brown-main shadow-neutral-black-dark z-10 rounded-xl px-9 py-6 shadow-lg',
-                  index % 2 && 'ml-24'
-                )}
-              >
-                <p className="text-h3">{item.title}</p>
-                {item.description && <p className="font-bold">{item.description}</p>}
-              </li>
-            ))}
+            {FEATURES_BACKLOG_ORDER.map((title, index) => {
+              const item = FeatureBacklogEntity[title]
+
+              return (
+                <li
+                  key={item.title}
+                  className={clsx(
+                    'bg-neutral-white-light text-secondary-brown-main shadow-neutral-black-dark z-10 rounded-xl px-9 py-6 shadow-lg',
+                    index % 2 && 'ml-24'
+                  )}
+                >
+                  <p className="text-h3">{item.title}</p>
+                  {item.description && <p className="font-bold">{item.description}</p>}
+                </li>
+              )
+            })}
           </ul>
           <div className="relative flex-1">
             <BacklogBackground />

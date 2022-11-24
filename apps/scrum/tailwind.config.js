@@ -17,6 +17,7 @@ module.exports = {
         15: '3.75rem',
         17: '4.25rem',
         21: '5.25rem',
+        23: '5.75rem',
       },
       borderWidth: {
         3: '3px',
@@ -47,6 +48,9 @@ module.exports = {
           main: '#726D7A',
           dark: '#524D5B',
         },
+      },
+      opacity: {
+        85: 0.85,
       },
     },
   },
