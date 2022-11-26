@@ -8,6 +8,7 @@ export enum ScrumRoute {
   '/sprints',
   '/flows',
   '/retros',
+  '/complete'
 }
 
 export const SCRUM_ROUTES = Object.keys(ScrumRoute).filter((route) =>
