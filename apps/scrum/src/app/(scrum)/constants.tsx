@@ -6,7 +6,8 @@ export enum ScrumRoute {
   '/features',
   '/points',
   '/sprints',
-  '/flows'
+  '/flows',
+  '/retros',
 }
 
 export const SCRUM_ROUTES = Object.keys(ScrumRoute).filter((route) =>
@@ -110,3 +111,13 @@ export const NORMALISED_TABS: NormalisedTab = {
     },
   },
 }
+
+export const DONE_WELL_OPTIONS = [
+  '這次我幫了很多人救火耶。',
+  '大家在開發上都會互相幫助，讓任務準時在時間內完成。',
+]
+
+export const COULD_BE_BETTER_OPTIONS = [
+  '可以記錄這次的開發時間，讓預估團隊點數可以更精準。',
+  '開發時間預估不準確，請後端下次改進，避免 delay 到我。',
+]

@@ -13,7 +13,7 @@ interface ScrumHeaderProps extends DivProps {
 export default function ScrumHeader({ route, className, ...props }: ScrumHeaderProps) {
   return (
     <header className={clsx('px-15 flex items-center justify-between', className)} {...props}>
-      {SCRUM_ROUTES.map((href) => (
+      {SCRUM_ROUTES.map((href, index) => (
         <Fragment key={href}>
           <Link href={href}>
             <ProgressStep
@@ -21,10 +21,9 @@ export default function ScrumHeader({ route, className, ...props }: ScrumHeaderP
               completed={route > ScrumRoute[href]}
             />
           </Link>
-          <ProgressDots />
+          {SCRUM_ROUTES.length - 1 !== index && <ProgressDots />}
         </Fragment>
       ))}
-      <ProgressStep />
     </header>
   )
 }
