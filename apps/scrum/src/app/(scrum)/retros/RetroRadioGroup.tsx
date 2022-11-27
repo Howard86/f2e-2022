@@ -2,16 +2,34 @@
 
 import { useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
+import clsx from 'clsx'
 import BlueBlock from './BlueBlock'
 import DirtBlock from '../sprints/DirtBlock'
 
 interface RetroRadioGroupProps {
   label: string
   options: string[]
+  correctOption: string
 }
 
-export default function RetroRadioGroup({ label, options }: RetroRadioGroupProps) {
-  const [activeOption, setActiveOption] = useState()
+interface DynamicBlockProps {
+  checked?: boolean
+  error?: boolean
+}
+
+function DynamicBlock({ checked, error }: DynamicBlockProps) {
+  if (checked)
+    return error ? (
+      <BlueBlock className="text-error-main shrink-0" aria-hidden="true" />
+    ) : (
+      <DirtBlock width={36} height={42} aria-hidden="true" className="shrink-0" />
+    )
+
+  return <BlueBlock className="text-primary-main shrink-0" aria-hidden="true" />
+}
+
+export default function RetroRadioGroup({ label, options, correctOption }: RetroRadioGroupProps) {
+  const [activeOption, setActiveOption] = useState(false)
 
   return (
     <RadioGroup value={activeOption} onChange={setActiveOption} className="mt-9 flex-1 text-center">
@@ -21,15 +39,16 @@ export default function RetroRadioGroup({ label, options }: RetroRadioGroupProps
           <RadioGroup.Option
             key={option}
             value={option}
-            className="text-neutral-black-dark border-5 ui-checked:border-neutral-black-dark ui-checked:text-secondary-green-light hover:border-primary-main bg-neutral-white-light rounded-20 text-h3 relative flex min-h-[144px] cursor-pointer items-center gap-6 border-transparent p-6 text-start"
+            className={clsx(
+              'text-neutral-black-dark border-5 ui-checked:border-neutral-black-dark hover:border-primary-main bg-neutral-white-light rounded-20 text-h3 relative flex min-h-[144px] cursor-pointer items-center gap-6 border-transparent p-6 text-start',
+              option === correctOption
+                ? 'ui-checked:text-secondary-green-light'
+                : 'ui-checked:text-error-main'
+            )}
           >
             {({ checked }) => (
               <>
-                {checked ? (
-                  <DirtBlock width={36} height={42} aria-hidden="true" className="shrink-0" />
-                ) : (
-                  <BlueBlock className="shrink-0" aria-hidden="true" />
-                )}
+                <DynamicBlock checked={checked} error={option !== correctOption} />
                 {option}
               </>
             )}

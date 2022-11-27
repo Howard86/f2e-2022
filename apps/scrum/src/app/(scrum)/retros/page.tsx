@@ -33,8 +33,16 @@ export default function SprintRetroPage() {
           </div>
         </div>
         <section className="-mb-24 flex gap-8 px-6">
-          <RetroRadioGroup options={DONE_WELL_OPTIONS} label="做得好的地方" />
-          <RetroRadioGroup options={COULD_BE_BETTER_OPTIONS} label="有哪些可以做得更好？" />
+          <RetroRadioGroup
+            options={DONE_WELL_OPTIONS}
+            correctOption={DONE_WELL_OPTIONS[1]}
+            label="做得好的地方"
+          />
+          <RetroRadioGroup
+            options={COULD_BE_BETTER_OPTIONS}
+            correctOption={COULD_BE_BETTER_OPTIONS[0]}
+            label="有哪些可以做得更好？"
+          />
         </section>
         <div className="bg-secondary-brown-light h-18 absolute inset-x-0 bottom-0" />
         <Image
