@@ -9,7 +9,12 @@ import {
 } from '@hello-pangea/dnd'
 import clsx from 'clsx'
 import { CSSProperties, useState } from 'react'
-import { FeatureBacklogTitle, FeatureBacklogEntity } from '../constants'
+import {
+  DRAG_ID_QUERY,
+  EMPTY_OBJECT,
+  FeatureBacklogEntity,
+  FeatureBacklogTitle,
+} from '../constants'
 import BacklogBackground from './BacklogBackground'
 
 const enum DroppableId {
@@ -19,16 +24,13 @@ const enum DroppableId {
 
 const DEFAULT_ITEM_GROUP: Record<DroppableId, FeatureBacklogTitle[]> = {
   [DroppableId.ProductBacklog]: [
-    FeatureBacklogTitle['會員系統'],
+    FeatureBacklogTitle.會員系統,
     FeatureBacklogTitle.應徵者的線上履歷編輯器,
     FeatureBacklogTitle.前台職缺列表,
     FeatureBacklogTitle.後台職缺管理功能,
   ],
   [DroppableId.SprintList]: [],
 }
-
-const DRAG_ID_QUERY = 'data-rfd-draggable-id'
-const EMPTY_OBJECT = {}
 
 export default function BacklogDragSection() {
   const [itemGroup, setItemGroup] = useState(DEFAULT_ITEM_GROUP)

@@ -49,6 +49,12 @@ export const FeatureBacklogEntity: Record<FeatureBacklogTitle, FeatureBacklog> =
     storyPoint: 5,
   },
 }
+
+
+
+export const DRAG_ID_QUERY = 'data-rfd-draggable-id'
+export const EMPTY_OBJECT = {}
+
 type SprintTabOption = {
   id: number
   title: string

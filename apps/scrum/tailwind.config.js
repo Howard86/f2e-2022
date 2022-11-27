@@ -54,6 +54,9 @@ module.exports = {
           main: '#726D7A',
           dark: '#524D5B',
         },
+        error: {
+          main: '#E8433F',
+        },
       },
       opacity: {
         65: 0.65,
