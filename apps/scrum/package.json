@@ -19,7 +19,8 @@
     "clsx": "^1.2.1",
     "next": "^13.0.4",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "sharp": "^0.31.2"
   },
   "devDependencies": {
     "@f2e-2022/jest-config": "workspace:*",
