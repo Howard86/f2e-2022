@@ -39,9 +39,7 @@ export default function BacklogDragSection() {
   const onDragUpdate: OnDragUpdateResponder = (update) => {
     const { destination, draggableId, source } = update
 
-    if (!destination) return
-
-    if (destination.droppableId !== source.droppableId) {
+    if (!destination || destination.droppableId !== source.droppableId) {
       setPlaceholderStyle({ display: 'hidden' })
       return
     }

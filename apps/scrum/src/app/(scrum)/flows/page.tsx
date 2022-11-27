@@ -7,6 +7,7 @@ import ConversationArticle from '@/app/(home)/ConversationArticle'
 import DevelopmentTeamIcon from '../characters/DevelopmentTeamIcon'
 import DiagramBackground from './DiagramBackground'
 import LongArrowIcon from './LongArrowIcon'
+import SprintFlowDragSection from './SprintFlowDragSection'
 
 export default function SpringFlowPage() {
   return (
@@ -26,42 +27,22 @@ export default function SpringFlowPage() {
             </ConversationArticle>
           </div>
         </div>
-        {/* TODO: add drag and drop */}
         <section className="relative -mb-14 mt-28 flex flex-col pt-16">
           <DiagramBackground className="z-10" />
           <div className="text-h3 absolute left-0 top-0 z-10 flex flex-col items-center gap-5 text-center">
-            <div className="bg-neutral-white-light/25 border-neutral-white-light rounded-xl border px-5 py-3">
+            <div className="bg-neutral-white-light/25 border-neutral-white-light border-3 rounded-xl px-5 py-3">
               產品待辦清單
             </div>
             <LongArrowIcon />
-            <div className="bg-neutral-white-light/25 border-neutral-white-light w-full rounded-xl border px-5 py-3">
+            <div className="bg-neutral-white-light/25 border-neutral-white-light border-3 w-full rounded-xl px-5 py-3">
               短衝規劃
             </div>
             <LongArrowIcon />
-            <div className="bg-neutral-white-light/25 border-neutral-white-light rounded-xl border px-5 py-3">
+            <div className="bg-neutral-white-light/25 border-neutral-white-light border-3 rounded-xl px-5 py-3">
               短衝待辦清單
             </div>
           </div>
-          <div className="relative z-10 mx-auto">
-            <h2 className="text-h1 absolute bottom-52 right-24">Sprint</h2>
-            <div className="bg-primary-dark/50 border-5 border-neutral-white-light absolute bottom-[344px] -left-3 h-[118px] w-[296px] rounded-xl border-dashed" />
-            <div className="bg-primary-dark/50 border-5 border-neutral-white-light absolute bottom-0 -left-3 h-[118px] w-[296px] rounded-xl border-dashed" />
-            <div className="bg-primary-dark/50 border-5 border-neutral-white-light absolute bottom-0 left-[300px] h-[118px] w-[296px] rounded-xl border-dashed" />
-          </div>
-          <div className="absolute right-0 top-6 z-10 flex flex-col gap-8">
-            <div className="text-neutral-black-dark bg-neutral-white-light/75 whitespace-nowrap rounded-xl px-9 py-3 text-center shadow-xl">
-              <p className="text-h3">每日站立會議</p>
-              <p className="font-bold">Daily Scrum</p>
-            </div>
-            <div className="text-neutral-black-dark bg-neutral-white-light/75 whitespace-nowrap rounded-xl px-9 py-3 text-center shadow-xl">
-              <p className="text-h3">短衝檢視會議</p>
-              <p className="font-bold">Sprint Review</p>
-            </div>
-            <div className="text-neutral-black-dark bg-neutral-white-light/75 whitespace-nowrap rounded-xl px-9 py-3 text-center shadow-xl">
-              <p className="text-h3">短衝自省會議</p>
-              <p className="font-bold">Sprint Retrospective</p>
-            </div>
-          </div>
+          <SprintFlowDragSection />
         </section>
         <div className="bg-secondary-brown-light h-18 absolute inset-x-0 bottom-0" />
         <Image
