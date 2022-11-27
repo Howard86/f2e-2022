@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import Image from 'next/image'
-import ConversationArticle from '@/app/ConversationArticle'
+import ConversationArticle from '@/app/(home)/ConversationArticle'
 import ProductOwnerIcon from '../characters/ProductOwnerIcon'
 import beach from '@/public/backgrounds/beach.png'
 import { FeatureBacklogEntity, FeatureBacklogTitle, ScrumRoute } from '../constants'

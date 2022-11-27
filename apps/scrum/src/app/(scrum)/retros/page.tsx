@@ -3,7 +3,7 @@ import { COULD_BE_BETTER_OPTIONS, DONE_WELL_OPTIONS, ScrumRoute } from '../const
 import wasteland from '@/public/backgrounds/wasteland.png'
 import ScrumHeader from '../ScrumHeader'
 import ScrumNav from '../ScrumNav'
-import ConversationArticle from '@/app/ConversationArticle'
+import ConversationArticle from '@/app/(home)/ConversationArticle'
 import DevelopmentTeamIcon from '../characters/DevelopmentTeamIcon'
 import RetroRadioGroup from './RetroRadioGroup'
 
