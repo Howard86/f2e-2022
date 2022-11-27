@@ -4,6 +4,7 @@ import forest from '@/public/backgrounds/forest.png'
 import ScrumHeader from '../ScrumHeader'
 import ScrumNav from '../ScrumNav'
 import WhiteBox from './WhiteBox'
+import StoryPointDialog from './StoryPointDialog'
 
 const FEATURES_BACKLOG_ORDER: FeatureBacklogTitle[] = [
   FeatureBacklogTitle['後台職缺管理功能'],
@@ -56,9 +57,15 @@ export default function StoryPointPage() {
             </div>
           </div>
         </section>
-        <Image src={forest} alt="森林背景" className="absolute inset-x-0 bottom-0 w-full" />
+        <Image
+          src={forest}
+          alt="森林背景"
+          placeholder="blur"
+          className="absolute inset-x-0 bottom-0 w-full"
+        />
       </main>
       <ScrumNav route={ScrumRoute['/points']} className="bg-secondary-brown-dark" />
+      <StoryPointDialog />
     </>
   )
 }
