@@ -8,7 +8,7 @@ export enum ScrumRoute {
   '/sprints',
   '/flows',
   '/retros',
-  '/complete'
+  '/complete',
 }
 
 export const SCRUM_ROUTES = Object.keys(ScrumRoute).filter((route) =>
@@ -16,7 +16,7 @@ export const SCRUM_ROUTES = Object.keys(ScrumRoute).filter((route) =>
 ) as (keyof typeof ScrumRoute)[]
 
 export const enum FeatureBacklogTitle {
-  '會員系統（登入、註冊、管理）',
+  '會員系統',
   '應徵者的線上履歷編輯器',
   '前台職缺列表',
   '後台職缺管理功能',
@@ -29,8 +29,9 @@ type FeatureBacklog = {
 }
 
 export const FeatureBacklogEntity: Record<FeatureBacklogTitle, FeatureBacklog> = {
-  [FeatureBacklogTitle['會員系統（登入、註冊、管理）']]: {
-    title: '會員系統（登入、註冊、管理）',
+  [FeatureBacklogTitle['會員系統']]: {
+    title: '會員系統',
+    description: '（登入、註冊、管理）',
     storyPoint: 8,
   },
   [FeatureBacklogTitle['應徵者的線上履歷編輯器']]: {

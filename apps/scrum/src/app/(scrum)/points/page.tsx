@@ -9,7 +9,7 @@ import StoryPointDialog from './StoryPointDialog'
 const FEATURES_BACKLOG_ORDER: FeatureBacklogTitle[] = [
   FeatureBacklogTitle['後台職缺管理功能'],
   FeatureBacklogTitle['前台職缺列表'],
-  FeatureBacklogTitle['會員系統（登入、註冊、管理）'],
+  FeatureBacklogTitle['會員系統'],
   FeatureBacklogTitle['應徵者的線上履歷編輯器'],
 ]
 
