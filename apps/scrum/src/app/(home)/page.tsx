@@ -40,7 +40,12 @@ export default function Home() {
             <span className="absolute inset-0 bg-black opacity-0 hover:opacity-10" />
             接受挑戰
           </Link>
-          <Image alt="tica 吉祥物" src={tica} className="absolute -right-80 -bottom-48" />
+          <Image
+            alt="tica 吉祥物"
+            src={tica}
+            placeholder="blur"
+            className="absolute -right-80 -bottom-48"
+          />
         </ConversationArticle>
       </div>
       <Image

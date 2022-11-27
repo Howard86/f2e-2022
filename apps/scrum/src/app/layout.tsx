@@ -17,6 +17,7 @@ const local = localFont({
     },
   ],
   display: 'fallback',
+  preload: true,
 })
 
 export default function RootLayout({ children }: ChildrenProps) {
