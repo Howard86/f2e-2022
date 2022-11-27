@@ -2,8 +2,8 @@
 
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
+import ConversationArticle from 'app/(home)/ConversationArticle'
 import ProductOwnerIcon from '../characters/ProductOwnerIcon'
-import ConversationArticle from '@/app/(home)/ConversationArticle'
 
 export default function FeatureDialog() {
   const [open, setOpen] = useState(true)

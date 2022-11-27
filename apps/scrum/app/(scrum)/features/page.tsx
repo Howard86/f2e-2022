@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import ConversationArticle from '@/app/(home)/ConversationArticle'
+import ConversationArticle from 'app/(home)/ConversationArticle'
 import ProductOwnerIcon from '../characters/ProductOwnerIcon'
 import beach from '@/public/backgrounds/beach.png'
 import { ScrumRoute } from '../constants'

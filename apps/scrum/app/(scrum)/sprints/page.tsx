@@ -1,9 +1,9 @@
 import Image from 'next/image'
+import ConversationArticle from 'app/(home)/ConversationArticle'
 import { NORMALISED_TABS, ScrumRoute } from '../constants'
 import camp from '@/public/backgrounds/camp.png'
 import ScrumHeader from '../ScrumHeader'
 import ScrumNav from '../ScrumNav'
-import ConversationArticle from '@/app/(home)/ConversationArticle'
 import DevelopmentTeamIcon from '../characters/DevelopmentTeamIcon'
 import SprintTab from './SprintTab'
 

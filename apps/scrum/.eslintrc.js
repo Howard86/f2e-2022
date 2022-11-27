@@ -9,7 +9,7 @@ module.exports = {
       1,
       {
         config: path.join(__dirname, 'tailwind.config.js'),
-        css: path.join(__dirname, 'src/styles/global.css'),
+        css: path.join(__dirname, 'styles/global.css'),
       },
     ],
   },

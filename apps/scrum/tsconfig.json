@@ -6,7 +6,6 @@
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
       "@/public/*": ["public/*"]
     },
     "plugins": [

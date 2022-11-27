@@ -1,5 +1,5 @@
 import type { FC, ReactNode } from 'react'
-import ConversationArticle from '@/app/(home)/ConversationArticle'
+import ConversationArticle from 'app/(home)/ConversationArticle'
 import type { CharacterIconProps } from '../characters/ProductOwnerIcon'
 
 interface StoryPointConversationProps {

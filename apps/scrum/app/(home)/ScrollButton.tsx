@@ -1,6 +1,6 @@
 'use client'
 
-import ArrowDownIcon from '@/components/icons/ArrowDownIcon'
+import ArrowDownIcon from './ArrowDownIcon'
 
 export default function ScrollButton() {
   const onClick = () => {

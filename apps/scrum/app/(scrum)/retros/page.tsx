@@ -1,9 +1,9 @@
 import Image from 'next/image'
+import ConversationArticle from 'app/(home)/ConversationArticle'
 import { COULD_BE_BETTER_OPTIONS, DONE_WELL_OPTIONS, ScrumRoute } from '../constants'
 import wasteland from '@/public/backgrounds/wasteland.png'
 import ScrumHeader from '../ScrumHeader'
 import ScrumNav from '../ScrumNav'
-import ConversationArticle from '@/app/(home)/ConversationArticle'
 import DevelopmentTeamIcon from '../characters/DevelopmentTeamIcon'
 import RetroRadioGroup from './RetroRadioGroup'
 
