@@ -38,7 +38,12 @@ export default function SpringIntroductionPage() {
           <SprintTab tab={NORMALISED_TABS} />
         </section>
         <div className="bg-secondary-green-main h-18 absolute inset-x-0 bottom-0" />
-        <Image src={camp} alt="露營背景" className="absolute inset-x-0 bottom-0 w-full" />
+        <Image
+          src={camp}
+          alt="露營背景"
+          placeholder="blur"
+          className="absolute inset-x-0 bottom-0 w-full"
+        />
       </main>
       <ScrumNav route={ScrumRoute['/sprints']} className="bg-secondary-brown-dark" />
     </>

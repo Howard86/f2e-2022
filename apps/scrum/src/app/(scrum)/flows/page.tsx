@@ -64,7 +64,12 @@ export default function SpringFlowPage() {
           </div>
         </section>
         <div className="bg-secondary-brown-light h-18 absolute inset-x-0 bottom-0" />
-        <Image src={rock} alt="岩石背景" className="absolute inset-x-0 bottom-0 w-full" />
+        <Image
+          src={rock}
+          alt="岩石背景"
+          placeholder="blur"
+          className="absolute inset-x-0 bottom-0 w-full"
+        />
       </main>
       <ScrumNav route={ScrumRoute['/flows']} className="bg-secondary-brown-dark" />
     </>

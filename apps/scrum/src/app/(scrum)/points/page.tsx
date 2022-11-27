@@ -32,7 +32,7 @@ export default function StoryPointPage() {
                 return (
                   <li
                     key={item.title}
-                    className="bg-secondary-green-light/85 shadow-neutral-black-dark z-10 flex items-center justify-center gap-6 rounded-xl px-9 py-6 shadow-lg"
+                    className="bg-secondary-green-light/85 shadow-brown z-10 flex items-center justify-center gap-6 rounded-xl px-9 py-6"
                   >
                     <div>
                       <p className="text-h3">{item.title}</p>

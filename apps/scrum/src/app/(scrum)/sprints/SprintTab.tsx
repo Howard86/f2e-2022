@@ -19,7 +19,7 @@ export default function SprintTab({ tab }: SprintTabProps) {
             <Tab key={id} as="li" className="outline-none">
               <button
                 type="button"
-                className="ui-not-selected:opacity-50 relative inline-flex flex-col items-center justify-center px-8 py-2 transition-opacity"
+                className="ui-not-selected:opacity-50 ui-not-selected:hover:opacity-75 relative inline-flex flex-col items-center justify-center px-8 py-2 transition-opacity"
               >
                 <DirtBlock className="ui-selected:opacity-100 absolute left-0 top-0 translate-y-1/2 -translate-x-1/2 opacity-0 transition-opacity" />
                 <span className="text-h3">{tab.entities[id].title}</span>

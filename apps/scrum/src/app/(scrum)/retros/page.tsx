@@ -37,7 +37,12 @@ export default function SprintRetroPage() {
           <RetroRadioGroup options={COULD_BE_BETTER_OPTIONS} label="有哪些可以做得更好？" />
         </section>
         <div className="bg-secondary-brown-light h-18 absolute inset-x-0 bottom-0" />
-        <Image src={wasteland} alt="荒地背景" className="absolute inset-x-0 bottom-0 w-full" />
+        <Image
+          src={wasteland}
+          alt="荒地背景"
+          placeholder="blur"
+          className="absolute inset-x-0 bottom-0 w-full"
+        />
       </main>
       <ScrumNav route={ScrumRoute['/retros']} className="bg-secondary-brown-dark" />
     </>

@@ -12,7 +12,12 @@ export default function CompletePage() {
     <>
       <ScrumHeader route={ScrumRoute['/complete']} />
       <main className="text-neutral-black-dark relative flex flex-1 flex-col text-center">
-        <Image src={cloud} alt="雲" className="absolute inset-x-0 top-0" />
+        <Image
+          src={cloud}
+          alt="雲"
+          placeholder="blur"
+          className="absolute inset-x-0 top-0 w-full"
+        />
         <div className="mt-18 relative z-10 mb-9 flex-1">
           <h1 className="text-[7rem] font-bold tracking-wide">Congratulations!</h1>
           <p className="text-h3">
@@ -22,7 +27,7 @@ export default function CompletePage() {
           </p>
         </div>
         <div className="mx-20">
-          <Image src={group} alt="人群" className="mx-auto w-full" />
+          <Image src={group} alt="人群" placeholder="blur" className="w-full" />
         </div>
       </main>
       <footer className="bg-secondary-brown-main text-notice py-3 text-center font-bold">
