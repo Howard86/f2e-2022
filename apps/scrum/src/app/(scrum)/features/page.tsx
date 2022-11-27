@@ -8,6 +8,7 @@ import ScrumHeader from '../ScrumHeader'
 import ScrumNav from '../ScrumNav'
 import BacklogBackground from './BacklogBackground'
 import JiraIcon from './JiraIcon'
+import FeatureDialog from './FeatureDialog'
 
 const FEATURES_BACKLOG_ORDER: FeatureBacklogTitle[] = [
   FeatureBacklogTitle['會員系統（登入、註冊、管理）'],
@@ -42,7 +43,7 @@ export default function FeaturePage() {
                 <li
                   key={item.title}
                   className={clsx(
-                    'bg-neutral-white-light text-secondary-brown-main shadow-neutral-black-dark z-10 rounded-xl px-9 py-6 shadow-lg',
+                    'bg-neutral-white-light text-secondary-brown-main shadow-brown z-10 rounded-xl px-9 py-6',
                     index % 2 && 'ml-24'
                   )}
                 >
@@ -76,9 +77,10 @@ export default function FeaturePage() {
             </div>
           </div>
         </section>
-        <Image src={beach} alt="海灘背景" className="h-auto w-full" />
+        <Image src={beach} placeholder="blur" alt="海灘背景" className="-mb-1 h-auto w-full" />
       </main>
       <ScrumNav route={ScrumRoute['/features']} className="bg-secondary-brown-dark" />
+      <FeatureDialog />
     </>
   )
 }

@@ -14,6 +14,7 @@ module.exports = {
       boxShadow: {
         button: '0.25rem 0.25rem 0.25rem rgba(0, 0, 0, .25)',
         'button-inset': 'inset 0.25rem 0.25rem 0.25rem rgba(0, 0, 0, .25)',
+        brown: '0.5rem 0.625rem 0 rgba(71, 52, 56, .75)',
       },
       spacing: {
         7.5: '1.875rem',

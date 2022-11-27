@@ -9,7 +9,7 @@ export default function ProgressStep({
   completed,
   selected,
   width = 36,
-  height = 'auto',
+  height = 48,
   ...props
 }: ProgressStepProps) {
   if (completed) {

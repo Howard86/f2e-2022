@@ -6,7 +6,7 @@ export default function ConversationArticle({ className, ...props }: DivProps & 
   return (
     <article
       className={clsx(
-        'border-5 border-secondary-brown-dark text-neutral-black-dark bg-neutral-white-light flex rounded-xl',
+        'border-5 border-secondary-brown-dark text-neutral-black-dark bg-neutral-white-light rounded-20 flex',
         className
       )}
       {...props}
