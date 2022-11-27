@@ -11,6 +11,10 @@ module.exports = {
       notice: '1rem',
     },
     extend: {
+      boxShadow: {
+        button: '0.25rem 0.25rem 0.25rem rgba(0, 0, 0, .25)',
+        'button-inset': 'inset 0.25rem 0.25rem 0.25rem rgba(0, 0, 0, .25)',
+      },
       spacing: {
         7.5: '1.875rem',
         13: '3.25rem',
