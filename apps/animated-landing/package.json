@@ -15,14 +15,14 @@
   "dependencies": {
     "@headlessui/react": "^1.7.4",
     "@heroicons/react": "^2.0.13",
-    "@next/font": "^13.0.4",
+    "@next/font": "^13.0.5",
     "clsx": "^1.2.1",
-    "framer-motion": "^7.6.9",
-    "next": "^13.0.4",
+    "framer-motion": "^7.6.12",
+    "next": "^13.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sharp": "^0.31.2",
-    "use-resize-observer": "^9.0.2"
+    "use-resize-observer": "^9.1.0"
   },
   "devDependencies": {
     "@f2e-2022/jest-config": "workspace:*",
