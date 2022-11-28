@@ -11,7 +11,7 @@ export default function SpringIntroductionPage() {
   return (
     <>
       <ScrumHeader route={ScrumRoute['/sprints']} />
-      <main className="relative mt-5 flex-1 pb-36">
+      <main className="relative mt-5 flex-1 pb-6 2xl:pb-36">
         <div className="px-15 flex">
           <DevelopmentTeamIcon head className="shrink-0" />
           <div className="mx-16">
@@ -34,7 +34,7 @@ export default function SpringIntroductionPage() {
           </div>
         </div>
         {/* TODO: add drag and drop */}
-        <section className="mt-5 -mb-24 flex h-[460px]">
+        <section className="mt-5 flex min-h-[32rem]">
           <SprintTab tab={NORMALISED_TABS} />
         </section>
         <div className="bg-secondary-green-main h-18 absolute inset-x-0 bottom-0" />

@@ -118,7 +118,7 @@ export default function SprintFlowDragSection() {
           <DroppableArea
             itemGroup={itemGroup}
             droppableId={DroppableId.Top}
-            className="absolute bottom-[344px] -left-3"
+            className="absolute bottom-[21.5rem] -left-3"
           />
           <DroppableArea
             itemGroup={itemGroup}
@@ -128,7 +128,7 @@ export default function SprintFlowDragSection() {
           <DroppableArea
             itemGroup={itemGroup}
             droppableId={DroppableId.Right}
-            className="absolute bottom-0 left-[316px]"
+            className="absolute bottom-0 left-[20rem]"
           />
         </div>
         <Droppable droppableId={DroppableId.List}>
@@ -136,7 +136,7 @@ export default function SprintFlowDragSection() {
             <div
               ref={dropProvided.innerRef}
               className={clsx(
-                'absolute -right-8 -top-4 z-10 h-[452px] rounded-xl px-8 pt-8',
+                'absolute -right-8 -top-4 z-10 h-[28rem] rounded-xl px-4 pt-4 2xl:px-8 2xl:pt-8',
                 dropSnapshot.isDraggingOver && 'bg-neutral-black-dark/10'
               )}
               {...dropProvided.droppableProps}

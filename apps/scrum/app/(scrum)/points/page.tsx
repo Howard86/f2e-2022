@@ -10,13 +10,13 @@ export default function StoryPointPage() {
   return (
     <>
       <ScrumHeader route={ScrumRoute['/points']} />
-      <main className="relative mt-5 flex-1 pb-36">
+      <main className="relative mt-5 flex-1 pb-6 2xl:pb-36">
         <StoryPointSection />
         <Image
           src={forest}
           alt="森林背景"
           placeholder="blur"
-          className="absolute inset-x-0 bottom-0 w-full"
+          className="absolute inset-x-0 bottom-0 h-auto w-full"
         />
       </main>
       <ScrumNav route={ScrumRoute['/points']} className="bg-secondary-brown-dark" />

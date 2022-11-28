@@ -51,9 +51,9 @@ export default function CharacterPage() {
             {items.map((item) => (
               <article
                 key={item.title}
-                className="bg-primary-dark/50 flex flex-1 flex-col items-center gap-9 rounded-[20px] px-12 py-9"
+                className="bg-primary-dark/50 rounded-20 flex flex-1 flex-col items-center gap-4 px-8 py-6 2xl:gap-9 2xl:px-12 2xl:py-9"
               >
-                <item.icon className="h-[315px] w-auto" />
+                <item.icon className="h-64 w-auto" />
                 <hgroup>
                   <h2 className="text-h2">{item.title}</h2>
                   <h3 className="text-h3 whitespace-nowrap">{item.subheader}</h3>

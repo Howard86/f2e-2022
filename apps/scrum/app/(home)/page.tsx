@@ -44,7 +44,7 @@ export default function Home() {
             alt="tica 吉祥物"
             src={tica}
             placeholder="blur"
-            className="absolute -right-80 -bottom-48"
+            className="absolute bottom-0 right-0 translate-x-full translate-y-2/3"
           />
         </ConversationArticle>
       </div>

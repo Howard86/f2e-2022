@@ -11,7 +11,7 @@ export default function SprintRetroPage() {
   return (
     <>
       <ScrumHeader route={ScrumRoute['/retros']} />
-      <main className="px-15 relative mt-5 max-w-full flex-1 pb-36">
+      <main className="px-15 relative mt-5 max-w-full flex-1 pb-6 2xl:pb-12">
         <h1 className="sr-only">Spring 流程圖</h1>
         <div className="flex">
           <DevelopmentTeamIcon head className="shrink-0" />
@@ -32,7 +32,7 @@ export default function SprintRetroPage() {
             </ConversationArticle>
           </div>
         </div>
-        <section className="-mb-24 flex gap-8 px-6">
+        <section className="flex flex-col gap-8 px-6 md:flex-row">
           <RetroRadioGroup
             options={DONE_WELL_OPTIONS}
             correctOption={DONE_WELL_OPTIONS[1]}

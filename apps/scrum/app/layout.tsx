@@ -22,7 +22,10 @@ const local = localFont({
 
 export default function RootLayout({ children }: ChildrenProps) {
   return (
-    <html lang="zh-Hant-TW" className={`bg-primary-main h-full ${local.className}`}>
+    <html
+      lang="zh-Hant-TW"
+      className={`bg-primary-main h-full text-[12px] lg:text-[14px] 2xl:text-[16px] ${local.className}`}
+    >
       <body className="text-p text-neutral-white-light bg-primary-main h-full">{children}</body>
     </html>
   )

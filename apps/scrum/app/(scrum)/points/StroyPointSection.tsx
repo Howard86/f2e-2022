@@ -98,7 +98,7 @@ export default function StoryPointSection() {
 
   return (
     <DragDropContext onDragEnd={onDragEnd} onDragUpdate={onDragUpdate}>
-      <section className="relative z-10 mt-5 flex flex-1 gap-12 px-7">
+      <section className="relative z-10 mt-5 flex flex-1 flex-col gap-6 px-7 md:flex-row 2xl:gap-12">
         <div className="flex flex-1 flex-col">
           <hgroup className="text-neutral-black-dark mb-12 px-8">
             <h2 className="text-h2 inline">產品待辦清單</h2>
@@ -109,7 +109,7 @@ export default function StoryPointSection() {
               <ul
                 ref={dropProvided.innerRef}
                 className={clsx(
-                  'rounded-20 relative min-h-[684px] flex-1 p-8 text-center',
+                  'rounded-20 relative min-h-[42rem] flex-1 p-8 text-center',
                   dropSnapshot.isDraggingOver && 'bg-neutral-black-dark/10'
                 )}
                 {...dropProvided.droppableProps}
@@ -123,7 +123,7 @@ export default function StoryPointSection() {
                         <li
                           ref={dragProvided.innerRef}
                           className={clsx(
-                            'shadow-brown z-10 mb-8 flex items-center justify-center gap-6 rounded-xl px-9 py-6',
+                            'shadow-brown z-10 mb-8 flex items-center justify-center gap-6 rounded-xl py-4 px-6 2xl:px-9 2xl:py-6',
                             dragSnapshot.isDragging
                               ? 'bg-secondary-green-light/50'
                               : 'bg-secondary-green-light/85'
@@ -183,7 +183,7 @@ export default function StoryPointSection() {
                         <li
                           ref={dragProvided.innerRef}
                           className={clsx(
-                            'shadow-brown z-10 mb-8 flex items-center justify-center gap-6 rounded-xl px-9 py-6',
+                            'shadow-brown z-10 mb-8 flex items-center justify-center gap-6 rounded-xl py-4 px-6 2xl:px-9 2xl:py-6',
                             dragSnapshot.isDragging
                               ? 'bg-secondary-green-light/50'
                               : 'bg-secondary-green-light/85'

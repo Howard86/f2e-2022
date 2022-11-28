@@ -18,7 +18,7 @@ export default function CompletePage() {
           placeholder="blur"
           className="absolute inset-x-0 top-0 w-full"
         />
-        <div className="mt-18 relative z-10 mb-9 flex-1">
+        <div className="2xl:mt-18 relative z-10 mt-6 mb-9 flex-1">
           <h1 className="text-[7rem] font-bold tracking-wide">Congratulations!</h1>
           <p className="text-h3">
             恭喜你完成 Scrum 新手村！

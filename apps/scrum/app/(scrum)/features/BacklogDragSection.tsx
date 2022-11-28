@@ -90,7 +90,7 @@ export default function BacklogDragSection() {
 
   return (
     <DragDropContext onDragEnd={onDragEnd} onDragUpdate={onDragUpdate}>
-      <section className="px-15 relative z-10 mt-5 -mb-24 flex text-center">
+      <section className="px-15 relative z-10 mt-5 -mb-24 flex flex-col items-center text-center lg:flex-row lg:items-stretch">
         <Droppable droppableId={DroppableId.ProductBacklog}>
           {(dropProvided, dropSnapshot) => (
             <ul
@@ -110,7 +110,7 @@ export default function BacklogDragSection() {
                       <li
                         ref={dragProvided.innerRef}
                         className={clsx(
-                          'text-neutral-black-dark shadow-brown z-10 mb-8 rounded-xl px-9 py-6',
+                          'text-neutral-black-dark shadow-brown z-10 mb-8 rounded-xl px-6 py-4 2xl:px-9 2xl:py-6',
                           dragSnapshot.isDragging
                             ? 'bg-neutral-white-light/50'
                             : 'bg-neutral-white-light/75'
@@ -137,13 +137,13 @@ export default function BacklogDragSection() {
           )}
         </Droppable>
 
-        <div className="relative flex min-h-[690px] flex-1 flex-col">
-          <BacklogBackground className="absolute inset-0 w-full" />
+        <div className="relative flex min-h-[43rem] flex-1 flex-col">
+          <BacklogBackground className="absolute inset-0 h-full w-auto" />
           <hgroup className="text-neutral-black-dark relative z-10">
             <h1 className="text-h2 inline">產品待辦清單</h1>
             <h2 className="text-h3 inline">Product Backlog</h2>
           </hgroup>
-          <div className="relative z-10 flex flex-1 gap-2 px-12">
+          <div className="relative z-10 flex flex-1 gap-2 pl-12 pr-20">
             <div className="flex-1">
               <p className="mr-1 mb-5 text-end">優先度</p>
               <Droppable droppableId={DroppableId.SprintList}>
@@ -151,7 +151,7 @@ export default function BacklogDragSection() {
                   <ul
                     ref={dropProvided.innerRef}
                     className={clsx(
-                      'rounded-20 relative h-full w-[500px] flex-1',
+                      'rounded-20 relative h-full w-[32rem] flex-1',
                       dropSnapshot.isDraggingOver && 'bg-neutral-black-dark/10'
                     )}
                     {...dropProvided.droppableProps}
@@ -165,7 +165,7 @@ export default function BacklogDragSection() {
                             <li
                               ref={dragProvided.innerRef}
                               className={clsx(
-                                'text-neutral-black-dark shadow-brown z-10 mb-6 rounded-xl px-6 py-4',
+                                'text-neutral-black-dark shadow-brown z-10 mb-6 rounded-xl px-4 py-2 2xl:px-6 2xl:py-4',
                                 dragSnapshot.isDragging
                                   ? 'bg-neutral-white-light/50'
                                   : 'bg-neutral-white-light/75'

@@ -13,7 +13,7 @@ export default function SpringFlowPage() {
   return (
     <>
       <ScrumHeader route={ScrumRoute['/flows']} />
-      <main className="px-15 relative mx-auto mt-5 max-w-full flex-1 pb-36">
+      <main className="px-15 relative mt-5 w-full flex-1 pb-36">
         <h1 className="sr-only">Spring 流程圖</h1>
         <div className="flex">
           <DevelopmentTeamIcon head className="shrink-0" />
@@ -27,7 +27,7 @@ export default function SpringFlowPage() {
             </ConversationArticle>
           </div>
         </div>
-        <section className="relative -mb-14 mt-28 flex flex-col pt-16">
+        <section className="relative -mb-14 mt-14 flex flex-col pt-8 2xl:mt-28 2xl:pt-16">
           <DiagramBackground className="z-10" />
           <div className="text-h3 absolute left-0 top-0 z-10 flex flex-col items-center gap-5 text-center">
             <div className="bg-neutral-white-light/25 border-neutral-white-light border-3 rounded-xl px-5 py-3">

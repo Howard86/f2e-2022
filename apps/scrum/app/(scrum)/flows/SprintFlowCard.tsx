@@ -12,7 +12,7 @@ const SprintFlowCard = forwardRef<HTMLDivElement, SprintFlowCardProps>(
     <div
       ref={ref}
       className={clsx(
-        'text-neutral-black-dark mb-8 whitespace-nowrap rounded-xl px-9 py-3 text-center shadow-xl',
+        'text-neutral-black-dark mb-8 whitespace-nowrap rounded-xl px-6 py-3 text-center shadow-xl 2xl:px-9',
         className
       )}
       {...props}
