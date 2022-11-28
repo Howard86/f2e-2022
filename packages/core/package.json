@@ -1,6 +1,6 @@
 {
   "name": "@f2e-2022/core",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@f2e-2022/jest-config": "workspace:^0.0.1",
-    "@f2e-2022/tailwind-config": "workspace:^0.0.0",
+    "@f2e-2022/tailwind-config": "workspace:^0.0.1",
     "@f2e-2022/tsconfig": "workspace:*",
     "@heroicons/react": "^2.0.13",
     "@types/react": "^18.0.25",
