@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['src/**/*.{ts,tsx}'],
+  content: ['app/**/*.{ts,tsx}'],
   theme: {
     fontSize: {
       h1: ['3.75rem', { fontWeight: 700 }],
@@ -53,6 +53,9 @@ module.exports = {
           light: '#8D8A91',
           main: '#726D7A',
           dark: '#524D5B',
+        },
+        error: {
+          main: '#E8433F',
         },
       },
       opacity: {

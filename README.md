@@ -14,7 +14,8 @@ This repository is powered by [pnpm](https://pnpm.io) and managed with [Turborep
 
 - `/apps` - this contains all published applications on [Vercel Platform](https://vercel.com)
   - [animated-landing](https://f2e-2022.howardism.dev) - redesigned [f2e 2022](https://2022.thef2e.com/) landing page by designer [Jenny Wu](https://uxfol.io/jennywu)
-  - [pdf](https://pdf.howardism.dev) - a web only PDF editor for adding personal signatures when in a rush designed by [Coral](https://2022.thef2e.com/users/12061549261449593305)
+  - [pdf](https://pdf.howardism.dev) - a web only PDF editor for adding personal signatures when in a rush designed by [Coral](https://2022.thef2e.com/users/12061549261449593305) (WIP)
+  - [scrum](https://scrum.howardism.dev) - a website introducing [Scrum](https://www.atlassian.com/agile/scrum) workflow for agile software development, integrated with drag & drop features, designed by [邱仲德](https://2022.thef2e.com/users/12061549261446563754)
   - docs - summary landing page for f2e-2022 changes (WIP)
 - `/packages` - this contains all shared packages used by all applications
   - eslint-config-f2e-2022: shared [ESLint](https://eslint.org) configuration files
@@ -24,7 +25,7 @@ This repository is powered by [pnpm](https://pnpm.io) and managed with [Turborep
   - core - sharable UI components (WIP)
   - utils - sharable utility functions (WIP)
 
-### Applications folder structure
+### Applications folder structure (for `f2e-2022` & `pdf`)
 
 - src
   - pages - [React](https://reactjs.org) components with built-in route support
@@ -35,6 +36,10 @@ This repository is powered by [pnpm](https://pnpm.io) and managed with [Turborep
 - public - all public static assets hosted on [Vercel Platform](https://vercel.com)
 - test - [JEST](https://jestjs.io) unit test for each page
 - \_\_mock\_\_ - mocked 3rd party libraries when testing with [JEST](https://jestjs.io)
+
+### Applications folder structure (for `scrum`)
+
+Please refer to [next.js appDir](https://beta.nextjs.org/docs/routing/fundamentals) and routing. Basically it is similar to [feature folders](https://redux.js.org/faq/code-structure#what-should-my-file-structure-look-like-how-should-i-group-my-action-creators-and-reducers-in-my-project-where-should-my-selectors-go) structure recommended by [redux doc](https://redux.js.org/faq/code-structure#what-should-my-file-structure-look-like-how-should-i-group-my-action-creators-and-reducers-in-my-project-where-should-my-selectors-go)
 
 ## Getting Started
 
@@ -108,7 +113,9 @@ This project will mainly follow the dependencies of [turbo-monorepo-template](ht
 ### Application specific dependencies
 
 - Animated Landing
+
   1. [Framer Motion](https://www.framer.com/motion)
+
 - PDF\*
 
   1. [PDF.js](https://mozilla.github.io/pdf.js/)
@@ -117,7 +124,11 @@ This project will mainly follow the dependencies of [turbo-monorepo-template](ht
   4. [jsPDF](https://github.com/parallax/jsPDF)
   5. [react-icons](https://react-icons.github.io/react-icons/)
 
-- \* Note: `Fabric.js` will install peer dependency [node-canvas](https://www.npmjs.com/package/canvas), which requires additional setup depending on your local OS. Please refer to [readme](https://github.com/Automattic/node-canvas#compiling) for more reference.
+- Scrum
+
+  1.  [@hello-pangea/dnd](https://github.com/hello-pangea/dnd)
+
+> \* Note: `Fabric.js` will install peer dependency [node-canvas](https://www.npmjs.com/package/canvas), which requires additional setup depending on your local OS. Please refer to [readme](https://github.com/Automattic/node-canvas#compiling) for more reference.
 
 ## Useful commands
 
