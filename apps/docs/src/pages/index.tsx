@@ -50,7 +50,7 @@ const projects: Project[] = [
     name: 'F2E 2022 Landing page',
     subheader: 'Redesign of official F2E landing page with animations',
     href: 'https://f2e-2022.howardism.dev',
-    src: '/f2e-2022-logo.png',
+    src: './f2e-2022-logo.png',
     description:
       "Created at least 10+ shared animated React components powered by Framer Motion, tried a way to clean up all Framer Motion's shared variants, transitions & dynamic variables",
     used: [
@@ -71,7 +71,7 @@ const projects: Project[] = [
     subheader:
       'A web-browser only application to support digital signature on mobile & desktop devices',
     href: 'https://pdf.howardism.dev',
-    src: '/pdf-logo.png',
+    src: './pdf-logo.png',
     description:
       ' As reviewing the UI, realises the scope had been over and some features will required more than just frontend technology to integrate. For example, creating a personal account will require authentication scheme and an external datasource such as Firebase; saving signature history will probably require using browser database like IndexedDB; sharing files for multi-signature will require an online stroage for sharing either signatures or original/signed documents which will most likely lead to security & encryption issues; This application could easily develop into an MVP but cannot see which feature to focus as initial launch.',
     used: [
@@ -108,7 +108,7 @@ const projects: Project[] = [
     subheader:
       'A step-by-step tutorial to conduct ideas of Scrum - an agile methodology of software development',
     href: 'https://scrum.howardism.dev',
-    src: '/scrum-logo.png',
+    src: './scrum-logo.png',
     description:
       'Tested development with React Server Component and Next.js v13 app folder structure (without any server-side data fetching mechanism). It felt like working within feature folder structure where each route/layout has context-specific client-side and server-side React components, which was another applicable approach when working on large scale applications.',
     used: [
