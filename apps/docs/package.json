@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "export": "next export",
     "analyze": "ANALYZE=true next build",
     "start": "next start ",
     "dev": "next dev -p 3002",
