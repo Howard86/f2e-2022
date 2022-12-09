@@ -1,5 +1,12 @@
 # @f2e-2022/docs
 
+## 0.0.3
+
+### Patch Changes
+
+- 95cfca6: Add docs apps for f2e-2022 and set up github pages deployment. Remove sharp & update lockfiles
+- 6e9a06e: fix deployments ci steps; fix docs unit test & remove unused deps
+
 ## 0.0.2
 
 ### Patch Changes
