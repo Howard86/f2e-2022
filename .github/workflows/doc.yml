@@ -29,8 +29,10 @@ jobs:
       - name: Install Docs Dependencies
         run: pnpm install --frozen-lockfile=false
 
-      - name: Build Docs
-        run: pnpm turbo run export --filter=docs
+      - name: Build & Export Docs
+        run: | 
+          pnpm turbo run build --filter=docs
+          pnpm turbo run export --filter=docs
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
