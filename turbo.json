@@ -4,7 +4,7 @@
     "build": {
       "outputs": ["dist/**", ".next/**"],
       "dependsOn": ["^build"],
-      "env": ["ANALYZE", "NEXT_PUBLIC_WEBSITE_URL"]
+      "env": ["ANALYZE", "NEXT_PUBLIC_WEBSITE_URL", "GITHUB_REPOSITORY"]
     },
     "test": {
       "outputs": [],
@@ -23,6 +23,9 @@
       "cache": false
     },
     "test:watch": {
+      "cache": false
+    },
+    "export": {
       "cache": false
     }
   }
