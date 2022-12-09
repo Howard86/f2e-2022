@@ -137,11 +137,9 @@ importers:
 
   apps/docs:
     specifiers:
-      '@f2e-2022/core': workspace:*
       '@f2e-2022/jest-config': workspace:*
       '@f2e-2022/tailwind-config': workspace:*
       '@f2e-2022/tsconfig': workspace:*
-      '@f2e-2022/utils': workspace:*
       '@headlessui/react': ^1.7.4
       '@heroicons/react': ^2.0.13
       '@types/node': ^18.11.9
@@ -157,8 +155,6 @@ importers:
       tailwindcss: ^3.2.4
       typescript: ^4.9.3
     dependencies:
-      '@f2e-2022/core': link:../../packages/core
-      '@f2e-2022/utils': link:../../packages/utils
       '@headlessui/react': 1.7.4_biqbaboplfbrettd7655fr4n2y
       '@heroicons/react': 2.0.13_react@18.2.0
       clsx: 1.2.1

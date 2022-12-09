@@ -14,8 +14,6 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf .next"
   },
   "dependencies": {
-    "@f2e-2022/core": "workspace:*",
-    "@f2e-2022/utils": "workspace:*",
     "@headlessui/react": "^1.7.4",
     "@heroicons/react": "^2.0.13",
     "clsx": "^1.2.1",
