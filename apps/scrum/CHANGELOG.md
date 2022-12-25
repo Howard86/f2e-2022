@@ -1,5 +1,11 @@
 # @f2e-2022/scrum
 
+## 0.1.1
+
+### Patch Changes
+
+- 95cfca6: Add docs apps for f2e-2022 and set up github pages deployment. Remove sharp & update lockfiles
+
 ## 0.1.0
 
 ### Minor Changes
