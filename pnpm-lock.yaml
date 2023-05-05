@@ -113,8 +113,8 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
       react-html-props:
-        specifier: ^1.0.33
-        version: 1.0.33(react@18.2.0)
+        specifier: ^2.0.0
+        version: 2.0.1(react-dom@18.2.0)(react@18.2.0)
       tsup:
         specifier: ^6.5.0
         version: 6.5.0(postcss@8.4.19)(ts-node@10.9.1)(typescript@5.0.2)
@@ -7527,12 +7527,14 @@ packages:
       react: 18.2.0
       scheduler: 0.23.0
 
-  /react-html-props@1.0.33(react@18.2.0):
-    resolution: {integrity: sha512-AmQb+N22J1P0VDPte/ttg3yyvp/j/aVQIPDyuS+5A8azFP3hAMC29Ab2YWM+pja+yy5lo54D6VNqg7UIjqhV6g==}
+  /react-html-props@2.0.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-zyVzmVt6Fh8+2q06+h86V5UhLJJ9N1k7rGSjRQv0H1CT7rdl4p8RgmeUXmFazi0x8E6m8hhEbCjhTkBC06CpHg==}
     peerDependencies:
-      react: '>=16'
+      react: ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0
+      react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0
     dependencies:
       react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: true
 
   /react-icons@4.6.0(react@18.2.0):
