@@ -29,7 +29,7 @@
     "@f2e-2022/jest-config": "workspace:*",
     "@f2e-2022/tailwind-config": "workspace:*",
     "@f2e-2022/tsconfig": "workspace:*",
-    "@headlessui/tailwindcss": "^0.1.1",
+    "@headlessui/tailwindcss": "^0.2.0",
     "@tailwindcss/forms": "^0.5.3",
     "@types/fabric": "^4.5.12",
     "@types/node": "^18.11.9",
