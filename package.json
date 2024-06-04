@@ -64,7 +64,7 @@
     "react-dom": "^18.2.0",
     "react-html-props": "^2.0.0",
     "tsup": "^6.5.0",
-    "turbo": "^1.6.3",
+    "turbo": "^2.0.0",
     "typescript": "^5.0.0"
   }
 }
