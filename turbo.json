@@ -6,10 +6,6 @@
       "dependsOn": ["^build"],
       "env": ["ANALYZE", "NEXT_PUBLIC_WEBSITE_URL", "GITHUB_REPOSITORY"]
     },
-    "test": {
-      "outputs": [],
-      "dependsOn": []
-    },
     "typecheck": {
       "dependsOn": ["^typecheck"],
       "inputs": ["**/*.{ts,tsx}", "tsconfig.json", "tsconfig.*.json"]
@@ -23,9 +19,6 @@
       "persistent": true
     },
     "clean": {
-      "cache": false
-    },
-    "test:watch": {
       "cache": false
     }
   }

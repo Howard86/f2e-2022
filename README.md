@@ -18,7 +18,6 @@ This repository uses [Bun](https://bun.sh) and [Turborepo](https://turborepo.dev
   - [scrum](https://scrum.howardism.dev) - a website introducing [Scrum](https://www.atlassian.com/agile/scrum) workflow for agile software development, integrated with drag & drop features, designed by [邱仲德](https://2022.thef2e.com/users/12061549261446563754)
   - docs - summary landing page for f2e-2022 changes (WIP)
 - `/packages` - this contains all shared packages used by all applications
-  - jest-config: shared [JEST](https://jestjs.io) configuration files
   - tailwind-config: shared [Tailwindcss](https://tailwindcss.com) configuration files
   - tsconfig: shared [TypeScript](https://www.typescriptlang.org) configuration files
   - core - sharable UI components (WIP)
@@ -33,8 +32,7 @@ This repository uses [Bun](https://bun.sh) and [Turborepo](https://turborepo.dev
   - hooks - some utility hooks to encapsulate logic
   - styles - global CSS files with [Tailwindcss](https://tailwindcss.com) annotations
 - public - all public static assets hosted on [Vercel Platform](https://vercel.com)
-- test - [JEST](https://jestjs.io) unit test for each page
-- \_\_mock\_\_ - mocked 3rd party libraries when testing with [JEST](https://jestjs.io)
+- test - [Bun](https://bun.sh/docs/test) unit tests for each page
 
 ### Applications folder structure (for `scrum`)
 
@@ -105,7 +103,7 @@ This project will mainly follow the dependencies of [turbo-monorepo-template](ht
 3. Pre-commit and pre-push hooks powered by [lint-staged](https://github.com/lint-staged/lint-staged) and [Husky](https://typicode.github.io/husky/)
 4. [Commitlint](https://commitlint.js.org/)
 5. [Turborepo](https://turborepo.dev)
-6. [Jest](https://jestjs.io/)
+6. [Bun test runner](https://bun.sh/docs/test)
 
 ### Application specific dependencies
 
@@ -134,7 +132,7 @@ This project will mainly follow the dependencies of [turbo-monorepo-template](ht
 - `bun run check` - lint and format-check with Ultracite
 - `bun run format` - apply Ultracite fixes
 - `bun run typecheck` - type-check every TypeScript workspace
-- `bun run test` - run the existing Jest suites
+- `bun run test` - run all unit tests with Bun
 - `bun run changeset` - generate a changeset
 - `bun run clean` - remove generated workspace output
 

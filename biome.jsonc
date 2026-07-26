@@ -27,13 +27,5 @@
         "useFilenamingConvention": "off"
       }
     }
-  },
-  "overrides": [
-    {
-      "includes": ["**/*.{spec,test}.{ts,tsx}", "**/jest.setup.js"],
-      "javascript": {
-        "globals": ["describe", "expect", "it", "jest"]
-      }
-    }
-  ]
+  }
 }

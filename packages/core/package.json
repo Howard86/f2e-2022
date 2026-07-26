@@ -13,12 +13,9 @@
     "build": "tsup && tsc -p tsconfig.build.json --emitDeclarationOnly",
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
-    "test": "jest",
-    "test:watch": "jest --watch",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
-    "@f2e-2022/jest-config": "workspace:^0.0.1",
     "@f2e-2022/tailwind-config": "workspace:^0.0.1",
     "@f2e-2022/tsconfig": "workspace:*",
     "@heroicons/react": "^2.2.0",

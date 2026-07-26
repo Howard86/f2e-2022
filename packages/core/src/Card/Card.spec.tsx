@@ -1,4 +1,4 @@
-import '@testing-library/jest-dom'
+import { describe, expect, it } from 'bun:test'
 import { render, screen } from '@testing-library/react'
 import type { JSX } from 'react'
 import { Card } from './Card'

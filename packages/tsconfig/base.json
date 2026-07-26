@@ -15,8 +15,8 @@
     "preserveWatchOutput": true,
     "skipLibCheck": true,
     "strict": true,
-    "typeRoots": ["../../node_modules/@types"],
-    "types": ["jest"]
+    "typeRoots": ["../../node_modules/@types", "./types"],
+    "types": ["bun", "bun-test"]
   },
   "exclude": ["node_modules"]
 }
