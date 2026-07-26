@@ -1,25 +1,25 @@
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import ConfluenceIcon from './sprints/ConfluenceIcon'
 
 export enum ScrumRoute {
-  '/characters',
-  '/features',
-  '/points',
-  '/sprints',
-  '/flows',
-  '/retros',
-  '/complete',
+  '/characters' = 0,
+  '/features' = 1,
+  '/points' = 2,
+  '/sprints' = 3,
+  '/flows' = 4,
+  '/retros' = 5,
+  '/complete' = 6,
 }
 
 export const SCRUM_ROUTES = Object.keys(ScrumRoute).filter((route) =>
   route.startsWith('/')
 ) as (keyof typeof ScrumRoute)[]
 
-export const enum FeatureBacklogTitle {
-  '會員系統',
-  '應徵者的線上履歷編輯器',
-  '前台職缺列表',
-  '後台職缺管理功能',
+export enum FeatureBacklogTitle {
+  會員系統 = 0,
+  應徵者的線上履歷編輯器 = 1,
+  前台職缺列表 = 2,
+  後台職缺管理功能 = 3,
 }
 
 type FeatureBacklog = {
@@ -29,28 +29,26 @@ type FeatureBacklog = {
 }
 
 export const FeatureBacklogEntity: Record<FeatureBacklogTitle, FeatureBacklog> = {
-  [FeatureBacklogTitle['會員系統']]: {
-    title: '會員系統',
+  [FeatureBacklogTitle.會員系統]: {
     description: '（登入、註冊、管理）',
     storyPoint: 8,
+    title: '會員系統',
   },
-  [FeatureBacklogTitle['應徵者的線上履歷編輯器']]: {
-    title: '應徵者的線上履歷編輯器',
+  [FeatureBacklogTitle.應徵者的線上履歷編輯器]: {
     storyPoint: 13,
+    title: '應徵者的線上履歷編輯器',
   },
-  [FeatureBacklogTitle['前台職缺列表']]: {
-    title: '前台職缺列表',
+  [FeatureBacklogTitle.前台職缺列表]: {
     description: '（缺詳細內容、點選可發送應徵意願）',
     storyPoint: 5,
+    title: '前台職缺列表',
   },
-  [FeatureBacklogTitle['後台職缺管理功能']]: {
-    title: '後台職缺管理功能',
+  [FeatureBacklogTitle.後台職缺管理功能]: {
     description: '（資訊上架、下架、顯示應徵者資料）',
     storyPoint: 5,
+    title: '後台職缺管理功能',
   },
 }
-
-
 
 export const DRAG_ID_QUERY = 'data-rfd-draggable-id'
 export const EMPTY_OBJECT = {}
@@ -72,11 +70,8 @@ type Normalised<T extends object, K extends keyof T> = T[K] extends string | num
 export type NormalisedTab = Normalised<SprintTabOption, 'id'>
 
 export const NORMALISED_TABS: NormalisedTab = {
-  ids: [0, 1, 2],
   entities: {
     0: {
-      title: '每日站立會議',
-      subheader: 'Daily Scrum',
       children: (
         <>
           <p>每天都要進行的會議，以 15 分鐘為限制：</p>
@@ -88,10 +83,10 @@ export const NORMALISED_TABS: NormalisedTab = {
           <p>透過團隊分享，追蹤大家的工作狀況。</p>
         </>
       ),
+      subheader: 'Daily Scrum',
+      title: '每日站立會議',
     },
     1: {
-      title: '短衝檢視會議',
-      subheader: 'Sprint Review',
       children: (
         <>
           <p>
@@ -102,10 +97,10 @@ export const NORMALISED_TABS: NormalisedTab = {
           </p>
         </>
       ),
+      subheader: 'Sprint Review',
+      title: '短衝檢視會議',
     },
     2: {
-      title: '短衝自省會議',
-      subheader: 'Sprint Retrospective',
       children: (
         <>
           <p>團隊在自省會議裡，會共同回顧該短衝歷程發生的事情、好的地方及可以改進的地方。</p>
@@ -116,8 +111,11 @@ export const NORMALISED_TABS: NormalisedTab = {
           </p>
         </>
       ),
+      subheader: 'Sprint Retrospective',
+      title: '短衝自省會議',
     },
   },
+  ids: [0, 1, 2],
 }
 
 export const DONE_WELL_OPTIONS = [

@@ -1,4 +1,6 @@
+import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
+import type { JSX } from 'react'
 import { Card } from './Card'
 
 function EmptyIcon(): JSX.Element {
@@ -9,7 +11,7 @@ describe('card', () => {
   it('should render', () => {
     expect.hasAssertions()
     render(
-      <Card name="MOCK_NAME" description="MOCK_DESCRIPTION" href="MOCK_HREF" Icon={EmptyIcon} />
+      <Card description="MOCK_DESCRIPTION" href="MOCK_HREF" Icon={EmptyIcon} name="MOCK_NAME" />
     )
 
     expect(screen.getByText('MOCK_NAME')).toBeInTheDocument()

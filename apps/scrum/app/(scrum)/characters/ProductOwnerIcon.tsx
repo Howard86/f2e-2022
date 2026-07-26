@@ -1,17 +1,18 @@
-import { SVGProps } from 'react-html-props'
+import type { SVGProps } from 'react-html-props'
 
 export interface CharacterIconProps extends SVGProps {
   head?: boolean
 }
 
 export default function ProductOwnerIcon({ head, ...props }: CharacterIconProps) {
-  if (head)
+  if (head) {
     return (
       <svg
-        width="100"
+        aria-hidden="true"
+        fill="none"
         height="144"
         viewBox="0 0 100 144"
-        fill="none"
+        width="100"
         xmlns="http://www.w3.org/2000/svg"
         {...props}
       >
@@ -101,13 +102,15 @@ export default function ProductOwnerIcon({ head, ...props }: CharacterIconProps)
         />
       </svg>
     )
+  }
 
   return (
     <svg
-      width="136"
+      aria-hidden="true"
+      fill="none"
       height="294"
       viewBox="0 0 136 294"
-      fill="none"
+      width="136"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >

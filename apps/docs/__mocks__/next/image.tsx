@@ -1,6 +1,6 @@
-import { ImageProps } from 'next/image'
+import type { ImageProps } from 'next/image'
 
 export default function Image({ alt }: ImageProps) {
   // eslint-disable-next-line @next/next/no-img-element
-  return <img alt={alt} />
+  return <img alt={alt} height={1} width={1} />
 }

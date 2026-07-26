@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { HTMLMotionProps, motion } from 'framer-motion'
+import { type HTMLMotionProps, motion } from 'framer-motion'
 import DotIcon from './icons/DotIcon'
 
 interface MarqueeBannerProps extends HTMLMotionProps<'aside'> {
@@ -9,13 +9,13 @@ interface MarqueeBannerProps extends HTMLMotionProps<'aside'> {
 export default function MarqueeBanner({ className, reversed, ...props }: MarqueeBannerProps) {
   return (
     <motion.aside
-      className={clsx('bg-decoration z-10 whitespace-nowrap', reversed && 'rotate-180', className)}
+      className={clsx('z-10 whitespace-nowrap bg-decoration', reversed && 'rotate-180', className)}
       custom={reversed}
       {...props}
     >
       <p
         className={clsx(
-          'text-en-p1 font-en text-n1 inline-flex items-center gap-7 py-1.5 uppercase',
+          'inline-flex items-center gap-7 py-1.5 font-en text-en-p1 text-n1 uppercase',
           reversed && 'rotate-180'
         )}
       >

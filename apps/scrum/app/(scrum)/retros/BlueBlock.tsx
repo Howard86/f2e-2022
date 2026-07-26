@@ -1,12 +1,13 @@
-import { SVGProps } from 'react-html-props'
+import type { SVGProps } from 'react-html-props'
 
 export default function BlueBlock(props: SVGProps) {
   return (
     <svg
-      width="36"
+      aria-hidden="true"
+      fill="currentColor"
       height="42"
       viewBox="0 0 36 42"
-      fill="currentColor"
+      width="36"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >

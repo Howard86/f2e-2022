@@ -1,12 +1,13 @@
-import { SVGProps } from 'react-html-props'
+import type { SVGProps } from 'react-html-props'
 
 export default function MoveVertIcon(props: SVGProps) {
   return (
     <svg
-      width="48"
+      aria-hidden="true"
+      fill="none"
       height="48"
       viewBox="0 0 48 48"
-      fill="none"
+      width="48"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
@@ -18,7 +19,7 @@ export default function MoveVertIcon(props: SVGProps) {
       </g>
       <defs>
         <clipPath id="clip0_3275_3064">
-          <rect width="48" height="48" fill="white" />
+          <rect fill="white" height="48" width="48" />
         </clipPath>
       </defs>
     </svg>

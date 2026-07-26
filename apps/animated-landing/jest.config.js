@@ -1,4 +1,4 @@
-const config = require('@f2e-2022/jest-config/common')
+const config = require('@f2e-2022/jest-config/common.cjs')
 const nextJest = require('next/jest')
 
 const createJestConfig = nextJest({ dir: './' })

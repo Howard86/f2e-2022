@@ -1,12 +1,13 @@
-import { SVGProps } from 'react-html-props'
+import type { SVGProps } from 'react-html-props'
 
 export default function DiverIcon(props: SVGProps) {
   return (
     <svg
-      width="430"
+      aria-hidden="true"
+      fill="none"
       height="377"
       viewBox="0 0 430 377"
-      fill="none"
+      width="430"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >

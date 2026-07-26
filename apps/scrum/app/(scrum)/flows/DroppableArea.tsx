@@ -1,11 +1,11 @@
 'use client'
 
-import { Droppable, Draggable } from '@hello-pangea/dnd'
+import { Draggable, Droppable } from '@hello-pangea/dnd'
 import clsx from 'clsx'
-import { DivProps } from 'react-html-props'
+import type { DivProps } from 'react-html-props'
 import SprintFlowCard from './SprintFlowCard'
 
-export const enum DroppableId {
+export enum DroppableId {
   List = 'list',
   Top = 'top',
   Left = 'left',
@@ -13,8 +13,8 @@ export const enum DroppableId {
 }
 
 interface DroppableAreaProps extends DivProps {
-  itemGroup: ItemGroup
   droppableId: DroppableId
+  itemGroup: ItemGroup
 }
 
 export type ItemGroup = Record<DroppableId, [string, string][]>
@@ -26,20 +26,20 @@ export default function DroppableArea({ itemGroup, droppableId, ...props }: Drop
         <div ref={dropProvided.innerRef} {...dropProvided.droppableProps} {...props}>
           {itemGroup[droppableId].length > 0 ? (
             <Draggable
-              key={itemGroup[droppableId][0][0]}
               draggableId={itemGroup[droppableId][0][0]}
               index={0}
+              key={itemGroup[droppableId][0][0]}
             >
               {(dragProvided, dragSnapshot) => (
                 <SprintFlowCard
-                  ref={dragProvided.innerRef}
-                  header={itemGroup[droppableId][0][0]}
-                  subheader={itemGroup[droppableId][0][1]}
                   className={
                     dragSnapshot.isDragging || dropSnapshot.isDraggingOver
                       ? 'bg-neutral-white-light/50'
-                      : 'bg-neutral-white-light/75 translate-y-8'
+                      : 'translate-y-8 bg-neutral-white-light/75'
                   }
+                  header={itemGroup[droppableId][0][0]}
+                  ref={dragProvided.innerRef}
+                  subheader={itemGroup[droppableId][0][1]}
                   {...dragProvided.dragHandleProps}
                   {...dragProvided.draggableProps}
                 />
@@ -48,7 +48,7 @@ export default function DroppableArea({ itemGroup, droppableId, ...props }: Drop
           ) : (
             <div
               className={clsx(
-                'bg-primary-dark/50 border-5 border-neutral-white-light h-[118px] w-[296px] rounded-xl border-dashed',
+                'h-[118px] w-[296px] rounded-xl border-5 border-neutral-white-light border-dashed bg-primary-dark/50',
                 dropSnapshot.isDraggingOver && 'hidden'
               )}
             />

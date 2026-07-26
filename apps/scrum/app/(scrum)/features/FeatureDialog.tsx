@@ -1,8 +1,8 @@
 'use client'
 
-import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import ConversationArticle from 'app/(home)/ConversationArticle'
+import { Fragment, useState } from 'react'
 import ProductOwnerIcon from '../characters/ProductOwnerIcon'
 
 export default function FeatureDialog() {
@@ -11,7 +11,7 @@ export default function FeatureDialog() {
   const handleClose = () => setOpen(false)
 
   return (
-    <Transition.Root show={open} as={Fragment} appear>
+    <Transition.Root appear as={Fragment} show={open}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
         <Transition.Child
           as={Fragment}
@@ -38,8 +38,8 @@ export default function FeatureDialog() {
             >
               <Dialog.Panel className="relative flex items-center justify-center gap-28 overflow-hidden px-[10%]">
                 <div>
-                  <ProductOwnerIcon head className="h-auto w-[300px]" />
-                  <p className="text-h2 text-center">產品負責人</p>
+                  <ProductOwnerIcon className="h-auto w-[300px]" head />
+                  <p className="text-center text-h2">產品負責人</p>
                 </div>
                 <div className="flex flex-col items-center justify-center">
                   <div>
@@ -62,9 +62,9 @@ export default function FeatureDialog() {
                   </div>
                   <div className="mt-16 flex w-full items-center justify-end">
                     <button
-                      type="button"
+                      className="rounded-xl bg-secondary-green-light px-14 py-4 text-h4 text-neutral-black-dark shadow-button outline-none active:shadow-button-inset"
                       onClick={handleClose}
-                      className="bg-secondary-green-light text-neutral-black-dark text-h4 shadow-button active:shadow-button-inset rounded-xl py-4 px-14 outline-none"
+                      type="button"
                     >
                       沒問題！
                     </button>

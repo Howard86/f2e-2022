@@ -1,4 +1,5 @@
-import create from 'zustand'
+import type { FabricImage } from 'fabric'
+import { create } from 'zustand'
 
 type Normalised<T extends object, K extends keyof T> = T[K] extends string | number
   ? {
@@ -7,7 +8,7 @@ type Normalised<T extends object, K extends keyof T> = T[K] extends string | num
     }
   : never
 
-const EMPTY_ENTITY_STATE = { ids: [], entities: {} }
+const EMPTY_ENTITY_STATE = { entities: {}, ids: [] }
 const DEFAULT_ACTIVE_STEP = 2
 
 type Signature = {
@@ -19,7 +20,7 @@ type SigningFile = {
   timestamp: number
   name: string
   size: number
-  image: Parameters<fabric.Canvas['setBackgroundImage']>[0]
+  image: FabricImage | string
 }
 
 interface FileState {
@@ -27,8 +28,8 @@ interface FileState {
   moveNextStep: VoidFunction
   movePreviousStep: VoidFunction
   resetStep: VoidFunction
-  signingFiles: Normalised<SigningFile, 'timestamp'>
   signatures: Normalised<Signature, 'timestamp'>
+  signingFiles: Normalised<SigningFile, 'timestamp'>
   upsertSignature: (signature: Signature) => void
   upsertSigningFile: (file: SigningFile) => void
 }
@@ -43,19 +44,19 @@ const useFileStore = create<FileState>()((set) => ({
   upsertSignature: ({ timestamp, ...rest }) =>
     set((state) => ({
       signatures: {
+        entities: { ...state.signatures.entities, [timestamp]: rest },
         ids: state.signatures.entities[timestamp]
           ? state.signatures.ids
           : [...state.signatures.ids, timestamp],
-        entities: { ...state.signatures.entities, [timestamp]: rest },
       },
     })),
   upsertSigningFile: ({ timestamp, ...rest }) =>
     set((state) => ({
       signingFiles: {
+        entities: { ...state.signingFiles.entities, [timestamp]: rest },
         ids: state.signingFiles.entities[timestamp]
           ? state.signingFiles.ids
           : [...state.signingFiles.ids, timestamp],
-        entities: { ...state.signingFiles.entities, [timestamp]: rest },
       },
     })),
 }))

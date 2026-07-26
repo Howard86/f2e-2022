@@ -1,22 +1,22 @@
-import Image from 'next/image'
 import ConversationArticle from 'app/(home)/ConversationArticle'
-import ProductOwnerIcon from '../characters/ProductOwnerIcon'
+import Image from 'next/image'
 import beach from '@/public/backgrounds/beach.png'
+import ProductOwnerIcon from '../characters/ProductOwnerIcon'
 import { ScrumRoute } from '../constants'
 import ScrumHeader from '../ScrumHeader'
 import ScrumNav from '../ScrumNav'
-import JiraIcon from './JiraIcon'
-import FeatureDialog from './FeatureDialog'
 import BacklogDragSection from './BacklogDragSection'
+import FeatureDialog from './FeatureDialog'
+import JiraIcon from './JiraIcon'
 
 export default function FeaturePage() {
   return (
     <>
       <ScrumHeader route={ScrumRoute['/features']} />
       <main className="mt-5 flex-1">
-        <div className="px-15 flex items-center">
+        <div className="flex items-center px-15">
           <ProductOwnerIcon head />
-          <ConversationArticle className="ml-16 items-center py-5 px-6">
+          <ConversationArticle className="ml-16 items-center px-6 py-5">
             <p>
               請試著把需求放到產品待辦清單，並調整待辦的優先度順序。
               <br />
@@ -26,9 +26,9 @@ export default function FeaturePage() {
           </ConversationArticle>
         </div>
         <BacklogDragSection />
-        <Image src={beach} placeholder="blur" alt="海灘背景" className="-mb-1 h-auto w-full" />
+        <Image alt="海灘背景" className="-mb-1 h-auto w-full" placeholder="blur" src={beach} />
       </main>
-      <ScrumNav route={ScrumRoute['/features']} className="bg-secondary-brown-dark" />
+      <ScrumNav className="bg-secondary-brown-dark" route={ScrumRoute['/features']} />
       <FeatureDialog />
     </>
   )

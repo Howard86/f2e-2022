@@ -1,12 +1,13 @@
-import { SVGProps } from 'react-html-props'
+import type { SVGProps } from 'react-html-props'
 
 export default function LongArrowIcon(props: SVGProps) {
   return (
     <svg
-      width="38"
+      aria-hidden="true"
+      fill="none"
       height="63"
       viewBox="0 0 38 63"
-      fill="none"
+      width="38"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >

@@ -1,12 +1,12 @@
-import type { DivProps, SVGProps } from 'react-html-props'
-import type { FC } from 'react'
 import clsx from 'clsx'
+import type { FC } from 'react'
+import type { DivProps, SVGProps } from 'react-html-props'
 
 export interface CardProps extends DivProps {
-  name: string
   description: string
   href: string
   Icon: FC<SVGProps>
+  name: string
 }
 
 export function Card({ Icon, name, description, href, className }: CardProps) {
@@ -18,13 +18,13 @@ export function Card({ Icon, name, description, href, className }: CardProps) {
       )}
     >
       <div className="flex items-center justify-center md:-translate-y-6">
-        <span className="inline-flex items-center justify-center gap-2 rounded-md bg-gradient-to-r from-indigo-500 to-pink-600  p-3 shadow-lg">
-          <Icon className="h-6 w-6 text-white" aria-hidden="true" />
+        <span className="inline-flex items-center justify-center gap-2 rounded-md bg-gradient-to-r from-indigo-500 to-pink-600 p-3 shadow-lg">
+          <Icon aria-hidden="true" className="h-6 w-6 text-white" />
         </span>
       </div>
       <div>
-        <a href={href} target="_blank" rel="noreferrer">
-          <h2 className="text-lg font-medium tracking-tight text-zinc-800 group-hover:text-indigo-600 group-hover:underline md:-mt-2">
+        <a href={href} rel="noreferrer" target="_blank">
+          <h2 className="font-medium text-lg text-zinc-800 tracking-tight group-hover:text-indigo-600 group-hover:underline md:-mt-2">
             {name}
           </h2>
         </a>

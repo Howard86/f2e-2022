@@ -10,20 +10,20 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>快點簽 Fast-Sign</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta
-          name="description"
           content="用簡約、不用過多的裝飾設計，目標是讓使用者可以專注在完成簽署的任務。搭配適當的插畫來表達情境，增加「快點簽」這個產品的情緒與情感的傳達，增進使用者與產品的連結。"
+          name="description"
         />
 
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={BASE_URL} />
-        <meta property="og:title" content="快點簽 Fast-Sign" />
+        <meta content="website" property="og:type" />
+        <meta content={BASE_URL} property="og:url" />
+        <meta content="快點簽 Fast-Sign" property="og:title" />
         <meta
-          property="og:description"
           content="用簡約、不用過多的裝飾設計，目標是讓使用者可以專注在完成簽署的任務。搭配適當的插畫來表達情境，增加「快點簽」這個產品的情緒與情感的傳達，增進使用者與產品的連結。"
+          property="og:description"
         />
-        <meta property="og:image" content={`${BASE_URL}/android-chrome-192x192.png`} />
+        <meta content={`${BASE_URL}/android-chrome-192x192.png`} property="og:image" />
       </Head>
       <Component {...pageProps} />
     </>

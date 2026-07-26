@@ -4,11 +4,11 @@ import {
   DragDropContext,
   Draggable,
   Droppable,
-  OnDragEndResponder,
-  OnDragUpdateResponder,
+  type OnDragEndResponder,
+  type OnDragUpdateResponder,
 } from '@hello-pangea/dnd'
 import clsx from 'clsx'
-import { CSSProperties, useState } from 'react'
+import { type CSSProperties, useState } from 'react'
 import {
   DRAG_ID_QUERY,
   EMPTY_OBJECT,
@@ -17,7 +17,7 @@ import {
 } from '../constants'
 import BacklogBackground from './BacklogBackground'
 
-const enum DroppableId {
+enum DroppableId {
   ProductBacklog = 'product',
   SprintList = 'sprint',
 }
@@ -46,7 +46,9 @@ export default function BacklogDragSection() {
 
     const draggedDOM = document.querySelector<HTMLElement>(`[${DRAG_ID_QUERY}='${draggableId}']`)
 
-    if (!draggedDOM || !draggedDOM.parentNode) return
+    if (!draggedDOM?.parentNode) {
+      return
+    }
 
     const { clientHeight, clientWidth, parentNode } = draggedDOM
     const childrenArray = [...parentNode.children]
@@ -69,16 +71,18 @@ export default function BacklogDragSection() {
     setPlaceholderStyle((state) => ({
       ...state,
       height: clientHeight,
-      width: clientWidth,
-      top: clientY,
       left: Number.parseFloat(window.getComputedStyle(parentNode as Element).paddingLeft),
+      top: clientY,
+      width: clientWidth,
     }))
   }
 
   const onDragEnd: OnDragEndResponder = (result) => {
     const { source, destination } = result
 
-    if (!destination) return
+    if (!destination) {
+      return
+    }
 
     const newItemGroup = { ...itemGroup }
 
@@ -90,104 +94,106 @@ export default function BacklogDragSection() {
 
   return (
     <DragDropContext onDragEnd={onDragEnd} onDragUpdate={onDragUpdate}>
-      <section className="px-15 relative z-10 mt-5 -mb-24 flex flex-col items-center text-center lg:flex-row lg:items-stretch">
+      <section className="relative z-10 mt-5 -mb-24 flex flex-col items-center px-15 text-center lg:flex-row lg:items-stretch">
         <Droppable droppableId={DroppableId.ProductBacklog}>
           {(dropProvided, dropSnapshot) => (
             <ul
-              ref={dropProvided.innerRef}
               className={clsx(
-                'rounded-20 relative mr-20 flex-1 p-8',
+                'relative mr-20 flex-1 rounded-20 p-8',
                 dropSnapshot.isDraggingOver && 'bg-neutral-black-dark/10'
               )}
+              ref={dropProvided.innerRef}
               {...dropProvided.droppableProps}
             >
               {itemGroup[DroppableId.ProductBacklog].map((title, index) => {
                 const item = FeatureBacklogEntity[title]
 
                 return (
-                  <Draggable key={item.title} draggableId={item.title} index={index}>
+                  <Draggable draggableId={item.title} index={index} key={item.title}>
                     {(dragProvided, dragSnapshot) => (
                       <li
-                        ref={dragProvided.innerRef}
                         className={clsx(
-                          'text-neutral-black-dark shadow-brown z-10 mb-8 rounded-xl px-6 py-4 2xl:px-9 2xl:py-6',
+                          'z-10 mb-8 rounded-xl px-6 py-4 text-neutral-black-dark shadow-brown 2xl:px-9 2xl:py-6',
                           dragSnapshot.isDragging
                             ? 'bg-neutral-white-light/50'
                             : 'bg-neutral-white-light/75'
                         )}
+                        ref={dragProvided.innerRef}
                         {...dragProvided.draggableProps}
                         {...dragProvided.dragHandleProps}
                       >
                         <p className="text-h3">{item.title}</p>
-                        {item.description && <p className="font-bold">{item.description}</p>}
+                        {item.description ? <p className="font-bold">{item.description}</p> : null}
                       </li>
                     )}
                   </Draggable>
                 )
               })}
               {dropProvided.placeholder}
-              {dropSnapshot.isUsingPlaceholder && dropSnapshot.isDraggingOver && (
+              {dropSnapshot.isUsingPlaceholder && dropSnapshot.isDraggingOver ? (
                 <span
                   aria-hidden="true"
-                  className="border-neutral-white-light border-3 absolute rounded-xl border-dashed"
+                  className="absolute rounded-xl border-3 border-neutral-white-light border-dashed"
                   style={placeholderStyle}
                 />
-              )}
+              ) : null}
             </ul>
           )}
         </Droppable>
 
         <div className="relative flex min-h-[43rem] flex-1 flex-col">
           <BacklogBackground className="absolute inset-0 h-full w-auto" />
-          <hgroup className="text-neutral-black-dark relative z-10">
-            <h1 className="text-h2 inline">產品待辦清單</h1>
-            <h2 className="text-h3 inline">Product Backlog</h2>
+          <hgroup className="relative z-10 text-neutral-black-dark">
+            <h1 className="inline text-h2">產品待辦清單</h1>
+            <h2 className="inline text-h3">Product Backlog</h2>
           </hgroup>
-          <div className="relative z-10 flex flex-1 gap-2 pl-12 pr-20">
+          <div className="relative z-10 flex flex-1 gap-2 pr-20 pl-12">
             <div className="flex-1">
               <p className="mr-1 mb-5 text-end">優先度</p>
               <Droppable droppableId={DroppableId.SprintList}>
                 {(dropProvided, dropSnapshot) => (
                   <ul
-                    ref={dropProvided.innerRef}
                     className={clsx(
-                      'rounded-20 relative h-full w-[32rem] flex-1',
+                      'relative h-full w-[32rem] flex-1 rounded-20',
                       dropSnapshot.isDraggingOver && 'bg-neutral-black-dark/10'
                     )}
+                    ref={dropProvided.innerRef}
                     {...dropProvided.droppableProps}
                   >
                     {itemGroup[DroppableId.SprintList].map((title, index) => {
                       const item = FeatureBacklogEntity[title]
 
                       return (
-                        <Draggable key={item.title} draggableId={item.title} index={index}>
+                        <Draggable draggableId={item.title} index={index} key={item.title}>
                           {(dragProvided, dragSnapshot) => (
                             <li
-                              ref={dragProvided.innerRef}
                               className={clsx(
-                                'text-neutral-black-dark shadow-brown z-10 mb-6 rounded-xl px-4 py-2 2xl:px-6 2xl:py-4',
+                                'z-10 mb-6 rounded-xl px-4 py-2 text-neutral-black-dark shadow-brown 2xl:px-6 2xl:py-4',
                                 dragSnapshot.isDragging
                                   ? 'bg-neutral-white-light/50'
                                   : 'bg-neutral-white-light/75'
                               )}
+                              ref={dragProvided.innerRef}
                               {...dragProvided.draggableProps}
                               {...dragProvided.dragHandleProps}
                             >
                               <p className="text-h3">{item.title}</p>
-                              {item.description && <p className="font-bold">{item.description}</p>}
+                              {item.description ? (
+                                <p className="font-bold">{item.description}</p>
+                              ) : null}
                             </li>
                           )}
                         </Draggable>
                       )
                     })}
                     {dropProvided.placeholder}
-                    {dropSnapshot.isUsingPlaceholder && dropSnapshot.isDraggingOver && (
+                    {dropSnapshot.isUsingPlaceholder && dropSnapshot.isDraggingOver ? (
                       <span
                         aria-hidden="true"
-                        className="border-neutral-white-light border-3 absolute rounded-xl border-dashed transition-all"
+                        className="absolute rounded-xl border-3 border-neutral-white-light border-dashed transition-all"
                         style={placeholderStyle}
                       />
-                    )}
+                    ) : null}
                   </ul>
                 )}
               </Droppable>
@@ -196,7 +202,7 @@ export default function BacklogDragSection() {
               {itemGroup[DroppableId.SprintList].length > 0 && (
                 <>
                   <span>高</span>
-                  <span className="bg-neutral-white-light border-neutral-white-light mx-auto my-1 block h-full w-px rounded-sm border" />
+                  <span className="mx-auto my-1 block h-full w-px rounded-sm border border-neutral-white-light bg-neutral-white-light" />
                   <span>低</span>
                 </>
               )}

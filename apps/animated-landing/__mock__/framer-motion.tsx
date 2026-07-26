@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/heading-has-content */
-import { FC, SVGProps } from 'react'
-import { AProps, DivProps, HeadingProps, PProps, SpanProps } from 'react-html-props'
+import type { FC, SVGProps } from 'react'
+import type { AProps, DivProps, HeadingProps, PProps, SpanProps } from 'react-html-props'
 
 export const motion = (component: FC) => component
 

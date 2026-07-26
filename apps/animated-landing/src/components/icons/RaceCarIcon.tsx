@@ -1,13 +1,14 @@
-import { SVGProps } from 'react-html-props'
+import type { SVGProps } from 'react-html-props'
 
 export default function RaceCarIcon({ className, ...props }: SVGProps) {
   return (
     <svg
-      width="76"
+      aria-hidden="true"
+      className={`${className} fill-n1 drop-shadow-white`}
       height="35"
       viewBox="0 0 76 35"
+      width="76"
       xmlns="http://www.w3.org/2000/svg"
-      className={`${className} fill-n1 drop-shadow-white`}
       {...props}
     >
       <g>

@@ -3,9 +3,8 @@
   "extends": "@f2e-2022/tsconfig/nextjs.json",
   "compilerOptions": {
     "rootDir": ".",
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts"]

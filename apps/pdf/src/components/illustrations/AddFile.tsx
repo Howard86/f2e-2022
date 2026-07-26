@@ -1,12 +1,13 @@
-import { SVGProps } from 'react-html-props'
+import type { SVGProps } from 'react-html-props'
 
 export default function AddFile(props: SVGProps) {
   return (
     <svg
-      width="80"
+      aria-hidden="true"
+      fill="none"
       height="80"
       viewBox="0 0 80 80"
-      fill="none"
+      width="80"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
@@ -15,15 +16,15 @@ export default function AddFile(props: SVGProps) {
         fill="#E6E9EF"
       />
       <path
-        opacity="0.6"
         d="M62.0672 76L6 75.9712L6.03842 4L47.6615 4.0192L62.096 17.7431L62.0672 76Z"
         fill="white"
+        opacity="0.6"
       />
       <path d="M47.6615 4.01868L62.096 17.7426L47.6519 17.733L47.6615 4.01868Z" fill="#676879" />
       <path
-        opacity="0.4"
         d="M47.6615 4.01868L62.096 17.7426L47.6519 17.733L47.6615 4.01868Z"
         fill="white"
+        opacity="0.4"
       />
       <path
         d="M11.5002 17.9253L42.6743 17.9417L42.6753 16.0977L11.5012 16.0814L11.5002 17.9253Z"

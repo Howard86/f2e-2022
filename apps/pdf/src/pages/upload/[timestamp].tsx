@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import useFileStore from '@/hooks/useFileStore'
-import UploadLayout from '@/components/UploadLayout'
 import PDFViewer from '@/components/PDFViewer'
+import UploadLayout from '@/components/UploadLayout'
+import useFileStore from '@/hooks/useFileStore'
 
 const EMPTY_TIMESTAMP = -1
 
@@ -22,7 +22,9 @@ export default function SignFilePage() {
     }
   }, [router, signFile])
 
-  if (!router.isReady || !signFile) return null
+  if (!(router.isReady && signFile)) {
+    return null
+  }
 
   return (
     <UploadLayout timestamp={timestamp}>

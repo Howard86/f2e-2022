@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import { memo } from 'react'
 import WhiteBox from './WhiteBox'
 
@@ -10,11 +9,11 @@ function ActiveBoxes({ count }: ActiveBoxesProps) {
   if (count > 20) {
     return (
       <>
-        {new Array(20).fill(0).map((_, index) => (
-          <WhiteBox key={index} />
+        {Array.from({ length: 20 }, (_, box) => box).map((box) => (
+          <WhiteBox key={box} />
         ))}
-        {new Array(count - 20).fill(0).map((_, index) => (
-          <WhiteBox key={20 + index} red />
+        {Array.from({ length: count - 20 }, (_, box) => box + 20).map((box) => (
+          <WhiteBox key={box} red />
         ))}
       </>
     )
@@ -22,8 +21,8 @@ function ActiveBoxes({ count }: ActiveBoxesProps) {
 
   return (
     <>
-      {new Array(count).fill(0).map((_, index) => (
-        <WhiteBox key={index} />
+      {Array.from({ length: count }, (_, box) => box).map((box) => (
+        <WhiteBox key={box} />
       ))}
     </>
   )

@@ -7,10 +7,10 @@ export default function Footer() {
         <p> &copy; 2022 The F2E 4th</p>
         <div className="flex items-center gap-4">
           {/* TODO: add localisation */}
-          <Link href="/" className="font-bold">
+          <Link className="font-bold" href="/">
             繁中
           </Link>
-          <Link href="/" aria-disabled>
+          <Link aria-disabled href="/">
             English
           </Link>
         </div>

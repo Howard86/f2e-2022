@@ -1,20 +1,20 @@
-import { motion, SVGMotionProps } from 'framer-motion'
+import { motion, type SVGMotionProps } from 'framer-motion'
 
 export default function LinkedBallIcon(props: SVGMotionProps<SVGSVGElement>) {
   return (
     <motion.svg
-      width="17"
+      fill="none"
       height="33"
       viewBox="0 0 17 33"
-      fill="none"
+      width="17"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <mask id="path-1-inside-1_191_16937" fill="white">
+      <mask fill="white" id="path-1-inside-1_191_16937">
         <path
-          fillRule="evenodd"
           clipRule="evenodd"
           d="M4.6652 5.868C4.47172 7.39998 4.90073 8.86711 5.75511 10.0152C6.12811 10.5165 5.94729 11.37 5.40347 11.6776C3.87866 12.5402 2.76633 14.0871 2.52994 15.9587C2.32582 17.5749 2.81448 19.1189 3.76448 20.2923C4.16807 20.7908 4.00796 21.6987 3.4585 22.0296C2.0035 22.9057 0.949733 24.4159 0.720396 26.2317C0.322992 29.3782 2.55159 32.2511 5.6981 32.6485C8.84461 33.0459 11.7175 30.8173 12.1149 27.6708C12.319 26.0547 11.8304 24.5107 10.8804 23.3373C10.4768 22.8388 10.6369 21.9308 11.1864 21.6C12.6414 20.7238 13.6951 19.2137 13.9245 17.3979C14.118 15.8659 13.6889 14.3988 12.8346 13.2506C12.4616 12.7494 12.6424 11.8959 13.1862 11.5883C14.711 10.7257 15.8233 9.17882 16.0597 7.30713C16.4571 4.16062 14.2285 1.2877 11.082 0.890301C7.93552 0.492897 5.06261 2.72149 4.6652 5.868Z"
+          fillRule="evenodd"
         />
       </mask>
       <path

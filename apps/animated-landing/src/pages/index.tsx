@@ -1,13 +1,13 @@
-import Header from '@/components/Header'
-import HomeSection from '@/components/sections/HomeSection'
-import StatementSection from '@/components/sections/StatementSection'
-import SolutionSection from '@/components/sections/SolutionSection'
-import TaskSection from '@/components/sections/TaskSection'
-import SubmissionSection from '@/components/sections/SubmissionSection'
-import CompetitionSection from '@/components/sections/CompetitionSection'
-import CommonQuestionSection from '@/components/sections/CommonQuestionSection'
-import SponsorSection from '@/components/sections/SponsorSection'
 import Footer from '@/components/Footer'
+import Header from '@/components/Header'
+import CommonQuestionSection from '@/components/sections/CommonQuestionSection'
+import CompetitionSection from '@/components/sections/CompetitionSection'
+import HomeSection from '@/components/sections/HomeSection'
+import SolutionSection from '@/components/sections/SolutionSection'
+import SponsorSection from '@/components/sections/SponsorSection'
+import StatementSection from '@/components/sections/StatementSection'
+import SubmissionSection from '@/components/sections/SubmissionSection'
+import TaskSection from '@/components/sections/TaskSection'
 
 export default function HomePage() {
   return (

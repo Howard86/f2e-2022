@@ -1,6 +1,6 @@
 {
-  "$schema": "https://turborepo.org/schema.json",
-  "pipeline": {
+  "$schema": "https://turborepo.dev/schema.json",
+  "tasks": {
     "build": {
       "outputs": ["dist/**", ".next/**"],
       "dependsOn": ["^build"],
@@ -10,22 +10,22 @@
       "outputs": [],
       "dependsOn": []
     },
-    "lint": {
-      "outputs": []
+    "typecheck": {
+      "dependsOn": ["^typecheck"],
+      "inputs": ["**/*.{ts,tsx}", "tsconfig.json", "tsconfig.*.json"]
     },
     "start": {
-      "cache": false
+      "cache": false,
+      "persistent": true
     },
     "dev": {
-      "cache": false
+      "cache": false,
+      "persistent": true
     },
     "clean": {
       "cache": false
     },
     "test:watch": {
-      "cache": false
-    },
-    "export": {
       "cache": false
     }
   }

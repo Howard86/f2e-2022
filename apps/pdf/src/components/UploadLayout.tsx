@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Fragment, ReactNode } from 'react'
+import { Fragment, type ReactNode } from 'react'
 import { MdArrowBack, MdCheck, MdOutlineModeEdit } from 'react-icons/md'
 import useFileStore from '@/hooks/useFileStore'
 import Button from './Button'
@@ -19,16 +19,16 @@ export default function UploadLayout({ children, timestamp }: UploadLayoutProps)
 
   return (
     <>
-      <header className="py-4 px-6">
+      <header className="px-6 py-4">
         <div className="mx-auto flex max-w-screen-xl items-center justify-between">
           <div className="flex items-center">
-            <Link href="/" className="inline-flex items-center p-1">
-              <MdArrowBack className="text-greyscale-dark-grey h-auto w-6" />
+            <Link className="inline-flex items-center p-1" href="/">
+              <MdArrowBack className="h-auto w-6 text-greyscale-dark-grey" />
             </Link>
             {/* TODO: add editable function */}
-            <h2 className="text-h5 ml-4 mr-2 font-bold">{signFile.name}</h2>
+            <h2 className="mr-2 ml-4 font-bold text-h5">{signFile.name}</h2>
             <IconButton>
-              <MdOutlineModeEdit className="text-greyscale-dark-grey h-auto w-4" />
+              <MdOutlineModeEdit className="h-auto w-4 text-greyscale-dark-grey" />
             </IconButton>
           </div>
           <nav>
@@ -44,14 +44,14 @@ export default function UploadLayout({ children, timestamp }: UploadLayoutProps)
             <Fragment key={name}>
               {index !== 0 && (
                 <div
-                  className="bg-greyscale-grey hidden h-0.5 w-12 md:block lg:w-20"
                   aria-hidden="true"
+                  className="hidden h-0.5 w-12 bg-greyscale-grey md:block lg:w-20"
                 />
               )}
               <Step
                 aria-selected={index + 1 === activeStep ? 'true' : 'false'}
-                variant={index + 1 > activeStep ? 'outlined' : 'filled'}
                 name={name}
+                variant={index + 1 > activeStep ? 'outlined' : 'filled'}
               >
                 {index + 1 >= activeStep ? index + 1 : <MdCheck className="h-auto w-5 shrink-0" />}
               </Step>

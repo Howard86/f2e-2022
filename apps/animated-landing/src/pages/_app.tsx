@@ -1,22 +1,22 @@
-import localFont from '@next/font/local'
-import { Noto_Sans_TC } from '@next/font/google'
+import { Noto_Sans_TC } from 'next/font/google'
+import localFont from 'next/font/local'
 
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 
 const noto = Noto_Sans_TC({
-  variable: '--noto-font',
-  weight: ['400', '700'],
-  subsets: ['chinese-traditional'],
   display: 'fallback',
   preload: true,
+  subsets: ['latin'],
+  variable: '--noto-font',
+  weight: ['400', '700'],
 })
 
 const local = localFont({
+  display: 'fallback',
   src: '../../public/fonts/PPMonumentExtended-Regular.woff2',
   variable: '--monument-font',
-  display: 'fallback',
   weight: '400 700',
 })
 
@@ -27,14 +27,14 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>F2E 2022</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="4th the F2E 互動式網頁設計，立即報名！" />
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta content="4th the F2E 互動式網頁設計，立即報名！" name="description" />
 
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={BASE_URL} />
-        <meta property="og:title" content="F2E 2022" />
-        <meta property="og:description" content="4th the F2E 互動式網頁設計，立即報名！" />
-        <meta property="og:image" content={`${BASE_URL}/android-chrome-192x192.png`} />
+        <meta content="website" property="og:type" />
+        <meta content={BASE_URL} property="og:url" />
+        <meta content="F2E 2022" property="og:title" />
+        <meta content="4th the F2E 互動式網頁設計，立即報名！" property="og:description" />
+        <meta content={`${BASE_URL}/android-chrome-192x192.png`} property="og:image" />
       </Head>
       <div className={`relative ${local.variable} ${noto.variable} ${noto.className}`}>
         <Component {...pageProps} />

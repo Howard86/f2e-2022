@@ -1,0 +1,39 @@
+{
+  "extends": ["ultracite/biome/core", "ultracite/biome/react"],
+  "files": {
+    "includes": ["!**/public/safari-pinned-tab.svg"]
+  },
+  "formatter": {
+    "lineWidth": 100
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "semicolons": "asNeeded"
+    }
+  },
+  "linter": {
+    "rules": {
+      "complexity": {
+        "noVoid": "off"
+      },
+      "performance": {
+        "noBarrelFile": "off",
+        "noJsxPropsBind": "off"
+      },
+      "style": {
+        "noEnum": "off",
+        "useConsistentTypeDefinitions": "off",
+        "useFilenamingConvention": "off"
+      }
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["**/*.{spec,test}.{ts,tsx}", "**/jest.setup.js"],
+      "javascript": {
+        "globals": ["describe", "expect", "it", "jest"]
+      }
+    }
+  ]
+}

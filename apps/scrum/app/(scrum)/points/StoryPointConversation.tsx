@@ -1,11 +1,11 @@
-import type { FC, ReactNode } from 'react'
 import ConversationArticle from 'app/(home)/ConversationArticle'
+import type { FC, ReactNode } from 'react'
 import type { CharacterIconProps } from '../characters/ProductOwnerIcon'
 
 interface StoryPointConversationProps {
-  name: string
-  Icon: FC<CharacterIconProps>
   children: ReactNode
+  Icon: FC<CharacterIconProps>
+  name: string
 }
 
 export default function StoryPointConversation({
@@ -19,7 +19,7 @@ export default function StoryPointConversation({
         <Icon head />
         <p className="font-bold">{name}</p>
       </div>
-      <ConversationArticle className="flex-1 py-6 px-9">{children}</ConversationArticle>
+      <ConversationArticle className="flex-1 px-9 py-6">{children}</ConversationArticle>
     </div>
   )
 }

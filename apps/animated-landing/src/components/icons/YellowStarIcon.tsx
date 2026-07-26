@@ -1,13 +1,13 @@
-import { motion, SVGMotionProps } from 'framer-motion'
+import { motion, type SVGMotionProps } from 'framer-motion'
 
 export default function YellowStarIcon({ className, ...props }: SVGMotionProps<SVGSVGElement>) {
   return (
     <motion.svg
-      width="49"
+      className={`${className} fill-y2 drop-shadow-yellow`}
       height="50"
       viewBox="0 0 49 50"
+      width="49"
       xmlns="http://www.w3.org/2000/svg"
-      className={`${className} fill-y2 drop-shadow-yellow`}
       {...props}
     >
       <g>

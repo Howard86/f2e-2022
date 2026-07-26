@@ -6,11 +6,14 @@ const repo = process.env.GITHUB_REPOSITORY?.replace(/.*\//, '')
 
 /** @type{import('next').NextConfig} */
 const config = {
-  reactStrictMode: true,
-  swcMinify: true,
   assetPrefix: repo ? `/${repo}/` : undefined,
   basePath: repo ? `/${repo}` : undefined,
+  experimental: {
+    useTypeScriptCli: true,
+  },
   images: { unoptimized: true },
+  output: 'export',
+  reactStrictMode: true,
 }
 
 module.exports = withBundleAnalyzer(config)
