@@ -1,12 +1,12 @@
-import { motion, SVGMotionProps } from 'framer-motion'
+import { motion, type SVGMotionProps } from 'framer-motion'
 
 export default function TriangleIcon(props: SVGMotionProps<SVGSVGElement>) {
   return (
     <motion.svg
-      width="44"
+      fill="none"
       height="30"
       viewBox="0 0 44 30"
-      fill="none"
+      width="44"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >

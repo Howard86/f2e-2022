@@ -1,5 +1,5 @@
-import type { ChildrenProps } from 'react'
+import type { PropsWithChildren } from 'react'
 
-export default function ScrumLayout({ children }: ChildrenProps) {
-  return <div className="bg-primary-main flex h-full flex-col">{children}</div>
+export default function ScrumLayout({ children }: PropsWithChildren) {
+  return <div className="flex h-full flex-col bg-primary-main">{children}</div>
 }

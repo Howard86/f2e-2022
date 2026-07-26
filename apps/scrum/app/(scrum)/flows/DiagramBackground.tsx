@@ -1,12 +1,13 @@
-import { SVGProps } from 'react-html-props'
+import type { SVGProps } from 'react-html-props'
 
 export default function DiagramBackground(props: SVGProps) {
   return (
     <svg
-      width="1328"
+      aria-hidden="true"
+      fill="none"
       height="490"
       viewBox="0 0 1328 490"
-      fill="none"
+      width="1328"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >

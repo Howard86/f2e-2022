@@ -1,6 +1,6 @@
 import clsx from 'clsx'
-import { DivProps } from 'react-html-props'
-import { ScrumRoute, SCRUM_ROUTES } from './constants'
+import type { DivProps } from 'react-html-props'
+import { SCRUM_ROUTES, ScrumRoute } from './constants'
 import ScrumNavLink from './ScrumNavLink'
 
 interface ScrumNavProps extends DivProps {
@@ -13,13 +13,13 @@ export default function ScrumNav({ route, className, ...props }: ScrumNavProps) 
       <ul className="flex items-center overflow-hidden">
         {route >= 1 && (
           <li>
-            <ScrumNavLink href={ScrumRoute[route - 1]} text="回上一座島" startIcon />
+            <ScrumNavLink href={ScrumRoute[route - 1]} startIcon text="回上一座島" />
           </li>
         )}
         <span className="flex-1" />
         {route + 1 < SCRUM_ROUTES.length && (
           <li>
-            <ScrumNavLink href={ScrumRoute[route + 1]} text="前往下一座島" endIcon />
+            <ScrumNavLink endIcon href={ScrumRoute[route + 1]} text="前往下一座島" />
           </li>
         )}
       </ul>

@@ -1,12 +1,12 @@
-import { motion, SVGMotionProps } from 'framer-motion'
+import { motion, type SVGMotionProps } from 'framer-motion'
 
 export default function CurlyStarIcon(props: SVGMotionProps<SVGSVGElement>) {
   return (
     <motion.svg
-      width="24"
+      fill="none"
       height="23"
       viewBox="0 0 24 23"
-      fill="none"
+      width="24"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >

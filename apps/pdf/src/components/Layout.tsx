@@ -1,4 +1,4 @@
-import { DivProps } from 'react-html-props'
+import type { DivProps } from 'react-html-props'
 import Footer from './Footer'
 import Header from './Header'
 

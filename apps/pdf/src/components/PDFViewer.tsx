@@ -1,72 +1,94 @@
-import { useCallback, useEffect, useRef } from 'react'
+import type { Canvas as FabricCanvas, FabricImage as FabricImageType } from 'fabric'
 import Link from 'next/link'
+import { useCallback, useEffect, useRef } from 'react'
 import {
   MdDeleteOutline,
   MdOutlineMouse,
   MdOutlineZoomIn,
   MdTextRotationAngleup,
 } from 'react-icons/md'
-import Button from './Button'
-import SignSettingDialog from './SignSettingDialog'
-import ConfirmSignDialog from './ConfirmSignDialog'
 import useFileStore from '@/hooks/useFileStore'
-import SignatureSettingSection from './SignatureSettingSection'
-import SharedGoals from './illustrations/SharedGoals'
-import ToggleButton from './ToggleButton'
 import useToggle from '@/hooks/useToggle'
+import Button from './Button'
+import ConfirmSignDialog from './ConfirmSignDialog'
+import SharedGoals from './illustrations/SharedGoals'
+import SignatureSettingSection from './SignatureSettingSection'
+import SignSettingDialog from './SignSettingDialog'
+import ToggleButton from './ToggleButton'
 
 interface PDFViewerProps {
   timestamp: number
 }
 
-const last = <T,>(items: T[]): T => items[items.length - 1]
+const last = <T,>(items: T[]): T | undefined => items.at(-1)
+
+async function createPdfCanvas(
+  element: HTMLCanvasElement,
+  source: FabricImageType | string
+): Promise<FabricCanvas | null> {
+  const { Canvas, FabricImage } = await import('fabric')
+
+  if (!element.isConnected) {
+    return null
+  }
+
+  const isUrl = typeof source === 'string'
+  const image = isUrl ? await FabricImage.fromURL(source) : source
+
+  if (!(element.isConnected && image.width && image.height)) {
+    return null
+  }
+
+  const canvas = new Canvas(element, {
+    height: isUrl ? 900 : image.height,
+    width: isUrl ? 1200 : image.width,
+  })
+
+  image.canvas = canvas
+  canvas.backgroundImage = image
+
+  if (!isUrl) {
+    canvas.setZoom(image.scaleX ? 1 / image.scaleX : 1)
+  }
+  canvas.requestRenderAll()
+
+  return canvas
+}
 
 export default function PDFViewer({ timestamp }: PDFViewerProps) {
   const activeStep = useFileStore((state) => state.activeStep)
   const signFile = useFileStore((state) => state.signingFiles.entities[timestamp])
-  const pdfDataUrl = useRef<string | undefined>()
-  const canvasRef = useRef<fabric.Canvas | null>(null)
+  const pdfDataUrl = useRef<string | undefined>(undefined)
+  const canvasRef = useRef<FabricCanvas | null>(null)
 
   const [isZooming, toggleZoom] = useToggle()
   const [isDragging, toggleDrag] = useToggle()
 
   const onCanvasElementMount = useCallback(
-    async (element: HTMLCanvasElement | null) => {
+    (element: HTMLCanvasElement | null) => {
       if (!element) {
+        const canvas = canvasRef.current
         canvasRef.current = null
+        void canvas?.dispose()
         return
       }
 
-      if (canvasRef.current || !signFile) return
-
-      const { fabric } = await import('fabric')
-
-      if (typeof signFile.image === 'string') {
-        // TODO: add dynamic width & height
-        canvasRef.current = new fabric.Canvas(element, {
-          width: 1200,
-          height: 900,
-        })
-        canvasRef.current.setBackgroundImage(
-          signFile.image,
-          canvasRef.current.requestRenderAll.bind(canvasRef.current)
-        )
+      if (canvasRef.current || !signFile) {
         return
       }
 
-      if (!signFile.image.width || !signFile.image.height) return
+      void createPdfCanvas(element, signFile.image).then((canvas) => {
+        if (!canvas) {
+          return
+        }
 
-      canvasRef.current = new fabric.Canvas(element, {
-        width: signFile.image.width,
-        height: signFile.image.height,
+        if (!element.isConnected || canvasRef.current) {
+          void canvas.dispose()
+          return
+        }
+
+        canvasRef.current = canvas
       })
-
-      canvasRef.current.setZoom(signFile.image.scaleX ? 1 / signFile.image.scaleX : 1)
-
-      canvasRef.current.setBackgroundImage(
-        signFile.image,
-        canvasRef.current.requestRenderAll.bind(canvasRef.current)
-      )
     },
     [signFile]
   )
@@ -74,22 +96,24 @@ export default function PDFViewer({ timestamp }: PDFViewerProps) {
   const handleAddSignature = async (image: string) => {
     const canvas = canvasRef.current
 
-    if (!canvas) return
+    if (!canvas) {
+      return
+    }
 
-    const { fabric } = await import('fabric')
+    const { FabricImage } = await import('fabric')
+    const img = await FabricImage.fromURL(image)
+    const center = canvas.getCenterPoint()
 
-    fabric.Image.fromURL(image, (img) => {
-      const center = canvas.getCenter()
-
-      img.set({ top: center.top / 2, left: center.left / 2 })
-      canvas.add(img)
-      canvas.setActiveObject(img)
-    })
+    img.set({ left: center.x / 2, top: center.y / 2 })
+    canvas.add(img)
+    canvas.setActiveObject(img)
   }
 
   // TODO: handle multiple page export
   const handleExport = async () => {
-    if (!pdfDataUrl.current) return
+    if (!pdfDataUrl.current) {
+      return
+    }
 
     const { jsPDF } = await import('jspdf')
 
@@ -108,20 +132,26 @@ export default function PDFViewer({ timestamp }: PDFViewerProps) {
     doc.save(`${new Date(timestamp).toLocaleDateString()}-${signFile.name}`)
   }
 
-  const handleConfirmSigning = async () => {
-    if (!canvasRef.current) return
+  const handleConfirmSigning = () => {
+    if (!canvasRef.current) {
+      return
+    }
 
-    pdfDataUrl.current = canvasRef.current.toDataURL({ format: 'jpeg' })
+    pdfDataUrl.current = canvasRef.current.toDataURL({ format: 'jpeg', multiplier: 1 })
   }
 
   const handleDeleteSignature = () => {
     const canvas = canvasRef.current
 
-    if (!canvas) return
+    if (!canvas) {
+      return
+    }
 
     const object = canvas.getActiveObject() ?? last(canvas.getObjects())
 
-    if (!object) return
+    if (!object) {
+      return
+    }
 
     canvas.remove(object)
   }
@@ -129,16 +159,22 @@ export default function PDFViewer({ timestamp }: PDFViewerProps) {
   useEffect(() => {
     const canvas = canvasRef.current
 
-    if (!canvas || !isZooming) return
+    if (!(canvas && isZooming)) {
+      return
+    }
 
     canvas.on('mouse:wheel', (option) => {
       let zoom = canvas.getZoom()
       zoom *= 0.999 ** option.e.deltaY
 
-      if (zoom > 10) zoom = 10
-      if (zoom < 0.1) zoom = 0.1
+      if (zoom > 10) {
+        zoom = 10
+      }
+      if (zoom < 0.1) {
+        zoom = 0.1
+      }
 
-      canvas.zoomToPoint({ x: option.e.x, y: option.e.y }, zoom)
+      canvas.zoomToPoint(canvas.getViewportPoint(option.e), zoom)
       option.e.preventDefault()
       option.e.stopPropagation()
     })
@@ -152,33 +188,32 @@ export default function PDFViewer({ timestamp }: PDFViewerProps) {
   useEffect(() => {
     const canvas = canvasRef.current
 
-    if (!canvas || !isDragging) return
+    if (!(canvas && isDragging)) {
+      return
+    }
 
     let isHolding = false
     let draggedX = 0
     let draggedY = 0
 
     canvas.on('mouse:down', (option) => {
+      const point = canvas.getViewportPoint(option.e)
+
       isHolding = true
-      draggedX = option.e.clientX
-      draggedY = option.e.clientY
+      draggedX = point.x
+      draggedY = point.y
       canvas.selection = true
       option.e.preventDefault()
       option.e.stopPropagation()
     })
 
     canvas.on('mouse:move', (option) => {
-      if (
-        !isHolding ||
-        !canvas.viewportTransform ||
-        option.e.clientX === undefined ||
-        option.e.clientY === undefined
-      )
+      if (!(isHolding && canvas.viewportTransform)) {
         return
+      }
 
       // TODO: fix no pointer on mobile
-      const x = option.e.clientX
-      const y = option.e.clientY
+      const { x, y } = canvas.getViewportPoint(option.e)
 
       isHolding = true
       canvas.viewportTransform[4] += x - draggedX
@@ -206,13 +241,13 @@ export default function PDFViewer({ timestamp }: PDFViewerProps) {
       <main className="m-auto flex flex-col items-center justify-center gap-10 md:flex-row">
         <SharedGoals className="h-auto w-80" />
         <div>
-          <h1 className="text-primary-main text-h2 font-bold">恭喜您！檔案已就緒 </h1>
+          <h1 className="font-bold text-h2 text-primary-main">恭喜您！檔案已就緒 </h1>
           <p className="mt-2 mb-10">現在您可以下載檔案或註冊會員，以體驗更多功能。</p>
           <div className="flex flex-col items-center gap-4">
-            <Button onClick={handleExport} className="w-full">
+            <Button className="w-full" onClick={handleExport}>
               下載檔案
             </Button>
-            <Button variant="text" as={Link} href="/" className="w-full">
+            <Button as={Link} className="w-full" href="/" variant="text">
               回到首頁
             </Button>
           </div>
@@ -223,12 +258,12 @@ export default function PDFViewer({ timestamp }: PDFViewerProps) {
 
   return (
     <div className="mx-auto flex w-full max-w-screen-xl flex-1 overflow-y-scroll">
-      <main className="bg-greyscale-light-grey relative flex flex-1 shrink flex-col overflow-x-scroll">
+      <main className="relative flex flex-1 shrink flex-col overflow-x-scroll bg-greyscale-light-grey">
         <div className="flex-1 overflow-y-auto p-6">
           <canvas ref={onCanvasElementMount} />
           <SignSettingDialog onAddSignature={handleAddSignature} />
         </div>
-        <div className="absolute left-4 bottom-28 z-10 flex items-center gap-4 md:bottom-8">
+        <div className="absolute bottom-28 left-4 z-10 flex items-center gap-4 md:bottom-8">
           <ToggleButton onClick={handleDeleteSignature}>
             <MdDeleteOutline className="h-auto w-6" />
           </ToggleButton>
@@ -247,7 +282,7 @@ export default function PDFViewer({ timestamp }: PDFViewerProps) {
             )}
           </ToggleButton>
         </div>
-        <div className="px-6 pb-6 pt-2 md:hidden">
+        <div className="px-6 pt-2 pb-6 md:hidden">
           <ConfirmSignDialog onConfirm={handleConfirmSigning} />
         </div>
       </main>

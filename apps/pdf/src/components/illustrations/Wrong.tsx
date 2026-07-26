@@ -1,12 +1,13 @@
-import { SVGProps } from 'react-html-props'
+import type { SVGProps } from 'react-html-props'
 
 export default function Wrong(props: SVGProps) {
   return (
     <svg
-      width="312"
+      aria-hidden="true"
+      fill="none"
       height="312"
       viewBox="0 0 312 312"
-      fill="none"
+      width="312"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >

@@ -1,16 +1,16 @@
-import Image, { StaticImageData } from 'next/image'
 import { ArrowUpRightIcon } from '@heroicons/react/24/outline'
-import { HTMLMotionProps, motion } from 'framer-motion'
+import { type HTMLMotionProps, motion } from 'framer-motion'
+import Image, { type StaticImageData } from 'next/image'
 import ExternalLink from '../ExternalLink'
 
 export interface TaskCardProps extends HTMLMotionProps<'article'> {
+  description: string
+  footer: string
   href: string
+  size: number
+  src: StaticImageData
   tag: string
   title: string
-  description: string
-  src: StaticImageData
-  footer: string
-  size: number
 }
 
 export default function MobileTaskCard({
@@ -26,29 +26,29 @@ export default function MobileTaskCard({
 }: TaskCardProps) {
   return (
     <motion.article
+      className="section h-[360px] w-[300px] rounded-2xl bg-n1 px-6 py-4 text-p3 sm:py-5 lg:rounded-card"
       key={href}
-      className="section text-p3 bg-n1 lg:rounded-card h-[360px] w-[300px] rounded-2xl py-4 px-6 sm:py-5"
       {...props}
     >
-      <span className="text-n5 text-ch-title bg-g1 mb-4 rounded-lg py-1 px-2 font-bold sm:mb-5">
+      <span className="mb-4 rounded-lg bg-g1 px-2 py-1 font-bold text-ch-title text-n5 sm:mb-5">
         # {tag}
       </span>
-      <h3 className="text-ch-h4 whitespace-nowrap font-bold uppercase">{title}</h3>
-      <p className="text-ch-h5 mt-2 flex-1">{description}</p>
+      <h3 className="whitespace-nowrap font-bold text-ch-h4 uppercase">{title}</h3>
+      <p className="mt-2 flex-1 text-ch-h5">{description}</p>
       <Image
-        src={src}
         alt={title}
-        width={size}
-        height={size}
         className="my-4 flex-1"
+        height={size}
         placeholder="blur"
+        src={src}
+        width={size}
       />
       <div className="flex w-full flex-1 items-end justify-between">
         {onClick ? (
           <button
-            type="button"
             className="font-en text-en-subtitle text-p2 uppercase tracking-widest"
             onClick={onClick}
+            type="button"
           >
             {footer}
           </button>
@@ -56,7 +56,7 @@ export default function MobileTaskCard({
           <p className="font-en text-en-subtitle text-p2 uppercase tracking-widest">{footer}</p>
         )}
         <ExternalLink
-          className="text-ch-subtitle before:bg-p3/20 hover:before:bg-p3/20 relative inline-flex items-center gap-2 font-bold transition-all before:absolute before:-bottom-1 before:h-0.5 before:w-0 before:transition-all hover:before:w-full"
+          className="relative inline-flex items-center gap-2 font-bold text-ch-subtitle transition-all before:absolute before:-bottom-1 before:h-0.5 before:w-0 before:bg-p3/20 before:transition-all hover:before:w-full hover:before:bg-p3/20"
           href={href}
         >
           查看關卡細節

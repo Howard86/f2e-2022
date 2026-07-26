@@ -1,12 +1,13 @@
-import { SVGProps } from 'react-html-props'
+import type { SVGProps } from 'react-html-props'
 
 export default function DirtBlock(props: SVGProps) {
   return (
     <svg
-      width="27"
+      aria-hidden="true"
+      fill="none"
       height="32"
       viewBox="0 0 27 32"
-      fill="none"
+      width="27"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >

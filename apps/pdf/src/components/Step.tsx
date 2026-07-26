@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { DivProps } from 'react-html-props'
+import type { DivProps } from 'react-html-props'
 
 interface StepProps extends DivProps {
   name: string
@@ -18,15 +18,15 @@ export default function Step({
       className="group flex items-center gap-2 aria-selected:flex-1 aria-selected:md:flex-none"
       {...props}
     >
-      <span className="group-aria-selected:border-primary-light block shrink-0 rounded-full border-2 border-transparent p-0.5">
+      <span className="block shrink-0 rounded-full border-2 border-transparent p-0.5 group-aria-selected:border-primary-light">
         <span
           aria-hidden="true"
           className={clsx(
             className,
             variant === 'filled'
-              ? 'text-greyscale-white bg-primary-main border-transparent'
-              : 'text-greyscale-dark-grey border-greyscale-grey',
-            'text-h4 inline-flex h-8 w-8 items-center justify-center rounded-full border-2 p-2 font-bold'
+              ? 'border-transparent bg-primary-main text-greyscale-white'
+              : 'border-greyscale-grey text-greyscale-dark-grey',
+            'inline-flex h-8 w-8 items-center justify-center rounded-full border-2 p-2 font-bold text-h4'
           )}
         >
           {children}

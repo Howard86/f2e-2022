@@ -1,20 +1,20 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document'
+import Document, { Head, Html, Main, NextScript } from 'next/document'
 
 class MyDocument extends Document {
   render() {
     return (
-      <Html className="bg-n5 text-n1 text-ch-p3 h-full overflow-x-hidden scroll-smooth">
+      <Html className="h-full overflow-x-hidden scroll-smooth bg-n5 text-ch-p3 text-n1">
         <Head>
-          <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-          <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-          <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-          <link rel="manifest" href="/site.webmanifest" />
-          <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000" />
+          <link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
+          <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+          <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+          <link href="/site.webmanifest" rel="manifest" />
+          <link color="#000000" href="/safari-pinned-tab.svg" rel="mask-icon" />
           <meta charSet="utf-8" />
-          <meta name="apple-mobile-web-app-title" content="F2E 2022" />
-          <meta name="application-name" content="F2E 2022" />
-          <meta name="msapplication-TileColor" content="#000000" />
-          <meta name="theme-color" content="#000000" />
+          <meta content="F2E 2022" name="apple-mobile-web-app-title" />
+          <meta content="F2E 2022" name="application-name" />
+          <meta content="#000000" name="msapplication-TileColor" />
+          <meta content="#000000" name="theme-color" />
         </Head>
         <body className="relative mx-auto max-h-screen max-w-[1600px] snap-y snap-proximity overflow-x-hidden overflow-y-scroll lg:snap-mandatory">
           <Main />

@@ -1,15 +1,15 @@
 'use client'
 
-import { useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
 import clsx from 'clsx'
-import BlueBlock from './BlueBlock'
+import { useState } from 'react'
 import DirtBlock from '../sprints/DirtBlock'
+import BlueBlock from './BlueBlock'
 
 interface RetroRadioGroupProps {
+  correctOption: string
   label: string
   options: string[]
-  correctOption: string
 }
 
 interface DynamicBlockProps {
@@ -18,33 +18,34 @@ interface DynamicBlockProps {
 }
 
 function DynamicBlock({ checked, error }: DynamicBlockProps) {
-  if (checked)
+  if (checked) {
     return error ? (
-      <BlueBlock className="text-error-main shrink-0" aria-hidden="true" />
+      <BlueBlock aria-hidden="true" className="shrink-0 text-error-main" />
     ) : (
-      <DirtBlock width={36} height={42} aria-hidden="true" className="shrink-0" />
+      <DirtBlock aria-hidden="true" className="shrink-0" height={42} width={36} />
     )
+  }
 
-  return <BlueBlock className="text-primary-main shrink-0" aria-hidden="true" />
+  return <BlueBlock aria-hidden="true" className="shrink-0 text-primary-main" />
 }
 
 export default function RetroRadioGroup({ label, options, correctOption }: RetroRadioGroupProps) {
   const [activeOption, setActiveOption] = useState(false)
 
   return (
-    <RadioGroup value={activeOption} onChange={setActiveOption} className="mt-9 flex-1 text-center">
+    <RadioGroup className="mt-9 flex-1 text-center" onChange={setActiveOption} value={activeOption}>
       <RadioGroup.Label className="text-h3">{label}</RadioGroup.Label>
-      <div className="bg-neutral-white-light/65 rounded-20 relative z-10 mt-9 flex flex-col gap-6 py-6 px-9 2xl:gap-9 2xl:py-9 2xl:px-12">
+      <div className="relative z-10 mt-9 flex flex-col gap-6 rounded-20 bg-neutral-white-light/65 px-9 py-6 2xl:gap-9 2xl:px-12 2xl:py-9">
         {options.map((option) => (
           <RadioGroup.Option
-            key={option}
-            value={option}
             className={clsx(
-              'text-neutral-black-dark border-5 ui-checked:border-neutral-black-dark hover:border-primary-main bg-neutral-white-light rounded-20 text-h3 relative flex min-h-[9rem] cursor-pointer items-center gap-6 border-transparent p-6 text-start',
+              'relative flex min-h-[9rem] cursor-pointer items-center gap-6 rounded-20 border-5 border-transparent ui-checked:border-neutral-black-dark bg-neutral-white-light p-6 text-start text-h3 text-neutral-black-dark hover:border-primary-main',
               option === correctOption
                 ? 'ui-checked:text-secondary-green-light'
                 : 'ui-checked:text-error-main'
             )}
+            key={option}
+            value={option}
           >
             {({ checked }) => (
               <>

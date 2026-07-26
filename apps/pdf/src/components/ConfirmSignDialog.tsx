@@ -1,8 +1,8 @@
-import { Transition, Dialog } from '@headlessui/react'
+import { Dialog, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
+import useFileStore from '@/hooks/useFileStore'
 import useToggle from '@/hooks/useToggle'
 import Button from './Button'
-import useFileStore from '@/hooks/useFileStore'
 
 interface ConfirmSignDialogProps {
   onConfirm: VoidFunction
@@ -34,7 +34,7 @@ export default function ConfirmSignDialog({ onConfirm }: ConfirmSignDialogProps)
       <Button className="w-full" onClick={handleOpen}>
         下一步
       </Button>
-      <Transition.Root show={open} as={Fragment}>
+      <Transition.Root as={Fragment} show={open}>
         <Dialog as="div" className="relative z-10" onClose={handleCancel}>
           <Transition.Child
             as={Fragment}
@@ -45,7 +45,7 @@ export default function ConfirmSignDialog({ onConfirm }: ConfirmSignDialogProps)
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="bg-mask/40 fixed inset-0 backdrop-blur-[2px] transition-opacity" />
+            <div className="fixed inset-0 bg-mask/40 backdrop-blur-[2px] transition-opacity" />
           </Transition.Child>
 
           <div className="fixed inset-0 z-10 overflow-y-auto">
@@ -62,7 +62,7 @@ export default function ConfirmSignDialog({ onConfirm }: ConfirmSignDialogProps)
                 <Dialog.Panel className="relative w-full overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
                   <div className="sm:flex sm:items-start">
                     <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                      <Dialog.Title as="h3" className="text-h2 text-primary-main font-bold">
+                      <Dialog.Title as="h3" className="font-bold text-h2 text-primary-main">
                         請確認您的檔案
                       </Dialog.Title>
                       <p className="mt-2">確認後將無法修改</p>
@@ -72,7 +72,7 @@ export default function ConfirmSignDialog({ onConfirm }: ConfirmSignDialogProps)
                     <Button className="w-full" onClick={handleConfirm}>
                       確認
                     </Button>
-                    <Button className="w-full" variant="text" onClick={handleCancel}>
+                    <Button className="w-full" onClick={handleCancel} variant="text">
                       返回
                     </Button>
                   </div>

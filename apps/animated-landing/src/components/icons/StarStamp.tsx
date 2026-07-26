@@ -1,23 +1,23 @@
-import { motion, SVGMotionProps } from 'framer-motion'
+import { motion, type SVGMotionProps } from 'framer-motion'
 
 export default function StarStamp(props: SVGMotionProps<SVGSVGElement>) {
   return (
     <motion.svg
-      width="201"
+      fill="none"
       height="205"
       viewBox="0 0 201 205"
-      fill="none"
+      width="201"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
       <circle
         cx="78.3187"
         cy="122.363"
-        r="71.8108"
-        transform="rotate(-12.5051 78.3187 122.363)"
         fill="url(#paint0_linear_191_17035)"
+        r="71.8108"
         stroke="url(#paint1_linear_191_17035)"
         strokeWidth="1.28122"
+        transform="rotate(-12.5051 78.3187 122.363)"
       />
       <path
         d="M18.4839 123.204L13.8654 123.569L14.1376 127.01L18.7561 126.644C19.7354 126.567 20.6503 126.854 20.8105 128.879C20.9707 130.904 20.1256 131.33 19.1331 131.409L14.5145 131.774L14.7868 135.215L19.4053 134.849C22.6343 134.594 24.0444 132.724 23.7219 128.649C23.4005 124.586 21.6997 122.949 18.4839 123.204Z"
@@ -85,23 +85,23 @@ export default function StarStamp(props: SVGMotionProps<SVGSVGElement>) {
       />
       <defs>
         <linearGradient
+          gradientUnits="userSpaceOnUse"
           id="paint0_linear_191_17035"
           x1="78.3187"
-          y1="49.9114"
           x2="78.3187"
+          y1="49.9114"
           y2="194.814"
-          gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#FFE34E" />
           <stop offset="1" stopColor="#FBC53C" />
         </linearGradient>
         <linearGradient
+          gradientUnits="userSpaceOnUse"
           id="paint1_linear_191_17035"
           x1="153.758"
-          y1="87.942"
           x2="20.2975"
+          y1="87.942"
           y2="168.627"
-          gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#FCC93E" />
           <stop offset="0.932292" stopColor="#FFE34E" />

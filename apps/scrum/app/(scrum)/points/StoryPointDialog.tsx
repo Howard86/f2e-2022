@@ -1,11 +1,11 @@
 'use client'
 
-import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import ProductOwnerIcon from '../characters/ProductOwnerIcon'
-import StoryPointConversation from './StoryPointConversation'
-import ScrumMasterIcon from '../characters/ScrumMasterIcon'
+import { Fragment, useState } from 'react'
 import DevelopmentTeamIcon from '../characters/DevelopmentTeamIcon'
+import ProductOwnerIcon from '../characters/ProductOwnerIcon'
+import ScrumMasterIcon from '../characters/ScrumMasterIcon'
+import StoryPointConversation from './StoryPointConversation'
 
 // TODO: refactor together with FeatureDialog
 export default function StoryPointDialog() {
@@ -14,7 +14,7 @@ export default function StoryPointDialog() {
   const handleClose = () => setOpen(false)
 
   return (
-    <Transition.Root show={open} as={Fragment} appear>
+    <Transition.Root appear as={Fragment} show={open}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
         <Transition.Child
           as={Fragment}
@@ -39,9 +39,9 @@ export default function StoryPointDialog() {
               leaveFrom="opacity-100 translate-y-0 scale-100"
               leaveTo="opacity-0 translate-y-4 scale-95"
             >
-              <Dialog.Panel className="relative flex flex-col items-center justify-center overflow-hidden py-12 px-[5%]">
+              <Dialog.Panel className="relative flex flex-col items-center justify-center overflow-hidden px-[5%] py-12">
                 <div className="flex flex-col gap-9">
-                  <StoryPointConversation name="產品負責人" Icon={ProductOwnerIcon}>
+                  <StoryPointConversation Icon={ProductOwnerIcon} name="產品負責人">
                     <p>
                       產品待辦清單好了之後，我們來召集 Scrum Master 和開發團隊共同召開
                       <b>短衝規劃會議（Sprint Planning）</b>
@@ -50,7 +50,7 @@ export default function StoryPointDialog() {
                       ，並由開發團隊在接下來的產品開發週期裡執行。
                     </p>
                   </StoryPointConversation>
-                  <StoryPointConversation name="敏捷教練" Icon={ScrumMasterIcon}>
+                  <StoryPointConversation Icon={ScrumMasterIcon} name="敏捷教練">
                     <p>
                       嗨嗨~你是新來的前端吧！我是這次的 Scrum Master
                       XX，我的工作主要是促成開發團隊成員協作、引導團隊進行自省會議，提升團隊成員對
@@ -60,7 +60,7 @@ export default function StoryPointDialog() {
                       <b>負擔的點數 (Sprint Point) 大約是 20 點左右</b>。
                     </p>
                   </StoryPointConversation>
-                  <StoryPointConversation name="開發團隊" Icon={DevelopmentTeamIcon}>
+                  <StoryPointConversation Icon={DevelopmentTeamIcon} name="開發團隊">
                     <p>
                       嘿！新來的，你應該還不知道點數是什麼意思吧？
                       <br />
@@ -75,9 +75,9 @@ export default function StoryPointDialog() {
                 </div>
                 <div className="mt-9 flex w-full items-center justify-end">
                   <button
-                    type="button"
+                    className="rounded-xl bg-secondary-green-light px-14 py-4 text-h4 text-neutral-black-dark shadow-button outline-none active:shadow-button-inset"
                     onClick={handleClose}
-                    className="bg-secondary-green-light text-neutral-black-dark text-h4 shadow-button active:shadow-button-inset rounded-xl py-4 px-14 outline-none"
+                    type="button"
                   >
                     沒問題！
                   </button>

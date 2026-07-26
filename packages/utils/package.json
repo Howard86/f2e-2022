@@ -10,23 +10,22 @@
     "dist/**"
   ],
   "scripts": {
-    "build": "tsup src/index.tsx --format esm,cjs --dts --external react",
-    "dev": "tsup src/index.tsx --format esm,cjs --watch --dts --external react",
-    "lint": "TIMING=1 eslint \"src/**/*.ts*\"",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "build": "tsup src/index.tsx --format esm,cjs --external react --clean && tsc -p tsconfig.build.json --emitDeclarationOnly",
+    "dev": "tsup src/index.tsx --format esm,cjs --watch --external react",
+    "typecheck": "tsc --noEmit",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
-    "@f2e-2022/jest-config": "workspace:*",
     "@f2e-2022/tsconfig": "workspace:*",
-    "@types/react": "^18.0.25",
-    "@types/react-dom": "^18.0.9",
-    "eslint-config-f2e-2022": "workspace:*",
-    "react": "^18.2.0",
-    "tsup": "^6.5.0"
+    "@types/react": "^19.2.17",
+    "react": "^19.2.8",
+    "tsup": "^8.5.1",
+    "typescript": "^7.0.2"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "peerDependencies": {
+    "react": "^19.2.8"
   }
 }

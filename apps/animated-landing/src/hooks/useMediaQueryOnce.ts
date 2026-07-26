@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function useMediaQueryOnce(query: string) {
   const matchesRef = useRef(false)
@@ -9,5 +9,5 @@ export default function useMediaQueryOnce(query: string) {
     setReady(true)
   }, [query])
 
-  return { ready, matches: matchesRef.current }
+  return { matches: matchesRef.current, ready }
 }

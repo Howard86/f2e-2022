@@ -1,12 +1,13 @@
-import { SVGProps } from 'react-html-props'
+import type { SVGProps } from 'react-html-props'
 
 export default function BacklogBackground(props: SVGProps) {
   return (
     <svg
-      width="621"
+      aria-hidden="true"
+      fill="none"
       height="681"
       viewBox="0 0 621 681"
-      fill="none"
+      width="621"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >

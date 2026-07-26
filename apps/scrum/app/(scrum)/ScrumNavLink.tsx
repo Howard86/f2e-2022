@@ -1,21 +1,21 @@
-import Link, { LinkProps } from 'next/link'
+import Link, { type LinkProps } from 'next/link'
 import ArrowForwardIcon from './ArrowForwardIcon'
 
 interface ScrumNavLinkProps extends LinkProps {
-  text: string
-  startIcon?: boolean
   endIcon?: boolean
+  startIcon?: boolean
+  text: string
 }
 
 export default function ScrumNavLink({ text, startIcon, endIcon, ...props }: ScrumNavLinkProps) {
   return (
     <Link
-      className="text-h4 inline-flex items-center px-9 py-7 transition-transform hover:scale-110"
+      className="inline-flex items-center px-9 py-7 text-h4 transition-transform hover:scale-110"
       {...props}
     >
-      {startIcon && <ArrowForwardIcon className="mr-5" />}
+      {startIcon ? <ArrowForwardIcon className="mr-5" /> : null}
       {text}
-      {endIcon && <ArrowForwardIcon className="ml-5 rotate-180" />}
+      {endIcon ? <ArrowForwardIcon className="ml-5 rotate-180" /> : null}
     </Link>
   )
 }

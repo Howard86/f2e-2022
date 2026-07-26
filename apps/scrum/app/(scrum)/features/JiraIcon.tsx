@@ -1,12 +1,13 @@
-import { SVGProps } from 'react-html-props'
+import type { SVGProps } from 'react-html-props'
 
 export default function JiraIcon(props: SVGProps) {
   return (
     <svg
-      width="120"
+      aria-hidden="true"
+      fill="none"
       height="42"
       viewBox="0 0 120 42"
-      fill="none"
+      width="120"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >

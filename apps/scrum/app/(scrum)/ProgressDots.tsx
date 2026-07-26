@@ -1,13 +1,14 @@
-import { SVGProps } from 'react-html-props'
+import type { SVGProps } from 'react-html-props'
 
 export default function ProgressDots(props: SVGProps) {
   return (
     <svg
-      width="177"
-      height="8"
-      viewBox="0 0 177 8"
+      aria-hidden="true"
       fill="#2C8492"
       fillOpacity="0.5"
+      height="8"
+      viewBox="0 0 177 8"
+      width="177"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >

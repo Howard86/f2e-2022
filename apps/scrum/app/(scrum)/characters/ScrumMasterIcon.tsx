@@ -1,13 +1,14 @@
-import { CharacterIconProps } from './ProductOwnerIcon'
+import type { CharacterIconProps } from './ProductOwnerIcon'
 
 export default function ScrumMasterIcon({ head, ...props }: CharacterIconProps) {
-  if (head)
+  if (head) {
     return (
       <svg
-        width="100"
+        aria-hidden="true"
+        fill="none"
         height="118"
         viewBox="0 0 100 118"
-        fill="none"
+        width="100"
         xmlns="http://www.w3.org/2000/svg"
         {...props}
       >
@@ -69,13 +70,15 @@ export default function ScrumMasterIcon({ head, ...props }: CharacterIconProps) 
         />
       </svg>
     )
+  }
 
   return (
     <svg
-      width="148"
+      aria-hidden="true"
+      fill="none"
       height="317"
       viewBox="0 0 148 317"
-      fill="none"
+      width="148"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >

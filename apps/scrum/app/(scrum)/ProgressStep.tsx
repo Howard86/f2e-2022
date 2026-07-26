@@ -1,4 +1,4 @@
-import { SVGProps } from 'react-html-props'
+import type { SVGProps } from 'react-html-props'
 
 interface ProgressStepProps extends SVGProps {
   completed?: boolean
@@ -15,10 +15,11 @@ export default function ProgressStep({
   if (completed) {
     return (
       <svg
+        aria-hidden="true"
+        fill="none"
+        height={height}
         viewBox="0 0 36 48"
         width={width}
-        height={height}
-        fill="none"
         xmlns="http://www.w3.org/2000/svg"
         {...props}
       >
@@ -70,13 +71,14 @@ export default function ProgressStep({
     )
   }
 
-  if (selected)
+  if (selected) {
     return (
       <svg
-        viewBox="0 0 44 50"
+        aria-hidden="true"
         fill="none"
-        width={width}
         height={height}
+        viewBox="0 0 44 50"
+        width={width}
         xmlns="http://www.w3.org/2000/svg"
         {...props}
       >
@@ -111,13 +113,15 @@ export default function ProgressStep({
         />
       </svg>
     )
+  }
 
   return (
     <svg
+      aria-hidden="true"
+      fill="none"
+      height={height}
       viewBox="0 0 37 48"
       width={width}
-      height={height}
-      fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >

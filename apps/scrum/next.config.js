@@ -4,11 +4,10 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 /** @type{import('next').NextConfig} */
 const config = {
-  reactStrictMode: true,
-  swcMinify: true,
   experimental: {
-    appDir: true,
+    useTypeScriptCli: true,
   },
+  reactStrictMode: true,
 }
 
 module.exports = withBundleAnalyzer(config)

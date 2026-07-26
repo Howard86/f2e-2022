@@ -4,13 +4,13 @@ import {
   DragDropContext,
   Draggable,
   Droppable,
-  OnDragEndResponder,
-  OnDragUpdateResponder,
+  type OnDragEndResponder,
+  type OnDragUpdateResponder,
 } from '@hello-pangea/dnd'
 import clsx from 'clsx'
-import { CSSProperties, useState } from 'react'
+import { type CSSProperties, useState } from 'react'
 import { DRAG_ID_QUERY, EMPTY_OBJECT } from '../constants'
-import DroppableArea, { DroppableId, ItemGroup } from './DroppableArea'
+import DroppableArea, { DroppableId, type ItemGroup } from './DroppableArea'
 import SprintFlowCard from './SprintFlowCard'
 
 const CORRECT_ORDER: [string, string][] = [
@@ -19,7 +19,7 @@ const CORRECT_ORDER: [string, string][] = [
   ['短衝自省會議', 'Sprint Retrospective'],
 ]
 
-export const DEFAULT_ITEM_GROUP: ItemGroup = {
+const DEFAULT_ITEM_GROUP: ItemGroup = {
   [DroppableId.List]: [
     ['短衝檢視會議', 'Sprint Review'],
     ['每日站立會議', 'Daily Scrum'],
@@ -45,7 +45,9 @@ export default function SprintFlowDragSection() {
 
     const draggedDOM = document.querySelector<HTMLElement>(`[${DRAG_ID_QUERY}='${draggableId}']`)
 
-    if (!draggedDOM || !draggedDOM.parentNode) return
+    if (!draggedDOM?.parentNode) {
+      return
+    }
 
     const { clientHeight, clientWidth, parentNode } = draggedDOM
     const childrenArray = [...parentNode.children]
@@ -68,16 +70,18 @@ export default function SprintFlowDragSection() {
     setPlaceholderStyle((state) => ({
       ...state,
       height: clientHeight,
-      width: clientWidth,
-      top: clientY,
       left: Number.parseFloat(window.getComputedStyle(parentNode as Element).paddingLeft),
+      top: clientY,
+      width: clientWidth,
     }))
   }
 
   const onDragEnd: OnDragEndResponder = (result) => {
     const { source, destination } = result
 
-    if (!destination) return
+    if (!destination) {
+      return
+    }
 
     const newItemGroup = { ...itemGroup }
 
@@ -89,7 +93,9 @@ export default function SprintFlowDragSection() {
     } else {
       const popped = destinationItems.pop()
 
-      if (popped) newItemGroup[source.droppableId as DroppableId].push(popped)
+      if (popped) {
+        newItemGroup[source.droppableId as DroppableId].push(popped)
+      }
       destinationItems.push(removed)
     }
 
@@ -104,73 +110,71 @@ export default function SprintFlowDragSection() {
 
   return (
     <DragDropContext onDragEnd={onDragEnd} onDragUpdate={onDragUpdate}>
-      <>
-        <div className="relative z-10 mx-auto">
-          <div className="absolute bottom-52 right-24 text-center">
-            <h2 className="text-h1 ">Sprint</h2>
-            {isWrongOrder && (
-              <p className="text-notice text-error-main">
-                有選項位置好像不太對 <br />
-                可以再調整一下唷~
-              </p>
-            )}
-          </div>
-          <DroppableArea
-            itemGroup={itemGroup}
-            droppableId={DroppableId.Top}
-            className="absolute bottom-[21.5rem] -left-3"
-          />
-          <DroppableArea
-            itemGroup={itemGroup}
-            droppableId={DroppableId.Left}
-            className="absolute bottom-0 -left-3"
-          />
-          <DroppableArea
-            itemGroup={itemGroup}
-            droppableId={DroppableId.Right}
-            className="absolute bottom-0 left-[20rem]"
-          />
+      <div className="relative z-10 mx-auto">
+        <div className="absolute right-24 bottom-52 text-center">
+          <h2 className="text-h1">Sprint</h2>
+          {isWrongOrder ? (
+            <p className="text-error-main text-notice">
+              有選項位置好像不太對 <br />
+              可以再調整一下唷~
+            </p>
+          ) : null}
         </div>
-        <Droppable droppableId={DroppableId.List}>
-          {(dropProvided, dropSnapshot) => (
-            <div
-              ref={dropProvided.innerRef}
-              className={clsx(
-                'absolute -right-8 -top-4 z-10 h-[28rem] rounded-xl px-4 pt-4 2xl:px-8 2xl:pt-8',
-                dropSnapshot.isDraggingOver && 'bg-neutral-black-dark/10'
-              )}
-              {...dropProvided.droppableProps}
-            >
-              {itemGroup[DroppableId.List].map((item, index) => (
-                <Draggable key={item[0]} draggableId={item[0]} index={index}>
-                  {(dragProvided, dragSnapshot) => (
-                    <SprintFlowCard
-                      ref={dragProvided.innerRef}
-                      header={item[0]}
-                      subheader={item[1]}
-                      className={
-                        dragSnapshot.isDragging
-                          ? 'bg-neutral-white-light/50'
-                          : 'bg-neutral-white-light/75'
-                      }
-                      {...dragProvided.dragHandleProps}
-                      {...dragProvided.draggableProps}
-                    />
-                  )}
-                </Draggable>
-              ))}
-              {dropProvided.placeholder}
-              {dropSnapshot.isUsingPlaceholder && dropSnapshot.isDraggingOver && (
-                <span
-                  aria-hidden="true"
-                  className="border-neutral-white-light border-3 absolute rounded-xl border-dashed"
-                  style={placeholderStyle}
-                />
-              )}
-            </div>
-          )}
-        </Droppable>
-      </>
+        <DroppableArea
+          className="absolute bottom-[21.5rem] -left-3"
+          droppableId={DroppableId.Top}
+          itemGroup={itemGroup}
+        />
+        <DroppableArea
+          className="absolute bottom-0 -left-3"
+          droppableId={DroppableId.Left}
+          itemGroup={itemGroup}
+        />
+        <DroppableArea
+          className="absolute bottom-0 left-[20rem]"
+          droppableId={DroppableId.Right}
+          itemGroup={itemGroup}
+        />
+      </div>
+      <Droppable droppableId={DroppableId.List}>
+        {(dropProvided, dropSnapshot) => (
+          <div
+            className={clsx(
+              'absolute -top-4 -right-8 z-10 h-[28rem] rounded-xl px-4 pt-4 2xl:px-8 2xl:pt-8',
+              dropSnapshot.isDraggingOver && 'bg-neutral-black-dark/10'
+            )}
+            ref={dropProvided.innerRef}
+            {...dropProvided.droppableProps}
+          >
+            {itemGroup[DroppableId.List].map((item, index) => (
+              <Draggable draggableId={item[0]} index={index} key={item[0]}>
+                {(dragProvided, dragSnapshot) => (
+                  <SprintFlowCard
+                    className={
+                      dragSnapshot.isDragging
+                        ? 'bg-neutral-white-light/50'
+                        : 'bg-neutral-white-light/75'
+                    }
+                    header={item[0]}
+                    ref={dragProvided.innerRef}
+                    subheader={item[1]}
+                    {...dragProvided.dragHandleProps}
+                    {...dragProvided.draggableProps}
+                  />
+                )}
+              </Draggable>
+            ))}
+            {dropProvided.placeholder}
+            {dropSnapshot.isUsingPlaceholder && dropSnapshot.isDraggingOver ? (
+              <span
+                aria-hidden="true"
+                className="absolute rounded-xl border-3 border-neutral-white-light border-dashed"
+                style={placeholderStyle}
+              />
+            ) : null}
+          </div>
+        )}
+      </Droppable>
     </DragDropContext>
   )
 }

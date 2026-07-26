@@ -1,12 +1,12 @@
-import { motion, SVGMotionProps } from 'framer-motion'
+import { motion, type SVGMotionProps } from 'framer-motion'
 
 export default function LongRectangleIcon(props: SVGMotionProps<SVGSVGElement>) {
   return (
     <motion.svg
-      width="129"
+      fill="none"
       height="58"
       viewBox="0 0 129 58"
-      fill="none"
+      width="129"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
@@ -18,12 +18,12 @@ export default function LongRectangleIcon(props: SVGMotionProps<SVGSVGElement>) 
       />
       <defs>
         <linearGradient
+          gradientUnits="userSpaceOnUse"
           id="paint0_linear_191_16948"
           x1="-0.310373"
-          y1="19.754"
           x2="123.534"
+          y1="19.754"
           y2="61.4745"
-          gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#313A65" />
           <stop offset="1" stopColor="#313A65" stopOpacity="0" />

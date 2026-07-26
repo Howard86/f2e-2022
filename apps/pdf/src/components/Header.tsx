@@ -1,12 +1,12 @@
 import Link from 'next/link'
-import Logo from './Logo'
 import Button from './Button'
+import Logo from './Logo'
 
 export default function Header() {
   return (
-    <header className="bg-greyscale-white border-greyscale-grey sticky inset-x-0 top-0 z-40 border-b md:static">
+    <header className="sticky inset-x-0 top-0 z-40 border-greyscale-grey border-b bg-greyscale-white md:static">
       <div className="relative mx-auto flex max-w-screen-xl items-center justify-between px-6 py-4 md:py-6">
-        <h2 className="text-greyscale-dark-grey text-h2 absolute inset-x-0 top-1/2 hidden -translate-y-1/2 text-center font-bold md:block">
+        <h2 className="absolute inset-x-0 top-1/2 hidden -translate-y-1/2 text-center font-bold text-greyscale-dark-grey text-h2 md:block">
           快速省時的電子簽署工具
         </h2>
         <Link className="z-10" href="/">

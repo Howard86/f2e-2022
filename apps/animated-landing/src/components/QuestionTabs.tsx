@@ -1,10 +1,9 @@
-import { ChangeEvent, Fragment, useRef, useState } from 'react'
-
 import { Tab } from '@headlessui/react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { type ChangeEvent, Fragment, useRef, useState } from 'react'
+import { AnimationVariant, CommonQuestionSectionAnimation } from '@/constants/animations'
 import { NORMALISED_TABS } from '../constants/tabs'
 import QuestionButton from './QuestionButton'
-import { AnimationVariant, CommonQuestionSectionAnimation } from '@/constants/animations'
 
 export default function QuestionTab() {
   const ref = useRef<HTMLDivElement>(null)
@@ -16,25 +15,25 @@ export default function QuestionTab() {
 
   return (
     <div
-      ref={ref}
       className="section w-full max-w-[688px] overflow-x-hidden px-4 py-2 lg:max-w-screen-lg"
+      ref={ref}
     >
-      <Tab.Group selectedIndex={selectedTab} onChange={setSelectedTab}>
+      <Tab.Group onChange={setSelectedTab} selectedIndex={selectedTab}>
         <div className="md:hidden">
           {/* eslint-disable-next-line jsx-a11y/label-has-associated-control  */}
-          <label htmlFor="tabs" className="sr-only">
+          <label className="sr-only" htmlFor="tabs">
             選擇問題種類
           </label>
           <select
+            className="block w-full rounded-md border border-n1 bg-transparent py-2 text-ch-h5 transition-all focus:border-p1 focus:shadow-purple focus:outline-none focus:ring-p1"
             id="tabs"
             name="tabs"
+            onChange={handleSelect}
             role="tablist"
             value={selectedTab}
-            className="focus:border-p1 focus:ring-p1 focus:shadow-purple border-n1 text-ch-h5 block w-full rounded-md border bg-transparent py-2 transition-all focus:outline-none"
-            onChange={handleSelect}
           >
             {NORMALISED_TABS.ids.map((id) => (
-              <option key={id} id={`tab-${id}`} value={id} aria-selected={id === selectedTab}>
+              <option aria-selected={id === selectedTab} id={`tab-${id}`} key={id} value={id}>
                 {NORMALISED_TABS.entities[id].name}
               </option>
             ))}
@@ -45,18 +44,18 @@ export default function QuestionTab() {
             {NORMALISED_TABS.ids.map((id) => (
               <Tab
                 as="li"
+                className="relative whitespace-nowrap text-n2 focus-visible:outline-none"
                 key={id}
-                className="text-n2 relative whitespace-nowrap focus-visible:outline-none"
               >
                 <button
+                  className="relative px-3 py-2 font-medium text-ch-h5 ui-selected:text-n1 transition-all ui-selected:[text-shadow:theme(boxShadow.white)] ui-not-selected:before:transition-all ui-not-selected:hover:text-n1 ui-not-selected:focus:text-n1 lg:px-4 lg:text-ch-h4 ui-not-selected:hover:[text-shadow:theme(boxShadow.white)] ui-not-selected:focus:[text-shadow:theme(boxShadow.white)]"
                   id={`tab-${id}`}
                   type="button"
-                  className="ui-not-selected:hover:text-n1 ui-not-selected:hover:[text-shadow:theme(boxShadow.white)] ui-selected:text-n1 ui-selected:[text-shadow:theme(boxShadow.white)] ui-not-selected:focus:text-n1 ui-not-selected:focus:[text-shadow:theme(boxShadow.white)] text-ch-h5 lg:text-ch-h4 ui-not-selected:before:transition-all relative px-3 py-2 font-medium transition-all lg:px-4"
                 >
                   {NORMALISED_TABS.entities[id].name}
                   {selectedTab === id && (
                     <motion.span
-                      className="bg-g1 shadow-green absolute left-1/2 -bottom-2 h-1 w-3 -translate-x-1/2 rounded-full"
+                      className="absolute -bottom-2 left-1/2 h-1 w-3 -translate-x-1/2 rounded-full bg-g1 shadow-green"
                       layoutId="underline"
                     />
                   )}
@@ -66,60 +65,64 @@ export default function QuestionTab() {
           </Tab.List>
         </nav>
         <Tab.Panels as={Fragment}>
-          <AnimatePresence mode="wait">
+          <AnimatePresence>
             {NORMALISED_TABS.ids.map((id) => {
               const prevId = id - 1
               const nextId = id + 1
 
               return (
                 <Tab.Panel
-                  key={id}
-                  as={motion.article}
-                  variants={CommonQuestionSectionAnimation.tabPanel}
-                  initial={AnimationVariant.Initial}
                   animate={AnimationVariant.Activate}
+                  as={motion.article}
+                  className="mt-9 space-y-6 rounded-card bg-n1 py-4 text-n5 lg:py-8"
                   exit={AnimationVariant.Initial}
-                  className="text-n5 bg-n1 rounded-card mt-9 space-y-6 py-4 lg:py-8"
+                  initial={AnimationVariant.Initial}
+                  key={id}
+                  variants={CommonQuestionSectionAnimation.tabPanel}
                 >
                   {NORMALISED_TABS.entities[id].docs.map((doc, index) => (
                     <motion.div
+                      className="px-6 py-4 lg:flex lg:gap-6 lg:px-12"
                       key={doc.title}
                       variants={CommonQuestionSectionAnimation.doc}
-                      className="px-6 py-4 lg:flex lg:gap-6 lg:px-12"
                     >
-                      <span className="text-p3 text-en-h4 lg:text-en-h3 font-en tracking-widest">
+                      <span className="font-en text-en-h4 text-p3 tracking-widest lg:text-en-h3">
                         Q{index + 1}
                       </span>
                       <div>
-                        <h3 className="text-ch-h4 font-bold">{doc.title}</h3>
-                        <p className="text-ch-h5 mt-4">{doc.description}</p>
+                        <h3 className="font-bold text-ch-h4">{doc.title}</h3>
+                        <p className="mt-4 text-ch-h5">{doc.description}</p>
                       </div>
                     </motion.div>
                   ))}
                   <div className="flex items-center justify-between px-5 lg:px-12">
-                    {NORMALISED_TABS.entities[prevId] && (
+                    {NORMALISED_TABS.entities[prevId] ? (
                       <QuestionButton
-                        startIcon
                         onClick={() => {
                           setSelectedTab(prevId)
-                          if (ref.current) ref.current.scrollIntoView()
+                          if (ref.current) {
+                            ref.current.scrollIntoView()
+                          }
                         }}
+                        startIcon
                       >
                         {NORMALISED_TABS.entities[prevId].name}
                       </QuestionButton>
-                    )}
+                    ) : null}
                     <span className="flex-1" />
-                    {NORMALISED_TABS.entities[nextId] && (
+                    {NORMALISED_TABS.entities[nextId] ? (
                       <QuestionButton
                         endIcon
                         onClick={() => {
                           setSelectedTab(nextId)
-                          if (ref.current) ref.current.scrollIntoView()
+                          if (ref.current) {
+                            ref.current.scrollIntoView()
+                          }
                         }}
                       >
                         {NORMALISED_TABS.entities[nextId].name}
                       </QuestionButton>
-                    )}
+                    ) : null}
                   </div>
                 </Tab.Panel>
               )

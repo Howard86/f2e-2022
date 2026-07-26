@@ -1,23 +1,23 @@
-import { motion, SVGMotionProps } from 'framer-motion'
+import { motion, type SVGMotionProps } from 'framer-motion'
 
 export default function CodeStamp(props: SVGMotionProps<SVGSVGElement>) {
   return (
     <motion.svg
-      width="113"
+      fill="none"
       height="111"
       viewBox="0 0 113 111"
-      fill="none"
+      width="113"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
       <circle
         cx="57.0402"
         cy="58.7751"
-        r="41.0901"
-        transform="rotate(16.4471 57.0402 58.7751)"
         fill="url(#paint0_linear_191_17088)"
+        r="41.0901"
         stroke="url(#paint1_linear_191_17088)"
         strokeWidth="0.657738"
+        transform="rotate(16.4471 57.0402 58.7751)"
       />
       <path
         d="M46.5715 70.1046L46.9653 70.5779L47.1397 69.9873L48.7589 64.5023L48.8133 64.3179L48.6793 64.18L45.1746 60.5741L42.6454 57.8559L46.2557 56.9128L51.1433 55.8265L51.3325 55.7845L51.3874 55.5986L53.0066 50.1136L53.1809 49.523L52.5931 49.7066L38.8777 53.9895L38.71 54.0419L38.6603 54.2103L37.3183 58.7561L37.2686 58.9246L37.3809 59.0596L46.5715 70.1046ZM49.0212 73.232L48.8643 73.5765L49.2274 73.6837L51.9482 74.4869L52.2222 74.5678L52.3406 74.3078L63.2673 50.3204L63.4242 49.9758L63.0611 49.8686L60.3403 49.0654L60.0663 48.9845L59.9479 49.2445L49.0212 73.232ZM59.5178 73.6415L59.3435 74.2321L59.9313 74.0485L73.6468 69.7656L73.8144 69.7132L73.8642 69.5448L75.2061 64.999L75.2558 64.8305L75.1435 64.6955L65.953 53.6505L65.5591 53.1772L65.3848 53.7678L63.7655 59.2527L63.7107 59.4386L63.8467 59.5767L67.3607 63.1432L69.88 65.8958L66.2801 66.8047L61.3789 67.929L61.1915 67.972L61.1371 68.1565L59.5178 73.6415Z"
@@ -103,23 +103,23 @@ export default function CodeStamp(props: SVGMotionProps<SVGSVGElement>) {
       />
       <defs>
         <linearGradient
+          gradientUnits="userSpaceOnUse"
           id="paint0_linear_191_17088"
           x1="57.0402"
-          y1="17.3561"
           x2="57.0402"
+          y1="17.3561"
           y2="100.194"
-          gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#9FA6FF" />
           <stop offset="1" stopColor="#7A84FF" />
         </linearGradient>
         <linearGradient
+          gradientUnits="userSpaceOnUse"
           id="paint1_linear_191_17088"
           x1="100.167"
-          y1="39.0974"
           x2="23.8707"
+          y1="39.0974"
           y2="85.2232"
-          gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#7E87FF" />
           <stop offset="0.932292" stopColor="#9DA4FF" />

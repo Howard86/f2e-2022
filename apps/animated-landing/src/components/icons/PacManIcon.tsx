@@ -1,13 +1,14 @@
-import { SVGProps } from 'react-html-props'
+import type { SVGProps } from 'react-html-props'
 
 export default function PacManIcon({ className, ...props }: SVGProps) {
   return (
     <svg
-      width="41"
+      aria-hidden="true"
+      className={`${className} fill-p1 drop-shadow-purple`}
       height="45"
       viewBox="0 0 41 45"
+      width="41"
       xmlns="http://www.w3.org/2000/svg"
-      className={`${className} fill-p1 drop-shadow-purple`}
       {...props}
     >
       <g>

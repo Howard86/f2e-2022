@@ -1,12 +1,13 @@
-import { SVGProps } from 'react-html-props'
+import type { SVGProps } from 'react-html-props'
 
 export default function ArrowDownIcon(props: SVGProps) {
   return (
     <svg
-      width="144"
+      aria-hidden="true"
+      fill="none"
       height="144"
       viewBox="0 0 144 144"
-      fill="none"
+      width="144"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >

@@ -1,14 +1,14 @@
-import { motion, SVGMotionProps } from 'framer-motion'
+import { motion, type SVGMotionProps } from 'framer-motion'
 
 export default function RaceFlagIcon(props: SVGMotionProps<SVGSVGElement>) {
   return (
     <motion.svg
-      width="38"
+      className="shrink-0"
+      fill="none"
       height="41"
       viewBox="0 0 38 41"
-      fill="none"
+      width="38"
       xmlns="http://www.w3.org/2000/svg"
-      className="shrink-0"
       {...props}
     >
       <path

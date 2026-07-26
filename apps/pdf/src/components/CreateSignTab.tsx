@@ -1,10 +1,10 @@
 import { Tab } from '@headlessui/react'
-import { ExtractProps } from 'react'
+import type { ComponentProps } from 'react'
 
-export default function CreateSignTab(props: ExtractProps<typeof Tab>) {
+export default function CreateSignTab(props: ComponentProps<typeof Tab>) {
   return (
     <Tab
-      className="ui-selected:border-primary-main ui-selected:text-primary-main flex-1 whitespace-nowrap border-b-2 border-transparent py-4 px-1 text-base"
+      className="flex-1 whitespace-nowrap border-transparent ui-selected:border-primary-main border-b-2 px-1 py-4 text-base ui-selected:text-primary-main"
       {...props}
     />
   )

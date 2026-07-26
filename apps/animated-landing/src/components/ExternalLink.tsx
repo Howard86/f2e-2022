@@ -1,13 +1,12 @@
 import { motion } from 'framer-motion'
-import { forwardRef } from 'react'
-import { AProps } from 'react-html-props'
+import type { AProps } from 'react-html-props'
 
-const ExternalLink = forwardRef<HTMLAnchorElement, AProps>(({ children, ...props }, ref) => (
-  <a ref={ref} target="_blank" rel="noopener" tabIndex={0} role="link" {...props}>
+const ExternalLink = ({ children, ref, ...props }: AProps) => (
+  <a ref={ref} rel="noopener" role="link" tabIndex={0} target="_blank" {...props}>
     {children}
   </a>
-))
+)
 
-export const MotionExternalLink = motion(ExternalLink)
+export const MotionExternalLink = motion.create(ExternalLink)
 
 export default ExternalLink

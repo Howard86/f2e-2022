@@ -2,42 +2,40 @@ name: Release
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   release:
-    name: Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v2
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2.2.4
+      - name: Checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
-          version: 7
+          fetch-depth: 0
 
-      - name: Setup Node.js 16.x
-        uses: actions/setup-node@v2
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
         with:
-          node-version: 16.x
-          cache: 'pnpm'
+          bun-version-file: package.json
 
-      - name: Install Dependencies
-        run: pnpm install --frozen-lockfile=false
-
-      - name: Create Release Pull Request
-        id: changesets
-        uses: changesets/action@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          commit: 'chore(version): version packages'
+          node-version: "24"
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Create release pull request
+        uses: changesets/action@a45c4d594aa4e2c509dc14a9f2b3b67ba3780d0d # v1.9.0
+        with:
+          commit: "chore(version): version packages"
+          version: bun run version-packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Send a Slack notification if a publish happens
-        if: steps.changesets.outputs.published == 'true'
-        # You can do something when a publish happens.
-        run: my-slack-bot send-notification --message "A new version of ${GITHUB_REPOSITORY} was published!"
