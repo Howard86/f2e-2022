@@ -1,4 +1,3 @@
 module.exports = {
-  '**/*.{md,js,json}': ['prettier --write'],
-  '**/*.{ts,tsx}': ['eslint --fix'],
+  '*.{js,jsx,ts,tsx,json,jsonc,css}': 'bunx ultracite fix',
 }
