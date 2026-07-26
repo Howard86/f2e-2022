@@ -7,7 +7,6 @@
     "access": "public"
   },
   "devDependencies": {
-    "postcss": "^8.5.23",
     "tailwindcss": "^4.3.3"
   },
   "peerDependencies": {

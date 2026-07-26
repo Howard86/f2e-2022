@@ -19,7 +19,7 @@ const CORRECT_ORDER: [string, string][] = [
   ['短衝自省會議', 'Sprint Retrospective'],
 ]
 
-export const DEFAULT_ITEM_GROUP: ItemGroup = {
+const DEFAULT_ITEM_GROUP: ItemGroup = {
   [DroppableId.List]: [
     ['短衝檢視會議', 'Sprint Review'],
     ['每日站立會議', 'Daily Scrum'],

@@ -104,6 +104,7 @@ This project will mainly follow the dependencies of [turbo-monorepo-template](ht
 4. [Commitlint](https://commitlint.js.org/)
 5. [Turborepo](https://turborepo.dev)
 6. [Bun test runner](https://bun.sh/docs/test)
+7. [Knip](https://knip.dev/) for unused code and dependency checks
 
 ### Application specific dependencies
 
@@ -131,6 +132,7 @@ This project will mainly follow the dependencies of [turbo-monorepo-template](ht
   - `bun run dev:$APP_NAME` - run one app in development mode
 - `bun run check` - lint and format-check with Ultracite
 - `bun run format` - apply Ultracite fixes
+- `bun run knip` - find unused files, exports, and dependencies
 - `bun run typecheck` - type-check every TypeScript workspace
 - `bun run test` - run all unit tests with Bun
 - `bun run changeset` - generate a changeset
@@ -141,7 +143,8 @@ This project will mainly follow the dependencies of [turbo-monorepo-template](ht
 - Pre-commit fixes staged files and scans the staged diff with Gitleaks.
 - Commit messages must follow Conventional Commits.
 - Pre-push runs Ultracite, workspace type-checking, `typos`, and Gitleaks.
-- CI repeats linting, type-checking, spelling, secret scanning, workflow linting, and tests.
+- CI repeats linting, type-checking, unused-code analysis, spelling, secret scanning, workflow
+  linting, and tests.
 
 Install the native local checks with `brew install typos-cli gitleaks`. Git hooks may be bypassed with `--no-verify` when necessary; CI remains authoritative.
 

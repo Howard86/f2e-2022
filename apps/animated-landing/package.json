@@ -21,7 +21,6 @@
     "use-resize-observer": "^9.1.0"
   },
   "devDependencies": {
-    "@f2e-2022/tailwind-config": "workspace:*",
     "@f2e-2022/tsconfig": "workspace:*",
     "@headlessui/tailwindcss": "^0.2.2",
     "@next/bundle-analyzer": "^16.2.12",

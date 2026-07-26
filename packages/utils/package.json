@@ -18,12 +18,14 @@
   "devDependencies": {
     "@f2e-2022/tsconfig": "workspace:*",
     "@types/react": "^19.2.17",
-    "@types/react-dom": "^19.2.3",
     "react": "^19.2.8",
     "tsup": "^8.5.1",
     "typescript": "^7.0.2"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "peerDependencies": {
+    "react": "^19.2.8"
   }
 }

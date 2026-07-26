@@ -36,7 +36,7 @@ export const EASE_TRANSITIONS: Transition = {
   ease: [0.43, 0.13, 0.23, 0.96],
 }
 
-export const SLIDE_UP_VARIANTS: Variants = {
+const SLIDE_UP_VARIANTS: Variants = {
   [AnimationVariant.Initial]: { opacity: 0, y: 20 },
   [AnimationVariant.Slide]: { opacity: 1, y: 0 },
   [AnimationVariant.Float]: {
@@ -51,7 +51,7 @@ export const SLIDE_UP_VARIANTS: Variants = {
   },
 }
 
-export const DELAYED_SLIDE_UP_VARIANTS: Variants = {
+const DELAYED_SLIDE_UP_VARIANTS: Variants = {
   [AnimationVariant.Initial]: { opacity: 0, translateY: 20 },
   [AnimationVariant.Slide]: {
     opacity: 1,
@@ -60,7 +60,7 @@ export const DELAYED_SLIDE_UP_VARIANTS: Variants = {
   },
 }
 
-export const SLIDE_DOWN_VARIANTS: Variants = {
+const SLIDE_DOWN_VARIANTS: Variants = {
   [AnimationVariant.Initial]: { opacity: 0, translateY: -10 },
   [AnimationVariant.Slide]: { opacity: 1, translateY: 0 },
   [AnimationVariant.Float]: {
@@ -76,7 +76,7 @@ export const SLIDE_DOWN_VARIANTS: Variants = {
   },
 }
 
-export const SLIDE_LEFT_VARIANTS: Variants = {
+const SLIDE_LEFT_VARIANTS: Variants = {
   [AnimationVariant.Initial]: { scale: 1, transition: SPRING_TRANSITION, translateX: 0 },
   [AnimationVariant.Float]: {
     transition: {
@@ -104,7 +104,7 @@ export const SLIDE_LEFT_VARIANTS: Variants = {
 }
 
 // StatementSection
-export const BOUNCE_CONTAINER_VARIANTS: Variants = {
+const BOUNCE_CONTAINER_VARIANTS: Variants = {
   [AnimationVariant.Initial]: {},
   [AnimationVariant.Bounce]: {
     transition: {
@@ -116,7 +116,7 @@ export const BOUNCE_CONTAINER_VARIANTS: Variants = {
   },
 }
 
-export const BOUNCE_OUT_VARIANTS: Variants = {
+const BOUNCE_OUT_VARIANTS: Variants = {
   [AnimationVariant.Initial]: {},
   [AnimationVariant.Bounce]: {
     opacity: [0, 1, 0.95, 1, 0.98, 1],
@@ -128,7 +128,7 @@ export const BOUNCE_OUT_VARIANTS: Variants = {
 }
 
 // Solution Section
-export const SCALE_IN_VARIANTS: Variants = {
+const SCALE_IN_VARIANTS: Variants = {
   [AnimationVariant.Initial]: {
     opacity: 0,
     scale: 0,
@@ -147,7 +147,7 @@ export enum SlideDirection {
   Right = 3,
 }
 
-export const FADE_SLIDE_IN_VARIANTS: Variants = {
+const FADE_SLIDE_IN_VARIANTS: Variants = {
   [AnimationVariant.Initial]: (position) => {
     switch (position) {
       case SlideDirection.Top:
@@ -182,7 +182,7 @@ export const FADE_SLIDE_IN_VARIANTS: Variants = {
   },
 }
 
-export const SLIDE_HORIZONTAL_VARIANTS: Variants = {
+const SLIDE_HORIZONTAL_VARIANTS: Variants = {
   [AnimationVariant.Initial]: (reversed) => ({
     rotate: reversed ? 180 : 0,
     x: reversed ? 480 : 0,
@@ -194,7 +194,7 @@ export const SLIDE_HORIZONTAL_VARIANTS: Variants = {
   }),
 }
 
-export const ROTATE_VARIANTS: Variants = {
+const ROTATE_VARIANTS: Variants = {
   [AnimationVariant.Initial]: (reversed) => ({
     opacity: 0,
     rotate: reversed ? 60 : -45,
@@ -210,7 +210,7 @@ export const ROTATE_VARIANTS: Variants = {
 }
 
 // TaskSection
-export const FADE_IN_ROTATE_VARIANTS: Variants = {
+const FADE_IN_ROTATE_VARIANTS: Variants = {
   [AnimationVariant.Initial]: (y = 100) => ({
     opacity: 0,
     y,
@@ -247,7 +247,7 @@ export const FADE_IN_ROTATE_VARIANTS: Variants = {
   },
 }
 
-export const ROTATE_ITEM_VARIANTS: Variants = {
+const ROTATE_ITEM_VARIANTS: Variants = {
   [AnimationVariant.Rotate]: {
     opacity: [1, 0.6, 0.1, 0],
     transition: {
@@ -264,32 +264,32 @@ export const FADE_VARIANTS: Variants = {
 }
 
 // CompetitionSection
-export const COMPETITION_VARIANTS: Variants = {
+const COMPETITION_VARIANTS: Variants = {
   [AnimationVariant.Initial]: { opacity: 0 },
   [AnimationVariant.Activate]: { opacity: 1, transition: EASE_TRANSITIONS },
 }
 
-export const DELAYED_FADE_VARIANTS: Variants = {
+const DELAYED_FADE_VARIANTS: Variants = {
   [AnimationVariant.Initial]: { opacity: 0 },
   [AnimationVariant.Activate]: { opacity: 1, transition: { ...EASE_TRANSITIONS, delay: 1.28 } },
 }
 
-export const DELAYED_SHRINK_VARIANTS: Variants = {
+const DELAYED_SHRINK_VARIANTS: Variants = {
   [AnimationVariant.Initial]: { maxWidth: '100%' },
   [AnimationVariant.Activate]: { maxWidth: 0, transition: { delay: 2.56, duration: 1.92 } },
 }
 
-export const RACE_CAR_FLAG_VARIANTS: Variants = {
+const RACE_CAR_FLAG_VARIANTS: Variants = {
   [AnimationVariant.Activate]: { rotate: -37, transition: { delay: 4.48 }, x: -17, y: -21 },
 }
 
-export const SLIDE_UP_VARIANTS_TWO: Variants = {
+const SLIDE_UP_VARIANTS_TWO: Variants = {
   [AnimationVariant.Initial]: { y: 40 },
   [AnimationVariant.Activate]: { transition: EASE_TRANSITIONS, y: 0 },
 }
 
 // CommonQuestionSection
-export const HIDE_AND_SHOW_VARIANTS: Variants = {
+const HIDE_AND_SHOW_VARIANTS: Variants = {
   [AnimationVariant.Initial]: { opacity: 0 },
   [AnimationVariant.Activate]: {
     opacity: 1,
@@ -297,7 +297,7 @@ export const HIDE_AND_SHOW_VARIANTS: Variants = {
   },
 }
 
-export const FADE_UP_VARIANTS: Variants = {
+const FADE_UP_VARIANTS: Variants = {
   [AnimationVariant.Initial]: { opacity: 0, y: 10 },
   [AnimationVariant.Activate]: {
     opacity: 1,
@@ -306,7 +306,7 @@ export const FADE_UP_VARIANTS: Variants = {
   },
 }
 
-export const ROTATE_IN_VARIANTS: Variants = {
+const ROTATE_IN_VARIANTS: Variants = {
   [AnimationVariant.Initial]: {
     opacity: 0,
     rotate: -360,
