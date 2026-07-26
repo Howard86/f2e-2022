@@ -10,7 +10,7 @@ Special thanks to
 
 ## Introduction
 
-This repository is powered by [pnpm](https://pnpm.io) and managed with [Turborepo](https://turbo.build/repo) in the following folder structure
+This repository uses [Bun](https://bun.sh) and [Turborepo](https://turborepo.dev) in the following folder structure:
 
 - `/apps` - this contains all published applications on [Vercel Platform](https://vercel.com)
   - [animated-landing](https://f2e-2022.howardism.dev) - redesigned [f2e 2022](https://2022.thef2e.com/) landing page by designer [Jenny Wu](https://uxfol.io/jennywu)
@@ -18,7 +18,6 @@ This repository is powered by [pnpm](https://pnpm.io) and managed with [Turborep
   - [scrum](https://scrum.howardism.dev) - a website introducing [Scrum](https://www.atlassian.com/agile/scrum) workflow for agile software development, integrated with drag & drop features, designed by [邱仲德](https://2022.thef2e.com/users/12061549261446563754)
   - docs - summary landing page for f2e-2022 changes (WIP)
 - `/packages` - this contains all shared packages used by all applications
-  - eslint-config-f2e-2022: shared [ESLint](https://eslint.org) configuration files
   - jest-config: shared [JEST](https://jestjs.io) configuration files
   - tailwind-config: shared [Tailwindcss](https://tailwindcss.com) configuration files
   - tsconfig: shared [TypeScript](https://www.typescriptlang.org) configuration files
@@ -45,9 +44,8 @@ Please refer to [next.js appDir](https://beta.nextjs.org/docs/routing/fundamenta
 
 ### Running environments
 
-- OS: [macOS Monterey 12.0.1](https://www.apple.com/macos/monterey/) Apple chip or [Ubuntu 20.04.2 LTS](https://ubuntu.com)
-- [Node.js](https://nodejs.org/en/): v16.16.0
-- [pnpm](https://pnpm.io): v7.14.1
+- [Bun](https://bun.sh): v1.3.14
+- [Node.js](https://nodejs.org/en/): v24
 
 ### Environmental Variables
 
@@ -69,8 +67,8 @@ Run corresponding [commands](#useful-commands) with respective application name
 e.g. for `animated-landing`
 
 ```bash
-pnpm i
-pnpm dev:animated-landing
+bun install
+bun run dev:animated-landing
 ```
 
 You should be able to visit [localhost:3002](http://localhost:3002) to view the application successfully
@@ -80,9 +78,9 @@ You should be able to visit [localhost:3002](http://localhost:3002) to view the 
 e.g. for `animated-landing`
 
 ```bash
-pnpm i
-pnpm build:animated-landing
-pnpm start:animated-landing
+bun install
+bun run build:animated-landing
+bun run start:animated-landing
 ```
 
 You should be able to visit [localhost:3000](http://localhost:3002) to view the application successfully
@@ -93,8 +91,8 @@ This project will mainly follow the dependencies of [turbo-monorepo-template](ht
 
 ### Common dependencies
 
-1. [React](https://reactjs.org): v18
-2. [Next.js](https://nextjs.org): v13
+1. [React](https://react.dev): v19
+2. [Next.js](https://nextjs.org): v16
 3. [Tailwindcss](https://chakra-ui.com)
 4. [headless UI](https://headlessui.com)
 5. [heroicons](https://heroicons.com)
@@ -103,12 +101,11 @@ This project will mainly follow the dependencies of [turbo-monorepo-template](ht
 ### Development dependencies
 
 1. [TypeScript](https://www.typescriptlang.org/)
-2. [ESLint](https://eslint.org/) with [Airbnb config](https://github.com/iamturns/eslint-config-airbnb-typescript)
-3. [Prettier](https://prettier.io/) with [prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss)
-4. Pre-commit & pre-push git hooks powered by [lint-staged](https://github.com/okonet/lint-staged) and [husky](https://typicode.github.io/husky/#/)
-5. [Commitlint](https://commitlint.js.org/#/)
-6. [Turborepo](https://turbo.build/repo)
-7. [JEST](https://jestjs.io/)
+2. [Ultracite](https://www.ultracite.ai/) with [Biome](https://biomejs.dev/)
+3. Pre-commit and pre-push hooks powered by [lint-staged](https://github.com/lint-staged/lint-staged) and [Husky](https://typicode.github.io/husky/)
+4. [Commitlint](https://commitlint.js.org/)
+5. [Turborepo](https://turborepo.dev)
+6. [Jest](https://jestjs.io/)
 
 ### Application specific dependencies
 
@@ -128,18 +125,29 @@ This project will mainly follow the dependencies of [turbo-monorepo-template](ht
 
   1.  [@hello-pangea/dnd](https://github.com/hello-pangea/dnd)
 
-> \* Note: `Fabric.js` will install peer dependency [node-canvas](https://www.npmjs.com/package/canvas), which requires additional setup depending on your local OS. Please refer to [readme](https://github.com/Automattic/node-canvas#compiling) for more reference.
-
 ## Useful commands
 
-- `pnpm build` - Build all apps & packages
-  - `pnpm build:$APP_NAME` - Build app with specified APP_NAME and dependent packages in watch mode
-- `pnpm dev` - Develop all apps & packages in watch mode
-  - `pnpm dev:$APP_NAME` - Develop app with specified APP_NAME and dependent packages in watch mode
-- `pnpm test` - Test all packages
-- `pnpm lint` - Lint all packages
-- `pnpm changeset` - Generate a changeset
-- `pnpm clean` - Clean up all `node_modules` and `dist` folders (runs each package's clean script)
+- `bun run build` - build all apps and packages
+  - `bun run build:$APP_NAME` - build one app and its dependencies
+- `bun run dev` - run all apps and packages in development mode
+  - `bun run dev:$APP_NAME` - run one app in development mode
+- `bun run check` - lint and format-check with Ultracite
+- `bun run format` - apply Ultracite fixes
+- `bun run typecheck` - type-check every TypeScript workspace
+- `bun run test` - run the existing Jest suites
+- `bun run changeset` - generate a changeset
+- `bun run clean` - remove generated workspace output
+
+## Quality gates
+
+- Pre-commit fixes staged files and scans the staged diff with Gitleaks.
+- Commit messages must follow Conventional Commits.
+- Pre-push runs Ultracite, workspace type-checking, `typos`, and Gitleaks.
+- CI repeats linting, type-checking, spelling, secret scanning, workflow linting, and tests.
+
+Install the native local checks with `brew install typos-cli gitleaks`. Git hooks may be bypassed with `--no-verify` when necessary; CI remains authoritative.
+
+Dependabot checks npm and GitHub Actions weekly. Because Bun lockfile support is partial, regenerate `bun.lock` with `bun install` when a dependency PR changes only a manifest.
 
 ## Versioning and Publishing packages
 
